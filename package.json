@@ -1,0 +1,35 @@
+{
+  "name": "call-the-trainer",
+  "version": "1.0.0",
+  "description": "Application for facilitating communication between workshop participants and trainers",
+  "main": "./dist/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/preset-typescript": "7.3.3",
+    "clean-webpack-plugin": "3.0.0",
+    "eslint": "6.2.1",
+    "ts-loader": "6.0.4",
+    "typescript": "3.5.3",
+    "webpack": "4.39.2",
+    "webpack-cli": "3.2.3"
+  },
+  "scripts": {
+    "build": "webpack --config webpack/webpack.config.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "React",
+    "typescript",
+    "socket.io"
+  ],
+  "author": "Katarzyna Ziomek-Zdanowicz",
+  "license": "ISC",
+  "repository": "https://github.com/ziomecka/call-the-trainer.git",
+  "engines" : {
+    "npm" : "6.4.1",
+    "node": "10.15.3"
+  }
+}
