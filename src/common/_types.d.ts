@@ -1,5 +1,6 @@
 declare const enum ServerRoutes {
   'loginRoute' = '/login',
+  'logoutRoute' = '/logout',
   'publicRoute' = '/',
 }
 
