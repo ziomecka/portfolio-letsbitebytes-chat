@@ -1,5 +1,5 @@
 declare interface SocketMessageRequest {
-  to: string;
+  from: string;
   message: string;
 }
 
