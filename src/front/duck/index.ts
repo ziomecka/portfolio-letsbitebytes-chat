@@ -1,0 +1,1 @@
+export { commonStateReducer } from './reducer';
