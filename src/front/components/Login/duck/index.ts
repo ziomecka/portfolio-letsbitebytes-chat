@@ -1,0 +1,1 @@
+export { loginReducer } from './reducer';
