@@ -1,0 +1,1 @@
+export { Trainee } from './container';
