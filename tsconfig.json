@@ -1,3 +1,25 @@
 {
-    "presets": ["@babel/preset-typescript"]
+  "presets": ["@babel/preset-typescript"],
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/**/*",
+    ],
+    "outDir": "tsc",
+    "declaration": false,
+    "lib": [ "dom", "es2015", "es2015.promise" ]
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

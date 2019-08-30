@@ -3,22 +3,65 @@
   "version": "1.0.0",
   "description": "Application for facilitating communication between workshop participants and trainers",
   "main": "./dist/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@material-ui/core": "4.3.3",
+    "express": "4.17.1",
+    "node-fetch": "2.6.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-redux": "7.1.1",
+    "react-router-dom": "5.0.1",
+    "redux-thunk": "2.3.0",
+    "sanitize-html": "1.20.1",
+    "socket.io": "2.2.0",
+    "socket.io-client": "2.2.0"
+  },
   "devDependencies": {
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
+    "@types/express": "4.17.1",
+    "@types/node": "12.7.2",
+    "@types/node-fetch": "2.5.0",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
+    "@types/react-redux": "7.1.2",
+    "@types/react-router-config": "5.0.0",
+    "@types/react-router-dom": "4.3.5",
+    "@types/redux": "3.6.0",
+    "@types/redux-thunk": "2.1.0",
+    "@types/sanitize-html": "1.20.1",
+    "@types/socket.io": "2.1.2",
+    "@types/socket.io-client": "1.4.32",
+    "@typescript-eslint/eslint-plugin": "2.0.1-alpha.25",
+    "@typescript-eslint/parser": "2.0.0",
+    "babel-loader": "8.0.6",
     "clean-webpack-plugin": "3.0.0",
+    "dotenv": "8.1.0",
     "eslint": "6.2.1",
+    "eslint-config-prettier": "6.1.0",
+    "eslint-plugin-react": "7.14.3",
+    "prettier": "1.18.2",
+    "redux": "4.0.4",
+    "redux-devtools-extension": "2.13.8",
     "ts-loader": "6.0.4",
+    "ts-node": "8.0.3",
     "typescript": "3.5.3",
     "webpack": "4.39.2",
-    "webpack-cli": "3.2.3"
+    "webpack-cli": "3.2.3",
+    "webpack-merge": "4.2.2"
   },
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "build:front": "webpack --config webpack/webpack.front.config.js",
+    "build:back": "webpack --config webpack/webpack.back.config.js",
+    "build": "npm run build:front & npm run build:back",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "npm run lint -- --fix",
+    "localhost": "npm run build:front && ts-node --project tsconfig.json --files src/back/index.ts",
+    "tsc": "tsc -p tsconfig.json",
+    "tsc:watch": "tsc -p tsconfig.json -w"
   },
   "keywords": [
     "React",
@@ -28,8 +71,8 @@
   "author": "Katarzyna Ziomek-Zdanowicz",
   "license": "ISC",
   "repository": "https://github.com/ziomecka/call-the-trainer.git",
-  "engines" : {
-    "npm" : "6.4.1",
-    "node": "10.15.3"
+  "engines": {
+    "npm": "6.4.1",
+    "node": "12.3.0"
   }
 }

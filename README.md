@@ -4,4 +4,7 @@ The application facilitates communication between workshop participants and trai
 
 # Stack
 
-React, typescript
+React, redux,  typescript
+
+# Assumptions
+* Use server side rendering
