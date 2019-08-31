@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { Conversations } from '../Conversations/';
+import { Screen } from '../Screen/';
 import { Typography } from '@material-ui/core';
 
 const Trainer: React.FunctionComponent = () => {
   const welcomeText = 'Welcome Trainer';
 
   return (
-    <React.Fragment>
+    <Screen>
       <Typography>
         {welcomeText}
       </Typography>
       <Conversations />
-    </React.Fragment>
+    </Screen>
   );
 };
 
