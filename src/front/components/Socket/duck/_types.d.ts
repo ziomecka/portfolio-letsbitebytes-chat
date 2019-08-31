@@ -16,6 +16,11 @@ declare interface InitiateSocketAction {
   type: string;
 }
 
+declare type SocketActions =
+  EmitMessageAction |
+  InitiateSocketAction |
+  ReceiveMessageAction;
+
 declare const enum SocketActionTypes {
   emitMessage = '@APP/Socket/emit message',
   receiveMessage = '@APP/Socket/receive message',
