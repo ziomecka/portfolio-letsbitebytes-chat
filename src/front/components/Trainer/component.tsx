@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Conversations } from '../Conversations/';
+import { Conversation } from '../Conversation/';
 import { Screen } from '../Screen/';
 import { Typography } from '@material-ui/core';
 
@@ -11,7 +11,7 @@ const Trainer: React.FunctionComponent = () => {
       <Typography>
         {welcomeText}
       </Typography>
-      <Conversations />
+      <Conversation />
     </Screen>
   );
 };
