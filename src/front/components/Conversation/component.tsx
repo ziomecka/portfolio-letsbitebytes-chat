@@ -34,13 +34,13 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.typeMessage = this.typeMessage.bind(this);
   }
 
-  private getActiveConversation (): Statement[] {
+  private getActiveConversation (conversations = this.props.conversations): Statement[] {
     const { activeConversation } = this.props;
 
-    const conversation = Object.entries(this.props.conversations)
+    const conversation = Object.entries(conversations)
       .find(([key]) => key === activeConversation);
 
-      return conversation ? conversation[ 1 ] : undefined;
+    return conversation ? conversation[ 1 ] : [];
   }
 
   public componentDidUpdate (prevProps: ConversationProps): void {
@@ -54,9 +54,14 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
 
     if (conversations !== prevConversations) {
-      this.setState({
-        conversation: this.getActiveConversation()
-      });
+      const activeConversation = this.getActiveConversation();
+      const { length: prevConversationLength } = this.getActiveConversation(prevConversations);
+
+      if (activeConversation.length !== prevConversationLength) {
+        this.setState({
+          conversation: activeConversation,
+        });
+      }
     }
   }
 
