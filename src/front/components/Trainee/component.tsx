@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
   Button,
-  // TextField,
   Typography,
 } from '@material-ui/core';
 import { Conversations } from '../Conversations/';
+import { Screen } from '../Screen';
 
 interface TraineeLocalState {
   message: string;
@@ -34,7 +34,7 @@ class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
     const { state: { needsHelp }, helpLabel, resignLabel } = this;
 
     return (
-      <React.Fragment>
+      <Screen>
         <Typography>
           {this.welcomeText}
         </Typography>
@@ -48,7 +48,7 @@ class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
           {needsHelp ? helpLabel : resignLabel}
         </Button>
         }
-      </React.Fragment>
+      </Screen>
     );
   }
 
