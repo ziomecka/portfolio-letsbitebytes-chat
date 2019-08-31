@@ -11,6 +11,7 @@ const isAuthenticated = false;
 
 let login = '';
 let password = '';
+const activeConversation = '';
 
 if (DEFAULT_USER === 'trainer') {
   login = TRAINER_LOGIN;
@@ -28,7 +29,6 @@ const conversations = {
   ]
 } as Conversations;
 
-const activeConversation = '';
 
 export const initialStore = {
   user: {
