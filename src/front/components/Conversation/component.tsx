@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Paper,
   TextField,
+  Typography,
 } from '@material-ui/core';
 
 interface ConversationState {
@@ -65,29 +66,31 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
   }
 
-  private renderConversation (conversation: Statement[]): JSX.Element {
+  private renderConversation (): JSX.Element {
     const {
       partnerStatementClassName,
       userStatementClassName,
+      state: { conversation = [] },
     } = this;
 
     return (
       <Paper>
-          {
-            conversation.map( ( statement, index ) => (
-              <div
-                key={index}
-                className={
-                  statement[ 2 ]
-                    ? userStatementClassName
-                    : partnerStatementClassName
-                }
-              >
-                <p>{statement[ 0 ]}</p>
-                <p>{statement[ 1 ]}</p>
-              </div>
-            ) )
-          }
+        {
+          conversation.map( ( statement, index ) => (
+            <Paper
+              key={index}
+              className={
+                statement[ 2 ]
+                  ? userStatementClassName
+                  : partnerStatementClassName
+              }
+            >
+              <Typography>
+                {statement[ 1 ]}
+              </Typography>
+            </Paper>
+          ))
+        }
       </Paper>
     );
   }
@@ -114,12 +117,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     const { conversation } = this.state;
 
     return (
-      conversation &&
       <React.Fragment>
-        {this.renderConversation(conversation)}
+        {this.renderConversation()}
         {this.renderConversationInput()}
       </React.Fragment>
-    ) || null;
+    );
   }
 }
 
