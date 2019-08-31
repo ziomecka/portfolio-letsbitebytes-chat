@@ -11,9 +11,11 @@ interface ConversationState {
 
 const PARTNER_STATEMENT_CLASS_NAME = 'BAR';
 const USER_STATEMENT_CLASS_NAME = 'FOO';
+const MESSAGE_INITIAL_STATE = '';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
+  private messageInitialState: string;
   private partnerStatementClassName: string;
   private userStatementClassName: string;
   constructor (props: ConversationProps) {
@@ -21,9 +23,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.state = {
       conversation: this.getActiveConversation(),
-      message: '',
+      message: MESSAGE_INITIAL_STATE,
     };
 
+    this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.partnerStatementClassName = PARTNER_STATEMENT_CLASS_NAME;
     this.userStatementClassName = USER_STATEMENT_CLASS_NAME;
     this.conversationInputLabel = '?';
