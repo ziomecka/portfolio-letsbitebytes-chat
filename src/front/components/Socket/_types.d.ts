@@ -21,3 +21,9 @@ declare interface MapSocketToProps {
 }
 
 declare interface SocketProps extends MapStateToSocket, MapDispatchToSocket{}
+
+declare type Statement = [Date, string, boolean];
+
+declare type Conversation = Statement[];
+
+declare type Conversations = Record<string, Conversation>;

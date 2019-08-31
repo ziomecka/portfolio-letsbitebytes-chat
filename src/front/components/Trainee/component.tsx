@@ -3,7 +3,7 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
-import { Conversations } from '../Conversations/';
+import { Conversation } from '../Conversation/';
 import { Screen } from '../Screen';
 
 interface TraineeLocalState {
@@ -39,7 +39,7 @@ class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
           {this.welcomeText}
         </Typography>
 
-        {needsHelp && <Conversations />}
+        {needsHelp && <Conversation />}
 
         <Button
           onClick={this.callTrainer}
