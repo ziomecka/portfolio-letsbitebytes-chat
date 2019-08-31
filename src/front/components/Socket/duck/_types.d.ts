@@ -25,3 +25,5 @@ declare const enum SocketActionTypes {
   emitMessage = '@APP/Socket/emit message',
   receiveMessage = '@APP/Socket/receive message',
 }
+
+declare type SocketState = Conversations;
