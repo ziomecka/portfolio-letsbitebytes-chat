@@ -3,8 +3,8 @@ declare interface EmitMessageActionProps {
   to: string;
 }
 
-declare interface EmitMessageAction extends EmitMessageActionProps {
-  type: string;
+declare interface EmitMessageAction extends Action {
+  message: string;
   to: string;
 }
 
