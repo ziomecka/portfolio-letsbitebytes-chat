@@ -1,4 +1,4 @@
-import { buildQueryParams } from '../build-query-params';
+import { buildUrl } from '../build-url';
 
 const url = 'https://some.url.foo';
 
@@ -32,7 +32,7 @@ const scenarios = [
 describe('build query params', () => {
   it('returns correct url', () => {
     scenarios.forEach( scenario => {
-      expect(buildQueryParams(url, scenario.queryParams)).toEqual(scenario.result);
+      expect(buildUrl(url, scenario.queryParams)).toEqual(scenario.result);
     });
   });
 });

@@ -1,5 +1,5 @@
 // TODO encode special charachters
-export const buildQueryParams = (url: string, params: unknown): string => {
+export const buildUrl = (url: string, params: unknown): string => {
   const queries = Object.entries(params as Record<string, string>);
 
   return queries.length
