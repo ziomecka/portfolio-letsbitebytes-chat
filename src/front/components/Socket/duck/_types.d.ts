@@ -1,9 +1,11 @@
 declare interface EmitMessageActionProps {
   message: string;
+  to: string;
 }
 
 declare interface EmitMessageAction extends EmitMessageActionProps {
   type: string;
+  to: string;
 }
 
 declare interface ReceiveMessageProps {
