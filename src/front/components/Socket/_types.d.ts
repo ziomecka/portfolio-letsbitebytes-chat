@@ -16,7 +16,7 @@ declare interface MapDispatchToSocket {
   initiate(): Promise<void>;
 }
 
-declare interface SocketDispatch {
+declare interface MapSocketToProps {
   emitMessage(message: string):  Promise<EmitMessageAction>;
 }
 
