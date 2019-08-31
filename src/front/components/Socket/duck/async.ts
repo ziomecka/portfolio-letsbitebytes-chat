@@ -22,11 +22,12 @@ export const initiateSocket = (): AppThunkAction<InitiateSocketAction, void> => 
   }
 );
 
-  async (dispatch: AppThunkDispatch<EmitMessageAction>): Promise<EmitMessageAction> => (
 export const emitMessage = (message: string): AppThunkAction<EmitMessageAction> => (
+  async (dispatch: AppThunkDispatch<EmitMessageAction>, getState: GetState): Promise<EmitMessageAction> => (
     new Promise((resolve): void => {
-      socket.emit(SocketMessages.message, props, (response: string): void => {
-        resolve(dispatch(emitMessageAction({ message: props.message })));
+      const to = getState().activeConversation;
+      socket.emit(SocketMessages.message, { message, to }, (response: string): void => {
+        resolve(dispatch(emitMessageAction({ message, to })));
       });
     })
   )
