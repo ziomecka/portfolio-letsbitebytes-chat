@@ -3,7 +3,7 @@ declare type GetState = () => any;
 
 declare interface AppState {
   user: UserState;
-  conversations: ConversationsState;
+  conversations: SocketState;
   activeConversation: string;
 }
 
