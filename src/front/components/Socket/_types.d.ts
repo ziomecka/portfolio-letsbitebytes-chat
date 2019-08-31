@@ -17,7 +17,7 @@ declare interface MapDispatchToSocket {
 }
 
 declare interface SocketDispatch {
-  emitMessage(props: SocketMessageRequest):  Promise<EmitMessageAction>;
+  emitMessage(message: string):  Promise<EmitMessageAction>;
 }
 
 declare interface SocketProps extends MapStateToSocket, MapDispatchToSocket{}

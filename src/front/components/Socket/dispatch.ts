@@ -1,7 +1,7 @@
 import { emitMessage } from './duck/';
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<EmitMessageAction> ): SocketDispatch => ({
-  emitMessage: (props: SocketMessageRequest): Promise<EmitMessageAction> => dispatch(emitMessage(props)),
+  emitMessage: (message: string): Promise<EmitMessageAction> => dispatch(emitMessage(message)),
 });
 
 
