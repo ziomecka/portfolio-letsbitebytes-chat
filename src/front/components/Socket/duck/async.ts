@@ -22,8 +22,8 @@ export const initiateSocket = (): AppThunkAction<InitiateSocketAction, void> => 
   }
 );
 
-export const emitMessage = (props: SocketMessageRequest): AppThunkAction<EmitMessageAction> => (
   async (dispatch: AppThunkDispatch<EmitMessageAction>): Promise<EmitMessageAction> => (
+export const emitMessage = (message: string): AppThunkAction<EmitMessageAction> => (
     new Promise((resolve): void => {
       socket.emit(SocketMessages.message, props, (response: string): void => {
         resolve(dispatch(emitMessageAction({ message: props.message })));
