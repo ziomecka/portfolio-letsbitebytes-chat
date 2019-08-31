@@ -18,3 +18,8 @@ declare interface ReceiveMessageAction extends ReceiveMessageProps {
 declare interface InitiateSocketAction {
   type: string;
 }
+
+declare const enum SocketActionTypes {
+  emitMessage = '@APP/Socket/emit message',
+  receiveMessage = '@APP/Socket/receive message',
+}
