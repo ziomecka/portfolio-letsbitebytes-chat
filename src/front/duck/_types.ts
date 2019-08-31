@@ -12,3 +12,7 @@ declare interface ChangeConversationAction extends ChangeConversationActionProps
 }
 
 declare type CommonActions = ChangeConversationAction;
+
+declare interface CommonState {
+  activeConversation: string;
+};
