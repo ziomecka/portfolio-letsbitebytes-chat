@@ -1,15 +1,17 @@
 import { Reducer } from 'redux';
 
-const commonStateReducer: Reducer<AppState, AppAction> = (state, action) => {
+const commonStateReducer: Reducer<CommonState, CommonActions> = (state, action) => {
   const { type, ...actionPayload } = action;
 
   switch (type) {
     case (CommonActionTypes.changeActiveConversation): {
       return {
-        user: { ...state.user },
-        conversations: { ...state.conversations },
-        activeConversation: (actionPayload as CommonActions).activeConversation
+        activeConversation: (actionPayload as ChangeConversationAction).activeConversation
       };
+    }
+
+    default: {
+      return { ...state };
     }
   }
 };
