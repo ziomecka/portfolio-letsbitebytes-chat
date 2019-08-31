@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  Button,
   Paper,
   TextField,
   Typography,
@@ -18,6 +19,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   private conversationInputLabel: string;
   private messageInitialState: string;
   private partnerStatementClassName: string;
+  private submitButtonLabel: string;
   private userStatementClassName: string;
   constructor (props: ConversationProps) {
     super(props);
@@ -29,10 +31,12 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.partnerStatementClassName = PARTNER_STATEMENT_CLASS_NAME;
+    this.submitButtonLabel = 'Send';
     this.userStatementClassName = USER_STATEMENT_CLASS_NAME;
     this.conversationInputLabel = '?';
 
     this.typeMessage = this.typeMessage.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
   }
 
   private getActiveConversation (): Statement[] {
@@ -113,13 +117,34 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     );
   }
 
-  public render (): JSX.Element {
-    const { conversation } = this.state;
+  private renderSubmitButton (): JSX.Element {
+    return (
+      <Button
+        onClick={this.sendMessage}
+      >
+        {this.submitButtonLabel}
+      </Button>
+    );
+  }
 
+  private async sendMessage (): Promise<void> {
+    try {
+      await this.props.emitMessage(this.state.message);
+
+      this.setState({
+        message: this.messageInitialState
+      });
+    } catch {
+      console.log('Something went wrong'); // TODO
+    }
+  }
+
+  public render (): JSX.Element {
     return (
       <React.Fragment>
         {this.renderConversation()}
         {this.renderConversationInput()}
+        {this.renderSubmitButton()}
       </React.Fragment>
     );
   }
