@@ -43,6 +43,7 @@
     "eslint": "6.2.1",
     "eslint-config-prettier": "6.1.0",
     "eslint-plugin-react": "7.14.3",
+    "nodemon": "1.19.1",
     "prettier": "1.18.2",
     "redux": "4.0.4",
     "redux-devtools-extension": "2.13.8",
@@ -54,14 +55,16 @@
     "webpack-merge": "4.2.2"
   },
   "scripts": {
+    "build": "npm run build:front & npm run build:back",
     "build:front": "webpack --config webpack/webpack.front.config.js",
     "build:back": "webpack --config webpack/webpack.back.config.js",
-    "build": "npm run build:front & npm run build:back",
+    "build:front:watch": "npm run build:front -- --watch",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
-    "localhost": "npm run build:front && ts-node --project tsconfig.json --files src/back/index.ts",
+    "nodemon": "nodemon",
+    "start": "ts-node --project tsconfig.json --files src/back/index.ts",
     "tsc": "tsc -p tsconfig.json",
-    "tsc:watch": "tsc -p tsconfig.json -w"
+    "tsc:watch": "npm run tsc -- -w"
   },
   "keywords": [
     "React",
@@ -74,5 +77,16 @@
   "engines": {
     "npm": "6.4.1",
     "node": "12.3.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src", "dist"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   }
 }
