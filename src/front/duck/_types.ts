@@ -4,12 +4,9 @@ declare const enum CommonActionTypes {
   changeActiveConversation = '@APP/Common/change active conversation',
 }
 
-declare interface ChangeConversationActionProps {
+declare interface ChangeConversationAction extends Action {
   activeConversation: string;
-}
-
-declare interface ChangeConversationAction extends ChangeConversationActionProps, Action {
-}
+};
 
 declare type CommonActions = ChangeConversationAction;
 
