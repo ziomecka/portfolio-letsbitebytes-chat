@@ -1,7 +1,7 @@
 import { INITIAL_STATE } from './initial-state';
 import { Reducer } from 'redux';
 import { commonStateReducer } from './duck/';
-import { loginReducer } from './components/Login/'
+import { loginReducer } from './components/Login/';
 import { socketReducer } from './components/Socket/';
 
 const appReducer: Reducer<AppState, AppAction> = (state = INITIAL_STATE, action) => {

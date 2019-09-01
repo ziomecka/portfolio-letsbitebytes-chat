@@ -42,6 +42,7 @@ module.exports = {
       "no-undef": "off",
       "object-curly-spacing": ["error", "always"],
       "react/jsx-uses-react": 1,
+      "semi": "error",
       "sort-imports": "error",
       "space-before-function-paren": "error",
       "template-curly-spacing": ["error", "always"],

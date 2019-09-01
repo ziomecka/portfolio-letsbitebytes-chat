@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom';
 import {
   AppRoutes,
   Common,
@@ -34,4 +34,4 @@ export const FrontComponent: React.FunctionComponent<FrontComponentProps> = ({ s
 ReactDOM.hydrate(
   <FrontComponent store={store} />,
   document.getElementById(HTML_ROOT_ID)
-)
+);
