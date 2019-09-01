@@ -23,6 +23,9 @@ export const socketReducer: Reducer<SocketState, SocketActions> = (state = socke
       return updateConversation(message, to, state);
     }
 
+    case (SocketActionTypes.receiveMessage): {
+      const { message, from } = actionPayload as ReceiveMessageAction;
+      return updateConversation(message, from, state);
     }
 
     default: {
