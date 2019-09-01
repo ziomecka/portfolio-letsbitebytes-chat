@@ -5,7 +5,7 @@ import {
 
 const BUNDLE_URL = '/index.js';
 
-export const getHtml = (appMarkup: string, store: import('redux').Store): string => {
+export const getHtml = (appMarkup: string, store: ReduxStore): string => {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -21,4 +21,3 @@ export const getHtml = (appMarkup: string, store: import('redux').Store): string
     </html>
   `;
 };
-      // <script src="/socket.io/socket.io.js"></script>

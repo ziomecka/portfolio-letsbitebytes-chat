@@ -60,11 +60,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     if (conversations !== prevConversations) {
       const activeConversation = this.getActiveConversation();
-      const { length: prevConversationLength } = this.getActiveConversation(prevConversations);
+      const { length: prevLength } = this.state.conversation;
 
-      if (activeConversation.length !== prevConversationLength) {
+      if (activeConversation.length !== prevLength || !prevLength) {
         this.setState({
-          conversation: activeConversation,
+          conversation: [...activeConversation],
         });
       }
     }

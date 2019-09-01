@@ -11,16 +11,14 @@ const isAuthenticated = false;
 
 let login = '';
 let password = '';
-let activeConversation = '';
+const activeConversation = '';
 
 if (DEFAULT_USER === 'trainer') {
   login = TRAINER_LOGIN;
   password = TRAINER_PASSWORD;
-  activeConversation = TRAINEE_LOGIN;
 } else if (DEFAULT_USER === 'trainee') {
   login = TRAINEE_LOGIN;
   password = TRAINEE_PASSWORD;
-  activeConversation = TRAINER_LOGIN;
 }
 
 const role = UserRole.trainee;

@@ -3,23 +3,17 @@ declare interface EmitMessageActionProps {
   to: string;
 }
 
-declare interface EmitMessageAction extends Action {
-  message: string;
-  to: string;
-}
+declare interface EmitMessageAction extends ReduxAction, EmitMessageActionProps {}
 
 declare interface ReceiveMessageProps {
   message: string;
   from: string;
 }
 
-declare interface ReceiveMessageAction extends ReceiveMessageProps {
-  type: string;
-}
+declare interface ReceiveMessageAction extends ReduxAction, ReceiveMessageProps {}
 
-declare interface InitiateSocketAction {
-  type: string;
-}
+declare type InitiateSocketAction = ReduxAction;
+
 
 declare type SocketActions =
   EmitMessageAction |

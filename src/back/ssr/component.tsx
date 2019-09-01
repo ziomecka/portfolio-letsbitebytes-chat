@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
 
 interface BackComponentProps {
-  store: import('redux').Store
+  store: ReduxStore
 }
 
 const BackComponent: React.FunctionComponent<BackComponentProps> = props => (

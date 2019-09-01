@@ -1,4 +1,4 @@
-import { buildQueryParams } from './build-query-params';
+import { buildUrl } from './build-url';
 
 const DEFAULT_REQUEST_INIT = {
   method: 'get' as ApiMethods,
@@ -12,7 +12,7 @@ export const request =
       Object.assign(requestInit, { body: JSON.stringify(body) });
     }
 
-    const fetchUrl = queryParams ? buildQueryParams(url, queryParams) : url;
+    const fetchUrl = queryParams ? buildUrl(url, queryParams) : url;
 
     try {
       const response = await fetch(fetchUrl, requestInit);

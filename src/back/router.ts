@@ -12,7 +12,7 @@ const FRONT_URL = NODE_ENV === 'production'
   ? ''
   : path.resolve(__dirname, '../../dist/front');
 
-export const router = (app: import('express').Application): void => {
+export const router = (app: ExpressApplication): void => {
   app.use(express.static(FRONT_URL));
   app.use(ServerRoutes.loginRoute, login);
   app.use(ServerRoutes.logoutRoute, logout);
