@@ -4,7 +4,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Conversation } from '../Conversation/';
-import { Screen } from '../Screen';
 
 interface TraineeLocalState {
   message: string;
@@ -34,7 +33,7 @@ class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
     const { state: { needsHelp }, helpLabel, resignLabel } = this;
 
     return (
-      <Screen>
+      <React.Fragment>
         <Typography>
           {this.welcomeText}
         </Typography>
@@ -48,7 +47,7 @@ class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
           {needsHelp ? helpLabel : resignLabel}
         </Button>
         }
-      </Screen>
+      </React.Fragment>
     );
   }
 
