@@ -22,7 +22,6 @@ module.exports = {
     "react"
   ],
   rules: {
-      // indent: ["error", 2],
       "@typescript-eslint/ban-ts-ignore": "off",
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/explicit-function-return-type": "error",
@@ -36,6 +35,7 @@ module.exports = {
       "arrow-spacing": "error",
       "comma-spacing": "error",
       "computed-property-spacing": ["error", "always"],
+      "indent": ["error", 2, { SwitchCase: 1 }],
       "key-spacing": "error",
       "no-duplicate-imports": "error",
       "no-multi-spaces": "error",
