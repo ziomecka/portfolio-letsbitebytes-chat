@@ -1,0 +1,1 @@
+declare type GetSocket = (app: ExpressApplication) => void;

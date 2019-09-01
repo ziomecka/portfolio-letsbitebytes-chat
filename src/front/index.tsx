@@ -17,7 +17,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 
 interface FrontComponentProps {
-  store: import('redux').Store
+  store: ReduxStore,
 }
 
 export const FrontComponent: React.FunctionComponent<FrontComponentProps> = ({ store }) => (

@@ -5,7 +5,7 @@ import {
 
 const BUNDLE_URL = '/index.js';
 
-export const getHtml = (appMarkup: string, store: import('redux').Store): string => {
+export const getHtml = (appMarkup: string, store: ReduxStore): string => {
   return `
     <!DOCTYPE html>
     <html lang="en">

@@ -1,6 +1,6 @@
-declare type LogoutActionSuccess = Action;
+declare type LogoutActionSuccess = ReduxAction;
 
-declare type LogoutActionFailure = Action;
+declare type LogoutActionFailure = ReduxAction;
 
 declare type LogoutActionProps = Partial<UserState>;
 

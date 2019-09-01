@@ -1,6 +1,6 @@
-declare interface LoginActionSuccess extends LoginActionProps, Action {};
+declare interface LoginActionSuccess extends LoginActionProps, ReduxAction {}
 
-declare type LoginActionFailure = Action;
+declare type LoginActionFailure = ReduxAction;
 
 declare type LoginActionProps = Partial<UserState>;
 
