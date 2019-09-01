@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io';
+import redis from './redis';
 
 export const messagesHandler = (socket: Socket): void => {
   const registerMessage = async (props: SocketMessageRequest, socket: Socket): Promise<string> => {
@@ -7,10 +8,17 @@ export const messagesHandler = (socket: Socket): void => {
   };
 
   const passMessage = (props: SocketMessageResponse, socket: Socket): void => {
-    socket.client.server.to(props.to).emit(SocketMessages.message, {
-      from: socket.id,
-      message: props.message,
-    });
+    const to = redis.getFromStore(props.to);
+    const from = redis.getFromStore(socket.id);
+
+    if (to) {
+      socket.client.server.to(to).emit(SocketMessages.message, {
+        from,
+        message: props.message,
+      });
+    } else {
+      // TODO inform about error
+    }
   };
 
   socket.on(SocketMessages.message, async (props: SocketMessageRequest, ack: SocketAcknowledgment) => {
