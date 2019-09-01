@@ -37,7 +37,7 @@ export const initialStore = {
     login,
     password,
     role,
- },
+  },
   conversations,
   activeConversation,
 };
