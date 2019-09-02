@@ -12,7 +12,10 @@ export const getHtml = (appMarkup: string, store: ReduxStore): string => {
     <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Katarzyna Ziomek-Zdanowicz">
+        <meta name="description" content="Chat application."/>
+        <title>Let's chat</title>
         <style>${ sheets.toString() }</style>
       </head>
       <body>
