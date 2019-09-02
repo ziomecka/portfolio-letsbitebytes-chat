@@ -1,1 +1,0 @@
-declare type GetSocket = (app: import('express').Application) => void;
