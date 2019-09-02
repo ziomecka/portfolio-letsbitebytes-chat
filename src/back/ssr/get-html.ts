@@ -2,6 +2,7 @@ import {
   HTML_ROOT_ID,
   WINDOW_INITIAL_STATE
 } from '../../common/';
+import { sheets } from './get-app-markup';
 
 const BUNDLE_URL = '/index.js';
 
@@ -12,6 +13,7 @@ export const getHtml = (appMarkup: string, store: ReduxStore): string => {
       <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <style>${ sheets.toString() }</style>
       </head>
       <body>
         <div id="${ HTML_ROOT_ID }">${ appMarkup }</div>
