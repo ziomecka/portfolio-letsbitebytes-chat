@@ -1,3 +1,4 @@
+import('./redis/');
 import * as express from 'express';
 import { router } from './router';
 import { socket } from './socket/';
