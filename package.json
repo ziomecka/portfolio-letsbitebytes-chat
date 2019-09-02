@@ -74,7 +74,8 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc -p tsconfig.json",
-    "tsc:watch": "npm run tsc -- -w"
+    "tsc:watch": "npm run tsc -- -w",
+    "work": "run-p nodemon build:front:watch test:watch tsc:watch"
   },
   "keywords": [
     "React",
