@@ -111,8 +111,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     return (
       <Paper>
         <TextField
-          label={this.conversationInputLabel}
           onChange={this.typeMessage}
+          placeholder={this.conversationInputLabel}
           value={this.state.message}
         />
       </Paper>
