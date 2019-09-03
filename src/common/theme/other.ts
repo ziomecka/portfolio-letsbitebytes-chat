@@ -1,5 +1,5 @@
 import {
-  flexColumnJustifyFlexStartAlignCenter,
+  flexColumnJustifyFlexStartAlignLeft,
 } from './flexes';
 
 const other = {
@@ -14,11 +14,28 @@ const other = {
     },
   },
   overrides: {
+    MuiButton: {
+      text: {
+        paddingLeft: 0,
+      },
+    },
+    MuiButtonBase: {
+      root: {
+        justifyContent: 'flex-start',
+        maxWidth: '200px',
+      },
+    },
     MuiPaper: {
       root: {
-        ...flexColumnJustifyFlexStartAlignCenter,
+        ...flexColumnJustifyFlexStartAlignLeft,
         boxSizing: 'border-box'
       }
+    },
+    MuiTypography: {
+      root: {
+        textAlign: 'left',
+        width: '100%'
+      },
     },
   }
 };
