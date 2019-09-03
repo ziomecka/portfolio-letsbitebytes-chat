@@ -67,19 +67,17 @@
     "webpack-merge": "4.2.2"
   },
   "scripts": {
-    "build": "npm run build:front & npm run build:back",
-    "build:front": "webpack --config webpack/webpack.front.config.js",
-    "build:back": "webpack --config webpack/webpack.back.config.js",
-    "build:front:watch": "npm run build:front -- --watch",
+    "build": "webpack --config webpack/build/index.js",
+    "build:watch": "npm run build -- --watch",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
     "nodemon": "nodemon",
-    "start": "ts-node --project tsconfig.json --files src/back/index.ts",
+    "start": "ts-node --project tsconfig.json --files src/back/index.ts build/index.js",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc -p tsconfig.json",
     "tsc:watch": "npm run tsc -- -w",
-    "work": "run-p nodemon build:front:watch test:watch tsc:watch"
+    "work": "run-p nodemon build:watch test:watch tsc:watch"
   },
   "keywords": [
     "React",

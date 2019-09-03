@@ -1,5 +1,3 @@
-const { CleanWebpackPlugin, } = require('clean-webpack-plugin');
-
 module.exports = {
   mode: 'development',
   resolve: {
@@ -14,8 +12,5 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-  ],
+  }
 };
