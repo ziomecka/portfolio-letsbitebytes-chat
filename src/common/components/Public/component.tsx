@@ -18,7 +18,7 @@ const Public: React.FunctionComponent<PublicProps> = (props) => {
 
   return (
     <React.Fragment>
-      <Typography>
+      <Typography variant="h1">
         {appTitle}
       </Typography>
       <Button
