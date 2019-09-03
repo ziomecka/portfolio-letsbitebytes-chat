@@ -9,7 +9,7 @@ import { serveHtml } from './ssr/';
 
 export const router = (app: ExpressApplication): void => {
   app.get(BUNDLE_URL, express.static(BUNDLE_PATH));
-  app.use(ServerRoutes.loginRoute, login);
-  app.use(ServerRoutes.logoutRoute, logout);
-  app.use(ServerRoutes.publicRoute, serveHtml);
+  app.get(ServerRoutes.loginRoute, login);
+  app.get(ServerRoutes.logoutRoute, logout);
+  app.get(ServerRoutes.publicRoute, serveHtml);
 };
