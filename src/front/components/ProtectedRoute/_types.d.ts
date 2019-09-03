@@ -4,6 +4,7 @@ declare interface ProtectedRouteProps extends ProtectedRouteState {
 
 declare interface ProtectedRouteState {
   isAuthenticated: boolean;
+  login: string;
   role: UserRole;
 }
 
