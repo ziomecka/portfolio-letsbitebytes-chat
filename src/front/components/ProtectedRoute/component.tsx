@@ -31,12 +31,14 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ( { 
             </Typography>
           </Paper>
           <Paper>
+            { role === UserRole.trainer
+              ? <Trainer/>
+              : <Trainee/> // TODO
+            }
+          </Paper>
+          <Paper>
             <Logout/>
           </Paper>
-          { role === UserRole.trainer
-            ? <Trainer/>
-            : <Trainee/> // TODO
-          }
           <Socket />
         </Screen>
       )
