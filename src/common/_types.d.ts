@@ -1,3 +1,5 @@
+declare interface CommonProps extends WithStyles {}
+
 declare const enum ServerRoutes {
   'loginRoute' = '/login',
   'logoutRoute' = '/logout',
@@ -12,3 +14,4 @@ declare const enum SocketMessages {
   'messageFailure' = 'messageFailure',
   'userConnected' = 'userConnected'
 }
+

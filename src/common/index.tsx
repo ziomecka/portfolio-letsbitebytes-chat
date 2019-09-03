@@ -7,11 +7,13 @@ import { AppRoutes } from './constants';
 import { Public } from './components/';
 import { Route } from 'react-router-dom';
 import { getTheme } from './theme/';
+import { styles } from './styles';
+import { withStyles } from '@material-ui/core/styles';
 
-const Common: React.FunctionComponent = (props) => (
+const Common: React.FunctionComponent<CommonProps> = (props) => (
   // @ts-ignore
   <MuiThemeProvider theme={ getTheme() }>
-    <Paper>
+    <Paper className={props.classes.root}>
       <Route exact path={AppRoutes.publicRoute} component={Public}/>
       { props.children }
     </Paper>
@@ -24,4 +26,6 @@ export {
   AppRoutes,
 } from './constants';
 
-export { Common };
+const StyledCommon = withStyles(styles)(Common);
+
+export { StyledCommon as Common };
