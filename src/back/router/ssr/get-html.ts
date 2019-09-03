@@ -1,7 +1,7 @@
 import {
   HTML_ROOT_ID,
   WINDOW_INITIAL_STATE
-} from '../../common/';
+} from '../../../common/';
 import { sheets } from './get-app-markup';
 
 const BUNDLE_URL = '/index.js';

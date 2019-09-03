@@ -4,7 +4,7 @@ import {
   TRAINEE_PASSWORD,
   TRAINER_LOGIN,
   TRAINER_PASSWORD,
-} from '../constants';
+} from '../../constants';
 
 require('dotenv').config();
 

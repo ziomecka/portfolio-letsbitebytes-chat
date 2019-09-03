@@ -1,7 +1,7 @@
 import('./redis/');
 import * as express from 'express';
-import { logger } from './logger';
-import { router } from './router';
+import { logger } from './logger/';
+import { router } from './router/';
 import { socket } from './socket/';
 
 require('dotenv').config();

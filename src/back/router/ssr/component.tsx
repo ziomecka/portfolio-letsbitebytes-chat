@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Common } from '../../common/';
+import { Common } from '../../../common/';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
 
