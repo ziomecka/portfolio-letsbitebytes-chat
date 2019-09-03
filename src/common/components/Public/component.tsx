@@ -6,8 +6,8 @@ import {
 import { AppRoutes } from '../../../common/constants';
 
 const Public: React.FunctionComponent<PublicProps> = (props) => {
-  const welcomeText = '';
-  const loginButtonText = 'Login to application';
+  const welcomeText = 'Let\'s chat';
+  const loginButtonText = 'Start chatting';
 
   const goToLogin = (): void => {
     // @ts-ignore

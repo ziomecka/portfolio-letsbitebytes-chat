@@ -11,9 +11,11 @@ interface ConversationState {
   message: string;
 }
 
-const PARTNER_STATEMENT_CLASS_NAME = 'BAR';
-const USER_STATEMENT_CLASS_NAME = 'FOO';
+const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
 const MESSAGE_INITIAL_STATE = '';
+const PARTNER_STATEMENT_CLASS_NAME = 'BAR';
+const SUBMIT_BUTTON_LABEL = 'Send';
+const USER_STATEMENT_CLASS_NAME = 'FOO';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
@@ -31,9 +33,9 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.partnerStatementClassName = PARTNER_STATEMENT_CLASS_NAME;
-    this.submitButtonLabel = 'Send';
+    this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
     this.userStatementClassName = USER_STATEMENT_CLASS_NAME;
-    this.conversationInputLabel = '?';
+    this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
 
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
