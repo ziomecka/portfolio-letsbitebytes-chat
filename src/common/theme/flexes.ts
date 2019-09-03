@@ -22,6 +22,11 @@ const flexColumnJustifyFlexStartAlignCenter = {
   alignItems: 'center'
 };
 
+const flexColumnJustifyFlexStartAlignLeft = {
+  ...flexColumnJustifyFlexStart,
+  alignItems: 'left'
+};
+
 const flexRowJustifyCenter = {
   ...flexRow,
   justifyContent: 'center'
@@ -56,6 +61,7 @@ export {
   flexColumn,
   flexColumnJustifyFlexStart,
   flexColumnJustifyFlexStartAlignCenter,
+  flexColumnJustifyFlexStartAlignLeft,
   flexColumnJustifySpaceBetween,
   flexRow,
   flexRowJustifyCenter,
