@@ -6,10 +6,18 @@ import {
   TRAINER_PASSWORD,
 } from '../constants';
 
-const email = 'server_email';
-const isAuthenticated = false;
+require('dotenv').config();
 
-let login = '';
+const { NODE_ENV, IS_AUTHENTICATED = false } = process.env;
+const authenticatedForDevelopment = (
+  (NODE_ENV !== 'production') &&
+  (IS_AUTHENTICATED === 'true')
+);
+
+const email = 'server_email';
+const isAuthenticated = authenticatedForDevelopment;
+
+let login = !isAuthenticated ? '' : 'trainer';
 let password = '';
 const activeConversation = '';
 
