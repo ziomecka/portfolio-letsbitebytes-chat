@@ -1,3 +1,4 @@
+export const APP_TITLE = 'Let\'s chat';
 export const HTML_ROOT_ID = 'root';
 export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 

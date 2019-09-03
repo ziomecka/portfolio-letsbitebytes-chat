@@ -3,11 +3,13 @@ import {
   Button,
   Typography,
 } from '@material-ui/core/';
+import { APP_TITLE } from '../../constants';
 import { AppRoutes } from '../../../common/constants';
 
+const LOGIN_BUTTON_TEXT = 'Start chatting';
 const Public: React.FunctionComponent<PublicProps> = (props) => {
-  const welcomeText = 'Let\'s chat';
-  const loginButtonText = 'Start chatting';
+  const appTitle = APP_TITLE;
+  const loginButtonText = LOGIN_BUTTON_TEXT;
 
   const goToLogin = (): void => {
     // @ts-ignore
@@ -17,7 +19,7 @@ const Public: React.FunctionComponent<PublicProps> = (props) => {
   return (
     <React.Fragment>
       <Typography>
-        {welcomeText}
+        {appTitle}
       </Typography>
       <Button
         onClick={goToLogin}
