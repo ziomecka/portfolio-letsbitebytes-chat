@@ -2,9 +2,8 @@ import {
   HTML_ROOT_ID,
   WINDOW_INITIAL_STATE
 } from '../../../common/';
+import { BUNDLE_URL } from '../../constants';
 import { sheets } from './get-app-markup';
-
-const BUNDLE_URL = '/index.js';
 
 export const getHtml = (appMarkup: string, store: ReduxStore): string => {
   return `
