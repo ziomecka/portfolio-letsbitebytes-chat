@@ -1,21 +1,21 @@
 import * as React from 'react';
+import {
+  MuiThemeProvider,
+  Paper,
+} from '@material-ui/core';
 import { AppRoutes } from './constants';
-import { Paper } from '@material-ui/core';
 import { Public } from './components/';
 import { Route } from 'react-router-dom';
-
-const PaperStyle = {
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-};
+import { getTheme } from './theme/';
 
 const Common: React.FunctionComponent = (props) => (
   // @ts-ignore
-  <Paper style={PaperStyle}>
-    <Route exact path={AppRoutes.publicRoute} component={Public}/>
-    { props.children }
-  </Paper>
+  <MuiThemeProvider theme={ getTheme() }>
+    <Paper>
+      <Route exact path={AppRoutes.publicRoute} component={Public}/>
+      { props.children }
+    </Paper>
+  </MuiThemeProvider>
 );
 
 export {
