@@ -1,5 +1,6 @@
 node_modules
 build
+deploy
 *code-workspace
 .env
 tsc

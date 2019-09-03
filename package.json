@@ -69,6 +69,7 @@
   "scripts": {
     "build": "webpack --config webpack/build/index.js",
     "build:watch": "npm run build -- --watch",
+    "deploy": "webpack --config webpack/deploy/index.js",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
     "nodemon": "nodemon",
