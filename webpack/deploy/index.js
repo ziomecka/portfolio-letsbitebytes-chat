@@ -7,6 +7,6 @@ module.exports = merge(build, config, {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../../deploy/'),
-    filename: 'index.js',
+    filename: '[name].js',
   },
 });
