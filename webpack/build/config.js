@@ -6,6 +6,7 @@ const cssDeclarationSorter = require('css-declaration-sorter');
 const cssMqpacker = require('css-mqpacker');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -68,5 +69,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new CleanWebpackPlugin(),
   ],
 };
