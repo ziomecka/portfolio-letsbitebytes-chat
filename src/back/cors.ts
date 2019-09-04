@@ -1,12 +1,11 @@
 require('dotenv').config();
 import * as CORS from 'cors';
+import { PRODUCTION_URL } from '../common/constants';
 import { RequestHandler } from 'express';
 
 const { PORT } = process.env;
-
 const localhost = `http://www.localhost:${ PORT }`;
-const heroku = 'https://fathomless-wave-45820.herokuapp.com';
-const whitelist = [ localhost, heroku ];
+const whitelist = [ localhost, PRODUCTION_URL ];
 
 const exposedHeaders = [ 'Content-Type' ];
 
