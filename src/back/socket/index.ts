@@ -4,10 +4,12 @@ import { messagesHandler } from './handlers/messages-handler';
 
 require('dotenv').config();
 
-const { SOCKET_PORT } = process.env;
+const port = process.env.NODE_ENV === 'production'
+  ? process.env.PORT
+  : process.env.SOCKET_PORT;
 
 export const socket: GetSocket = (app) => {
-  const io = ioSocket.listen(app.listen(SOCKET_PORT));
+  const io = ioSocket.listen(app.listen(port));
 
   io.on(SocketMessages.connection, (socket: ioSocket.Socket) => {
     connectionHandler(socket);
