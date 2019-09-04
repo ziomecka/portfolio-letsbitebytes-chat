@@ -30,6 +30,7 @@ export const getHtml = (store: ReduxStore): string => {
       <body>
         <div id="${ HTML_ROOT_ID }">${ html }</div>
         <script>window["${ WINDOW_INITIAL_STATE }"]=${ JSON.stringify(store.getState()) }</script>
+        <script src="/vendor.js"></script>
         <script src="${ BUNDLE_URL }"></script>
       </body>
     </html>
