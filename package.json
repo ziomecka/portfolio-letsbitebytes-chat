@@ -86,7 +86,7 @@
     "lint:fix": "npm run lint -- --fix",
     "nodemon": "nodemon",
     "nodemon:start": "ts-node --project tsconfig.json --files src/back/index.ts",
-    "prestart": "npm run tsc",
+    "postinstall": "npm run tsc",
     "start": "node --optimize_for_size tsc/src/back/index.js $PORT",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
