@@ -8,6 +8,7 @@ import { logout } from './logout';
 import { serveHtml } from './ssr/';
 
 export const router = (app: ExpressApplication): void => {
+  app.get('/index.css', express.static(BUNDLE_PATH));
   app.get(BUNDLE_URL, express.static(BUNDLE_PATH));
   app.get(ServerRoutes.loginRoute, login);
   app.get(ServerRoutes.logoutRoute, logout);
