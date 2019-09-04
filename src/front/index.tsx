@@ -15,6 +15,8 @@ import {
   ProtectedRoute,
 } from './components';
 import { Provider } from 'react-redux';
+import { Public } from '../common/components/';
+import { ssrClean } from './ssr-clean';
 import { store } from './store';
 
 interface FrontComponentProps {
@@ -25,6 +27,7 @@ export const FrontComponent: React.FunctionComponent<FrontComponentProps> = ({ s
   <Provider {...{ store }}>
     <BrowserRouter>
       <Common>
+        <Route exact path={AppRoutes.publicRoute} component={Public}/>
         <Route exact path={AppRoutes.loginRoute} component={Login}/>
         <ProtectedRoute path={AppRoutes.protectedRoute}/>
       </Common>
@@ -36,3 +39,5 @@ ReactDOM.hydrate(
   <FrontComponent store={store} />,
   document.getElementById(HTML_ROOT_ID)
 );
+
+ssrClean();
