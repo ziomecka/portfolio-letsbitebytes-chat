@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "dependencies": {
     "@material-ui/core": "4.3.3",
+    "@material-ui/styles": "4.3.3",
     "express": "4.17.1",
     "log4js": "5.1.0",
     "node-fetch": "2.6.0",
