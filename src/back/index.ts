@@ -1,3 +1,4 @@
+import('mime');
 import('./redis/');
 import * as express from 'express';
 import * as helmet from 'helmet';
