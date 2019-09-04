@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "4.3.3",
     "@material-ui/styles": "4.3.3",
+    "cors": "2.8.5",
     "dotenv": "8.1.0",
     "express": "4.17.1",
     "log4js": "5.1.0",
@@ -26,6 +27,7 @@
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
+    "@types/cors": "2.8.6",
     "@types/express": "4.17.1",
     "@types/jest": "24.0.18",
     "@types/log4js": "2.3.5",
