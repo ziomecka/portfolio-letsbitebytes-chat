@@ -11,7 +11,7 @@
       "./node_modules/@types",
       "./src/**/*",
     ],
-    "outDir": "tsc",
+    "outDir": "./tsc",
     "declaration": false,
     "lib": [ "dom", "es2015", "es2015.promise" ]
   },
