@@ -13,6 +13,7 @@ const receiveMessage = (props: SocketMessageRequest): AppThunkAction<ReceiveMess
 export const initiateSocket = (): AppThunkAction<InitiateSocketAction, void> => (
   async (dispatch: AppThunkDispatch<InitiateSocketAction>, getState: GetState): Promise<void> => {
     const io = await import('socket.io-client');
+    // @ts-ignore
     socket = io(URL, { query: `login=${ getState().user.login }` });
 
     socket.on(SocketMessages.userConnected, () => console.log('connected'));
