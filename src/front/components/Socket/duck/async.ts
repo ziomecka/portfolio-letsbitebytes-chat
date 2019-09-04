@@ -1,8 +1,12 @@
 import { emitMessageAction, receiveMessageAction } from './actions';
+import { PRODUCTION_URL } from '../../../../common/';
 import { findPartner } from '../../../utils/find-partner';
 
 let socket: SocketIOClient.Socket;
-const URL = 'http://localhost:8000';
+
+const socketUrl = process.env.NODE_ENV === 'production'
+  ? `${ PRODUCTION_URL }:${ process.env.PORT }`
+  : `http://localhost:${ process.env.SOCKET_PORT }`;
 
 const receiveMessage = (props: SocketMessageRequest): AppThunkAction<ReceiveMessageAction> => (
   async (dispatch: AppThunkDispatch<ReceiveMessageAction>): Promise<ReceiveMessageAction> => (
@@ -14,7 +18,7 @@ export const initiateSocket = (): AppThunkAction<InitiateSocketAction, void> => 
   async (dispatch: AppThunkDispatch<InitiateSocketAction>, getState: GetState): Promise<void> => {
     const io = await import('socket.io-client');
     // @ts-ignore
-    socket = io(URL, { query: `login=${ getState().user.login }` });
+    socket = io(socketUrl, { query: `login=${ getState().user.login }` });
 
     socket.on(SocketMessages.userConnected, () => console.log('connected'));
 
