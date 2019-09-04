@@ -9,6 +9,9 @@ import { BUNDLE_URL } from '../../constants';
 import { BackComponent } from './component';
 import { ServerStyleSheets } from '@material-ui/styles';
 
+require('dotenv').config();
+const { NODE_ENV } = process.env;
+
 export const sheets = new ServerStyleSheets();
 
 export const getHtml = (store: ReduxStore): string => {
@@ -30,6 +33,7 @@ export const getHtml = (store: ReduxStore): string => {
       <body>
         <div id="${ HTML_ROOT_ID }">${ html }</div>
         <script>window["${ WINDOW_INITIAL_STATE }"]=${ JSON.stringify(store.getState()) }</script>
+        ${ NODE_ENV === 'production' ? '<script src="/vendor.js"></script>' : '' }
         <script src="${ BUNDLE_URL }"></script>
       </body>
     </html>
