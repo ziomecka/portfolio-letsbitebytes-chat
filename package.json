@@ -84,7 +84,7 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
     "nodemon": "nodemon",
-    "start": "ts-node --project tsconfig.json --files src/back/index.ts build/index.js",
+    "start": "ts-node --project tsconfig.json --files src/back/index.ts",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc -p tsconfig.json",
@@ -110,9 +110,9 @@
     ],
     "watch": [
       "src",
-      "dist"
+      "build"
     ],
     "exec": "npm start",
-    "ext": "ts"
+    "ext": "ts,tsx,js,jsx"
   }
 }
