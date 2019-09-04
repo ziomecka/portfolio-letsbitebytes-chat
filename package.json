@@ -90,7 +90,7 @@
     "start": "node --optimize_for_size tsc/src/back/index.js $PORT",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "tsc:compile": "rm -rf tsc && npm run tsc -p tsconfig.json",
+    "tsc:compile": "rm -rf tsc && tsc -p tsconfig.json",
     "tsc:watch": "npm run tsc -- -w",
     "work": "run-p nodemon build:watch test:watch tsc:watch"
   },
