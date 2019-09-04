@@ -1,5 +1,6 @@
 import('./redis/');
 import * as express from 'express';
+import * as helmet from 'helmet';
 import { cors } from './cors';
 import { logger } from './logger/';
 import { router } from './router/';
@@ -15,6 +16,7 @@ const log = logger();
 socket(app);
 router(app);
 
+app.use( helmet() );
 app.use( cors() );
 
 app.listen(PORT, () => log.info(`Listening on port: ${ PORT }`));
