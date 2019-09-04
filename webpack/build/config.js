@@ -1,3 +1,11 @@
+const webpack = require('webpack');
+
+require('dotenv').config();
+const {
+  NODE_ENV,
+  PORT,
+} = process.env;
+
 const postcssFlexbugs = require('postcss-flexbugs-fixes');
 const postcssLost = require('lost');
 const postcssImport = require('postcss-import');
@@ -70,5 +78,10 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE.ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.PORT': JSON.stringify(process.env.PORT),
+      'process.env.SOCKET_PORT': JSON.stringify(process.env.SOCKET_PORT),
+    }),
   ],
 };
