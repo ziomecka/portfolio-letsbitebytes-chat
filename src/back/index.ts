@@ -19,5 +19,6 @@ router(app);
 
 app.use( helmet() );
 app.use( cors() );
+app.set('trust proxy', 1);
 
 app.listen(PORT, () => log.info(`Listening on port: ${ PORT }`));
