@@ -103,7 +103,7 @@
   "license": "ISC",
   "repository": "https://github.com/ziomecka/call-the-trainer.git",
   "engines": {
-    "npm": "6.4.1",
+    "npm": "6.9.0",
     "node": "12.3.0"
   },
   "nodemonConfig": {
