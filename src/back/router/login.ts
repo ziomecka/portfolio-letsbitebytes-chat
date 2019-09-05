@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import {
   TRAINEE_LOGIN,
   TRAINEE_PASSWORD,
@@ -9,7 +8,7 @@ import {
 const successTrainer = { result: true, data: { role: 'trainer' } };
 const successTrainee = { result: true, data: { role: 'trainee' } };
 
-export const login = ( { query }: Request, res: Response ): void => {
+export const login = ( { query }: ExpressRequest, res: ExpressResponse ): void => {
   const queries = Object.entries(query as Record<string, string>);
 
   const findQuery = (searched: string): [string, string] => queries.find(([key]) => key === searched ) || [ '', '' ];
