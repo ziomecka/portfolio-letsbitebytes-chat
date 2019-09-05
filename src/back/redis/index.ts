@@ -7,7 +7,6 @@ import { delKey } from './data.structures';
 import { logger } from '../logger/';
 
 require('dotenv').config();
-
 const { REDIS_URL } = process.env;
 
 const log = logger();
@@ -20,7 +19,7 @@ redis.on ('error', (err) => log.error('Redis error: ', err));
 const appRedis = Object.assign(redis, {
   getString: getString.bind(redis),
   setString: setString.bind(redis),
-  delKey: delKey.bind(delKey,)
+  delKey: delKey.bind(redis),
 });
 
 export { appRedis as redis };
