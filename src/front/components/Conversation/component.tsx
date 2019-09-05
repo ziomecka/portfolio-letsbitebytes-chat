@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
+  Box,
   Button,
-  Paper,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -80,10 +80,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     } = this;
 
     return (
-      <Paper>
+      <Box>
         {
           conversation.map( ( statement, index ) => (
-            <Paper
+            <Box
               key={index}
               className={
                 statement[ 2 ]
@@ -94,10 +94,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
               <Typography>
                 {statement[ 1 ]}
               </Typography>
-            </Paper>
+            </Box>
           ))
         }
-      </Paper>
+      </Box>
     );
   }
 
@@ -109,13 +109,13 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
   private renderConversationInput (): JSX.Element {
     return (
-      <Paper>
+      <Box>
         <TextField
           onChange={this.typeMessage}
           placeholder={this.conversationInputLabel}
           value={this.state.message}
         />
-      </Paper>
+      </Box>
     );
   }
 
