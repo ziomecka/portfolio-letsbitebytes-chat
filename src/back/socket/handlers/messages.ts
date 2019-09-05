@@ -1,36 +1,36 @@
-import { User } from '../../user';
+import { Messages } from './messages-methods';
+import { logger } from '../../logger';
 
-export class Messages {
-  public static registerMessage = async (details: MessageDetails): Promise<string> => {
-    // TODO MongoDB?
-    const str = `I received ${ details.message } from ${ details.from } to ${ details.to }`;
-    return Promise.resolve(str);
-  };
+const log = logger('socket');
 
-  public static passMessage = async (details: MessageDetails, socket: Socket): Promise<boolean> => {
-    // TODO what is returned, try, catch
-    console.log('details.to.socketId', details.to.socketId);
-    return socket.client.server.to(details.to.socketId).emit(SocketMessages.message, {
-      from: details.from.login || details.from.socketId, // TODO
-      message: details.message,
-    });
-  };
+export const messagesHandler = async (socket: Socket): Promise<void> => {
+  let strMessageDetails: string;
 
-  public static mapMessage = async (props: SocketMessageRequest | SocketMessageResponse, socket: Socket): Promise<MessageDetails> => {
-    let fromLogin: string;
-    let toSocketId: string;
+  socket.on(SocketMessages.message, async (props: SocketMessageRequest, ack: SocketAcknowledgment) => {
+    // let response: SocketMessages;
+
+    const details = await Messages.mapMessage(props, socket);
+    strMessageDetails = JSON.stringify(details);
+
+    log.info('Message received: ', strMessageDetails);
 
     try {
-      fromLogin = await User.getUser(socket.id);
-      toSocketId = await User.getUser(props.to);
+      ack('Message received');
+      await Messages.passMessage(details, socket);
+      log.info('Message passed: ', strMessageDetails);
     } catch {
-      // TODO
+      // TODO, is needed?
+    } finally {
+      try {
+        await Messages.registerMessage(details);
+        // TODO
+        // response = SocketMessages.messageSuccess;
+        log.info('Message registered: ', strMessageDetails);
+      } catch {
+        // TODO
+        // response = SocketMessages.messageFailure;
+        log.info('Message not registered: ', strMessageDetails);
+      }
     }
-
-    return {
-      from: { login: fromLogin, socketId: socket.id },
-      to: { login: props.to, socketId: toSocketId },
-      message: props.message
-    };
-  };
-}
+  });
+};

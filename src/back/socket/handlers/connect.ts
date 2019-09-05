@@ -1,5 +1,5 @@
 import { User } from '../../user/';
-import { disconnectHandler } from './disconnect-handler';
+import { disconnectHandler } from './disconnect';
 import { logger } from '../../logger/';
 
 const log = logger('socket');

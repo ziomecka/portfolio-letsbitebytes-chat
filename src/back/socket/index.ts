@@ -1,7 +1,7 @@
 import * as ioSocket from 'socket.io';
-import { connectionHandler } from './handlers/connection-handler';
+import { connectionHandler } from './handlers/connect';
 import { logger } from '../logger/';
-import { messagesHandler } from './handlers/messages-handler';
+import { messagesHandler } from './handlers/messages';
 
 const log = logger('socket');
 
