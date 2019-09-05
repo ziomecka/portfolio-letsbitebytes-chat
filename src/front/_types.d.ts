@@ -1,7 +1,7 @@
-type ReduxAction = import('redux').Action;
-type ExpressApplication = import('express').Application;
-type ReduxStore = import('redux').Store;
-type WithStyles = import('@material-ui/core/styles').WithStyles;
+declare type ReduxAction = import('redux').Action;
+declare type ExpressApplication = import('express').Application;
+declare type ReduxStore = import('redux').Store;
+declare type WithStyles = import('@material-ui/core/styles').WithStyles;
 
 declare type GetState = () => AppState;
 
