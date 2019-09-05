@@ -26,6 +26,11 @@ export const appenders = {
     type: 'console',
     layout,
   },
+  messages: {
+    type: 'file',
+    filename: 'log/messages.log',
+    layout,
+  },
   redis: {
     type: 'file',
     filename: 'log/redis.log',
