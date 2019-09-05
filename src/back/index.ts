@@ -11,11 +11,11 @@ import { socket } from './socket/';
 const app = express();
 const log = logger();
 
-router(app);
-
 app.use( helmet() );
 app.use( cors() );
 app.set('trust proxy', 1);
+
+router(app);
 
 const server = app.listen(PORT, () => log.info(`Listening on port: ${ PORT }`));
 
