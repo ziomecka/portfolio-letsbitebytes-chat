@@ -11,6 +11,6 @@ export const connectionHandler = async (socket: Socket): Promise<void> => {
   } finally {
     socket.emit(SocketMessages.userConnected, { login }); // TODO
 
-    socket.on(SocketMessages.disconnect, () => disconnectHandler(socket.client, socket.id));
+    socket.on(SocketMessages.disconnect, () => disconnectHandler(socket));
   }
 };
