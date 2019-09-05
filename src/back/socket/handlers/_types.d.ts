@@ -11,3 +11,15 @@ declare interface SocketMessageResponse {
   to: string;
   message: string;
 }
+
+declare interface MessageDetails {
+  from: {
+    login?: string,
+    socketId: string
+  },
+  to: {
+    login: string,
+    socketId: string
+  },
+  message: string
+}
