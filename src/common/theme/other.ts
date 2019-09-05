@@ -1,4 +1,5 @@
 import {
+  BUTTON_BACKGROUND,
   BUTTON_WIDTH,
   MARGIN,
   MARGIN_XL,
@@ -34,11 +35,13 @@ const other = {
       text: {
         paddingLeft: 0,
       },
+      contained: {
+        backgroundColor: BUTTON_BACKGROUND, // TODO make dependent on palette.text.hint
+      },
     },
     MuiButtonBase: {
       root: {
-        justifyContent: 'flex-start',
-        maxWidth: BUTTON_WIDTH,
+        width: BUTTON_WIDTH,
         ...marginPadding,
       },
     },
@@ -48,13 +51,18 @@ const other = {
       },
     },
     MuiPaper: {
-      // @ts-ignore
       root: {
         ...flexColumnJustifyFlexStartAlignLeft,
         boxSizing: 'border-box',
         margin: MARGIN_XL,
         padding: PADDING_XL,
       }
+    },
+    MuiTouchRipple: {
+      root: {
+        boxSizing: 'border-box',
+        width: `100%`,
+      },
     },
     MuiTypography: {
       root: {
