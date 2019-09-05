@@ -13,7 +13,8 @@ export const {
   TRAINEE_PASSWORD
 } = process.env;
 
-export const BUNDLE_URL = '/index.js';
+export const BUNDLE_FILE = '/index.js';
+export const VENDOR_FILE = '/vendor.js';
 
 export const BUNDLE_PATH = NODE_ENV === 'production'
   ? path.resolve(__dirname, '../../../deploy/')
