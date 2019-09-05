@@ -9,7 +9,6 @@ export class Messages {
 
   public static passMessage = async (details: MessageDetails, socket: Socket): Promise<boolean> => {
     // TODO what is returned, try, catch
-    console.log('details.to.socketId', details.to.socketId);
     return socket.client.server.to(details.to.socketId).emit(SocketMessages.message, {
       from: details.from.login || details.from.socketId, // TODO
       message: details.message,
