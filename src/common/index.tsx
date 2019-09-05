@@ -25,5 +25,5 @@ export {
 
 const StyledCommon = withStyles(styles)(Common);
 
-export { Public } from './components/';
+export { AppButton, Public } from './components/';
 export { StyledCommon as Common };
