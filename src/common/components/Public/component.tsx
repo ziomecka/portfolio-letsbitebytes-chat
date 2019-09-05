@@ -1,10 +1,8 @@
 import * as React from 'react';
-import {
-  Button,
-  Typography,
-} from '@material-ui/core/';
 import { APP_TITLE } from '../../constants';
+import { AppButton } from '../AppButton/';
 import { AppRoutes } from '../../../common/constants';
+import { Typography } from '@material-ui/core/';
 
 const LOGIN_BUTTON_TEXT = 'Start chatting';
 const Public: React.FunctionComponent<PublicProps> = (props) => {
@@ -21,12 +19,15 @@ const Public: React.FunctionComponent<PublicProps> = (props) => {
       <Typography variant="h1">
         {appTitle}
       </Typography>
-      <Button
+      <AppButton
         autoFocus
-        onClick={goToLogin}
+        buttonProps={{
+          autoFocus: true,
+          onClick: goToLogin,
+        }}
       >
         {loginButtonText}
-      </Button>
+      </AppButton>
     </React.Fragment>
   );
 };
