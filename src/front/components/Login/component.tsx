@@ -66,6 +66,7 @@ class Login extends React.Component<LoginProps, LoginState> {
     return (
       <React.Fragment>
         <TextField
+          autoFocus
           label={this.loginLabel}
           onChange={this.typeLogin}
           value={this.state.login}

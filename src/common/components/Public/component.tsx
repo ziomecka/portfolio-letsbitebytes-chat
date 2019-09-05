@@ -22,6 +22,7 @@ const Public: React.FunctionComponent<PublicProps> = (props) => {
         {appTitle}
       </Typography>
       <Button
+        autoFocus
         onClick={goToLogin}
       >
         {loginButtonText}

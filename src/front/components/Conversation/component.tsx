@@ -111,6 +111,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     return (
       <Box>
         <TextField
+          autoFocus
           onChange={this.typeMessage}
           placeholder={this.conversationInputLabel}
           value={this.state.message}
