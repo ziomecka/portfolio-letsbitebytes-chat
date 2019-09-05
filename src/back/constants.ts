@@ -19,3 +19,5 @@ export const VENDOR_FILE = '/vendor.js';
 export const BUNDLE_PATH = NODE_ENV === 'production'
   ? path.resolve(__dirname, '../../../deploy/')
   : path.resolve(__dirname, '../../build/');
+
+export const NOT_EXIST_PATH = `${ BUNDLE_PATH }/not-exist.html`;
