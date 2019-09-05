@@ -10,7 +10,7 @@ const whitelist = [
   `wss://${ PRODUCTION_URL }`,
 ];
 
-const exposedHeaders = [ 'Content-Type' ];
+const exposedHeaders = ['Content-Type'];
 
 export const cors = (): RequestHandler => {
   const corsOptions = {
