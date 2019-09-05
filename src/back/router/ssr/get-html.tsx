@@ -1,16 +1,16 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import {
+  BUNDLE_URL,
+  NODE_ENV,
+} from '../../constants';
+import {
   HTML_ROOT_ID,
   SSR_STYLE_ROOT_ID,
   WINDOW_INITIAL_STATE
 } from '../../../common/';
-import { BUNDLE_URL } from '../../constants';
 import { BackComponent } from './component';
 import { ServerStyleSheets } from '@material-ui/styles';
-
-require('dotenv').config();
-const { NODE_ENV } = process.env;
 
 export const sheets = new ServerStyleSheets();
 

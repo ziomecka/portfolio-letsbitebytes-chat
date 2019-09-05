@@ -1,14 +1,13 @@
 import {
   DEFAULT_USER,
+  IS_AUTHENTICATED,
+  NODE_ENV,
   TRAINEE_LOGIN,
   TRAINEE_PASSWORD,
   TRAINER_LOGIN,
   TRAINER_PASSWORD,
 } from '../../constants';
 
-require('dotenv').config();
-
-const { NODE_ENV, IS_AUTHENTICATED = false } = process.env;
 const authenticatedForDevelopment = (
   (NODE_ENV !== 'production') &&
   (IS_AUTHENTICATED === 'true')

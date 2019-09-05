@@ -1,11 +1,8 @@
+import { REDIS_USER_EXP } from '../constants';
 import { logger } from '../logger/';
 import { redis } from '../redis';
 
-require('dotenv').config();
-
-const { REDIS_USER_EXP } = process.env;
 const userExp = Number(REDIS_USER_EXP);
-
 const log = logger('user');
 
 export class User {

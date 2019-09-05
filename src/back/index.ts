@@ -2,14 +2,11 @@ import('mime');
 import('./redis/');
 import * as express from 'express';
 import * as helmet from 'helmet';
+import { PORT } from './constants';
 import { cors } from './cors';
 import { logger } from './logger/';
 import { router } from './router/';
 import { socket } from './socket/';
-
-require('dotenv').config();
-
-const { PORT } = process.env;
 
 const app = express();
 const log = logger();

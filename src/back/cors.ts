@@ -1,9 +1,8 @@
-require('dotenv').config();
 import * as CORS from 'cors';
+import { PORT } from './constants';
 import { PRODUCTION_URL } from '../common/constants';
 import { RequestHandler } from 'express';
 
-const { PORT } = process.env;
 const localhost = `http://www.localhost:${ PORT }`;
 const whitelist = [ localhost, PRODUCTION_URL ];
 
