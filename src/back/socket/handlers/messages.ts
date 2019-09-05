@@ -1,7 +1,7 @@
 import { Messages } from './messages-methods';
 import { logger } from '../../logger';
 
-const log = logger('socket');
+const log = logger('messages');
 
 export const messagesHandler = async (socket: Socket): Promise<void> => {
   let strMessageDetails: string;
