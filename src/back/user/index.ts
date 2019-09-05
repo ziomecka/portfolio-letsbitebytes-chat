@@ -37,14 +37,23 @@ export class User {
   };
 
   public static delUser = async (key: string, value?: string): Promise<boolean> => {
+    let resultKey: boolean;
+    let resultValue: boolean;
+
     try {
-      const result = await redis.delKey(key);
+      resultKey = await redis.delKey(key); // TODO and corresponding value - do not search twice. Is it needed?
 
       log.info('User deleted: ', key);
 
-      return result;
+      resultValue = value
+        ? await redis.delKey(value)
+        : true;
+
+      value && log.info('User deleted: ', value);
+
+      return resultKey && resultValue;
     } catch (err) {
-      log.error('User not deleted: ', key);
+      log.error('User not deleted:', key, resultKey, value, resultValue);
 
       return Promise.resolve(false); // TODO
     }
