@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { AppRoutes } from '../../../common/';
-import { Button } from '@material-ui/core/';
+import {
+  AppButton,
+  AppRoutes
+} from '../../../common/';
 
 class Logout extends React.Component<LogoutProps> {
   public componentDidUpdate (prevProps: LogoutProps): void {
@@ -17,11 +19,14 @@ class Logout extends React.Component<LogoutProps> {
 
   public render (): JSX.Element {
     return (
-      <Button
-        onClick={this.props.logout}
+      <AppButton
+        buttonProps={{
+          onClick: this.props.logout,
+        }}
+        variant={ AppButtonVariant.transparent }
       >
         {this.submitButtonText}
-      </Button>
+      </AppButton>
     );
   }
 }

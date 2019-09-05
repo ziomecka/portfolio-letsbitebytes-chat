@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
-  Button,
-  TextField,
-} from '@material-ui/core/';
-import { AppRoutes } from '../../../common/';
+  AppButton,
+  AppRoutes,
+} from '../../../common/';
+import { TextField } from '@material-ui/core/';
 
 interface LoginState {
   login: string;
@@ -77,11 +77,13 @@ class Login extends React.Component<LoginProps, LoginState> {
           value={this.state.password}
           type={"password"}
         />
-        <Button
-          onClick={this.submit}
+        <AppButton
+          buttonProps={{
+            onClick: this.submit
+          }}
         >
           {this.submitButtonText}
-        </Button>
+        </AppButton>
       </React.Fragment>
     );
   }

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
   Box,
-  Button,
   TextField,
   Typography,
 } from '@material-ui/core';
+import { AppButton } from '../../../common';
 
 interface ConversationState {
   conversation: Statement[]
@@ -122,11 +122,13 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
   private renderSubmitButton (): JSX.Element {
     return (
-      <Button
-        onClick={this.sendMessage}
+      <AppButton
+        buttonProps={{
+          onClick: this.sendMessage
+        }}
       >
         {this.submitButtonLabel}
-      </Button>
+      </AppButton>
     );
   }
 
