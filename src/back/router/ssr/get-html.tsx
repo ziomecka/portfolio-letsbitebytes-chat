@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import {
-  BUNDLE_URL,
+  BUNDLE_FILE,
   NODE_ENV,
+  VENDOR_FILE,
 } from '../../constants';
 import {
   HTML_ROOT_ID,
@@ -33,8 +34,8 @@ export const getHtml = (store: ReduxStore): string => {
       <body>
         <div id="${ HTML_ROOT_ID }">${ html }</div>
         <script>window["${ WINDOW_INITIAL_STATE }"]=${ JSON.stringify(store.getState()) }</script>
-        ${ NODE_ENV === 'production' ? '<script src="/vendor.js"></script>' : '' }
-        <script src="${ BUNDLE_URL }"></script>
+        ${ NODE_ENV === 'production' ? `<script src="${ VENDOR_FILE }"></script>` : '' }
+        <script src="${ BUNDLE_FILE }"></script>
       </body>
     </html>
   `;
