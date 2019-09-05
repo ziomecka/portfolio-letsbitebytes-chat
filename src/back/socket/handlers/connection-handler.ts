@@ -11,6 +11,7 @@ export const connectionHandler = async (socket: Socket): Promise<void> => {
 
   try {
     if (login) {
+      await User.delUser(login, id);;
       await User.storeUser(login, id);
       log.info('User stored: ', login, ', ', id);
     }
