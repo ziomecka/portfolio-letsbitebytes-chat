@@ -1,1 +1,2 @@
-declare type GetSocket = (app: ExpressApplication) => void;
+type Server = import('http').Server;
+declare type GetSocket = (app: Server) => void;
