@@ -5,8 +5,8 @@ import { findPartner } from '../../../utils/find-partner';
 let socket: SocketIOClient.Socket;
 
 const socketUrl = process.env.NODE_ENV === 'production'
-  ? `${ PRODUCTION_URL }:${ process.env.PORT }`
-  : `http://localhost:${ process.env.SOCKET_PORT }`;
+  ? `https://${ PRODUCTION_URL }`
+  : `http://localhost:${ process.env.PORT }`;
 
 const receiveMessage = (props: SocketMessageRequest): AppThunkAction<ReceiveMessageAction> => (
   async (dispatch: AppThunkDispatch<ReceiveMessageAction>): Promise<ReceiveMessageAction> => (

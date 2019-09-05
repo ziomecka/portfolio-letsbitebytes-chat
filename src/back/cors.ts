@@ -4,7 +4,11 @@ import { PRODUCTION_URL } from '../common/constants';
 import { RequestHandler } from 'express';
 
 const localhost = `http://www.localhost:${ PORT }`;
-const whitelist = [ localhost, PRODUCTION_URL ];
+const whitelist = [
+  localhost,
+  `https://${ PRODUCTION_URL }`,
+  `wss://${ PRODUCTION_URL }`,
+];
 
 const exposedHeaders = [ 'Content-Type' ];
 
