@@ -2,11 +2,11 @@ import { User } from '../../user/';
 import { disconnectHandler } from './disconnect-handler';
 
 export const connectionHandler = async (socket: Socket): Promise<void> => {
-  const { login } = socket.handshake.query;
+  const { handshake: { query: { login = '' } = { } }, id } = socket;
 
   try {
     if (login) {
-      await User.storeUser(login, socket.id);
+      await User.storeUser(login, id);
     }
   } finally {
     socket.emit(SocketMessages.userConnected, { login }); // TODO
