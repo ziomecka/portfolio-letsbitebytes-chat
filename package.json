@@ -92,7 +92,7 @@
     "deploy": "webpack --config webpack/deploy/index.js",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "npm run lint -- --fix",
-    "nodemon": "nodemon",
+    "nodemon": "nodemon --config .nodemon.json",
     "nodemon:start": "ts-node --project tsconfig.json --files src/back/index.ts",
     "postinstall": "npm run tsc:compile",
     "start": "node --optimize_for_size tsc/src/back/index.js $PORT",
@@ -113,17 +113,5 @@
   "engines": {
     "npm": "6.9.0",
     "node": "12.3.0"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      ".git",
-      "node_modules"
-    ],
-    "watch": [
-      "src",
-      "build"
-    ],
-    "exec": "npm run nodemon:start",
-    "ext": "ts,tsx,js,jsx"
   }
 }
