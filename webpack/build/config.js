@@ -1,10 +1,6 @@
-const webpack = require('webpack');
-
 require('dotenv').config();
-const {
-  NODE_ENV,
-  PORT,
-} = process.env;
+
+const webpack = require('webpack');
 
 const postcssFlexbugs = require('postcss-flexbugs-fixes');
 const postcssLost = require('lost');
@@ -15,6 +11,7 @@ const cssMqpacker = require('css-mqpacker');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -83,5 +80,14 @@ module.exports = {
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.SOCKET_PORT': JSON.stringify(process.env.SOCKET_PORT),
     }),
+    new CopyWebpackPlugin(
+      [
+        {
+          from: './src/back/*.html',
+          flatten: true,
+          force: true,
+        }
+      ],
+    { copyUnmodified: true }),
   ],
 };
