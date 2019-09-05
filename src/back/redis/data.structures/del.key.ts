@@ -5,10 +5,10 @@ export function delKey (key: string): Promise<number> {
   return new Promise((resolve, reject): boolean => (
     this.del(key, (err: Error, response: number): void => {
       if (err) {
-        log.error('Key not deleted: ', err);
+        log.error('Redis key not deleted:', err);
         reject(err);
       };
-      log.info('Key deleted: ', key);
+      log.info('Redis key deleted:', key);
 
       resolve(response);
     })
