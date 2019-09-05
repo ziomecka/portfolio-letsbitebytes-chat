@@ -1,4 +1,7 @@
 import {
+  BUTTON_WIDTH,
+} from './other-constants';
+import {
   flexColumnJustifyFlexStartAlignLeft,
 } from './flexes';
 
@@ -22,7 +25,7 @@ const other = {
     MuiButtonBase: {
       root: {
         justifyContent: 'flex-start',
-        maxWidth: '200px',
+        maxWidth: BUTTON_WIDTH,
       },
     },
     MuiPaper: {
