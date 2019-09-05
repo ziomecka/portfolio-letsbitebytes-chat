@@ -1,4 +1,3 @@
-import { Socket } from 'socket.io';
 import { User } from '../../user';
 import { logger } from '../../logger';
 

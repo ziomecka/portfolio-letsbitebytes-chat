@@ -1,4 +1,3 @@
-import { Socket } from 'socket.io';
 import { User } from '../../user/';
 import { disconnectHandler } from './disconnect-handler';
 
