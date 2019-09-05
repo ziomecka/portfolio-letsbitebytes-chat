@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  Paper,
+  Box,
   Typography,
 } from '@material-ui/core';
 import { APP_TITLE } from '../../../common/constants';
@@ -22,23 +22,23 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ( { 
     isAuthenticated
       ? (
         <Screen>
-          <Paper>
+          <Box>
             <Typography variant="h5">
               { appTitle }
             </Typography>
             <Typography variant="h6">
               { `${ loggedAsLabel } ${ login }` }
             </Typography>
-          </Paper>
-          <Paper>
+          </Box>
+          <Box>
             { role === UserRole.trainer
               ? <Trainer/>
               : <Trainee/> // TODO
             }
-          </Paper>
-          <Paper>
+          </Box>
+          <Box>
             <Logout/>
-          </Paper>
+          </Box>
           <Socket />
         </Screen>
       )
