@@ -16,18 +16,20 @@ interface ConversationState {
 
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
 const MESSAGE_INITIAL_STATE = '';
-const PARTNER_STATEMENT_CLASS_NAME = 'BAR';
 const SUBMIT_BUTTON_LABEL = 'Send';
-const USER_STATEMENT_CLASS_NAME = 'FOO';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
   private keyboardEvent: string;
   private messageInitialState: string;
-  private partnerStatementClassName: string;
   private submitButtonLabel: string;
-  private userStatementClassName: string;
   private unsubscribe: () => void;
+
+  private conversationBoxClassName: string;
+  private partnerTypographyClassName: string;
+  private userTypographyClassName: string;
+  private typographyBoxClassName: string;
+  private typographyClassName: string;
   constructor (props: ConversationProps) {
     super(props);
 
@@ -37,10 +39,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     };
 
     this.messageInitialState = MESSAGE_INITIAL_STATE;
-    this.partnerStatementClassName = PARTNER_STATEMENT_CLASS_NAME;
     this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
-    this.userStatementClassName = USER_STATEMENT_CLASS_NAME;
     this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
+
+    this.setClassNames();
 
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
@@ -48,6 +50,23 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.keyboardEvent = 'keydown';
     this.unsubscribe = props.subscribe(this.keyboardEvent, this.sendMessageOnEnter);
+  }
+
+  private setClassNames (): void {
+    const { classes: {
+      box,
+      conversationBox,
+      partnerTypography,
+      userTypography,
+      typography,
+      typographyBox,
+    } } = this.props;
+
+    this.conversationBoxClassName = conversationBox;
+    this.partnerTypographyClassName = `${ box } ${ partnerTypography }`;
+    this.userTypographyClassName = `${ box } ${ userTypography }`;
+    this.typographyBoxClassName = typographyBox;
+    this.typographyClassName = typography;
   }
 
   private getActiveConversation (conversations = this.props.conversations): Statement[] {
