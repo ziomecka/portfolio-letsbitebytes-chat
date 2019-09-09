@@ -17,16 +17,12 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ( { 
   const appTitle = APP_TITLE;
   const loggedAsLabel = LOGGED_AS_LABEL;
 
-  // TODO style instead of using variants
   return (
     isAuthenticated
       ? (
         <Screen>
           <Box>
-            <Typography variant="h5">
-              { appTitle }
-            </Typography>
-            <Typography variant="h6">
+            <Typography variant="h2">
               { `${ loggedAsLabel } ${ login }` }
             </Typography>
           </Box>
