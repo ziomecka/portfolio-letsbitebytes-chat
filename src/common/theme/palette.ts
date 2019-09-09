@@ -33,6 +33,9 @@ const palette = createPalette({
     disabled: '#9c9da1',
     hint: '#c4c4c7',
   },
-};
+  grey: {
+    '500': '#d9d9db',
+  },
+});
 
 export { palette };
