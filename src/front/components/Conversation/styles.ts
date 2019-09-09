@@ -50,16 +50,18 @@ export const styles = createStyles((theme: Theme) => {
       overflowY: 'scroll',
     },
     typographyBox: {
-      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
     },
     typography: {
-      display: inlineBlock,
+      flex: '0 auto',
+      wordBreak: 'break-word',
     },
     userTypography: {
       color: colorUserMessage,
       backgroundColor: backgroundColorUserMessage,
-      position: 'absolute',
-      right: 0,
+      alignSelf: 'flex-end',
+      marginLeft: margin,
     },
     partnerTypography: {
       backgroundColor: backgroundColorPartnerMessage,
