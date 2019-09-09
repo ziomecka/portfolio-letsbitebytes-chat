@@ -1,3 +1,4 @@
+export { AppRouter } from './AppRouter/';
 export { Conversation } from './Conversation/';
 export { Login } from './Login';
 export { ProtectedRoute } from './ProtectedRoute/';
