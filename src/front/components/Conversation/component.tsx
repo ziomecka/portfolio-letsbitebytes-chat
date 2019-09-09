@@ -5,6 +5,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { AppButton } from '../../../common';
+import { withPublisher } from 'publisher-subscriber-react-hoc';
 
 interface ConversationState {
   conversation: Statement[]
@@ -19,10 +20,12 @@ const USER_STATEMENT_CLASS_NAME = 'FOO';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
+  private keyboardEvent: string;
   private messageInitialState: string;
   private partnerStatementClassName: string;
   private submitButtonLabel: string;
   private userStatementClassName: string;
+  private unsubscribe: () => void;
   constructor (props: ConversationProps) {
     super(props);
 
@@ -39,6 +42,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.sendMessageOnEnter = this.sendMessageOnEnter.bind(this);
+
+    this.keyboardEvent = 'keydown';
+    this.unsubscribe = props.subscribe(this.keyboardEvent, this.sendMessageOnEnter);
   }
 
   private getActiveConversation (conversations = this.props.conversations): Statement[] {
@@ -70,6 +77,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
         });
       }
     }
+  }
+
+  public componentWillUnmount (): void {
+    this.unsubscribe();
   }
 
   private renderConversation (): JSX.Element {
@@ -144,6 +155,13 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
   }
 
+  // TODO async
+  private sendMessageOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+    if (event.key.toLowerCase() === 'enter') {
+      this.sendMessage();
+    }
+  }
+
   public render (): JSX.Element {
     return (
       <React.Fragment>
@@ -155,4 +173,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 }
 
-export { Conversation };
+const ConversationWithPublisherProps = withPublisher(Conversation);
+
+export { ConversationWithPublisherProps as Conversation };
