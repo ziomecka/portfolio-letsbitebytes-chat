@@ -13,6 +13,7 @@
     "log4js": "5.1.0",
     "mime": "2.4.4",
     "node-fetch": "2.6.0",
+    "publisher-subscriber-react-hoc": "1.0.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-redux": "7.1.1",
