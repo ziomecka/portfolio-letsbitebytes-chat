@@ -12,7 +12,7 @@ export const styles = createStyles((theme: Theme) => {
   const colorUserMessage = `#${ theme.palette.background.paper }!important`;
 
   const borderRadius = theme.shape.borderRadius;
-  const margin = theme.spacing(SPACING_REGULAR / 2);
+  const margin = theme.spacing(SPACING_REGULAR);
   const padding = theme.spacing(SPACING_REGULAR);
 
   // TODO calculate
@@ -29,6 +29,12 @@ export const styles = createStyles((theme: Theme) => {
       marginBottom: margin,
       marginTop: margin,
       padding,
+    },
+    inputBox: {
+      width: '100%',
+    },
+    input: {
+      paddingLeft: `${ margin * 2 }px!important`,
     },
     // TODO flexes - use global flexes?
     conversationBox: {
