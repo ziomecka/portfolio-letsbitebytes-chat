@@ -13,6 +13,8 @@ export const styles = createStyles((theme: Theme) => {
 
   const borderRadius = theme.shape.borderRadius;
   const margin = theme.spacing(SPACING_REGULAR);
+  const marginSmall = theme.spacing(SPACING_REGULAR / 2);
+  const marginLarge = theme.spacing(SPACING_REGULAR * 4);
   const padding = theme.spacing(SPACING_REGULAR);
 
   // TODO calculate
@@ -26,8 +28,8 @@ export const styles = createStyles((theme: Theme) => {
     box: {
       display: inlineBlock,
       borderRadius,
-      marginBottom: margin,
-      marginTop: margin,
+      marginBottom: marginSmall,
+      marginTop: marginSmall,
       padding,
     },
     inputBox: {
@@ -41,6 +43,8 @@ export const styles = createStyles((theme: Theme) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-end',
+      marginTop: marginLarge,
+      marginBottom: marginLarge,
       maxHeight: maxHeightConversation,
       height: heightConversation,
       overflowY: 'scroll',
@@ -59,6 +63,7 @@ export const styles = createStyles((theme: Theme) => {
     },
     partnerTypography: {
       backgroundColor: backgroundColorPartnerMessage,
+      marginRight: margin,
     },
   };
 });
