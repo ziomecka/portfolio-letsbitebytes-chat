@@ -1,5 +1,5 @@
 import { login } from './middlewares/login';
-import { logout } from './logout';
+import { logout } from './middlewares/logout';
 import { notExists } from './not-exists';
 import { onlyIfQuery } from './only-if-query';
 import { serveCSSFiles } from './middlewares/css-files';
