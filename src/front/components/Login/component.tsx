@@ -63,14 +63,16 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
   public render (): JSX.Element {
     return (
-      <React.Fragment>
+      <form>
         <TextField
           autoFocus
+          required
           label={this.loginLabel}
           onChange={this.typeLogin}
           value={this.state.login}
         />
         <TextField
+          required
           label={this.passwordLabel}
           onChange={this.typePassword}
           value={this.state.password}
@@ -83,7 +85,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
         >
           {this.submitButtonText}
         </AppButton>
-      </React.Fragment>
+      </form>
     );
   }
 }
