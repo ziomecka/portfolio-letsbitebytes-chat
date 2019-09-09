@@ -1,8 +1,4 @@
-export const BUTTON_WIDTH = '10rem';
-export const BUTTON_BACKGROUND = '#d9d9db';
-
-export const MARGIN = '.5rem';
-export const MARGIN_XL = '1rem';
-
-export const PADDING = '.5rem';
-export const PADDING_XL = '1rem';
+export const BUTTON_GREY_SHADE = 500; // used for button backgroundColor
+export const BUTTON_SIZE = 10; // used as buttonSize x 1rem
+export const SPACING_REGULAR = 1;
+export const SPACING_LARGE = 2;

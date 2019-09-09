@@ -1,77 +1,77 @@
 import {
-  BUTTON_BACKGROUND,
-  BUTTON_WIDTH,
-  MARGIN,
-  MARGIN_XL,
-  PADDING,
-  PADDING_XL,
+  BUTTON_GREY_SHADE,
+  BUTTON_SIZE,
+  SPACING_LARGE,
+  SPACING_REGULAR,
 } from './other-constants';
-import {
-  flexColumnJustifyFlexStartAlignLeft,
-} from './flexes';
+import { Overrides } from '@material-ui/core/styles/overrides';
+import { Theme } from '@material-ui/core';
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { flexColumnJustifyFlexStartAlignLeft } from './flexes';
 
-const buildMarginPadding = (margin = MARGIN, padding = PADDING): unknown => ({
+const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
   marginLeft: 0,
   padding,
   paddingLeft: 0,
 });
 
-const marginPadding = buildMarginPadding();
+const other = (theme: Theme): ThemeOptions => {
+  const buttonSize = BUTTON_SIZE;
+  const backgroundColorButton = theme.palette.grey[ BUTTON_GREY_SHADE ];
 
-const other = {
-  props: {
-    MuiPaper: {
-      elevation: 0
-    },
-    MuiButtonBase: {
-      disableRipple: false,
-      disableTouchRipple: true,
-      focusRipple: true,
-    },
-  },
-  overrides: {
-    MuiButton: {
-      text: {
-        paddingLeft: 0,
+  const largeSpacing = theme.spacing(SPACING_LARGE);
+  const regularSpacing = theme.spacing(SPACING_REGULAR);
+
+  const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
+
+  return {
+    props: {
+      MuiPaper: {
+        elevation: 0
       },
-      contained: {
-        backgroundColor: BUTTON_BACKGROUND, // TODO make dependent on palette.text.hint
+      MuiButtonBase: {
+        disableRipple: false,
+        disableTouchRipple: true,
+        focusRipple: true,
       },
     },
-    MuiButtonBase: {
-      root: {
-        width: BUTTON_WIDTH,
-        ...marginPadding,
+    overrides: {
+      MuiButton: {
+        text: {
+          paddingLeft: 0,
+        },
+        contained: {
+          backgroundColor: backgroundColorButton,
+        },
       },
-    },
-    MuiInputBase: {
-      root: {
-        ...marginPadding,
+      MuiButtonBase: {
+        root: {
+          width: theme.typography.fontSize * buttonSize,
+          ...marginPadding,
+        },
       },
-    },
-    MuiPaper: {
-      root: {
-        ...flexColumnJustifyFlexStartAlignLeft,
-        boxSizing: 'border-box',
-        margin: MARGIN_XL,
-        padding: PADDING_XL,
-      }
-    },
-    MuiTouchRipple: {
-      root: {
-        boxSizing: 'border-box',
-        width: `100%`,
+      MuiInputBase: {
+        root: {
+          ...marginPadding,
+        },
       },
-    },
-    MuiTypography: {
-      root: {
-        textAlign: 'left',
-        width: '100%',
-        ...buildMarginPadding(MARGIN_XL, PADDING_XL),
+      MuiPaper: {
+        root: {
+          ...flexColumnJustifyFlexStartAlignLeft,
+          boxSizing: 'border-box',
+          margin: largeSpacing,
+          padding: largeSpacing,
+        }
       },
-    },
-  }
+      MuiTouchRipple: {
+        root: {
+          boxSizing: 'border-box',
+          width: `100%`,
+        },
+      },
+    } as Overrides,
+  };
 };
 
 export { other };
