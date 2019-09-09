@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { BUNDLE_PATH } from '../../constants';
+import { BUNDLE_PATH } from './constants';
 
 export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
   const isAppRoute = [
@@ -14,5 +14,6 @@ export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
     res.sendFile(path.join(BUNDLE_PATH, 'page404.html'));
   } else {
     res.status(204);
+    res.end();
   }
 };
