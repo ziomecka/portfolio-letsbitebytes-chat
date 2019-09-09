@@ -3,7 +3,6 @@ import {
   Box,
   Typography,
 } from '@material-ui/core';
-import { APP_TITLE } from '../../../common/constants';
 import { Logout } from '../Logout/';
 import { Redirect } from 'react-router-dom';
 import { Screen } from '../Screen/';
@@ -14,7 +13,6 @@ import { Trainer } from '../Trainer/';
 const LOGGED_AS_LABEL = 'You are logged as';
 
 export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ( { isAuthenticated, login, role } ) => {
-  const appTitle = APP_TITLE;
   const loggedAsLabel = LOGGED_AS_LABEL;
 
   return (
