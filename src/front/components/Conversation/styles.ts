@@ -12,7 +12,9 @@ export const styles = createStyles((theme: Theme) => {
   const colorUserMessage = `#${ theme.palette.background.paper }!important`;
 
   const borderRadius = theme.shape.borderRadius;
-  const margin = theme.spacing(SPACING_REGULAR / 2);
+  const margin = theme.spacing(SPACING_REGULAR);
+  const marginSmall = theme.spacing(SPACING_REGULAR / 2);
+  const marginLarge = theme.spacing(SPACING_REGULAR * 4);
   const padding = theme.spacing(SPACING_REGULAR);
 
   // TODO calculate
@@ -26,33 +28,44 @@ export const styles = createStyles((theme: Theme) => {
     box: {
       display: inlineBlock,
       borderRadius,
-      marginBottom: margin,
-      marginTop: margin,
+      marginBottom: marginSmall,
+      marginTop: marginSmall,
       padding,
+    },
+    inputBox: {
+      width: '100%',
+    },
+    input: {
+      paddingLeft: `${ margin * 2 }px!important`,
     },
     // TODO flexes - use global flexes?
     conversationBox: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-end',
+      marginTop: marginLarge,
+      marginBottom: marginLarge,
       maxHeight: maxHeightConversation,
       height: heightConversation,
       overflowY: 'scroll',
     },
     typographyBox: {
-      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
     },
     typography: {
-      display: inlineBlock,
+      flex: '0 auto',
+      wordBreak: 'break-word',
     },
     userTypography: {
       color: colorUserMessage,
       backgroundColor: backgroundColorUserMessage,
-      position: 'absolute',
-      right: 0,
+      alignSelf: 'flex-end',
+      marginLeft: margin,
     },
     partnerTypography: {
       backgroundColor: backgroundColorPartnerMessage,
+      marginRight: margin,
     },
   };
 });
