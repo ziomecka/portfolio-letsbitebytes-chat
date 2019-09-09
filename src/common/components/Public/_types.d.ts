@@ -1,3 +1,1 @@
-type WithRouterProps<C> = import('react-router').WithRouterProps<C>;
-
-declare interface PublicProps extends WithRouterProps<unknown> {}
+declare interface PublicWithRouterProps extends WithRouterProps {}

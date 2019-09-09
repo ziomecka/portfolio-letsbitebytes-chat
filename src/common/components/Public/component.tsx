@@ -5,12 +5,11 @@ import { AppRoutes } from '../../../common/constants';
 import { Typography } from '@material-ui/core/';
 
 const LOGIN_BUTTON_TEXT = 'Start chatting';
-const Public: React.FunctionComponent<PublicProps> = (props) => {
+const Public: React.FunctionComponent<PublicWithRouterProps> = (props) => {
   const appTitle = APP_TITLE;
   const loginButtonText = LOGIN_BUTTON_TEXT;
 
   const goToLogin = (): void => {
-    // @ts-ignore
     props.history.push(AppRoutes.loginRoute);
   };
 
