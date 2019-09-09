@@ -1,6 +1,6 @@
 import { getHtml } from './get-html';
 import { store } from './store';
 
-export const serveHtml = (req: ExpressRequest, res: ExpressResponse): void => {
+export const htmlFile = (req: ExpressRequest, res: ExpressResponse): void => {
   res.type('html').send(getHtml(store));
 };
