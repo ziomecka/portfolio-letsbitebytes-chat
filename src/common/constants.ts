@@ -10,5 +10,5 @@ export const AppRoutes = {
   loginRoute: ServerRoutes.loginRoute,
   logoutRoute: ServerRoutes.logoutRoute,
   publicRoute: ServerRoutes.publicRoute,
-  protectedRoute: '/protected',
+  protectedRoute: ServerRoutes.protectedRoute,
 };
