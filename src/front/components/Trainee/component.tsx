@@ -7,8 +7,8 @@ interface TraineeLocalState {
 }
 
 class Trainee extends React.Component<TraineeProps, TraineeLocalState> {
-  constructor ( props: TraineeProps ) {
-    super( props );
+  constructor (props: TraineeProps) {
+    super(props);
     this.state = {
       message: '',
       needsHelp: true,

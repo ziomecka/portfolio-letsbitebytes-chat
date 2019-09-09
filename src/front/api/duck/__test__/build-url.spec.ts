@@ -10,7 +10,7 @@ const scenarios = [
   },
   {
     queryParams: {
-      login: 'foo'
+      login: 'foo',
     },
     result: `${ url }?login=foo`,
   },
@@ -31,7 +31,7 @@ const scenarios = [
 
 describe('build query params', () => {
   it('returns correct url', () => {
-    scenarios.forEach( scenario => {
+    scenarios.forEach(scenario => {
       expect(buildUrl(url, scenario.queryParams)).toEqual(scenario.result);
     });
   });

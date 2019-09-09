@@ -8,10 +8,11 @@ import {
 const successTrainer = { result: true, data: { role: 'trainer' } };
 const successTrainee = { result: true, data: { role: 'trainee' } };
 
-export const login = ( { query }: ExpressRequest, res: ExpressResponse ): void => {
+export const login = ({ query }: ExpressRequest, res: ExpressResponse): void => {
   const queries = Object.entries(query as Record<string, string>);
 
-  const findQuery = (searched: string): [string, string] => queries.find(([key]) => key === searched ) || [ '', '' ];
+  const findQuery =
+    (searched: string): [string, string] => queries.find(([key]) => key === searched) || [ '', '' ];
 
   const getAuths = (): {login: string, password: string} => ({
     login: findQuery('login')[ 1 ],

@@ -17,12 +17,14 @@ interface ConversationState {
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
 const MESSAGE_INITIAL_STATE = '';
 const SUBMIT_BUTTON_LABEL = 'Send';
+const TALKING_WITH_DESCRIPTION = 'You are talking with';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
   private keyboardEvent: string;
   private messageInitialState: string;
   private submitButtonLabel: string;
+  private talkingWithDescription: string;
   private unsubscribe: () => void;
 
   private conversationBoxClassName: string;
@@ -41,6 +43,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
     this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
+    this.talkingWithDescription = TALKING_WITH_DESCRIPTION;
 
     this.setClassNames();
 
@@ -80,11 +83,14 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
   public componentDidUpdate (prevProps: ConversationProps): void {
     const { activeConversation, conversations } = this.props;
-    const { activeConversation: prevActiveConversation, conversations: prevConversations } = prevProps;
+    const {
+      activeConversation: prevActiveConversation,
+      conversations: prevConversations,
+    } = prevProps;
 
-    if ( activeConversation && activeConversation !== prevActiveConversation ) {
+    if (activeConversation && activeConversation !== prevActiveConversation) {
       this.setState({
-        conversation: this.getActiveConversation()
+        conversation: this.getActiveConversation(),
       });
     }
 
@@ -116,10 +122,12 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     return (
       <Box className={ conversationBoxClassName }>
-        { conversation.map( ( statement, index ) => {
+        { conversation.map((statement, index) => {
           const isUser = statement[ 2 ];
           const typoClassName =
-            `${ typographyClassName } ${ isUser ? userTypographyClassName : partnerTypographyClassName }`;
+            `${ typographyClassName } ${
+              isUser ? userTypographyClassName : partnerTypographyClassName
+            }`;
 
           return (
             <Box key={index} className={ typographyBoxClassName }>
@@ -156,7 +164,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     return (
       <AppButton
         buttonProps={{
-          onClick: this.sendMessage
+          onClick: this.sendMessage,
         }}
       >
         {this.submitButtonLabel}
@@ -169,10 +177,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       await this.props.emitMessage(this.state.message);
 
       this.setState({
-        message: this.messageInitialState
+        message: this.messageInitialState,
       });
     } catch {
-      console.log('Something went wrong'); // TODO
+      // TODO
+      console.log('Something went wrong'); // eslint-disable-line no-console
     }
   }
 
@@ -186,6 +195,9 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   public render (): JSX.Element {
     return (
       <React.Fragment>
+        <Typography variant="h2">
+          { `${ this.talkingWithDescription } ${ this.props.activeConversation }` }
+        </Typography>
         {this.renderConversation()}
         {this.renderConversationInput()}
         {this.renderSubmitButton()}

@@ -41,7 +41,8 @@ export class User {
     let resultValue: boolean;
 
     try {
-      resultKey = await redis.delKey(key); // TODO and corresponding value - do not search twice. Is it needed?
+      // TODO and corresponding value - do not search twice. Is it needed?
+      resultKey = await redis.delKey(key);
 
       log.info('User deleted: ', key);
 

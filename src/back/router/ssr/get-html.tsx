@@ -8,7 +8,7 @@ import {
 import {
   HTML_ROOT_ID,
   SSR_STYLE_ROOT_ID,
-  WINDOW_INITIAL_STATE
+  WINDOW_INITIAL_STATE,
 } from '../../../common/';
 import { BackComponent } from './component';
 import { ServerStyleSheets } from '@material-ui/styles';

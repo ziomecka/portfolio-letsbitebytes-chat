@@ -27,7 +27,7 @@ export const cors = (): RequestHandler => {
       } else {
         callback(new Error('Not allowed by CORS'));
       }
-    }
+    },
   };
 
   return CORS(corsOptions);
