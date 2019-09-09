@@ -28,6 +28,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   private unsubscribe: () => void;
 
   private conversationBoxClassName: string;
+  private inputBoxClassName: string;
+  private inputClassName: string;
   private partnerTypographyClassName: string;
   private userTypographyClassName: string;
   private typographyBoxClassName: string;
@@ -59,6 +61,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     const { classes: {
       box,
       conversationBox,
+      input,
+      inputBox,
       partnerTypography,
       userTypography,
       typography,
@@ -66,6 +70,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     } } = this.props;
 
     this.conversationBoxClassName = conversationBox;
+    this.inputClassName = input;
+    this.inputBoxClassName = inputBox;
     this.partnerTypographyClassName = `${ box } ${ partnerTypography }`;
     this.userTypographyClassName = `${ box } ${ userTypography }`;
     this.typographyBoxClassName = typographyBox;
@@ -152,9 +158,12 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       <Box>
         <TextField
           autoFocus
+          multiline
           onChange={this.typeMessage}
           placeholder={this.conversationInputLabel}
           value={this.state.message}
+          className={this.inputBoxClassName}
+          InputProps={{ className: this.inputClassName }}
         />
       </Box>
     );
