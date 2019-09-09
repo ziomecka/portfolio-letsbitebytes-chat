@@ -4,7 +4,7 @@ import {
   NODE_ENV,
 } from '../../constants';
 
-export const serveJSFiles = ( req: ExpressRequest, res: ExpressResponse): void => {
+export const jsFiles = ( req: ExpressRequest, res: ExpressResponse): void => {
   res.set('Content-Type', 'text/javascript');
 
   if ( NODE_ENV === 'production' ) {

@@ -1,15 +1,15 @@
 import {
   cssFiles,
+  jsFiles,
   login,
   logout,
   notExists,
   onlyIfQuery,
-  serveJSFiles,
 } from './middlewares/';
 import { serveHtml } from './ssr/';
 
 export const router = (app: ExpressApplication): void => {
-  app.get('*.js', serveJSFiles);
+  app.get('*.js', jsFiles);
   app.get('*.css', cssFiles);
   app.get(ServerRoutes.loginRoute, onlyIfQuery(login));
   app.get(ServerRoutes.logoutRoute, onlyIfQuery(logout));
