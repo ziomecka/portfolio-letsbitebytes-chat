@@ -14,5 +14,6 @@ export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
     res.sendFile(path.join(BUNDLE_PATH, 'page404.html'));
   } else {
     res.status(204);
+    res.end();
   }
 };
