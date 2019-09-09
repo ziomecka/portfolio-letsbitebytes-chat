@@ -1,8 +1,5 @@
 import * as path from 'path';
-import {
-  BUNDLE_PATH,
-  NOT_EXIST_PATH,
-} from '../../constants';
+import { BUNDLE_PATH } from '../../constants';
 
 export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
   const isAppRoute = [
@@ -13,10 +10,9 @@ export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
 
   if (!isAppRoute) {
     res.set('Content-Type', 'text/html');
-    res.status(200).sendFile(path.join( BUNDLE_PATH, NOT_EXIST_PATH ));
+    res.status(200);
+    res.sendFile(path.join(BUNDLE_PATH, 'page404.html'));
   } else {
     res.status(204);
   }
-
-  res.end();
 };
