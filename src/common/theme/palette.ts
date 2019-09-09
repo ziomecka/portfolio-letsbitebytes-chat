@@ -1,4 +1,6 @@
-const palette = {
+import createPalette from '@material-ui/core/styles/createPalette';
+
+const palette = createPalette({
   common: {
     black: '#272932',
     white: '#fefefe',
