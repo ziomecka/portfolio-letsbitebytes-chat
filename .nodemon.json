@@ -8,5 +8,5 @@
     "build"
   ],
   "exec": "npm run nodemon:start",
-  "ext": "ts,tsx,js,jsx"
+  "ext": "ts,tsx,js,jsx,sass,css"
 }
