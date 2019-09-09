@@ -9,3 +9,5 @@ declare interface MapDispatchToLogin {
 }
 
 declare interface LoginProps extends MapStateToLogin, MapDispatchToLogin {}
+
+declare interface LoginWithRouterProps extends LoginProps, WithRouterProps {}

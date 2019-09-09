@@ -11,11 +11,11 @@ interface LoginState {
   confirmPassword: string;
 }
 
-class Login extends React.Component<LoginProps, LoginState> {
+class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private submitButtonText: string;
   private loginLabel: string;
   private passwordLabel: string;
-  constructor ( props: LoginProps ) {
+  constructor ( props: LoginWithRouterProps ) {
     super( props );
 
     this.state = {
@@ -38,7 +38,6 @@ class Login extends React.Component<LoginProps, LoginState> {
     const { isAuthenticated: prevIsAuthenticated } = prevProps;
 
     if (isAuthenticated !== prevIsAuthenticated && isAuthenticated) {
-      // @ts-ignore
       this.props.history.push(AppRoutes.protectedRoute);
     }
   }

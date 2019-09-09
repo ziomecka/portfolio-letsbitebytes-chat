@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch: AppThunkDispatch<LoginActions> ): MapDispa
   login: (props: LoginActionProps): Promise<LoginActions> => dispatch(login(props)),
 });
 
-// @ts-ignore
-const Container = withRouter(connect( mapStateToProps, mapDispatchToProps )( Login ));
+const Container = withRouter(connect<MapStateToLogin, MapDispatchToLogin, LoginProps>( mapStateToProps, mapDispatchToProps )( Login ));
 
 export { Container as Login };
