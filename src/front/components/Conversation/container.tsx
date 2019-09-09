@@ -9,7 +9,7 @@ const mapStateToProps = (state: AppState): MapStateToConversation => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToConversation => ({
-  ...mapSocketToProps(dispatch)
+  ...mapSocketToProps(dispatch),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Conversation);

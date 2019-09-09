@@ -4,7 +4,9 @@ import {
 } from './actions';
 
 export const logout = (): AppThunkAction<LogoutActions> => (
-  async (dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }): Promise<LogoutActions> => {
+  async (
+    dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
+  ): Promise<LogoutActions> => {
     try {
       const { result } = await api.request(ServerRoutes.logoutRoute);
 

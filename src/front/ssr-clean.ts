@@ -9,13 +9,14 @@ const ssrHtmlNodes = [
   },
 ];
 
-export const ssrClean= (htmlNodes: { selector: string, parentNode: string }[] = ssrHtmlNodes): void => {
-  htmlNodes.forEach( ({ selector, parentNode }): void => {
-    const $element = document.querySelector(selector);
-    const $parentNode = document.querySelector(parentNode);
+export const ssrClean =
+  (htmlNodes: { selector: string, parentNode: string }[] = ssrHtmlNodes): void => {
+    htmlNodes.forEach(({ selector, parentNode }): void => {
+      const $element = document.querySelector(selector);
+      const $parentNode = document.querySelector(parentNode);
 
-    if ($element && $parentNode) {
-      $parentNode.removeChild($element);
-    }
-  });
-};
+      if ($element && $parentNode) {
+        $parentNode.removeChild($element);
+      }
+    });
+  };

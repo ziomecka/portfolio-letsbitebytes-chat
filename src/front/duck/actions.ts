@@ -1,6 +1,7 @@
-import { ActionCreator } from "redux";
+import { ActionCreator } from 'redux';
 
-export const changeActiveConversation: ActionCreator<ChangeConversationAction> = (activeConversation: string) => ({
-  type: CommonActionTypes.changeActiveConversation,
-  activeConversation,
-});
+export const changeActiveConversation: ActionCreator<ChangeConversationAction> =
+  (activeConversation: string) => ({
+    type: CommonActionTypes.changeActiveConversation,
+    activeConversation,
+  });

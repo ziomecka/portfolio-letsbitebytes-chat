@@ -18,12 +18,12 @@ const DEFAULT_INITIAL_STATE = {
     role,
   },
   conversations,
-  activeConversation
+  activeConversation,
 };
 
 export const INITIAL_STATE = (
   {
     ...DEFAULT_INITIAL_STATE,
-    ...(window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState
+    ...(window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState,
   }
 );

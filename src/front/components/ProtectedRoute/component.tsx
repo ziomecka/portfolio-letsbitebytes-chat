@@ -13,31 +13,32 @@ import { Trainer } from '../Trainer/';
 
 const LOGGED_AS_LABEL = 'You are logged as';
 
-export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> = ( { isAuthenticated, login, role } ) => {
-  const appTitle = APP_TITLE;
-  const loggedAsLabel = LOGGED_AS_LABEL;
+export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
+  ({ isAuthenticated, login, role }) => {
+    const appTitle = APP_TITLE;
+    const loggedAsLabel = LOGGED_AS_LABEL;
 
-  return (
-    isAuthenticated
-      ? (
-        <Screen>
-          <Box>
-            <Typography variant="h2">
-              { `${ loggedAsLabel } ${ login }` }
-            </Typography>
-          </Box>
-          <Box>
-            { role === UserRole.trainer
-              ? <Trainer/>
-              : <Trainee/> // TODO
-            }
-          </Box>
-          <Box>
-            <Logout/>
-          </Box>
-          <Socket />
-        </Screen>
-      )
-      : <Redirect to={{ pathname: '', state: {} }} />
-  );
-};
+    return (
+      isAuthenticated
+        ? (
+          <Screen>
+            <Box>
+              <Typography variant="h2">
+                { `${ loggedAsLabel } ${ login }` }
+              </Typography>
+            </Box>
+            <Box>
+              { role === UserRole.trainer
+                ? <Trainer/>
+                : <Trainee/> // TODO
+              }
+            </Box>
+            <Box>
+              <Logout/>
+            </Box>
+            <Socket />
+          </Screen>
+        )
+        : <Redirect to={{ pathname: '', state: {} }} />
+    );
+  };
