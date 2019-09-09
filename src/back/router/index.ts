@@ -5,7 +5,7 @@ import { logout } from './logout';
 import { notExists } from './not-exists';
 import { onlyIfQuery } from './only-if-query';
 import { serveHtml } from './ssr/';
-import { serveJSFiles } from './js-files';
+import { serveJSFiles } from './middlewares/js-files';
 
 export const router = (app: ExpressApplication): void => {
   app.get('*.js', serveJSFiles);
