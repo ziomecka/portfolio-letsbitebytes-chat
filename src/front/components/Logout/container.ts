@@ -11,7 +11,6 @@ const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions> ): MapDisp
   logout: (): Promise<LogoutActions> => dispatch(logout()),
 });
 
-// @ts-ignore
-const Container = withRouter(connect( mapStateToProps, mapDispatchToProps )( Logout ));
+const Container = withRouter(connect<MapStateToLogout, MapDispatchToLogout, Partial<LogoutProps>>( mapStateToProps, mapDispatchToProps )( Logout ));
 
 export { Container as Logout };

@@ -7,3 +7,4 @@ declare interface MapDispatchToLogout {
 }
 
 declare interface LogoutProps extends MapStateToLogout, MapDispatchToLogout {}
+declare interface LogoutWithRouterProps extends LogoutProps, WithRouterProps {}

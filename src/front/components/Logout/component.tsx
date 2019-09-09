@@ -4,14 +4,13 @@ import {
   AppRoutes
 } from '../../../common/';
 
-class Logout extends React.Component<LogoutProps> {
-  public componentDidUpdate (prevProps: LogoutProps): void {
+class Logout extends React.Component<LogoutWithRouterProps> {
+  public componentDidUpdate (prevProps: LogoutWithRouterProps): void {
     const { isAuthenticated } = this.props;
     const { isAuthenticated: prevIsAuthenticated } = prevProps;
 
     if ( isAuthenticated !== prevIsAuthenticated && !isAuthenticated) {
-      // @ts-ignore
-      this.props.history.push(AppRoutes.public);
+      this.props.history.push(AppRoutes.publicRoute);
     }
   }
 
