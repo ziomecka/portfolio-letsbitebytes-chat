@@ -9,7 +9,7 @@ export const jsFiles = (req: ExpressRequest, res: ExpressResponse): void => {
 
   if (NODE_ENV === 'production') {
     res.set('Content-Encoding', 'gzip');
-    res.sendFile(path.join(BUNDLE_PATH, req.url, '.gz'));
+    res.sendFile(path.join(BUNDLE_PATH, `${ req.url }.gz`));
   } else {
     res.sendFile(path.join(BUNDLE_PATH, req.url));
   }
