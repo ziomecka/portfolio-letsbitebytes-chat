@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppButton } from '../AppButton/';
 import { AppRoutes } from '../../../common/constants';
 
-const LOGIN_BUTTON_TEXT = 'Start chatting';
+const LOGIN_BUTTON_TEXT = 'Login';
 const Public: React.FunctionComponent<PublicWithRouterProps> = (props) => {
   const loginButtonText = LOGIN_BUTTON_TEXT;
 
