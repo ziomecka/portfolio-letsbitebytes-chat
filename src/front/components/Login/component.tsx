@@ -4,6 +4,7 @@ import {
   AppRoutes,
 } from '../../../common/';
 import { TextField } from '@material-ui/core/';
+import { withPublisher } from 'publisher-subscriber-react-hoc';
 
 interface LoginState {
   login: string;
@@ -13,8 +14,10 @@ interface LoginState {
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private submitButtonText: string;
+  private keyboardEvent: string;
   private loginLabel: string;
   private passwordLabel: string;
+  private unsubscribe: () => void;
   constructor ( props: LoginWithRouterProps ) {
     super( props );
 
@@ -29,8 +32,12 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.passwordLabel = 'Password';
 
     this.submit = this.submit.bind(this);
+    this.submitOnEnter = this.submitOnEnter.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
+
+    this.keyboardEvent = 'keydown';
+    this.unsubscribe = props.subscribe(this.keyboardEvent, this.submitOnEnter);
   }
 
   public componentDidUpdate (prevProps: LoginProps): void {
@@ -42,11 +49,22 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     }
   }
 
+  public componentWillUnmount (): void {
+    this.unsubscribe();
+  }
+
   private submit (): void {
     this.props.login({
       login: this.state.login,
       password: this.state.password
     });
+  }
+
+  // TODO async
+  private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+    if (event.key.toLowerCase() === 'enter') {
+      this.submit();
+    }
   }
 
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
@@ -90,4 +108,5 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 }
 
-export { Login };
+const LoginWithPublisherProps = withPublisher(Login);
+export { LoginWithPublisherProps as Login };

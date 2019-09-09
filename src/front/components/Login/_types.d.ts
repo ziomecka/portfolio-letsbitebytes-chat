@@ -8,6 +8,8 @@ declare interface MapDispatchToLogin {
   login(props: LoginActionProps):  Promise<LoginActions>;
 }
 
-declare interface LoginProps extends MapStateToLogin, MapDispatchToLogin {}
+declare interface LoginProps extends MapStateToLogin, MapDispatchToLogin, WithPublisherProps {
+  subscribe(e: string, eventCallback: EventCallback<React.KeyboardEvent<HTMLFormElement>>): () => void
+}
 
 declare interface LoginWithRouterProps extends LoginProps, WithRouterProps {}
