@@ -1,60 +1,60 @@
 const flexRow = {
-  display: 'flex'
+  display: 'flex',
 };
 
 const flexColumn = {
   ...flexRow,
-  flexDirection: 'column'
+  flexDirection: 'column',
 };
 
 const flexColumnJustifyFlexStart = {
   ...flexColumn,
-  justifyContent: 'flex-start'
+  justifyContent: 'flex-start',
 };
 
 const flexColumnJustifySpaceBetween = {
   ...flexColumn,
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 };
 
 const flexColumnJustifyFlexStartAlignCenter = {
   ...flexColumnJustifyFlexStart,
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 const flexColumnJustifyFlexStartAlignLeft = {
   ...flexColumnJustifyFlexStart,
-  alignItems: 'left'
+  alignItems: 'left',
 };
 
 const flexRowJustifyCenter = {
   ...flexRow,
-  justifyContent: 'center'
+  justifyContent: 'center',
 };
 
 const flexRowJustifyCenterAlignCenter = {
   ...flexRowJustifyCenter,
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 const flexRowJustifyFlexEnd = {
   ...flexRow,
-  justifyContent: 'flex-end'
+  justifyContent: 'flex-end',
 };
 
 const flexRowJustifyFlexEndAlignCenter = {
   ...flexRowJustifyFlexEnd,
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 const flexRowJustifyFlexStart = {
   ...flexRow,
-  justifyContent: 'flex-start'
+  justifyContent: 'flex-start',
 };
 
 const flexRowJustifyFlexStartAlignCenter = {
   ...flexRowJustifyFlexStart,
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 export {
@@ -69,5 +69,5 @@ export {
   flexRowJustifyFlexEnd,
   flexRowJustifyFlexEndAlignCenter,
   flexRowJustifyFlexStart,
-  flexRowJustifyFlexStartAlignCenter
+  flexRowJustifyFlexStartAlignCenter,
 };
