@@ -5,7 +5,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import { AppButton } from '../../../common';
+import { styles } from './styles';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
+import { withStyles } from '@material-ui/styles';
 
 interface ConversationState {
   conversation: Statement[]
@@ -173,6 +175,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 }
 
-const ConversationWithPublisherProps = withPublisher(Conversation);
+const WrappedConversation = withPublisher(withStyles(styles)(Conversation));
 
-export { ConversationWithPublisherProps as Conversation };
+export { WrappedConversation as Conversation };
