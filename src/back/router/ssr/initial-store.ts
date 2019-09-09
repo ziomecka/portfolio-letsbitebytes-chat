@@ -32,8 +32,8 @@ const role = UserRole.trainee;
 
 const conversations = {
   'barUser': [
-    [ new Date(Date.now()), 'bar', true ] // if no cast (string | boolean | Date)[] instead of [Date, string, boolean]
-  ]
+    [ new Date(Date.now()), 'bar', true ],
+  ],
 } as Conversations;
 
 

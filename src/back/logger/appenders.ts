@@ -15,7 +15,7 @@ export const appenders = {
   errorsFile: {
     type: 'file',
     filename: 'log/errors.log',
-    layout
+    layout,
   },
   errors: {
     type: 'logLevelFilter',

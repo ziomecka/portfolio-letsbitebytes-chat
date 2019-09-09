@@ -3,4 +3,4 @@ import { initialStore } from './initial-store';
 
 const reducer = (): AppState => initialStore;
 
-export const store = createStore( reducer );
+export const store = createStore(reducer);

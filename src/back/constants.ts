@@ -9,7 +9,7 @@ export const {
   TRAINER_LOGIN,
   TRAINER_PASSWORD,
   TRAINEE_LOGIN,
-  TRAINEE_PASSWORD
+  TRAINEE_PASSWORD,
 } = process.env;
 
 export const BUNDLE_FILE = '/index.js';
