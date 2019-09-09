@@ -10,6 +10,6 @@ import thunk from 'redux-thunk';
 export const store = createStore(
   appReducer,
   composeWithDevTools(
-    applyMiddleware( thunk.withExtraArgument( { api } ) )
+    applyMiddleware(thunk.withExtraArgument({ api }))
   ),
 );

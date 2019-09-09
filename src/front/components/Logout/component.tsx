@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   AppButton,
-  AppRoutes
+  AppRoutes,
 } from '../../../common/';
 
 class Logout extends React.Component<LogoutWithRouterProps> {
@@ -9,7 +9,7 @@ class Logout extends React.Component<LogoutWithRouterProps> {
     const { isAuthenticated } = this.props;
     const { isAuthenticated: prevIsAuthenticated } = prevProps;
 
-    if ( isAuthenticated !== prevIsAuthenticated && !isAuthenticated) {
+    if (isAuthenticated !== prevIsAuthenticated && !isAuthenticated) {
       this.props.history.push(AppRoutes.publicRoute);
     }
   }

@@ -7,10 +7,15 @@ const mapStateToProps = (state: AppState): MapStateToLogout => ({
   isAuthenticated: state.user.isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions> ): MapDispatchToLogout => ({
+const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions>): MapDispatchToLogout => ({
   logout: (): Promise<LogoutActions> => dispatch(logout()),
 });
 
-const Container = withRouter(connect<MapStateToLogout, MapDispatchToLogout, Partial<LogoutProps>>( mapStateToProps, mapDispatchToProps )( Logout ));
+const Container = withRouter(
+  connect<MapStateToLogout, MapDispatchToLogout, Partial<LogoutProps>>(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Logout)
+);
 
 export { Container as Logout };

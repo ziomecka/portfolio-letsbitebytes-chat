@@ -15,7 +15,10 @@ export class Messages {
     });
   };
 
-  public static mapMessage = async (props: SocketMessageRequest | SocketMessageResponse, socket: Socket): Promise<MessageDetails> => {
+  public static mapMessage = async (
+    props: SocketMessageRequest | SocketMessageResponse,
+    socket: Socket
+  ): Promise<MessageDetails> => {
     let fromLogin: string;
     let toSocketId: string;
 
@@ -29,7 +32,7 @@ export class Messages {
     return {
       from: { login: fromLogin, socketId: socket.id },
       to: { login: props.to, socketId: toSocketId },
-      message: props.message
+      message: props.message,
     };
   };
 }

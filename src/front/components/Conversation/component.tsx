@@ -83,11 +83,14 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
   public componentDidUpdate (prevProps: ConversationProps): void {
     const { activeConversation, conversations } = this.props;
-    const { activeConversation: prevActiveConversation, conversations: prevConversations } = prevProps;
+    const {
+      activeConversation: prevActiveConversation,
+      conversations: prevConversations,
+    } = prevProps;
 
-    if ( activeConversation && activeConversation !== prevActiveConversation ) {
+    if (activeConversation && activeConversation !== prevActiveConversation) {
       this.setState({
-        conversation: this.getActiveConversation()
+        conversation: this.getActiveConversation(),
       });
     }
 
@@ -119,10 +122,12 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     return (
       <Box className={ conversationBoxClassName }>
-        { conversation.map( ( statement, index ) => {
+        { conversation.map((statement, index) => {
           const isUser = statement[ 2 ];
           const typoClassName =
-            `${ typographyClassName } ${ isUser ? userTypographyClassName : partnerTypographyClassName }`;
+            `${ typographyClassName } ${
+              isUser ? userTypographyClassName : partnerTypographyClassName
+            }`;
 
           return (
             <Box key={index} className={ typographyBoxClassName }>
@@ -159,7 +164,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     return (
       <AppButton
         buttonProps={{
-          onClick: this.sendMessage
+          onClick: this.sendMessage,
         }}
       >
         {this.submitButtonLabel}
@@ -172,10 +177,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       await this.props.emitMessage(this.state.message);
 
       this.setState({
-        message: this.messageInitialState
+        message: this.messageInitialState,
       });
     } catch {
-      console.log('Something went wrong'); // TODO
+      // TODO
+      console.log('Something went wrong'); // eslint-disable-line no-console
     }
   }
 

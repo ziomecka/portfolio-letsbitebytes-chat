@@ -20,21 +20,29 @@ export const initiateSocket = (): AppThunkAction<InitiateSocketAction, void> => 
     // @ts-ignore
     socket = io(socketUrl, { query: `login=${ getState().user.login }` });
 
-    socket.on(SocketMessages.userConnected, () => console.log('connected'));
+    socket.on(
+      SocketMessages.userConnected,
+      () => console.log('connected') // eslint-disable-line no-console
+    );
 
-    socket.on(SocketMessages.message, (props: SocketMessageRequest): Promise<ReceiveMessageAction> => (
-      dispatch(receiveMessage(props))
-    ));
+    socket.on(
+      SocketMessages.message,
+      (props: SocketMessageRequest): Promise<ReceiveMessageAction> => (
+        dispatch(receiveMessage(props))
+      )
+    );
   }
 );
 
 export const emitMessage = (message: string): AppThunkAction<EmitMessageAction> => (
-  async (dispatch: AppThunkDispatch<EmitMessageAction>, getState: GetState): Promise<EmitMessageAction> => (
+  async (
+    dispatch: AppThunkDispatch<EmitMessageAction>, getState: GetState
+  ): Promise<EmitMessageAction> => (
     new Promise((resolve): void => {
       const props = { message, to: findPartner(getState().user.role) };
 
       socket.emit(SocketMessages.message, props, (response: string): void => {
-        resolve(dispatch(emitMessageAction( props )));
+        resolve(dispatch(emitMessageAction(props)));
       });
     })
   )

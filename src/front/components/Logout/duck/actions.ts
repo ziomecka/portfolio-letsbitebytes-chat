@@ -1,4 +1,4 @@
-import { ActionCreator } from "redux";
+import { ActionCreator } from 'redux';
 
 export const logoutActionSuccess: ActionCreator<LogoutActionSuccess> = () => ({
   type: LogoutActionTypes.logoutSuccess,

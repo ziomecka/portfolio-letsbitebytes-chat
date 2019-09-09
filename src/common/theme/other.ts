@@ -28,7 +28,7 @@ const other = (theme: Theme): ThemeOptions => {
   return {
     props: {
       MuiPaper: {
-        elevation: 0
+        elevation: 0,
       },
       MuiButtonBase: {
         disableRipple: false,
@@ -62,12 +62,12 @@ const other = (theme: Theme): ThemeOptions => {
           boxSizing: 'border-box',
           margin: largeSpacing,
           padding: largeSpacing,
-        }
+        },
       },
       MuiTouchRipple: {
         root: {
           boxSizing: 'border-box',
-          width: `100%`,
+          width: '100%',
         },
       },
     } as Overrides,

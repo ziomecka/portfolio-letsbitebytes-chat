@@ -1,4 +1,4 @@
-import { ActionCreator } from "redux";
+import { ActionCreator } from 'redux';
 
 export const loginActionSuccess: ActionCreator<LoginActionSuccess> = (props: LoginActionProps) => ({
   type: LoginActionTypes.loginSuccess,
@@ -6,5 +6,5 @@ export const loginActionSuccess: ActionCreator<LoginActionSuccess> = (props: Log
 });
 
 export const loginActionFailure: ActionCreator<LoginActionFailure> = () => ({
-  type: LoginActionTypes.loginFailure
+  type: LoginActionTypes.loginFailure,
 });

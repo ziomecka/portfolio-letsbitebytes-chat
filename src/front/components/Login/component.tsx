@@ -18,8 +18,8 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private loginLabel: string;
   private passwordLabel: string;
   private unsubscribe: () => void;
-  constructor ( props: LoginWithRouterProps ) {
-    super( props );
+  constructor (props: LoginWithRouterProps) {
+    super(props);
 
     this.state = {
       login: props.userLogin,
@@ -56,7 +56,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private submit (): void {
     this.props.login({
       login: this.state.login,
-      password: this.state.password
+      password: this.state.password,
     });
   }
 
@@ -94,11 +94,11 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           label={this.passwordLabel}
           onChange={this.typePassword}
           value={this.state.password}
-          type={"password"}
+          type={'password'}
         />
         <AppButton
           buttonProps={{
-            onClick: this.submit
+            onClick: this.submit,
           }}
         >
           {this.submitButtonText}

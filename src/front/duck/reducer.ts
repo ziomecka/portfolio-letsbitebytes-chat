@@ -6,7 +6,7 @@ const commonStateReducer: Reducer<CommonState, CommonActions> = (state, action) 
   switch (type) {
     case (CommonActionTypes.changeActiveConversation): {
       return {
-        activeConversation: (actionPayload as ChangeConversationAction).activeConversation
+        activeConversation: (actionPayload as ChangeConversationAction).activeConversation,
       };
     }
 

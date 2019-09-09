@@ -11,8 +11,8 @@ import { socket } from './socket/';
 const app = express();
 const log = logger();
 
-app.use( helmet() );
-app.use( cors() );
+app.use(helmet());
+app.use(cors());
 app.set('trust proxy', 1);
 
 router(app);

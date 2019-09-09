@@ -9,10 +9,15 @@ const mapStateToProps = (state: AppState): MapStateToLogin => ({
   userPassword: state.user.password,
 });
 
-const mapDispatchToProps = (dispatch: AppThunkDispatch<LoginActions> ): MapDispatchToLogin => ({
+const mapDispatchToProps = (dispatch: AppThunkDispatch<LoginActions>): MapDispatchToLogin => ({
   login: (props: LoginActionProps): Promise<LoginActions> => dispatch(login(props)),
 });
 
-const Container = withRouter(connect<MapStateToLogin, MapDispatchToLogin, LoginProps>( mapStateToProps, mapDispatchToProps )( Login ));
+const Container = withRouter(
+  connect<MapStateToLogin, MapDispatchToLogin, LoginProps>(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
 
 export { Container as Login };
