@@ -1,6 +1,6 @@
 import { login } from './middlewares/login';
 import { logout } from './middlewares/logout';
-import { notExists } from './not-exists';
+import { notExists } from './middlewares/not-exists';
 import { onlyIfQuery } from './only-if-query';
 import { serveCSSFiles } from './middlewares/css-files';
 import { serveHtml } from './ssr/';
