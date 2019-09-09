@@ -17,12 +17,14 @@ interface ConversationState {
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
 const MESSAGE_INITIAL_STATE = '';
 const SUBMIT_BUTTON_LABEL = 'Send';
+const TALKING_WITH_DESCRIPTION = 'You are talking with';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
   private keyboardEvent: string;
   private messageInitialState: string;
   private submitButtonLabel: string;
+  private talkingWithDescription: string;
   private unsubscribe: () => void;
 
   private conversationBoxClassName: string;
@@ -41,6 +43,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
     this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
+    this.talkingWithDescription = TALKING_WITH_DESCRIPTION;
 
     this.setClassNames();
 
@@ -186,6 +189,9 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   public render (): JSX.Element {
     return (
       <React.Fragment>
+        <Typography variant="h2">
+          { `${ this.talkingWithDescription } ${ this.props.activeConversation }` }
+        </Typography>
         {this.renderConversation()}
         {this.renderConversationInput()}
         {this.renderSubmitButton()}
