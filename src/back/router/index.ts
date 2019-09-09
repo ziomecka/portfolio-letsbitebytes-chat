@@ -1,4 +1,4 @@
-import { login } from './login';
+import { login } from './middlewares/login';
 import { logout } from './logout';
 import { notExists } from './not-exists';
 import { onlyIfQuery } from './only-if-query';

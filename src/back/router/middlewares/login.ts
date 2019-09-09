@@ -3,7 +3,7 @@ import {
   TRAINEE_PASSWORD,
   TRAINER_LOGIN,
   TRAINER_PASSWORD,
-} from '../constants';
+} from '../../constants';
 
 const successTrainer = { result: true, data: { role: 'trainer' } };
 const successTrainee = { result: true, data: { role: 'trainee' } };
