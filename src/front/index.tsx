@@ -16,6 +16,7 @@ import {
 } from './components';
 import { Provider } from 'react-redux';
 import { Public } from '../common/components/';
+import { PublisherProvider } from 'publisher-subscriber-react-hoc';
 import { ssrClean } from './ssr-clean';
 import { store } from './store';
 
@@ -27,9 +28,20 @@ export const FrontComponent: React.FunctionComponent<FrontComponentProps> = ({ s
   <Provider {...{ store }}>
     <BrowserRouter>
       <Common>
-        <Route exact path={AppRoutes.publicRoute} component={Public}/>
-        <Route exact path={AppRoutes.loginRoute} component={Login}/>
-        <ProtectedRoute path={AppRoutes.protectedRoute}/>
+        {
+          // @ts-ignore
+          <PublisherProvider
+            {...{
+              emitter: window,
+              addListenerMethodName: 'addEventListener',
+              removeListenerMethodName: 'removeEventListener',
+            }}
+          >
+            <Route exact path={AppRoutes.publicRoute} component={Public}/>
+            <Route exact path={AppRoutes.loginRoute} component={Login}/>
+            <ProtectedRoute path={AppRoutes.protectedRoute}/>
+          </PublisherProvider>
+        }
       </Common>
     </BrowserRouter>
   </Provider>
