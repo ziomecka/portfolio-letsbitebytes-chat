@@ -12,13 +12,7 @@ export const router = (app: ExpressApplication): void => {
   app.get(ServerRoutes.loginRoute, onlyIfQuery(login));
   app.get(ServerRoutes.logoutRoute, onlyIfQuery(logout));
 
-  // if browser refresh then go to main page
-  app.get(
-    [ ServerRoutes.loginRoute,
-      ServerRoutes.logoutRoute,
-      ServerRoutes.publicRoute,
-    ],
-    serveHtml
-  );
-  app.get('*', notExists);
+  app.get(ServerRoutes.publicRoute, serveHtml);
+
+  app.use(notExists);
 };
