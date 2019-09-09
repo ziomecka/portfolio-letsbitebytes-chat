@@ -2,20 +2,17 @@ import './css/reset.sass';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
-  AppRoutes,
-  Common,
-  HTML_ROOT_ID,
-} from '../common/';
-import {
   BrowserRouter,
   Route,
 } from 'react-router-dom';
 import {
-  Login,
-  ProtectedRoute,
+  Common,
+  HTML_ROOT_ID,
+} from '../common/';
+import {
+  AppRouter,
 } from './components';
 import { Provider } from 'react-redux';
-import { Public } from '../common/components/';
 import { PublisherProvider } from 'publisher-subscriber-react-hoc';
 import { ssrClean } from './ssr-clean';
 import { store } from './store';
@@ -37,9 +34,7 @@ export const FrontComponent: React.FunctionComponent<FrontComponentProps> = ({ s
               removeListenerMethodName: 'removeEventListener',
             }}
           >
-            <Route exact path={AppRoutes.publicRoute} component={Public}/>
-            <Route exact path={AppRoutes.loginRoute} component={Login}/>
-            <ProtectedRoute path={AppRoutes.protectedRoute}/>
+            <AppRouter />
           </PublisherProvider>
         }
       </Common>
