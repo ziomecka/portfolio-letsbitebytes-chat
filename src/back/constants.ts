@@ -20,4 +20,4 @@ export const BUNDLE_PATH = NODE_ENV === 'production'
   ? path.resolve(__dirname, '../../../deploy/')
   : path.resolve(__dirname, '../../build/');
 
-export const NOT_EXIST_PATH = '/not-exist.html';
+export const NOT_EXIST_PATH = '/page404.html';

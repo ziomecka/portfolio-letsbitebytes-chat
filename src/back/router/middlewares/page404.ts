@@ -4,7 +4,7 @@ import {
   NOT_EXIST_PATH,
 } from '../../constants';
 
-export const notExists = ( req: ExpressRequest, res: ExpressResponse, next: ExpressNext ): void => {
+export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
   const isAppRoute = [
     ServerRoutes.loginRoute as string,
     ServerRoutes.logoutRoute as string,
@@ -12,7 +12,6 @@ export const notExists = ( req: ExpressRequest, res: ExpressResponse, next: Expr
   ].includes(req.url);
 
   if (!isAppRoute) {
-    console.log('path.join( BUNDLE_PATH, NOT_EXIST_PATH )', path.join( BUNDLE_PATH, NOT_EXIST_PATH ));
     res.set('Content-Type', 'text/html');
     res.status(200).sendFile(path.join( BUNDLE_PATH, NOT_EXIST_PATH ));
   } else {

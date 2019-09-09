@@ -3,8 +3,8 @@ import {
   jsFiles,
   login,
   logout,
-  notExists,
   onlyIfQuery,
+  page404,
 } from './middlewares/';
 import { htmlFile } from './ssr/';
 
@@ -16,5 +16,5 @@ export const router = (app: ExpressApplication): void => {
 
   app.get(ServerRoutes.publicRoute, htmlFile);
 
-  app.use(notExists);
+  app.use(page404);
 };
