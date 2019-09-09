@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { BUNDLE_PATH } from '../../constants';
+import { BUNDLE_PATH } from './constants';
 
 export const page404 = (req: ExpressRequest, res: ExpressResponse): void => {
   const isAppRoute = [

@@ -1,4 +1,3 @@
-import * as path from 'path';
 require('dotenv').config();
 
 export const {
@@ -15,7 +14,3 @@ export const {
 
 export const BUNDLE_FILE = '/index.js';
 export const VENDOR_FILE = '/vendor.js';
-
-export const BUNDLE_PATH = NODE_ENV === 'production'
-  ? path.resolve(__dirname, '../../../deploy/')
-  : path.resolve(__dirname, '../../build/');
