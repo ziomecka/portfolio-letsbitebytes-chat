@@ -1,7 +1,12 @@
 import { Reducer } from "react";
 import { socketInitialState } from './initial-state';
 
-const updateConversation = (message: string, conversationId: string, state: SocketState): SocketState => {
+const updateConversation = (
+  message: string,
+  conversationId: string,
+  state: SocketState,
+  isUserMessage = true
+): SocketState => {
   const date = new Date(Date.now());
   const conversation = state [ conversationId ] || [];
 
@@ -9,7 +14,7 @@ const updateConversation = (message: string, conversationId: string, state: Sock
     ...state,
     [ conversationId ]: [
       ...conversation,
-      [ date, message, true ],
+      [ date, message, isUserMessage ],
     ]
   };
 };
@@ -25,7 +30,7 @@ export const socketReducer: Reducer<SocketState, SocketActions> = (state = socke
 
     case (SocketActionTypes.receiveMessage): {
       const { message, from } = actionPayload as ReceiveMessageAction;
-      return updateConversation(message, from, state);
+      return updateConversation(message, from, state, false);
     }
 
     default: {
