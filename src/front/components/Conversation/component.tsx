@@ -106,29 +106,29 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
   private renderConversation (): JSX.Element {
     const {
-      partnerStatementClassName,
-      userStatementClassName,
+      conversationBoxClassName,
+      partnerTypographyClassName,
+      typographyBoxClassName,
+      typographyClassName,
+      userTypographyClassName,
       state: { conversation = [] },
     } = this;
 
     return (
-      <Box>
-        {
-          conversation.map( ( statement, index ) => (
-            <Box
-              key={index}
-              className={
-                statement[ 2 ]
-                  ? userStatementClassName
-                  : partnerStatementClassName
-              }
-            >
-              <Typography>
+      <Box className={ conversationBoxClassName }>
+        { conversation.map( ( statement, index ) => {
+          const isUser = statement[ 2 ];
+          const typoClassName =
+            `${ typographyClassName } ${ isUser ? userTypographyClassName : partnerTypographyClassName }`;
+
+          return (
+            <Box key={index} className={ typographyBoxClassName }>
+              <Typography className={ typoClassName }>
                 {statement[ 1 ]}
               </Typography>
             </Box>
-          ))
-        }
+          );
+        }) }
       </Box>
     );
   }
