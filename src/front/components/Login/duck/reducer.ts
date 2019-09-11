@@ -1,21 +1,5 @@
+import { defaultInitialState } from '../../../initial-state';
 import { loginInitialState } from './initial-state';
-
-const unAuthorize = (state: UserState): UserState => {
-  const {
-    isAuthenticated,
-    login,
-    password,
-    role,
-  } = loginInitialState;
-
-  return {
-    ...state,
-    isAuthenticated,
-    login,
-    password,
-    role,
-  };
-};
 
 export const loginReducer: ReduxReducer<UserState, LoginActions | LogoutActions> =
   (state = loginInitialState, action) => {
@@ -31,7 +15,7 @@ export const loginReducer: ReduxReducer<UserState, LoginActions | LogoutActions>
       }
 
       case (LogoutActionTypes.logoutSuccess): {
-        return unAuthorize(state);
+        return { ...defaultInitialState.user };
       }
 
       default: {
