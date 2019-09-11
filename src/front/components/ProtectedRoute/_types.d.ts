@@ -11,4 +11,5 @@ declare interface ProtectedRouteState {
 declare const enum UserRole {
   trainer = 'trainer',
   trainee = 'trainee',
+  unknown = 'unknown',
 }
