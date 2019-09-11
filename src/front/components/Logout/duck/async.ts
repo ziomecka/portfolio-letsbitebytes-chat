@@ -1,3 +1,5 @@
+import { changeActiveConversation } from '../../../duck/actions';
+import { clearConversationsAction } from '../../Socket/duck/';
 import { logoutActionSuccess } from './actions';
 
 export const logout = (): AppThunkAction<boolean> => (
@@ -11,6 +13,8 @@ export const logout = (): AppThunkAction<boolean> => (
 
       if (result) {
         dispatch(logoutActionSuccess());
+        dispatch(clearConversationsAction());
+        dispatch(changeActiveConversation());
       }
 
       return Promise.resolve(result);
