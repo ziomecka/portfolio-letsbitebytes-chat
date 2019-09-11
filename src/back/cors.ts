@@ -1,6 +1,8 @@
 import * as CORS from 'cors';
-import { PORT } from './constants';
-import { PRODUCTION_URL } from '../common/constants';
+import {
+  PORT,
+  PRODUCTION_URL,
+} from './constants';
 import { RequestHandler } from 'express';
 
 const localhost = `http://www.localhost:${ PORT }`;

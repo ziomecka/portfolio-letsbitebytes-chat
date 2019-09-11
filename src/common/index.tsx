@@ -1,7 +1,6 @@
 export {
   WINDOW_INITIAL_STATE,
   HTML_ROOT_ID,
-  PRODUCTION_URL,
   SSR_STYLE_ROOT_ID,
   AppRoutes,
 } from './constants';
