@@ -41,6 +41,10 @@ export const socketReducer: ReduxReducer<SocketState, SocketActions> =
         };
       }
 
+      case (SocketActionTypes.clearConversations): {
+        return { ...socketInitialState };
+      }
+
       default: {
         return { ...state };
       };

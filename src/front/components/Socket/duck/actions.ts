@@ -20,3 +20,8 @@ export const deliveredAction: ReduxActionCreator<DeliveredAction> =
   to,
   messageId,
 });
+
+export const clearConversationsAction: ReduxActionCreator<ClearConversationsAction> =
+() => ({
+  type: SocketActionTypes.clearConversations,
+});

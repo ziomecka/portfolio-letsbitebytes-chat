@@ -6,6 +6,7 @@ declare interface MapDispatchToSocket {
 
 declare interface MapSocketToProps {
   emitMessage(message: string):  Promise<EmitAction>;
+  clearConversations(): Promise<ClearConversationsAction>;
 }
 
 declare interface SocketProps extends MapStateToSocket, MapDispatchToSocket{}
