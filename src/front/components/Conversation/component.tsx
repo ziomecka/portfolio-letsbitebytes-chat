@@ -12,15 +12,18 @@ import { withStyles } from '@material-ui/styles';
 interface ConversationState {
   conversation: Statement[]
   message: string;
+  error: boolean;
 }
 
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
+const ERROR_MESSAGE = 'Ooops, there\'s no connection';
 const MESSAGE_INITIAL_STATE = '';
 const SUBMIT_BUTTON_LABEL = 'Send';
 const TALKING_WITH_DESCRIPTION = 'You are talking with';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
+  private errorMessage: string;
   private keyboardEvent: string;
   private messageInitialState: string;
   private submitButtonLabel: string;
@@ -40,8 +43,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.state = {
       conversation: this.getActiveConversation(),
       message: MESSAGE_INITIAL_STATE,
+      error: false,
     };
 
+    this.errorMessage = ERROR_MESSAGE;
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
     this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
@@ -88,10 +93,16 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   public componentDidUpdate (prevProps: ConversationProps): void {
-    const { activeConversation, conversations } = this.props;
+    const {
+      activeConversation,
+      conversations,
+      connectionState,
+    } = this.props;
+
     const {
       activeConversation: prevActiveConversation,
       conversations: prevConversations,
+      connectionState: prevSocketConnection,
     } = prevProps;
 
     if (activeConversation && activeConversation !== prevActiveConversation) {
@@ -109,6 +120,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
           conversation: [...activeConversation],
         });
       }
+    if (connectionState !== prevSocketConnection) {
+      this.setState({
+        error: connectionState === ConnectionState.disconnected,
+      });
     }
   }
 
@@ -207,6 +222,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
         <Typography variant="h2">
           { `${ this.talkingWithDescription } ${ this.props.activeConversation }` }
         </Typography>
+        {this.state.error &&
+          <Typography variant="h3">
+            { this.errorMessage }
+          </Typography>
+        }
         {this.renderConversation()}
         {this.renderConversationInput()}
         {this.renderSubmitButton()}

@@ -8,7 +8,10 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = INITIAL_STATE, ac
     user: loginReducer(state.user, action),
     conversations: socketReducer(state.conversations, action),
     ...commonStateReducer(
-      { activeConversation: state.activeConversation }, action as CommonActions
+      {
+        activeConversation: state.activeConversation,
+        connectionState: state.connectionState,
+      }, action as CommonActions
     ),
   };
 };

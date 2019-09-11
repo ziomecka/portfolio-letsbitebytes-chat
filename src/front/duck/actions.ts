@@ -3,3 +3,9 @@ export const changeActiveConversation: ReduxActionCreator<ChangeConversationActi
     type: CommonActionTypes.changeActiveConversation,
     activeConversation,
   });
+
+export const changeConnectionState: ReduxActionCreator<ChangeSocketConnectionAction> =
+  (connectionState: ConnectionState) => ({
+    type: CommonActionTypes.changeConnectionState,
+    connectionState,
+  });

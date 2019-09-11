@@ -1,13 +1,30 @@
 declare const enum CommonActionTypes {
   changeActiveConversation = '@APP/Common/change active conversation',
+  changeConnectionState = '@APP/Common/change socket connection',
 }
 
-declare interface ChangeConversationAction extends ReduxAction {
-  activeConversation: string;
+declare const enum ConnectionState {
+  connected = 'connected',
+  disconnected = 'disconnected',
+  unknown = 'unknown',
 }
-
-declare type CommonActions = ChangeConversationAction;
 
 declare interface CommonState {
   activeConversation: string;
+  connectionState: ConnectionState;
 }
+
+declare interface ChangeConversationActionProps {
+  activeConversation: string;
+}
+
+declare interface ChangeSocketConnectionActionProps {
+  connectionState: ConnectionState;
+}
+
+declare interface ChangeConversationAction extends ChangeConversationActionProps, ReduxAction {}
+declare interface ChangeSocketConnectionAction extends ChangeSocketConnectionActionProps, ReduxAction {}
+
+declare type CommonActions = |
+  ChangeConversationAction |
+  ChangeSocketConnectionAction;

@@ -1,6 +1,7 @@
 declare interface MapStateToConversation {
   conversations: Conversations,
   activeConversation: string;
+  connectionState: ConnectionState;
 }
 
 declare interface MapDispatchToConversation extends MapSocketToProps {}
