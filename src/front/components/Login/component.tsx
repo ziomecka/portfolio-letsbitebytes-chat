@@ -163,5 +163,5 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 }
 
-const LoginWithPublisherProps = withPublisher(Login);
-export { LoginWithPublisherProps as Login };
+const WrappedLogin = withPublisher(Login);
+export { WrappedLogin as Login };
