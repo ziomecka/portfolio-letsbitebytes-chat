@@ -15,6 +15,8 @@ class Logout extends React.Component<LogoutWithRouterProps> {
 
   private init (): void {
     this.buttonText = BUTTON_TEXT;
+
+    this.logout = this.logout.bind(this);
   }
 
   public componentDidUpdate (prevProps: LogoutWithRouterProps): void {
@@ -26,13 +28,18 @@ class Logout extends React.Component<LogoutWithRouterProps> {
     }
   }
 
+  private async logout (): Promise<void> {
+    const result = await this.props.logout();
+
+    if (!result) {
+      // todo
+    }
+  }
 
   public render (): JSX.Element {
     return (
       <AppButton
-        buttonProps={{
-          onClick: this.props.logout,
-        }}
+        buttonProps={{ onClick: this.logout }}
         variant={ AppButtonVariant.transparent }
       >
         {this.buttonText}
