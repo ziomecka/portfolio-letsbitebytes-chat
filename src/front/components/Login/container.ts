@@ -10,7 +10,7 @@ const mapStateToProps = (state: AppState): MapStateToLogin => ({
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<LoginActions>): MapDispatchToLogin => ({
-  login: (props: LoginActionProps): Promise<LoginActions> => dispatch(login(props)),
+  login: (props: LoginActionProps): Promise<boolean> => dispatch(login(props)),
 });
 
 const Container = withRouter(

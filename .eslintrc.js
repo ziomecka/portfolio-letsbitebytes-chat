@@ -31,6 +31,7 @@ module.exports = {
           constructors: 'no-public'
         }
       }],
+      '@typescript-eslint/no-unused-vars': 'off',
       'array-bracket-spacing': ['error', 'always', { 'singleValue': false }],
       'arrow-spacing': 'error',
       'comma-dangle': ['error', 'always-multiline'],
@@ -55,6 +56,15 @@ module.exports = {
       'space-before-function-paren': 'error',
       'space-in-parens': ['error', 'never'],
       'template-curly-spacing': ['error', 'always'],
-      '@typescript-eslint/no-unused-vars': 'off',
-  }
+  },
+  overrides: [
+    {
+      files: ['*.js', '*.jsx'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-member-accessibility': 'off',
+      },
+    },
+  ],
 }

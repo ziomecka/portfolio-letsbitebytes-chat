@@ -1,21 +1,17 @@
-import './css/reset.sass';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {
-  BrowserRouter,
-  Route,
-} from 'react-router-dom';
 import {
   Common,
   HTML_ROOT_ID,
 } from '../common/';
-import {
-  AppRouter,
-} from './components';
+import { AppRouter } from './components';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PublisherProvider } from 'publisher-subscriber-react-hoc';
 import { ssrClean } from './ssr-clean';
 import { store } from './store';
+
+require('./css/reset.sass');
 
 interface FrontComponentProps {
   store: ReduxStore,

@@ -1,6 +1,6 @@
+import { buildInitialStore } from './initial-store';
 import { createStore } from 'redux';
-import { initialStore } from './initial-store';
 
-const reducer = (): AppState => initialStore;
+const reducer = (): AppState => buildInitialStore();
 
 export const store = createStore(reducer);

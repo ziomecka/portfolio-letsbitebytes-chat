@@ -1,20 +1,25 @@
-import {
-  logoutActionFailure,
-  logoutActionSuccess,
-} from './actions';
+import { changeActiveConversation } from '../../../duck/actions';
+import { clearConversationsAction } from '../../Socket/duck/';
+import { logoutActionSuccess } from './actions';
 
-export const logout = (): AppThunkAction<LogoutActions> => (
+export const logout = (): AppThunkAction<boolean> => (
   async (
     dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
-  ): Promise<LogoutActions> => {
+  ): Promise<boolean> => {
     try {
-      const { result } = await api.request(ServerRoutes.logoutRoute);
+      const { result } = await api.request(
+        ServerRoutes.logoutRoute, { queryParams: { login: getState().user.login } }
+      );
 
-      return result
-        ? dispatch(logoutActionSuccess())
-        : dispatch(logoutActionFailure());
+      if (result) {
+        dispatch(logoutActionSuccess());
+        dispatch(clearConversationsAction());
+        dispatch(changeActiveConversation());
+      }
+
+      return Promise.resolve(result);
     } catch {
-      return dispatch(logoutActionFailure());
+      return Promise.reject(false);
     }
   }
 );

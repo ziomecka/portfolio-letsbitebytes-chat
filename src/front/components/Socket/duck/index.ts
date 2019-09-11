@@ -1,6 +1,6 @@
 export {
   emitMessage,
-  initiateSocket,
-} from './async';
-
+  initiateConnection,
+} from './async/';
 export { socketReducer } from './reducer';
+export { clearConversationsAction } from './actions';

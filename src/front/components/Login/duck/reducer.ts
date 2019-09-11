@@ -1,24 +1,7 @@
-import { Reducer } from 'react';
+import { defaultInitialState } from '../../../initial-state';
 import { loginInitialState } from './initial-state';
 
-const unAuthorize = (state: UserState): UserState => {
-  const {
-    isAuthenticated,
-    login,
-    password,
-    role,
-  } = loginInitialState;
-
-  return {
-    ...state,
-    isAuthenticated,
-    login,
-    password,
-    role,
-  };
-};
-
-export const loginReducer: Reducer<UserState, LoginActions | LogoutActions> =
+export const loginReducer: ReduxReducer<UserState, LoginActions | LogoutActions> =
   (state = loginInitialState, action) => {
     const { type, ...actionPayload } = action;
 
@@ -31,19 +14,8 @@ export const loginReducer: Reducer<UserState, LoginActions | LogoutActions> =
         };
       }
 
-      case (LogoutActionTypes.logoutFailure): {
-        return {
-          ...state,
-          isAuthenticated: true,
-        };
-      }
-
-      case (LoginActionTypes.loginFailure): {
-        return unAuthorize(state);
-      }
-
       case (LogoutActionTypes.logoutSuccess): {
-        return unAuthorize(state);
+        return { ...defaultInitialState.user };
       }
 
       default: {

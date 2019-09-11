@@ -4,7 +4,21 @@ import {
   AppRoutes,
 } from '../../../common/';
 
+const BUTTON_TEXT = 'Logout';
+
 class Logout extends React.Component<LogoutWithRouterProps> {
+  private buttonText: string;
+  constructor (props: LogoutWithRouterProps) {
+    super(props);
+    this.init();
+  }
+
+  private init (): void {
+    this.buttonText = BUTTON_TEXT;
+
+    this.logout = this.logout.bind(this);
+  }
+
   public componentDidUpdate (prevProps: LogoutWithRouterProps): void {
     const { isAuthenticated } = this.props;
     const { isAuthenticated: prevIsAuthenticated } = prevProps;
@@ -14,17 +28,21 @@ class Logout extends React.Component<LogoutWithRouterProps> {
     }
   }
 
-  private submitButtonText = 'Logout';
+  private async logout (): Promise<void> {
+    const result = await this.props.logout();
+
+    if (!result) {
+      // todo
+    }
+  }
 
   public render (): JSX.Element {
     return (
       <AppButton
-        buttonProps={{
-          onClick: this.props.logout,
-        }}
+        buttonProps={{ onClick: this.logout }}
         variant={ AppButtonVariant.transparent }
       >
-        {this.submitButtonText}
+        {this.buttonText}
       </AppButton>
     );
   }

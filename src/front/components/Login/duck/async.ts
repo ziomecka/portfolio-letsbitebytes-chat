@@ -1,24 +1,21 @@
-import {
-  loginActionFailure,
-  loginActionSuccess,
-} from './actions';
+import { loginActionSuccess } from './actions';
 import { setActiveConversation } from '../../../duck/async';
 
-export const login = (props: LoginActionProps): AppThunkAction<LoginActions> => (async (
+export const login = (props: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
   getState: GetState,
   { api }: { api: Api }
-): Promise<LoginActions> => {
+): Promise<boolean> => {
   try {
     const { result, data } = await api.request(ServerRoutes.loginRoute, { queryParams: props });
 
-    if (result) dispatch(setActiveConversation(data.role));
+    if (result) {
+      dispatch(setActiveConversation(data.role));
+      dispatch(loginActionSuccess({ ...props, ...data }));
+    }
 
-    return result
-      ? dispatch(loginActionSuccess({ ...props, ...data }))
-      : dispatch(loginActionFailure());
-
+    return Promise.resolve(result);
   } catch {
-    return dispatch(loginActionFailure());
+    return Promise.reject(false);
   }
 });

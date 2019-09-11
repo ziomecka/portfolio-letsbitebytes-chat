@@ -1,15 +1,27 @@
-import { ActionCreator } from 'redux';
+export const emitAction: ReduxActionCreator<EmitAction> =
+({ message, to, messageId }: EmitActionProps) => ({
+  type: SocketActionTypes.emit,
+  to,
+  messageId,
+  message,
+});
 
-export const emitMessageAction: ActionCreator<EmitMessageAction> =
-  ({ message, to }: EmitMessageActionProps) => ({
-    type: SocketActionTypes.emitMessage,
-    message,
-    to,
-  });
+export const receiveAction: ReduxActionCreator<ReceiveAction> =
+({ message, from, messageId }: ReceiveProps) => ({
+  type: SocketActionTypes.receive,
+  from,
+  messageId,
+  message,
+});
 
-export const receiveMessageAction: ActionCreator<ReceiveMessageAction> =
-  ({ message, from }: ReceiveMessageProps) => ({
-    type: SocketActionTypes.receiveMessage,
-    from,
-    message,
-  });
+export const deliveredAction: ReduxActionCreator<DeliveredAction> =
+({ to, messageId }: DeliveredProps) => ({
+  type: SocketActionTypes.delivered,
+  to,
+  messageId,
+});
+
+export const clearConversationsAction: ReduxActionCreator<ClearConversationsAction> =
+() => ({
+  type: SocketActionTypes.clearConversations,
+});

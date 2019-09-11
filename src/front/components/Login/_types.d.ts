@@ -5,7 +5,7 @@ declare interface MapStateToLogin {
 }
 
 declare interface MapDispatchToLogin {
-  login(props: LoginActionProps):  Promise<LoginActions>;
+  login(props: LoginActionProps):  Promise<boolean>;
 }
 
 declare interface LoginProps extends MapStateToLogin, MapDispatchToLogin, WithPublisherProps {

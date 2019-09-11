@@ -1,37 +1,48 @@
-import { Reducer } from 'react';
 import { socketInitialState } from './initial-state';
 
-const updateConversation = (
-  message: string,
-  conversationId: string,
-  state: SocketState,
-  isUserMessage = true
-): SocketState => {
-  const date = new Date(Date.now());
-  const conversation = state [ conversationId ] || [];
-
-  return {
-    ...state,
-    [ conversationId ]: [
-      ...conversation,
-      [ date, message, isUserMessage ],
-    ],
-  };
-};
-
-export const socketReducer: Reducer<SocketState, SocketActions> =
+export const socketReducer: ReduxReducer<SocketState, SocketActions> =
   (state = socketInitialState, action) => {
     const { type, ...actionPayload } = action;
 
     switch (type) {
-      case (SocketActionTypes.emitMessage): {
-        const { message, to } = actionPayload as EmitMessageAction;
-        return updateConversation(message, to, state);
+      case (SocketActionTypes.emit): {
+        const { message, to, messageId } = actionPayload as EmitAction;
+        return {
+          ...state,
+          [ to ]: [
+            ...(state [ to ] || []),
+            [ messageId, message, false ],
+          ],
+        };
       }
 
-      case (SocketActionTypes.receiveMessage): {
-        const { message, from } = actionPayload as ReceiveMessageAction;
-        return updateConversation(message, from, state, false);
+      case (SocketActionTypes.delivered): {
+        const { to, messageId } = actionPayload as DeliveredAction;
+        const conversation = [...state[ to ]];
+
+        const index = conversation.findIndex(message => message[ 0 ] === messageId);
+        conversation.splice(index, 1, [ messageId, conversation[ index ][ 1 ], true ]);
+
+        return {
+          ...state,
+          [ to ]: conversation,
+        };
+      }
+
+      case (SocketActionTypes.receive): {
+        const { message, from, messageId } = actionPayload as ReceiveAction;
+
+        return {
+          ...state,
+          [ from ]: [
+            ...(state [ from ] || []),
+            [ messageId, message ],
+          ],
+        };
+      }
+
+      case (SocketActionTypes.clearConversations): {
+        return { ...socketInitialState };
       }
 
       default: {

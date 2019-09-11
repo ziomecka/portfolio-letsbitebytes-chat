@@ -1,7 +1,7 @@
 import * as ioSocket from 'socket.io';
-import { connectionHandler } from './handlers/connect';
+import { connectHandler } from './connect-handler';
 import { logger } from '../logger/';
-import { messagesHandler } from './handlers/messages';
+import { messagesHandler } from './messages-handler';
 
 const log = logger('socket');
 
@@ -11,8 +11,8 @@ export const socket: GetSocket = (app) => {
   io = ioSocket(app);
   log.info('Socket.io started up:', app.address());
 
-  io.on(SocketMessages.connection, (socket: ioSocket.Socket) => {
-    connectionHandler(socket);
+  io.on(ServerSocketMessages.connected, (socket: Socket) => {
+    connectHandler(socket);
     messagesHandler(socket);
   });
 };

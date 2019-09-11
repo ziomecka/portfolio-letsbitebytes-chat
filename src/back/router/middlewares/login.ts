@@ -7,6 +7,7 @@ import {
 
 const successTrainer = { result: true, data: { role: 'trainer' } };
 const successTrainee = { result: true, data: { role: 'trainee' } };
+const failure = { result: false };
 
 export const login = ({ query }: ExpressRequest, res: ExpressResponse): void => {
   const queries = Object.entries(query as Record<string, string>);
@@ -31,7 +32,11 @@ export const login = ({ query }: ExpressRequest, res: ExpressResponse): void => 
     password === TRAINEE_PASSWORD
   );
 
-  const response = isTrainer && successTrainer || isTrainee && successTrainee;
+  const response = (
+    isTrainer && successTrainer ||
+    isTrainee && successTrainee ||
+    failure
+  );
 
-  response && res.send(response);
+  res.send(response);
 };

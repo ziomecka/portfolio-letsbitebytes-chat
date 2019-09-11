@@ -8,43 +8,48 @@ import {
   TRAINER_PASSWORD,
 } from '../../constants';
 
-const authenticatedForDevelopment = (
-  (NODE_ENV !== 'production') &&
-  (IS_AUTHENTICATED === 'true')
-);
+import {
+  DEFAULT_INITIAL_STATE as defaultInitialState,
+} from '../../../common/';
 
-const email = 'server_email';
-const isAuthenticated = authenticatedForDevelopment;
+const buildUser = (): Partial<UserState> => {
+  const isAuthenticated = (
+    (NODE_ENV !== 'production') &&
+    (IS_AUTHENTICATED === 'true')
+  );
 
-let login = !isAuthenticated ? '' : 'trainer';
-let password = '';
-const activeConversation = '';
+  let login = !isAuthenticated ? '' : 'trainer';
+  let password = '';
+  let role = UserRole.unknown;
 
-if (DEFAULT_USER === 'trainer') {
-  login = TRAINER_LOGIN;
-  password = TRAINER_PASSWORD;
-} else if (DEFAULT_USER === 'trainee') {
-  login = TRAINEE_LOGIN;
-  password = TRAINEE_PASSWORD;
-}
+  if (DEFAULT_USER === 'trainer') {
+    login = TRAINER_LOGIN;
+    password = TRAINER_PASSWORD;
+    role = UserRole.trainer;
+  } else if (DEFAULT_USER === 'trainee') {
+    login = TRAINEE_LOGIN;
+    password = TRAINEE_PASSWORD;
+    role = UserRole.trainee;
+  }
 
-const role = UserRole.trainee;
-
-const conversations = {
-  'barUser': [
-    [ new Date(Date.now()), 'bar', true ],
-  ],
-} as Conversations;
-
-
-export const initialStore = {
-  user: {
-    email,
-    isAuthenticated,
+  return {
     login,
     password,
     role,
-  },
-  conversations,
-  activeConversation,
+    isAuthenticated,
+  };
+};
+
+export const buildInitialStore = (state: PartialAppState = { user: {} }): AppState => {
+  return {
+    ...defaultInitialState,
+    conversations: {} as Conversations,
+    connectionState: ConnectionState.unknown,
+    ...state, // todo copy conversations
+    user: {
+      ...defaultInitialState.user,
+      ...buildUser,
+      ...state.user,
+    },
+  };
 };

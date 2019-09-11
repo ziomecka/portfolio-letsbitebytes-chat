@@ -3,20 +3,37 @@ import {
   AppButton,
   AppRoutes,
 } from '../../../common/';
-import { TextField } from '@material-ui/core/';
+import {
+  FormHelperText,
+  TextField,
+} from '@material-ui/core/';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
 interface LoginState {
   login: string;
   password: string;
   confirmPassword: string;
+  loginError: boolean;
+  connectionError: boolean;
 }
 
+const LOGIN_LABEL = 'Login';
+const PASSWORD_LABEL = 'Password';
+const SUBMIT_BUTTON_TEXT = 'Submit';
+const LOGIN_ERROR_MESSAGE = 'Credentials are invalid. Please try again';
+const CONNECTION_ERROR_MESSAGE = 'Something went wrong. Please try again';
+
+const KEYBOARD_EVENT = 'keydown';
+
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
-  private submitButtonText: string;
   private keyboardEvent: string;
+
   private loginLabel: string;
   private passwordLabel: string;
+  private submitButtonText: string;
+  private loginErrorMessage: string;
+  private connectionErrorMessage: string;
+
   private unsubscribe: () => void;
   constructor (props: LoginWithRouterProps) {
     super(props);
@@ -25,19 +42,11 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       login: props.userLogin,
       password: props.userPassword,
       confirmPassword: '',
+      loginError: false,
+      connectionError: false,
     };
 
-    this.submitButtonText = 'Submit';
-    this.loginLabel = 'Login';
-    this.passwordLabel = 'Password';
-
-    this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
-    this.typeLogin = this.typeLogin.bind(this);
-    this.typePassword = this.typePassword.bind(this);
-
-    this.keyboardEvent = 'keydown';
-    this.unsubscribe = props.subscribe(this.keyboardEvent, this.submitOnEnter);
+    this.init();
   }
 
   public componentDidUpdate (prevProps: LoginProps): void {
@@ -53,11 +62,40 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.unsubscribe();
   }
 
-  private submit (): void {
-    this.props.login({
-      login: this.state.login,
-      password: this.state.password,
-    });
+  private init (): void {
+    this.loginErrorMessage = LOGIN_ERROR_MESSAGE;
+    this.connectionErrorMessage = CONNECTION_ERROR_MESSAGE;
+    this.loginLabel = LOGIN_LABEL;
+    this.passwordLabel = PASSWORD_LABEL;;
+    this.submitButtonText = SUBMIT_BUTTON_TEXT;
+
+    this.submit = this.submit.bind(this);
+    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.typeLogin = this.typeLogin.bind(this);
+    this.typePassword = this.typePassword.bind(this);
+
+    this.keyboardEvent = KEYBOARD_EVENT;
+    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.submitOnEnter);
+  }
+
+  private async submit (): Promise<void> {
+    const { state: { login, password } } = this;
+
+    try {
+      const result = await this.props.login({ login, password });
+
+      if (!result) {
+        this.setState({
+          loginError: true,
+          connectionError: false,
+        });
+      }
+    } catch {
+      this.setState({
+        loginError: false,
+        connectionError: true,
+      });
+    }
   }
 
   // TODO async
@@ -70,16 +108,29 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       login: event.target.value,
+      loginError: false,
+      connectionError: false,
     });
   }
 
   private typePassword (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       password: event.target.value,
+      loginError: false,
+      connectionError: false,
     });
   }
 
   public render (): JSX.Element {
+    const {
+      state: {
+        login,
+        password,
+        connectionError,
+        loginError,
+      },
+    } = this;
+
     return (
       <form>
         <TextField
@@ -87,15 +138,19 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           required
           label={this.loginLabel}
           onChange={this.typeLogin}
-          value={this.state.login}
+          value={login}
         />
         <TextField
           required
           label={this.passwordLabel}
           onChange={this.typePassword}
-          value={this.state.password}
+          value={password}
           type={'password'}
         />
+        <FormHelperText error>
+          { loginError && this.loginErrorMessage }
+          { connectionError && this.connectionErrorMessage }
+        </FormHelperText>
         <AppButton
           buttonProps={{
             onClick: this.submit,
@@ -108,5 +163,5 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 }
 
-const LoginWithPublisherProps = withPublisher(Login);
-export { LoginWithPublisherProps as Login };
+const WrappedLogin = withPublisher(Login);
+export { WrappedLogin as Login };

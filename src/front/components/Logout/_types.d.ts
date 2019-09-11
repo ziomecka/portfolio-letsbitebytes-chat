@@ -3,7 +3,7 @@ declare interface MapStateToLogout {
 }
 
 declare interface MapDispatchToLogout {
-  logout():  Promise<LogoutActions>;
+  logout():  Promise<boolean>;
 }
 
 declare interface LogoutProps extends MapStateToLogout, MapDispatchToLogout {}

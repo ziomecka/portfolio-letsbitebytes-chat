@@ -10,7 +10,7 @@ import { Socket } from '../Socket/';
 import { Trainee } from '../Trainee/';
 import { Trainer } from '../Trainer/';
 
-const LOGGED_AS_LABEL = 'You are logged as';
+const LOGGED_AS_LABEL = 'Welcome';
 
 export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
   ({ isAuthenticated, login, role }) => {
