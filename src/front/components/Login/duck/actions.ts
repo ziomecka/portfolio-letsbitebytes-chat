@@ -3,7 +3,3 @@ export const loginActionSuccess: ReduxActionCreator<LoginActionSuccess> =
   type: LoginActionTypes.loginSuccess,
   ...props,
 });
-
-export const loginActionFailure: ReduxActionCreator<LoginActionFailure> = () => ({
-  type: LoginActionTypes.loginFailure,
-});
