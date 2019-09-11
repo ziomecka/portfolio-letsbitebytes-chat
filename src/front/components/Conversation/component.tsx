@@ -236,6 +236,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   // TODO async
   private sendMessageOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
+      event.preventDefault();
       this.sendMessage();
     }
   }
