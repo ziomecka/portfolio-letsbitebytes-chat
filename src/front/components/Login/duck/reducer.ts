@@ -1,4 +1,3 @@
-import { Reducer } from 'react';
 import { loginInitialState } from './initial-state';
 
 const unAuthorize = (state: UserState): UserState => {
@@ -18,7 +17,7 @@ const unAuthorize = (state: UserState): UserState => {
   };
 };
 
-export const loginReducer: Reducer<UserState, LoginActions | LogoutActions> =
+export const loginReducer: ReduxReducer<UserState, LoginActions | LogoutActions> =
   (state = loginInitialState, action) => {
     const { type, ...actionPayload } = action;
 

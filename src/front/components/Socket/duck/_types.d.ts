@@ -1,28 +1,57 @@
-declare interface EmitMessageActionProps {
-  message: string;
-  to: string;
-}
-
-declare interface EmitMessageAction extends ReduxAction, EmitMessageActionProps {}
-
-declare interface ReceiveMessageProps {
-  message: string;
-  from: string;
-}
-
-declare interface ReceiveMessageAction extends ReduxAction, ReceiveMessageProps {}
-
 declare type InitiateSocketAction = ReduxAction;
 
+declare interface EmitActionProps {
+  to: string;
+  messageId: string
+  message: string;
+}
+
+declare interface ReceiveRequest {
+  from: string;
+  messageId: string;
+  message: string;
+}
+
+declare interface DeliveredRequest {
+  to: string;
+  messageId: string;
+}
+
+declare interface EmitAction extends ReduxAction, EmitActionProps {}
+declare interface ReceiveAction extends ReduxAction, ReceiveProps {}
+declare interface DeliveredAction extends ReduxAction, DeliveredProps {}
+declare interface DeliveredProps extends DeliveredRequest {}
+declare interface ReceiveProps extends ReceiveRequest {}
+
+declare const enum ClientSocketMessages {
+  connected = 'connect',
+  disconnected = 'disconnect',
+  emit = 'emit',
+  receive = 'receive',
+  delivered = 'delivered',
+}
+
+declare type ClientDeliveredRequest = {
+  to: string;
+  messageId: string;
+};
+
+declare type ClientReceiveRequest = {
+  from: string;
+  messageId: string;
+  message: string;
+};
 
 declare type SocketActions =
-  EmitMessageAction |
   InitiateSocketAction |
-  ReceiveMessageAction;
+  EmitAction |
+  DeliveredAction |
+  ReceiveAction;
 
 declare const enum SocketActionTypes {
-  emitMessage = '@APP/Socket/emit message',
-  receiveMessage = '@APP/Socket/receive message',
+  receive = '@APP/Socket/receive message',
+  delivered = '@APP/Socket/message delivered',
+  emit = '@APP/Socket/emit message',
 }
 
 declare type SocketState = Conversations;

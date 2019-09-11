@@ -67,5 +67,9 @@ export const styles = createStyles((theme: Theme) => {
       backgroundColor: backgroundColorPartnerMessage,
       marginRight: margin,
     },
+    delivered: { // todo pseudo
+    },
+    undelivered: { // todo pseudo
+    },
   };
 });

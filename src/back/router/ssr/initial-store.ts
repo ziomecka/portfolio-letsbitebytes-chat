@@ -29,13 +29,8 @@ if (DEFAULT_USER === 'trainer') {
 }
 
 const role = UserRole.trainee;
-
-const conversations = {
-  'barUser': [
-    [ new Date(Date.now()), 'bar', true ],
-  ],
-} as Conversations;
-
+const conversations = {} as Conversations;
+const connectionState: ConnectionState = ConnectionState.unknown;
 
 export const initialStore = {
   user: {
@@ -47,4 +42,5 @@ export const initialStore = {
   },
   conversations,
   activeConversation,
+  connectionState,
 };

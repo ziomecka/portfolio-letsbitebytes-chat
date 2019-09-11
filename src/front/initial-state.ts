@@ -5,10 +5,10 @@ const isAuthenticated = false;
 const login = 'initialLogin';
 const password = 'initialPassword';
 const role = 'initialRole';
+const connectionState = ConnectionState.unknown;
 
 const conversations: Statement[] = [];
 const activeConversation = '';
-
 const DEFAULT_INITIAL_STATE = {
   user: {
     email,
@@ -19,6 +19,7 @@ const DEFAULT_INITIAL_STATE = {
   },
   conversations,
   activeConversation,
+  connectionState,
 };
 
 export const INITIAL_STATE = (

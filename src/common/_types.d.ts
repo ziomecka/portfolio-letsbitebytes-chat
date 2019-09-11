@@ -7,13 +7,3 @@ declare const enum ServerRoutes {
   'publicRoute' = '/',
   'protectedRoute' = '/protected',
 }
-
-declare const enum SocketMessages {
-  'connection' = 'connection',
-  'disconnect' = 'disconnect',
-  'message' = 'message',
-  'messageSuccess' = 'messageSuccess',
-  'messageFailure' = 'messageFailure',
-  'userConnected' = 'userConnected'
-}
-

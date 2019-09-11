@@ -6,6 +6,7 @@ import { mapSocketToProps } from '../Socket/';
 const mapStateToProps = (state: AppState): MapStateToConversation => ({
   conversations: state.conversations,
   activeConversation: state.activeConversation,
+  connectionState: state.connectionState,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToConversation => ({

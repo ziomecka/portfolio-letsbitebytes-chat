@@ -1,28 +1,16 @@
-declare interface SocketMessageRequest {
-  to: string;
-  message: string;
-}
-
-declare interface SocketMessageResponse {
-  to: string;
-  message: string;
-}
-
-declare interface MapStateToSocket {
-  login: string;
-}
+declare interface MapStateToSocket {}
 
 declare interface MapDispatchToSocket {
-  initiate(): Promise<void>;
+  initiateConnection(): Promise<void>;
 }
 
 declare interface MapSocketToProps {
-  emitMessage(message: string):  Promise<EmitMessageAction>;
+  emitMessage(message: string):  Promise<EmitAction>;
 }
 
 declare interface SocketProps extends MapStateToSocket, MapDispatchToSocket{}
 
-declare type Statement = [Date, string, boolean];
+declare type Statement = [string, string, boolean?];
 
 declare type Conversation = Statement[];
 
