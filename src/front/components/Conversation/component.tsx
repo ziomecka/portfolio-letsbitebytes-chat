@@ -216,12 +216,14 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   private async sendMessage (): Promise<EmitAction> {
-    const { state: { message } } = this;
-    if (message !== '') {
+    const {
+      props: { connectionState },
+      state: { message },
+    } = this;
+
+    if (connectionState === ConnectionState.connected && message !== '') {
       try {
-        this.setState({
-          message: this.messageInitialState,
-        });
+        this.setState({ message: this.messageInitialState });
 
         return await this.props.emitMessage(message);
       } catch {
