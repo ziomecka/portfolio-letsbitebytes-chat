@@ -205,16 +205,19 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     );
   }
 
-  private async sendMessage (): Promise<void> {
-    try {
-      await this.props.emitMessage(this.state.message);
+  private async sendMessage (): Promise<EmitAction> {
+    const { state: { message } } = this;
+    if (message !== '') {
+      try {
+        this.setState({
+          message: this.messageInitialState,
+        });
 
-      this.setState({
-        message: this.messageInitialState,
-      });
-    } catch {
-      // TODO
-      console.log('Something went wrong'); // eslint-disable-line no-console
+        return await this.props.emitMessage(message);
+      } catch {
+        // TODO
+        console.log('Something went wrong'); // eslint-disable-line no-console
+      }
     }
   }
 
