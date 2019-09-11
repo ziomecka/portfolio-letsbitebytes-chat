@@ -1,4 +1,3 @@
-import './css/reset.sass';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
@@ -16,6 +15,8 @@ import { Provider } from 'react-redux';
 import { PublisherProvider } from 'publisher-subscriber-react-hoc';
 import { ssrClean } from './ssr-clean';
 import { store } from './store';
+
+require('./css/reset.sass');
 
 interface FrontComponentProps {
   store: ReduxStore,
