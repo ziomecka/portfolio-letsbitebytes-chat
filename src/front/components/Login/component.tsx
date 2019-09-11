@@ -10,6 +10,8 @@ interface LoginState {
   login: string;
   password: string;
   confirmPassword: string;
+  loginError: boolean;
+  connectionError: boolean;
 }
 
 const LOGIN_LABEL = 'Login';
@@ -33,6 +35,8 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       login: props.userLogin,
       password: props.userPassword,
       confirmPassword: '',
+      loginError: false,
+      connectionError: false,
     };
 
     this.init();
@@ -65,11 +69,24 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.submitOnEnter);
   }
 
-  private submit (): void {
-    this.props.login({
-      login: this.state.login,
-      password: this.state.password,
-    });
+  private async submit (): Promise<void> {
+    const { state: { login, password } } = this;
+
+    try {
+      const result = await this.props.login({ login, password });
+
+      if (!result) {
+        this.setState({
+          loginError: true,
+          connectionError: false,
+        });
+      }
+    } catch {
+      this.setState({
+        loginError: false,
+        connectionError: true,
+      });
+    }
   }
 
   // TODO async
@@ -82,12 +99,16 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       login: event.target.value,
+      loginError: false,
+      connectionError: false,
     });
   }
 
   private typePassword (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       password: event.target.value,
+      loginError: false,
+      connectionError: false,
     });
   }
 
