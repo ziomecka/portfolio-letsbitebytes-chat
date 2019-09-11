@@ -1,22 +1,21 @@
-import {
-  logoutActionFailure,
-  logoutActionSuccess,
-} from './actions';
+import { logoutActionSuccess } from './actions';
 
-export const logout = (): AppThunkAction<LogoutActions> => (
+export const logout = (): AppThunkAction<boolean> => (
   async (
     dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
-  ): Promise<LogoutActions> => {
+  ): Promise<boolean> => {
     try {
       const { result } = await api.request(
         ServerRoutes.logoutRoute, { queryParams: { login: getState().user.login } }
       );
 
-      return result
-        ? dispatch(logoutActionSuccess())
-        : dispatch(logoutActionFailure());
+      if (result) {
+        dispatch(logoutActionSuccess());
+      }
+
+      return Promise.resolve(result);
     } catch {
-      return dispatch(logoutActionFailure());
+      return Promise.reject(false);
     }
   }
 );

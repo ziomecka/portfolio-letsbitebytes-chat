@@ -8,7 +8,7 @@ const mapStateToProps = (state: AppState): MapStateToLogout => ({
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions>): MapDispatchToLogout => ({
-  logout: (): Promise<LogoutActions> => dispatch(logout()),
+  logout: (): Promise<boolean> => dispatch(logout()),
 });
 
 const Container = withRouter(

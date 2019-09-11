@@ -30,13 +30,6 @@ export const loginReducer: ReduxReducer<UserState, LoginActions | LogoutActions>
         };
       }
 
-      case (LogoutActionTypes.logoutFailure): {
-        return {
-          ...state,
-          isAuthenticated: true,
-        };
-      }
-
       case (LogoutActionTypes.logoutSuccess): {
         return unAuthorize(state);
       }
