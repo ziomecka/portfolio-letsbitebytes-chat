@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Box,
+  FormHelperText,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -16,7 +17,7 @@ interface ConversationState {
 }
 
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
-const ERROR_MESSAGE = 'Ooops, there\'s no connection';
+const ERROR_MESSAGE = 'Disconnected. Please wait for connection.';
 const MESSAGE_INITIAL_STATE = '';
 const SUBMIT_BUTTON_LABEL = 'Send';
 const TALKING_WITH_DESCRIPTION = 'You are talking with';
@@ -180,6 +181,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   private renderConversationInput (): JSX.Element {
+    const { state: { error, message } } = this;
+
     return (
       <Box>
         <TextField
@@ -187,10 +190,15 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
           multiline
           onChange={this.typeMessage}
           placeholder={this.conversationInputLabel}
-          value={this.state.message}
+          value={message}
           className={this.inputBoxClassName}
           InputProps={{ className: this.inputClassName }}
         />
+        { error && (
+          <FormHelperText error>
+            { this.errorMessage }
+          </FormHelperText>
+        )}
       </Box>
     );
   }
@@ -236,11 +244,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
         <Typography variant="h2">
           { `${ this.talkingWithDescription } ${ this.props.activeConversation }` }
         </Typography>
-        {this.state.error &&
-          <Typography variant="h3">
-            { this.errorMessage }
-          </Typography>
-        }
         {this.renderConversation()}
         {this.renderConversationInput()}
         {this.renderSubmitButton()}
