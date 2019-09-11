@@ -21,6 +21,8 @@ const MESSAGE_INITIAL_STATE = '';
 const SUBMIT_BUTTON_LABEL = 'Send';
 const TALKING_WITH_DESCRIPTION = 'You are talking with';
 
+const KEYBOARD_EVENT = 'keydown';
+
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
   private errorMessage: string;
@@ -48,23 +50,23 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       error: false,
     };
 
+    this.init();
+  }
+
+  private init (): void {
     this.errorMessage = ERROR_MESSAGE;
     this.messageInitialState = MESSAGE_INITIAL_STATE;
     this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
     this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
     this.talkingWithDescription = TALKING_WITH_DESCRIPTION;
 
-    this.setClassNames();
-
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.sendMessageOnEnter = this.sendMessageOnEnter.bind(this);
 
-    this.keyboardEvent = 'keydown';
-    this.unsubscribe = props.subscribe(this.keyboardEvent, this.sendMessageOnEnter);
-  }
+    this.keyboardEvent = KEYBOARD_EVENT;
+    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.sendMessageOnEnter);
 
-  private setClassNames (): void {
     const { classes: {
       box,
       conversationBox,
