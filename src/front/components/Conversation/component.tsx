@@ -37,6 +37,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   private userTypographyClassName: string;
   private typographyBoxClassName: string;
   private typographyClassName: string;
+  private deliveredClassName: string;
+  private undeliveredClassName: string;
   constructor (props: ConversationProps) {
     super(props);
 
@@ -72,6 +74,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       userTypography,
       typography,
       typographyBox,
+      delivered,
+      undelivered,
     } } = this.props;
 
     this.conversationBoxClassName = conversationBox;
@@ -81,6 +85,8 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.userTypographyClassName = `${ box } ${ userTypography }`;
     this.typographyBoxClassName = typographyBox;
     this.typographyClassName = typography;
+    this.deliveredClassName = delivered;
+    this.undeliveredClassName = undelivered;
   }
 
   private getActiveConversation (conversations = this.props.conversations): Statement[] {
@@ -113,13 +119,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     if (conversations !== prevConversations) {
       const activeConversation = this.getActiveConversation();
-      const { length: prevLength } = this.state.conversation;
+      this.setState({
+        conversation: [...activeConversation],
+      });
+    }
 
-      if (activeConversation.length !== prevLength || !prevLength) {
-        this.setState({
-          conversation: [...activeConversation],
-        });
-      }
     if (connectionState !== prevSocketConnection) {
       this.setState({
         error: connectionState === ConnectionState.disconnected,
@@ -138,17 +142,22 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       typographyBoxClassName,
       typographyClassName,
       userTypographyClassName,
+      deliveredClassName,
+      undeliveredClassName,
       state: { conversation = [] },
     } = this;
 
     return (
       <Box className={ conversationBoxClassName }>
         { conversation.map((statement, index) => {
-          const isUser = statement[ 2 ];
+          const isDelivered = statement[ 2 ];
+          const isUser = statement[ 2 ] !== undefined;
+
           const typoClassName =
-            `${ typographyClassName } ${
-              isUser ? userTypographyClassName : partnerTypographyClassName
-            }`;
+            typographyClassName +
+            ` ${ isUser ? userTypographyClassName : partnerTypographyClassName }` +
+            ` ${ isUser && isDelivered ? deliveredClassName : '' }` +
+            ` ${ isUser && !isDelivered ? undeliveredClassName : '' }`;
 
           return (
             <Box key={index} className={ typographyBoxClassName }>
