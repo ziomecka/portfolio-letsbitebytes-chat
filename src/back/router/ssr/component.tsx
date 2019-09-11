@@ -10,7 +10,9 @@ interface BackComponentProps {
   store: ReduxStore;
 }
 
-const BackComponent: React.FunctionComponent<BackComponentProps> = props => (
+const BackComponent: React.FunctionComponent<BackComponentProps> = (
+  props: BackComponentProps
+) => (
   <Provider store={props.store}>
     <StaticRouter>
       <Common>
