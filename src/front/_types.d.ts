@@ -18,6 +18,13 @@ declare interface AppState {
   connectionState: ConnectionState;
 }
 
+declare interface PartialAppState {
+  user: Partial<UserState>;
+  conversations?: SocketState;
+  activeConversation?: string;
+  connectionState?: ConnectionState;
+}
+
 declare type AppWindow = Window & {
   __INITIAL_STATE__: string;
 }
