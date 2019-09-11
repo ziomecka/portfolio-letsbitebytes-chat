@@ -4,7 +4,19 @@ import {
   AppRoutes,
 } from '../../../common/';
 
+const BUTTON_TEXT = 'Logout';
+
 class Logout extends React.Component<LogoutWithRouterProps> {
+  private buttonText: string;
+  constructor (props: LogoutWithRouterProps) {
+    super(props);
+    this.init();
+  }
+
+  private init (): void {
+    this.buttonText = BUTTON_TEXT;
+  }
+
   public componentDidUpdate (prevProps: LogoutWithRouterProps): void {
     const { isAuthenticated } = this.props;
     const { isAuthenticated: prevIsAuthenticated } = prevProps;
@@ -14,7 +26,6 @@ class Logout extends React.Component<LogoutWithRouterProps> {
     }
   }
 
-  private submitButtonText = 'Logout';
 
   public render (): JSX.Element {
     return (
@@ -24,7 +35,7 @@ class Logout extends React.Component<LogoutWithRouterProps> {
         }}
         variant={ AppButtonVariant.transparent }
       >
-        {this.submitButtonText}
+        {this.buttonText}
       </AppButton>
     );
   }
