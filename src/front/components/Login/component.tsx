@@ -12,11 +12,19 @@ interface LoginState {
   confirmPassword: string;
 }
 
+const LOGIN_LABEL = 'Login';
+const PASSWORD_LABEL = 'Password';
+const SUBMIT_BUTTON_TEXT = 'Submit';
+
+const KEYBOARD_EVENT = 'keydown';
+
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
-  private submitButtonText: string;
   private keyboardEvent: string;
+
   private loginLabel: string;
   private passwordLabel: string;
+  private submitButtonText: string;
+
   private unsubscribe: () => void;
   constructor (props: LoginWithRouterProps) {
     super(props);
@@ -27,17 +35,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       confirmPassword: '',
     };
 
-    this.submitButtonText = 'Submit';
-    this.loginLabel = 'Login';
-    this.passwordLabel = 'Password';
-
-    this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
-    this.typeLogin = this.typeLogin.bind(this);
-    this.typePassword = this.typePassword.bind(this);
-
-    this.keyboardEvent = 'keydown';
-    this.unsubscribe = props.subscribe(this.keyboardEvent, this.submitOnEnter);
+    this.init();
   }
 
   public componentDidUpdate (prevProps: LoginProps): void {
@@ -51,6 +49,20 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
   public componentWillUnmount (): void {
     this.unsubscribe();
+  }
+
+  private init (): void {
+    this.loginLabel = LOGIN_LABEL;
+    this.passwordLabel = PASSWORD_LABEL;;
+    this.submitButtonText = SUBMIT_BUTTON_TEXT;
+
+    this.submit = this.submit.bind(this);
+    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.typeLogin = this.typeLogin.bind(this);
+    this.typePassword = this.typePassword.bind(this);
+
+    this.keyboardEvent = KEYBOARD_EVENT;
+    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.submitOnEnter);
   }
 
   private submit (): void {
