@@ -1,6 +1,4 @@
-import { Reducer } from 'redux';
-
-const commonStateReducer: Reducer<CommonState, CommonActions> = (state, action) => {
+const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, action) => {
   const { type, ...actionPayload } = action;
 
   switch (type) {
