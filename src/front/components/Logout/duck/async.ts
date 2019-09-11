@@ -8,7 +8,9 @@ export const logout = (): AppThunkAction<LogoutActions> => (
     dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
   ): Promise<LogoutActions> => {
     try {
-      const { result } = await api.request(ServerRoutes.logoutRoute);
+      const { result } = await api.request(
+        ServerRoutes.logoutRoute, { queryParams: { login: getState().user.login } }
+      );
 
       return result
         ? dispatch(logoutActionSuccess())
