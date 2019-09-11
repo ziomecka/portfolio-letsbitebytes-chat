@@ -10,16 +10,21 @@ import {
 import { Route } from 'react-router-dom';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
+const confirmReload = process.env.CLIENT_CONFIRM_RELOAD === 'true';
+
 class AppRouter extends React.PureComponent<AppRouterProps> {
-  private unsubscribe: () => void;
+  private unsubscribe?: () => void;
   constructor (props: AppRouterProps) {
     super(props);
     this.doNotRefresh = this.doNotRefresh.bind(this);
-    this.unsubscribe = props.subscribe('beforeunload', this.doNotRefresh);
+
+    this.unsubscribe = confirmReload
+      ? props.subscribe('beforeunload', this.doNotRefresh)
+      : undefined;
   }
 
   public componentWillUnmount (): void {
-    this.unsubscribe();
+    this.unsubscribe && this.unsubscribe();
   }
 
   private doNotRefresh (event: Event): boolean {
