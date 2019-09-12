@@ -1,10 +1,11 @@
 {
   "name": "call-the-trainer",
   "version": "1.0.0",
-  "description": "Application for facilitating communication between workshop participants and trainers",
+  "description": "Chat",
   "main": "./dist/index.js",
   "dependencies": {
     "@material-ui/core": "4.3.3",
+    "@material-ui/icons": "4.4.1",
     "@material-ui/styles": "4.3.3",
     "cors": "2.8.5",
     "dotenv": "8.1.0",
@@ -110,7 +111,7 @@
   ],
   "author": "Katarzyna Ziomek-Zdanowicz",
   "license": "ISC",
-  "repository": "https://github.com/ziomecka/call-the-trainer.git",
+  "repository": "https://github.com/ziomecka/portfolio-letsbitebytes-chat.git",
   "engines": {
     "npm": "6.9.0",
     "node": "12.3.0"
