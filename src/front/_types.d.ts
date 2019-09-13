@@ -19,7 +19,7 @@ declare interface AppState {
 }
 
 declare interface PartialAppState {
-  user: Partial<UserState>;
+  user?: Partial<UserState>;
   conversations?: SocketState;
   activeConversation?: string;
   connectionState?: ConnectionState;
