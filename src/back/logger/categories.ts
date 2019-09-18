@@ -3,6 +3,7 @@ import { NODE_ENV } from '../constants';
 
 const defaultAppenders = [ 'app', 'errors', 'console' ];
 const messagesAppenders = [ 'app', 'errors', 'messages' ];
+const mongoAppenders = [ 'app', 'errors', 'mongo' ];
 const redisAppenders = [ 'app', 'errors', 'redis' ];
 const socketAppenders = [ 'app', 'errors', 'socket' ];
 const userAppenders = [ 'app', 'errors', 'user' ];
@@ -17,6 +18,10 @@ let categories = {
   },
   messages: {
     appenders: messagesAppenders.concat(stdout),
+    level,
+  },
+  mongo: {
+    appenders: mongoAppenders.concat(stdout),
     level,
   },
   redis: {
@@ -41,6 +46,10 @@ if (NODE_ENV !== 'production') {
     },
     messages: {
       appenders: messagesAppenders,
+      level,
+    },
+    mongo: {
+      appenders: mongoAppenders,
       level,
     },
     redis: {
