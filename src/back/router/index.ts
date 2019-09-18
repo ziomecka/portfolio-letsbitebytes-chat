@@ -1,4 +1,5 @@
 import {
+  createUser,
   cssFiles,
   jsFiles,
   login,
@@ -11,6 +12,7 @@ import { htmlFile } from './ssr/';
 export const router = (app: ExpressApplication): void => {
   app.get('*.js', jsFiles);
   app.get('*.css', cssFiles);
+  app.get(ServerRoutes.createUserRoute, onlyIfQuery(createUser));
   app.get(ServerRoutes.loginRoute, onlyIfQuery(login));
   app.get(ServerRoutes.logoutRoute, onlyIfQuery(logout));
 
