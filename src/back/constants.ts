@@ -16,3 +16,9 @@ export const {
 
 export const BUNDLE_FILE = '/index.js';
 export const VENDOR_FILE = '/vendor.js';
+export {
+  MAX_LOGIN_LENGTH,
+  MAX_PASSWORD_LENGTH,
+  MIN_LOGIN_LENGTH,
+  MIN_PASSWORD_LENGTH,
+} from '../common/constants';
