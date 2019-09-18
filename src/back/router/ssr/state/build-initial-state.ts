@@ -23,5 +23,6 @@ async (): Promise<AppState> => {
     conversations: {} as Conversations,
     connectionState: ConnectionState.unknown,
     user,
+    users: [] as string[],
   };
 };
