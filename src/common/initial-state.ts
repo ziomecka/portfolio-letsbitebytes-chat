@@ -9,4 +9,5 @@ export const DEFAULT_INITIAL_STATE = {
   conversations: {} as Record<string, Statement[]>,
   activeConversation: '',
   connectionState: ConnectionState.unknown,
+  users: [],
 };
