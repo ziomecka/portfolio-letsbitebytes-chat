@@ -1,5 +1,5 @@
 import('mime');
-import('./redis/');
+import('./databases/');
 import * as express from 'express';
 import * as helmet from 'helmet';
 import { PORT } from './constants';
