@@ -1,5 +1,5 @@
 import { changeActiveConversation } from '../../../duck/actions';
-import { clearConversationsAction } from '../../Socket/duck/';
+import { clearConversationsAction } from '../../Socket/';
 import { logoutActionSuccess } from './actions';
 
 export const logout = (): AppThunkAction<boolean> => (
