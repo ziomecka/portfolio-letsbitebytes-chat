@@ -3,6 +3,7 @@ require('dotenv').config();
 export const {
   DEFAULT_USER,
   IS_AUTHENTICATED = false,
+  MONGO_URI,
   NODE_ENV,
   PORT,
   PRODUCTION_URL,
