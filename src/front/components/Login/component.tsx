@@ -136,7 +136,9 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     } = this;
 
     return (
-      <form>
+      <form
+        onSubmit={(event: React.FormEvent): void => event.preventDefault()}
+      >
         <Typography variant="h2">
           {this.heading}
         </Typography>
@@ -161,6 +163,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
         <AppButton
           buttonProps={{
             onClick: this.submit,
+            type: 'submit',
           }}
         >
           {this.submitButtonText}
