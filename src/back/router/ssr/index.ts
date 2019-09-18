@@ -1,6 +1,9 @@
 import { getHtml } from './get-html';
-import { store } from './store';
+import { getStore } from './get-store';
 
-export const htmlFile = (req: ExpressRequest, res: ExpressResponse): void => {
-  res.type('html').send(getHtml(store));
+export const htmlFile = async (req: ExpressRequest, res: ExpressResponse): Promise<void> => {
+  const store = await getStore();
+  const html = getHtml(store);
+
+  res.type('html').send(html);
 };
