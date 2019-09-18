@@ -25,6 +25,9 @@ declare interface PartialAppState {
   connectionState?: ConnectionState;
 }
 
+declare interface AsyncInitialAppState {
+}
+
 declare type AppWindow = Window & {
   __INITIAL_STATE__: string;
 }
