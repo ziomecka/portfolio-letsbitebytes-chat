@@ -5,6 +5,7 @@ export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 export const SSR_STYLE_ROOT_ID = 'ssr-styles';
 
 export const AppRoutes = {
+  createUserRoute: ServerRoutes.createUserRoute,
   loginRoute: ServerRoutes.loginRoute,
   logoutRoute: ServerRoutes.logoutRoute,
   publicRoute: ServerRoutes.publicRoute,
