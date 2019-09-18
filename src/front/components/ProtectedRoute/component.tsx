@@ -7,8 +7,6 @@ import { Logout } from '../Logout/';
 import { Redirect } from 'react-router-dom';
 import { Screen } from '../Screen/';
 import { Socket } from '../Socket/';
-import { Trainee } from '../Trainee/';
-import { Trainer } from '../Trainer/';
 import { Users } from '../Users/';
 
 const LOGGED_AS_LABEL = 'Welcome';
@@ -27,10 +25,6 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
               </Typography>
             </Box>
             <Box>
-              { role === UserRole.trainer
-                ? <Trainer/>
-                : <Trainee/> // TODO
-              }
               <Users />
             </Box>
             <Box>
