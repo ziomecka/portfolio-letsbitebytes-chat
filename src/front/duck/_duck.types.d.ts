@@ -12,6 +12,7 @@ declare const enum ConnectionState {
 declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
+  users: string[];
 }
 
 declare interface ChangeConversationActionProps {

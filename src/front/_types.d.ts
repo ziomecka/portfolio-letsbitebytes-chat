@@ -16,6 +16,7 @@ declare interface AppState {
   conversations: SocketState;
   activeConversation: string;
   connectionState: ConnectionState;
+  users: string[];
 }
 
 declare interface PartialAppState {
@@ -23,6 +24,7 @@ declare interface PartialAppState {
   conversations?: SocketState;
   activeConversation?: string;
   connectionState?: ConnectionState;
+  users?: string[];
 }
 
 declare interface AsyncInitialAppState {
