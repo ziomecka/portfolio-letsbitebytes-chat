@@ -51,6 +51,11 @@ export const appenders = {
     filename: 'log/user.log',
     layout,
   },
+  userCache: {
+    type: 'file',
+    filename: 'log/user-cache.log',
+    layout,
+  },
   out: {
     type: 'stdout', // for heroku
   },

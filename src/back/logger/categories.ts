@@ -7,6 +7,7 @@ const mongoAppenders = [ 'app', 'errors', 'mongo' ];
 const redisAppenders = [ 'app', 'errors', 'redis' ];
 const socketAppenders = [ 'app', 'errors', 'socket' ];
 const userAppenders = [ 'app', 'errors', 'user' ];
+const userCacheAppenders = [ 'app', 'errors', 'userCache' ];
 
 const stdout = 'out'; // for heroku logging
 const level = 'ALL';
@@ -36,6 +37,10 @@ let categories = {
     appenders: userAppenders.concat(stdout),
     level,
   },
+  userCache: {
+    appenders: userCacheAppenders.concat(stdout),
+    level,
+  },
 } as unknown as { appenders: string[]; level: string; enableCallStack?: boolean; };
 
 if (NODE_ENV !== 'production') {
@@ -62,6 +67,10 @@ if (NODE_ENV !== 'production') {
     },
     user: {
       appenders: userAppenders,
+      level,
+    },
+    userCache: {
+      appenders: userCacheAppenders,
       level,
     },
   } as unknown as { appenders: string[]; level: string; enableCallStack?: boolean; };
