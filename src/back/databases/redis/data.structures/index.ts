@@ -1,6 +1,11 @@
-export {
+import {
   getString,
   setString,
 } from './string';
-export { delKey } from './del.key';
+
+export const stringData = {
+  delKey,
+  getString,
+  setString,
+};
 
