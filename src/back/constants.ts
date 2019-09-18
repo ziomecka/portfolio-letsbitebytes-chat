@@ -17,6 +17,9 @@ export const {
 
 export const BUNDLE_FILE = '/index.js';
 export const VENDOR_FILE = '/vendor.js';
+
+export const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
 export {
   MAX_LOGIN_LENGTH,
   MAX_PASSWORD_LENGTH,
