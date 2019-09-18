@@ -11,8 +11,10 @@
 # Concepts used
 
 * Server side rendering
-* Publisher-subscriber pattern
-
+* Publisher-subscriber pattern (publisher-subscriber-react-hoc npm package coded by me)
+* Server-side cache (redis)
+* Session-storage (redis)
+* Database (mongoDB)
 ---
 
 # Dependencies
@@ -23,6 +25,7 @@
 * material-up
 * socket.io
 * express
+* mongoDB
 
 # DevDependencies
 
