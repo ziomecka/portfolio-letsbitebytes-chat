@@ -21,9 +21,13 @@ declare interface EmitAction extends ReduxAction, EmitActionProps {}
 declare interface ReceiveAction extends ReduxAction, ReceiveProps {}
 declare interface DeliveredAction extends ReduxAction, DeliveredProps {}
 declare interface ClearConversationsAction extends ReduxAction {}
+declare interface SetConversationsAction extends ReduxAction, SetConversationsProps {}
 
 declare interface DeliveredProps extends DeliveredRequest {}
 declare interface ReceiveProps extends ReceiveRequest {}
+declare interface SetConversationsProps {
+  conversations: Conversations;
+}
 
 declare const enum ClientSocketMessages {
   connected = 'connect',
@@ -49,13 +53,15 @@ declare type SocketActions =
   EmitAction |
   DeliveredAction |
   ReceiveAction |
-  ClearConversationsAction;
+  ClearConversationsAction |
+  SetConversationsAction;
 
 declare const enum SocketActionTypes {
   receive = '@APP/Socket/receive message',
   delivered = '@APP/Socket/message delivered',
   emit = '@APP/Socket/emit message',
-  clearConversations = '@APP/Socket/clearConversations',
+  clearConversations = '@APP/Socket/clear conversations',
+  setConversations = '@APP/Socket/set conversations',
 }
 
 declare type SocketState = Conversations;
