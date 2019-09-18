@@ -3,6 +3,7 @@ declare interface ProtectedRouteProps extends ProtectedRouteState {
 }
 
 declare interface ProtectedRouteState {
+  activeConversation: string;
   isAuthenticated: boolean;
   login: string;
   role: UserRole;

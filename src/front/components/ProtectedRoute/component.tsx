@@ -3,6 +3,7 @@ import {
   Box,
   Typography,
 } from '@material-ui/core';
+import { Conversation } from '../Conversation/';
 import { Logout } from '../Logout/';
 import { Redirect } from 'react-router-dom';
 import { Screen } from '../Screen/';
@@ -12,7 +13,7 @@ import { Users } from '../Users/';
 const LOGGED_AS_LABEL = 'Welcome';
 
 export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
-  ({ isAuthenticated, login, role }) => {
+  ({ activeConversation, isAuthenticated, login, role }) => {
     const loggedAsLabel = LOGGED_AS_LABEL;
 
     return (
@@ -26,6 +27,7 @@ export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
             </Box>
             <Box>
               <Users />
+              { activeConversation && <Conversation /> }
             </Box>
             <Box>
               <Logout/>
