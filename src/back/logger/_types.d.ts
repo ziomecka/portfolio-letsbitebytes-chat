@@ -5,4 +5,6 @@ declare type Loggers = |
   'mongo' |
   'redis' |
   'socket' |
-  'user';
+  'user' |
+  'userCache' |
+  'userDatabase';
