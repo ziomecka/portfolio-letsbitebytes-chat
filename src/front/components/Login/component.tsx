@@ -6,6 +6,7 @@ import {
 import {
   FormHelperText,
   TextField,
+  Typography,
 } from '@material-ui/core/';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
@@ -17,6 +18,7 @@ interface LoginState {
   connectionError: boolean;
 }
 
+const HEADING = 'Login';
 const LOGIN_LABEL = 'Login';
 const PASSWORD_LABEL = 'Password';
 const SUBMIT_BUTTON_TEXT = 'Submit';
@@ -28,6 +30,7 @@ const KEYBOARD_EVENT = 'keydown';
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private keyboardEvent: string;
 
+  private heading: string;
   private loginLabel: string;
   private passwordLabel: string;
   private submitButtonText: string;
@@ -63,6 +66,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private init (): void {
+    this.heading = HEADING;
     this.loginErrorMessage = LOGIN_ERROR_MESSAGE;
     this.connectionErrorMessage = CONNECTION_ERROR_MESSAGE;
     this.loginLabel = LOGIN_LABEL;
@@ -133,6 +137,9 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
     return (
       <form>
+        <Typography variant="h2">
+          {this.heading}
+        </Typography>
         <TextField
           autoFocus
           required
