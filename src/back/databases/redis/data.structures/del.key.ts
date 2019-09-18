@@ -1,4 +1,4 @@
-import { logger } from '../../logger/';
+import { logger } from '../../../logger/';
 const log = logger('redis');
 
 export function delKey (key: string): Promise<number> {

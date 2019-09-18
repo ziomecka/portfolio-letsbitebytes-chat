@@ -1,4 +1,5 @@
-import { logger } from '../../logger/';
+import { logger } from '../../../logger/';
+
 const log = logger('redis');
 
 export function setString (key: string, value: string, exp?: number): Promise<boolean> {
