@@ -1,4 +1,4 @@
-export const DEFAULT_INITIAL_STATE = {
+export const DEFAULT_INITIAL_STATE: AppState = {
   user: {
     email: '',
     isAuthenticated: false,
