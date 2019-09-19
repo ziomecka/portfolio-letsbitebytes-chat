@@ -61,6 +61,16 @@ export class MongoDB {
     });
   }
 
+  public async find (collection: Collections, query?: unknown): Promise<MongooseDocuments[]> {
+    return new Promise((resolve, reject): void => {
+      const Document = this.models.get(collection);
+
+      Document.find(query, (err: Error, result: MongooseDocuments[]) => {
+        err ? reject(err) : resolve(result);
+      });
+    });
+  }
+
   public async exists (collection: Collections, data: unknown): Promise<boolean> {
     const Document = this.models.get(collection);
     return await Document.exists(data);
