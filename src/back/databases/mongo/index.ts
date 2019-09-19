@@ -71,6 +71,17 @@ export class MongoDB {
     });
   }
 
+  public async delete (collection: Collections, query?: unknown): Promise<boolean> {
+    return new Promise((resolve, reject): void => {
+      const Document = this.models.get(collection);
+
+      Document.remove(query, (err: Error) => {
+        if (err) reject(err);
+        resolve(true);
+      });
+    });
+  }
+
   public async exists (collection: Collections, data: unknown): Promise<boolean> {
     const Document = this.models.get(collection);
     return await Document.exists(data);
