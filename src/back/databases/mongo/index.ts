@@ -34,7 +34,10 @@ export class MongoDB {
     connection.on('disconnected', () => log.info('Mongo disconnected'));
     connection.on('reconnected', () => log.info('Mongo reconnected'));
     connection.on('close', () => log.info('Mongo closed'));
+  };
 
+  public disconnect = async (): Promise<void> => {
+    return await this.connection.close();
   };
 
   public async create (collection: Collections, data: unknown): Promise<MongooseDocument> {
