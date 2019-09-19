@@ -7,7 +7,7 @@ import {
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { flexColumnJustifyFlexStartAlignLeft } from './flexes';
+import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
@@ -25,6 +25,13 @@ const other = (theme: Theme): ThemeOptions => {
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
 
+  const maxWidthHeight = {
+    maxHeight: '100%',
+    maxWidth: '100%',
+    height: '100%',
+    width: '100%',
+  };
+
   return {
     props: {
       MuiPaper: {
@@ -37,6 +44,11 @@ const other = (theme: Theme): ThemeOptions => {
       },
     },
     overrides: {
+      MuiBox: {
+        root: {
+          ...maxWidthHeight,
+        },
+      },
       MuiButton: {
         text: {
           paddingLeft: 0,
@@ -58,16 +70,29 @@ const other = (theme: Theme): ThemeOptions => {
       },
       MuiPaper: {
         root: {
-          ...flexColumnJustifyFlexStartAlignLeft,
           boxSizing: 'border-box',
-          margin: largeSpacing,
+          margin: 0,
           padding: largeSpacing,
+          ...maxWidthHeight,
         },
       },
       MuiTouchRipple: {
         root: {
           boxSizing: 'border-box',
           width: '100%',
+        },
+      },
+      MuiTypography: {
+        root: {
+          margin: 0,
+          '&$h1': {
+            width: '100%',
+            marginBottom: fontSizes.h1,
+          },
+          '&$h2': {
+            width: '100%',
+            marginBottom: regularSpacing,
+          },
         },
       },
     } as Overrides,

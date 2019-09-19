@@ -16,6 +16,13 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
       };
     }
 
+    case (CommonActionTypes.setUsers): {
+      return {
+        ...state,
+        users: [...(actionPayload as SetUsersAction).users],
+      };
+    }
+
     default: {
       return { ...state };
     }

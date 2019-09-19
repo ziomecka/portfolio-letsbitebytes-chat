@@ -6,8 +6,8 @@ const palette = createPalette({
     white: '#fefefe',
   },
   background: {
-    paper: 'fefefe',
-    default: 'fefefe',
+    paper: '#fefefe',
+    default: '#fefefe',
   },
   primary: {
     light: '#85a2bc',

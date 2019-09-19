@@ -1,25 +1,40 @@
 import * as React from 'react';
 import { AppButton } from '../AppButton/';
 import { AppRoutes } from '../../../common/constants';
+import texts from './texts';
 
-const LOGIN_BUTTON_TEXT = 'Login';
-const Public: React.FunctionComponent<PublicWithRouterProps> = (props) => {
-  const loginButtonText = LOGIN_BUTTON_TEXT;
+const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
+  const loginButtonText = texts.loginButton;
+  const createUserButtonText = texts.createUserButton;
 
   const goToLogin = (): void => {
-    props.history.push(AppRoutes.loginRoute);
+    history.push(AppRoutes.loginRoute);
+  };
+
+  const goToCreateUser = (): void => {
+    history.push(AppRoutes.createUserRoute);
   };
 
   return (
-    <AppButton
-      autoFocus
-      buttonProps={{
-        autoFocus: true,
-        onClick: goToLogin,
-      }}
-    >
-      {loginButtonText}
-    </AppButton>
+    <React.Fragment>
+      <AppButton
+        autoFocus
+        buttonProps={{
+          autoFocus: true,
+          onClick: goToLogin,
+        }}
+      >
+        {loginButtonText}
+      </AppButton>
+      <AppButton
+        buttonProps={{
+          onClick: goToCreateUser,
+        }}
+        variant={AppButtonVariant.transparent}
+      >
+        {createUserButtonText}
+      </AppButton>
+    </React.Fragment>
   );
 };
 

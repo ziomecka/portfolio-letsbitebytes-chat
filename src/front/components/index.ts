@@ -1,6 +1,7 @@
+export { AppForm } from './AppForm/';
 export { AppRouter } from './AppRouter/';
 export { Conversation } from './Conversation/';
+export { CreateUser } from './CreateUser/';
 export { Login } from './Login';
 export { ProtectedRoute } from './ProtectedRoute/';
-export { Trainee } from './Trainee';
-export { Trainer } from './Trainer';
+export { RouterButton } from './RouterButton/';

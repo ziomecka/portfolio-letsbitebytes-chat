@@ -13,3 +13,11 @@ declare interface LoginProps extends MapStateToLogin, MapDispatchToLogin, WithPu
 }
 
 declare interface LoginWithRouterProps extends LoginProps, WithRouterProps {}
+
+declare interface LoginState {
+  login: string;
+  password: string;
+  confirmPassword: string;
+  loginError: boolean;
+  connectionError: boolean;
+}

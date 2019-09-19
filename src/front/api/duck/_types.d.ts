@@ -14,5 +14,17 @@ declare type ApiRequest = [ ServerRoutes, ApiRequestProps, ApiRequestInit? ];
 
 declare interface ApiResponse {
   result: boolean;
-  data?: UserState;
+  data?: ApiResponseData;
+  error?: ApiErrors;
 }
+
+declare interface ApiLoginData {
+  role?: UserRole;
+  users?: string[];
+  conversations?: Conversations;
+}
+
+type ApiResponseData = |
+  ApiLoginData;
+
+declare type ApiErrors = UserErrors;

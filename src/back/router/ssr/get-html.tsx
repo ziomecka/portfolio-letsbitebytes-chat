@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import {
   BUNDLE_FILE,
-  NODE_ENV,
+  IS_PRODUCTION,
   VENDOR_FILE,
 } from '../../constants';
 import {
@@ -34,7 +34,7 @@ export const getHtml = (store: ReduxStore): string => {
       <body>
         <div id="${ HTML_ROOT_ID }">${ html }</div>
         <script>window["${ WINDOW_INITIAL_STATE }"]=${ JSON.stringify(store.getState()) }</script>
-        ${ NODE_ENV === 'production' ? `<script src="${ VENDOR_FILE }"></script>` : '' }
+        ${ IS_PRODUCTION ? `<script src="${ VENDOR_FILE }"></script>` : '' }
         <script src="${ BUNDLE_FILE }"></script>
       </body>
     </html>

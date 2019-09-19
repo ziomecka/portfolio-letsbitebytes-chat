@@ -4,6 +4,7 @@ import {
   Public,
 } from '../../../common/';
 import {
+  CreateUser,
   Login,
   ProtectedRoute,
 } from '../';
@@ -16,10 +17,14 @@ class AppRouter extends React.PureComponent<AppRouterProps> {
   private unsubscribe?: () => void;
   constructor (props: AppRouterProps) {
     super(props);
+    this.init();
+  }
+
+  private init (): void {
     this.doNotRefresh = this.doNotRefresh.bind(this);
 
     this.unsubscribe = confirmReload
-      ? props.subscribe('beforeunload', this.doNotRefresh)
+      ? this.props.subscribe('beforeunload', this.doNotRefresh)
       : undefined;
   }
 
@@ -37,6 +42,7 @@ class AppRouter extends React.PureComponent<AppRouterProps> {
       <React.Fragment>
         <Route exact path={AppRoutes.publicRoute} component={Public}/>
         <Route exact path={AppRoutes.loginRoute} component={Login}/>
+        <Route exact path={AppRoutes.createUserRoute} component={CreateUser}/>
         <ProtectedRoute path={AppRoutes.protectedRoute}/>
       </React.Fragment>
     );

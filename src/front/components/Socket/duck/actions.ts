@@ -25,3 +25,9 @@ export const clearConversationsAction: ReduxActionCreator<ClearConversationsActi
 () => ({
   type: SocketActionTypes.clearConversations,
 });
+
+export const setConversationsAction: ReduxActionCreator<SetConversationsAction> =
+({ conversations }: SetConversationsProps) => ({
+  type: SocketActionTypes.setConversations,
+  conversations,
+});

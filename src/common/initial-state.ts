@@ -1,22 +1,13 @@
-const email = '';
-const isAuthenticated = false;
-const login = '';
-const password = '';
-const role = UserRole.unknown;
-const connectionState = ConnectionState.unknown; // to do is not in common
-
-const conversations: Record<string, Statement[]> = {};
-const activeConversation = '';
-
-export const DEFAULT_INITIAL_STATE = {
+export const DEFAULT_INITIAL_STATE: AppState = {
   user: {
-    email,
-    isAuthenticated,
-    login,
-    password,
-    role,
+    email: '',
+    isAuthenticated: false,
+    login: '',
+    password: '',
+    role: UserRole.unknown,
   },
-  conversations,
-  activeConversation,
-  connectionState,
+  conversations: {} as Record<string, Statement[]>,
+  activeConversation: '',
+  connectionState: ConnectionState.unknown,
+  users: [],
 };

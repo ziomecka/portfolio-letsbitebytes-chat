@@ -3,36 +3,20 @@ import {
   AppButton,
   AppRoutes,
 } from '../../../common/';
-import {
-  FormHelperText,
-  TextField,
-} from '@material-ui/core/';
+import { AppForm } from '../';
+import { TextField } from '@material-ui/core/';
+import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
-
-interface LoginState {
-  login: string;
-  password: string;
-  confirmPassword: string;
-  loginError: boolean;
-  connectionError: boolean;
-}
-
-const LOGIN_LABEL = 'Login';
-const PASSWORD_LABEL = 'Password';
-const SUBMIT_BUTTON_TEXT = 'Submit';
-const LOGIN_ERROR_MESSAGE = 'Credentials are invalid. Please try again';
-const CONNECTION_ERROR_MESSAGE = 'Something went wrong. Please try again';
 
 const KEYBOARD_EVENT = 'keydown';
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private keyboardEvent: string;
-
+  private heading: string;
   private loginLabel: string;
   private passwordLabel: string;
   private submitButtonText: string;
   private loginErrorMessage: string;
-  private connectionErrorMessage: string;
 
   private unsubscribe: () => void;
   constructor (props: LoginWithRouterProps) {
@@ -63,11 +47,11 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private init (): void {
-    this.loginErrorMessage = LOGIN_ERROR_MESSAGE;
-    this.connectionErrorMessage = CONNECTION_ERROR_MESSAGE;
-    this.loginLabel = LOGIN_LABEL;
-    this.passwordLabel = PASSWORD_LABEL;;
-    this.submitButtonText = SUBMIT_BUTTON_TEXT;
+    this.heading = texts.heading;
+    this.loginErrorMessage = texts.loginErrorMessage;
+    this.loginLabel = texts.loginLabel;
+    this.passwordLabel = texts.passwordLabel;
+    this.submitButtonText = texts.submitButton;
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
@@ -122,43 +106,38 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   public render (): JSX.Element {
-    const {
-      state: {
-        login,
-        password,
-        connectionError,
-        loginError,
-      },
-    } = this;
-
     return (
-      <form>
+      <AppForm
+        heading={this.heading}
+        formHelperProps={{
+          error: this.state.loginError,
+          errorMessage: this.loginErrorMessage,
+          connectionError: this.state.connectionError,
+        }}
+      >
         <TextField
           autoFocus
           required
           label={this.loginLabel}
           onChange={this.typeLogin}
-          value={login}
+          value={this.state.login}
         />
         <TextField
           required
           label={this.passwordLabel}
           onChange={this.typePassword}
-          value={password}
+          value={this.state.password}
           type={'password'}
         />
-        <FormHelperText error>
-          { loginError && this.loginErrorMessage }
-          { connectionError && this.connectionErrorMessage }
-        </FormHelperText>
         <AppButton
           buttonProps={{
             onClick: this.submit,
+            type: 'submit',
           }}
         >
           {this.submitButtonText}
         </AppButton>
-      </form>
+      </AppForm>
     );
   }
 }

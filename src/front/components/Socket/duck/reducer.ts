@@ -1,6 +1,7 @@
 import { socketInitialState } from './initial-state';
 
 export const socketReducer: ReduxReducer<SocketState, SocketActions> =
+// @ts-ignore
   (state = socketInitialState, action) => {
     const { type, ...actionPayload } = action;
 
@@ -43,6 +44,15 @@ export const socketReducer: ReduxReducer<SocketState, SocketActions> =
 
       case (SocketActionTypes.clearConversations): {
         return { ...socketInitialState };
+      }
+
+      case (SocketActionTypes.setConversations): {
+        const { conversations } = actionPayload as SetConversationsAction;
+
+        return {
+          ...state,
+          ...conversations, // to do copy
+        }; // todo copy
       }
 
       default: {

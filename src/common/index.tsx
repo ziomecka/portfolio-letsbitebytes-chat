@@ -9,4 +9,4 @@ export { DEFAULT_INITIAL_STATE } from './initial-state';
 
 export { AppButton, Public } from './components/';
 
-export { Common } from './component';
+export { Common } from './container';

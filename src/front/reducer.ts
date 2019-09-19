@@ -11,6 +11,7 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = INITIAL_STATE, ac
       {
         activeConversation: state.activeConversation,
         connectionState: state.connectionState,
+        users: state.users,
       }, action as CommonActions
     ),
   };

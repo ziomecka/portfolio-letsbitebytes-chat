@@ -1,5 +1,6 @@
 declare type ReduxAction = import('redux').Action;
 declare type ReduxActionCreator<A> = import('redux').ActionCreator<A>;
+declare type ReduxDispatch = import('redux').Dispatch;
 declare type ReduxReducer<S, A> = import('redux').Reducer<S, A>;
 declare type ReduxStore = import('redux').Store;
 
@@ -16,13 +17,18 @@ declare interface AppState {
   conversations: SocketState;
   activeConversation: string;
   connectionState: ConnectionState;
+  users: string[];
 }
 
 declare interface PartialAppState {
-  user: Partial<UserState>;
+  user?: Partial<UserState>;
   conversations?: SocketState;
   activeConversation?: string;
   connectionState?: ConnectionState;
+  users?: string[];
+}
+
+declare interface AsyncInitialAppState {
 }
 
 declare type AppWindow = Window & {

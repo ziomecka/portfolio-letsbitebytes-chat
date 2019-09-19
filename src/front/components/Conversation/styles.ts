@@ -1,75 +1,76 @@
 import {
   BUTTON_GREY_SHADE,
   SPACING_REGULAR,
+  SPACING_SMALL,
 } from '../../../common/theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
+import { styles as commonStyles } from '../styles';
 import { createStyles } from '@material-ui/styles';
 
 export const styles = createStyles((theme: Theme) => {
-  const backgroundColorPartnerMessage = theme.palette.grey[ BUTTON_GREY_SHADE ];
-  const backgroundColorUserMessage = theme.palette.primary.light;
-  // !important to override MuiTypography
-  const colorUserMessage = `#${ theme.palette.background.paper }!important`;
+  const {
+    palette,
+    shape: { borderRadius },
+    spacing,
+  } = theme;
 
-  const borderRadius = theme.shape.borderRadius;
-  const margin = theme.spacing(SPACING_REGULAR);
-  const marginSmall = theme.spacing(SPACING_REGULAR / 2);
-  const marginLarge = theme.spacing(SPACING_REGULAR * 4);
-  const padding = theme.spacing(SPACING_REGULAR);
+  const partnerBackground = palette.grey[ BUTTON_GREY_SHADE ];
+  const userBackground = palette.primary.light;
+  const userMessage = palette.background.paper;
 
-  // TODO calculate
-  const maxHeightConversation = '400px';
-  const heightConversation = '100px';
-
-  // !important to override MuiTypography
-  const inlineBlock = 'inline-block!important';
+  const regularSpacing = spacing(SPACING_REGULAR);
+  const smallSpacing = spacing(SPACING_SMALL);
+  const INPUT_HEIGHT = '80';
 
   return {
-    box: {
-      display: inlineBlock,
-      borderRadius,
-      marginBottom: marginSmall,
-      marginTop: marginSmall,
-      padding,
+    mainBox: {
+      height: `calc(100% - ${ INPUT_HEIGHT }px)`,
+      padding: `${ regularSpacing } 0`,
     },
-    inputBox: {
-      width: '100%',
-    },
-    input: {
-      paddingLeft: `${ margin * 2 }px!important`,
-    },
-    // TODO flexes - use global flexes?
     conversationBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-end',
-      marginTop: marginLarge,
-      marginBottom: marginLarge,
-      maxHeight: maxHeightConversation,
-      height: heightConversation,
-      overflowY: 'scroll',
+      paddingRight: regularSpacing,
+    },
+    messageBox: {
+      paddingRight: regularSpacing * 2,
     },
     typographyBox: {
-      display: 'flex',
-      flexDirection: 'column',
+      borderRadius,
+      padding: regularSpacing,
+    },
+    inputBox: {
+      marginTop: 0,
+      marginBottom: 0,
+      paddingTop: 0,
+      maxHeight: `${ INPUT_HEIGHT }px`,
+      height: `${ INPUT_HEIGHT }px`,
+    },
+    input: {
+      padding: 0,
+      paddingBottom: smallSpacing,
+      margin: 0,
+      borderRadius,
     },
     typography: {
       flex: '0 auto',
       wordBreak: 'break-word',
     },
+    userListItem: {
+      justifyContent: 'flex-end',
+    },
     userTypography: {
-      color: colorUserMessage,
-      backgroundColor: backgroundColorUserMessage,
-      alignSelf: 'flex-end',
-      marginLeft: margin,
+      color: userMessage,
+      backgroundColor: userBackground,
+      marginLeft: regularSpacing,
     },
     partnerTypography: {
-      backgroundColor: backgroundColorPartnerMessage,
-      marginRight: margin,
+      backgroundColor: partnerBackground,
+      marginRight: regularSpacing,
     },
     delivered: { // todo pseudo
     },
     undelivered: { // todo pseudo
     },
+    // @ts-ignore
+    ...commonStyles(theme), // scrollBar class
   };
 });

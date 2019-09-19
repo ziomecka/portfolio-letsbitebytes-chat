@@ -9,3 +9,9 @@ export const changeConnectionState: ReduxActionCreator<ChangeSocketConnectionAct
     type: CommonActionTypes.changeConnectionState,
     connectionState,
   });
+
+export const setUsers: ReduxActionCreator<SetUsersAction> =
+  ({ users }: SetUsersActionProps) => ({
+    type: CommonActionTypes.setUsers,
+    users,
+  });

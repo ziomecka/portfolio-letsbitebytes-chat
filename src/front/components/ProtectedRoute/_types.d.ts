@@ -1,11 +1,10 @@
-declare interface ProtectedRouteProps extends ProtectedRouteState {
+declare interface ProtectedRouteProps extends ProtectedRouteState, WithStyles {
   path: string;
+  elevation?: PaperElevation;
 }
 
 declare interface ProtectedRouteState {
   isAuthenticated: boolean;
-  login: string;
-  role: UserRole;
 }
 
 declare const enum UserRole {
