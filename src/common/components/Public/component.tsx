@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { AppButton } from '../AppButton/';
 import { AppRoutes } from '../../../common/constants';
-
-const LOGIN_BUTTON_TEXT = 'Login';
-const CREATE_USER_BUTTON_TEXT = 'Create user';
+import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = (props) => {
-  const loginButtonText = LOGIN_BUTTON_TEXT;
-  const createUserButtonText = CREATE_USER_BUTTON_TEXT;
+  const loginButtonText = texts.loginButton;
+  const createUserButtonText = texts.createUserButton;
 
   const goToLogin = (): void => {
     props.history.push(AppRoutes.loginRoute);
