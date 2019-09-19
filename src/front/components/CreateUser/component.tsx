@@ -60,21 +60,20 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   }
 
   private init (): void {
-    this.heading = texts.HEADING;
-    this.serverErrorMessage = texts.SERVER_ERROR_MESSAGE;
-    this.serverSuccessMessage = texts.SERVER_SUCCESS_MESSAGE;
-    this.connectionErrorMessage = texts.CONNECTION_ERROR_MESSAGE;
-    this.loginLabel = texts.LOGIN_LABEL;
-    this.passwordLabel = texts.PASSWORD_LABEL;;
-    this.confirmPasswordLabel = texts.CONFIRM_PASSWORD_LABEL;;
-    this.submitButtonText = texts.SUBMIT_BUTTON_TEXT;
-    this.loginButtonText = texts.LOGIN_BUTTON_TEXT;
+    this.heading = texts.heading;
+    this.serverErrorMessage = texts.serverErrorMessage;
+    this.serverSuccessMessage = texts.serverSuccessMessage;
+    this.loginLabel = texts.loginLabel;
+    this.passwordLabel = texts.passwordLabel;
+    this.confirmPasswordLabel = texts.confirmPasswordLabel;
+    this.submitButtonText = texts.submitButton;
+    this.loginButtonText = texts.loginButton;
+    this.loginErrorMessage = texts.loginError;
+    this.passwordErrorMessage = texts.passwordError;
+    this.confirmPasswordErrorMessage = texts.confirmPasswordError;
 
     this.loginRegExp = LOGIN_REGEXP;
     this.passwordRegExp = PASSWORD_REGEXP;
-    this.loginErrorMessage = texts.LOGIN_ERROR;
-    this.passwordErrorMessage = texts.PASSWORD_ERROR;
-    this.confirmPasswordErrorMessage = texts.CONFIRM_PASSWORD_ERROR;
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
