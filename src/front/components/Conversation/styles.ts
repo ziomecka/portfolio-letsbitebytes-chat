@@ -18,10 +18,6 @@ export const styles = createStyles((theme: Theme) => {
   const userBackground = palette.primary.light;
   const userMessage = palette.background.paper;
 
-  // TODO calculate
-  const maxHeightConversation = '400px';
-  const heightConversation = '100px';
-
   // !important to override MuiTypography
   const inlineBlock = 'inline-block!important';
   const regularSpacing = spacing(SPACING_REGULAR);
@@ -40,27 +36,11 @@ export const styles = createStyles((theme: Theme) => {
     input: {
       paddingLeft: `${ margin * 2 }px!important`,
     },
-    // TODO flexes - use global flexes?
-    conversationBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-end',
-      marginTop: marginLarge,
-      marginBottom: marginLarge,
-      maxHeight: maxHeightConversation,
-      height: heightConversation,
-      overflowY: 'scroll',
-    },
-    typographyBox: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
     typography: {
       flex: '0 auto',
       wordBreak: 'break-word',
     },
     userTypography: {
-      alignSelf: 'flex-end',
       color: userMessage,
       backgroundColor: userBackground,
       marginLeft: regularSpacing,
