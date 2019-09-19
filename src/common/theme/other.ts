@@ -7,7 +7,6 @@ import {
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { flexColumnJustifyFlexStartAlignLeft } from './flexes';
 import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
@@ -71,7 +70,6 @@ const other = (theme: Theme): ThemeOptions => {
       },
       MuiPaper: {
         root: {
-          ...flexColumnJustifyFlexStartAlignLeft,
           boxSizing: 'border-box',
           margin: largeSpacing,
           padding: largeSpacing,
