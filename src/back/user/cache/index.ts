@@ -13,6 +13,8 @@ export class UserCache {
   public sadd(key: string, value: string): Promise<boolean>;
   // @ts-ignore
   public smembers(key: string): Promise<string[]>;
+  // @ts-ignore
+  public sdelete(key: string): Promise<boolean>;
   constructor (private client: Redis) {
     this.init();
   }
@@ -24,6 +26,7 @@ export class UserCache {
     Object.assign(Object.getPrototypeOf(this), {
       sadd: setData.sadd.bind(client),
       smembers: setData.smembers.bind(client),
+      sdelete: setData.delKey.bind(client),
     });
   }
 
@@ -36,6 +39,14 @@ export class UserCache {
       return await this.sadd(this.cacheLogins, login);
     } catch (err) {
       log.error('Login not added to cache:', login, err);
+    }
+  }
+
+  public deleteUsers = async (): Promise<boolean> => {
+    try {
+      return await this.sdelete(this.cacheLogins);
+    } catch (err) {
+      log.error('Logins not deleted from cache:', err);
     }
   }
 
