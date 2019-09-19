@@ -9,7 +9,7 @@ declare interface CreateUserProps extends MapStateToCreateUser, MapDispatchToCre
   subscribe(e: string, eventCallback: EventCallback<React.KeyboardEvent<HTMLFormElement>>): () => void
 }
 
-declare interface CreateUserWithRouterProps extends CreateUserProps, WithRouterProps {}
+declare interface CreateUserWithRouterProps extends CreateUserProps {}
 
 declare interface CreateUserState {
   login: string;
