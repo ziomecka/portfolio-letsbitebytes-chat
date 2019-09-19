@@ -44,6 +44,17 @@ export class UserDatabase {
     }
   }
 
+  public async getUsers (): Promise<UserDocument[]> {
+    try {
+      const result = await this.database.find(Collections.users);
+      log.info('Users retrieved from database');
+      return result;
+    } catch (err) {
+      log.error('Users not retrieved from database:', err);
+      return Promise.reject(err);
+    }
+  }
+
   public async findUser (login: string): Promise<UserDocument> {
     try {
       const result = await this.database.findOne(Collections.users, { login });
