@@ -7,14 +7,9 @@ import {
 } from '@material-ui/core';
 import { AppButton } from '../../../common';
 import { styles } from './styles';
+import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 import { withStyles } from '@material-ui/styles';
-
-const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
-const ERROR_MESSAGE = 'Disconnected. Please wait for connection.';
-const MESSAGE_INITIAL_STATE = '';
-const SUBMIT_BUTTON_LABEL = 'Send';
-const TALKING_WITH_DESCRIPTION = 'You are talking with';
 
 const KEYBOARD_EVENT = 'keydown';
 
@@ -41,7 +36,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     this.state = {
       conversation: this.getActiveConversation(),
-      message: MESSAGE_INITIAL_STATE,
+      message: texts.messageInitialState,
       error: false,
     };
 
@@ -49,11 +44,10 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   private init (): void {
-    this.errorMessage = ERROR_MESSAGE;
-    this.messageInitialState = MESSAGE_INITIAL_STATE;
-    this.submitButtonLabel = SUBMIT_BUTTON_LABEL;
-    this.conversationInputLabel = CONVERSATION_INPUT_LABEL;
-    this.talkingWithDescription = TALKING_WITH_DESCRIPTION;
+    this.errorMessage = texts.errorMessage;
+    this.messageInitialState = texts.messageInitialState;
+    this.submitButtonLabel = texts.submitButton;
+    this.conversationInputLabel = texts.conversationInputLabel;
 
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
