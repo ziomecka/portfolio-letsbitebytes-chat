@@ -1,6 +1,6 @@
 import {
   MongoDB,
-  mongoDB,
+  createMongo,
 } from '../../databases/mongo/';
 import { UserError } from '../user-error';
 import { logger } from '../../logger/';

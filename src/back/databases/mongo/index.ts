@@ -87,4 +87,4 @@ export class MongoDB {
   };
 }
 
-export const mongoDB = new MongoDB();
+export const createMongo = (uri: string): MongoDB => new MongoDB(uri);
