@@ -3,6 +3,7 @@ import {
   SPACING_REGULAR,
 } from '../../../common/theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
+import { styles as commonStyles } from '../styles';
 import { createStyles } from '@material-ui/styles';
 
 export const styles = createStyles((theme: Theme) => {
@@ -71,5 +72,7 @@ export const styles = createStyles((theme: Theme) => {
     },
     undelivered: { // todo pseudo
     },
+    // @ts-ignore
+    ...commonStyles(theme), // scrollBar class
   };
 });
