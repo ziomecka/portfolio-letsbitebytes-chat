@@ -8,6 +8,7 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import { flexColumnJustifyFlexStartAlignLeft } from './flexes';
+import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
@@ -68,6 +69,19 @@ const other = (theme: Theme): ThemeOptions => {
         root: {
           boxSizing: 'border-box',
           width: '100%',
+        },
+      },
+      MuiTypography: {
+        root: {
+          margin: 0,
+          '&$h1': {
+            width: '100%',
+            marginBottom: fontSizes.h1,
+          },
+          '&$h2': {
+            width: '100%',
+            marginBottom: regularSpacing,
+          },
         },
       },
     } as Overrides,
