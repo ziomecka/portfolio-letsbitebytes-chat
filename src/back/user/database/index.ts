@@ -55,6 +55,15 @@ export class UserDatabase {
     }
   }
 
+  public async getUsersLogins (): Promise<string[]> {
+    try {
+      const result = await this.getUsers();
+      return result.map(userDocument => userDocument.login);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
   public async findUser (login: string): Promise<UserDocument> {
     try {
       const result = await this.database.findOne(Collections.users, { login });
