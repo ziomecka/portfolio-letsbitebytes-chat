@@ -18,6 +18,15 @@ export class UserDatabase {
   constructor (private database: MongoDB) {
   }
 
+  public async disconnect (): Promise<boolean> {
+    try {
+      await this.database.disconnect.bind(this.database)();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   public async createUser ({ login, password, salt, hash }: CreateUserProps): Promise<boolean> {
     try {
       const userExists = await this.database.exists(Collections.users, { login });
