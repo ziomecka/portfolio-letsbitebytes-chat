@@ -31,6 +31,13 @@ class User {
     this.userDatabase = createUserDatabase(databaseUri);
   }
 
+  public async destroy (): Promise<boolean[]> {
+    return Promise.all([
+      await this.userCache.disconnect(),
+      await this.userDatabase.disconnect(),
+    ]);
+  }
+
   private isValidLogin (login: string): boolean {
     return !!login;
   }
