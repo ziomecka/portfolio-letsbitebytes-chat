@@ -3,16 +3,16 @@ import { AppButton } from '../AppButton/';
 import { AppRoutes } from '../../../common/constants';
 import texts from './texts';
 
-const Public: React.FunctionComponent<PublicWithRouterProps> = (props) => {
+const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
   const loginButtonText = texts.loginButton;
   const createUserButtonText = texts.createUserButton;
 
   const goToLogin = (): void => {
-    props.history.push(AppRoutes.loginRoute);
+    history.push(AppRoutes.loginRoute);
   };
 
   const goToCreateUser = (): void => {
-    props.history.push(AppRoutes.createUserRoute);
+    history.push(AppRoutes.createUserRoute);
   };
 
   return (
