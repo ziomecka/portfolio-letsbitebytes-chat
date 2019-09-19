@@ -27,9 +27,7 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
         {loginButtonText}
       </AppButton>
       <AppButton
-        autoFocus
         buttonProps={{
-          autoFocus: true,
           onClick: goToCreateUser,
         }}
       >
