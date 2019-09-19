@@ -11,7 +11,6 @@ import {
   letterSpacingButton,
   letterSpacingHeading,
   lineHeightButton,
-  lineHeightHeading,
   textTransformButton,
 } from './typography-constants';
 import createTypography from '@material-ui/core/styles/createTypography';
@@ -29,19 +28,19 @@ const typography = createTypography(palette, {
   h1: {
     fontSize: h1,
     fontWeight: fontWeightHeading,
-    lineHeight: lineHeightHeading,
+    lineHeight: h1,
     letterSpacing: letterSpacingHeading,
   },
   h2: {
     fontSize: h2,
     fontWeight: fontWeightHeading,
-    lineHeight: lineHeightHeading,
+    lineHeight: h2,
     letterSpacing: letterSpacingHeading,
   },
   h3: {
     fontSize: h3,
     fontWeight: fontWeightHeading,
-    lineHeight: lineHeightHeading,
+    lineHeight: h3,
     letterSpacing: letterSpacingHeading,
   },
   button: {

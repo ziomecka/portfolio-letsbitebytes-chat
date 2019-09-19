@@ -18,7 +18,6 @@ export const lineHeight = '1.5em';
 
 export const fontWeightHeading = 400;
 export const letterSpacingHeading = '-.02em';
-export const lineHeightHeading = '1.3em';
 
 export const fontWeightButton = 400;
 export const letterSpacingButton = '-.01em';
