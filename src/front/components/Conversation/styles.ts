@@ -23,8 +23,17 @@ export const styles = createStyles((theme: Theme) => {
   const INPUT_HEIGHT = '80';
 
   return {
-    box: {
-      display: inlineBlock,
+    mainBox: {
+      height: `calc(100% - ${ INPUT_HEIGHT }px)`,
+      padding: `${ regularSpacing } 0`,
+    },
+    conversationBox: {
+      paddingRight: regularSpacing,
+    },
+    messageBox: {
+      paddingRight: regularSpacing * 2,
+    },
+    typographyBox: {
       borderRadius,
       padding: regularSpacing,
     },
