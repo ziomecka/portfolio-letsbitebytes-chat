@@ -1,22 +1,22 @@
 import {
   BUTTON_GREY_SHADE,
   SPACING_REGULAR,
+  SPACING_SMALL,
 } from '../../../common/theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
 import { styles as commonStyles } from '../styles';
 import { createStyles } from '@material-ui/styles';
 
 export const styles = createStyles((theme: Theme) => {
-  const backgroundColorPartnerMessage = theme.palette.grey[ BUTTON_GREY_SHADE ];
-  const backgroundColorUserMessage = theme.palette.primary.light;
-  // !important to override MuiTypography
-  const colorUserMessage = `#${ theme.palette.background.paper }!important`;
+  const {
+    palette,
+    shape: { borderRadius },
+    spacing,
+  } = theme;
 
-  const borderRadius = theme.shape.borderRadius;
-  const margin = theme.spacing(SPACING_REGULAR);
-  const marginSmall = theme.spacing(SPACING_REGULAR / 2);
-  const marginLarge = theme.spacing(SPACING_REGULAR * 4);
-  const padding = theme.spacing(SPACING_REGULAR);
+  const partnerBackground = palette.grey[ BUTTON_GREY_SHADE ];
+  const userBackground = palette.primary.light;
+  const userMessage = palette.background.paper;
 
   // TODO calculate
   const maxHeightConversation = '400px';
@@ -24,14 +24,15 @@ export const styles = createStyles((theme: Theme) => {
 
   // !important to override MuiTypography
   const inlineBlock = 'inline-block!important';
+  const regularSpacing = spacing(SPACING_REGULAR);
+  const smallSpacing = spacing(SPACING_SMALL);
+  const INPUT_HEIGHT = '80';
 
   return {
     box: {
       display: inlineBlock,
       borderRadius,
-      marginBottom: marginSmall,
-      marginTop: marginSmall,
-      padding,
+      padding: regularSpacing,
     },
     inputBox: {
       width: '100%',
@@ -59,14 +60,14 @@ export const styles = createStyles((theme: Theme) => {
       wordBreak: 'break-word',
     },
     userTypography: {
-      color: colorUserMessage,
-      backgroundColor: backgroundColorUserMessage,
       alignSelf: 'flex-end',
-      marginLeft: margin,
+      color: userMessage,
+      backgroundColor: userBackground,
+      marginLeft: regularSpacing,
     },
     partnerTypography: {
-      backgroundColor: backgroundColorPartnerMessage,
-      marginRight: margin,
+      backgroundColor: partnerBackground,
+      marginRight: regularSpacing,
     },
     delivered: { // todo pseudo
     },
