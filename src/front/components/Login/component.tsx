@@ -10,14 +10,6 @@ import {
 } from '@material-ui/core/';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
-interface LoginState {
-  login: string;
-  password: string;
-  confirmPassword: string;
-  loginError: boolean;
-  connectionError: boolean;
-}
-
 const HEADING = 'Login';
 const LOGIN_LABEL = 'Login';
 const PASSWORD_LABEL = 'Password';
