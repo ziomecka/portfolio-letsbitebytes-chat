@@ -54,6 +54,9 @@ export const styles = createStyles((theme: Theme) => {
       flex: '0 auto',
       wordBreak: 'break-word',
     },
+    userListItem: {
+      justifyContent: 'flex-end',
+    },
     userTypography: {
       color: userMessage,
       backgroundColor: userBackground,
