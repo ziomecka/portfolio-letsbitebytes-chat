@@ -75,6 +75,17 @@ export class UserDatabase {
     }
   }
 
+  public async deleteUsers (): Promise<boolean> {
+    try {
+      const result = await this.database.delete(Collections.users);
+      log.info('Users deleted');
+      return result;
+    } catch (err) {
+      log.error('Users not deleted:', err);
+      return Promise.reject(err);
+    }
+  }
+
   private findConversation (user: UserDocument, login: string): Statement[] {
     const { conversations = [] }: { conversations: ConversationDocument[] } = user;
     const conversationDocument = conversations.find(({ login: conLogin }) => conLogin === login);
