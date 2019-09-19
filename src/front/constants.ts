@@ -7,3 +7,5 @@ export {
   PASSWORD_REGEXP,
   SPECIAL_CHARACTERS,
 } from '../common/constants';
+
+export const HTML_CONVERSATION_ID = 'app-conversation';
