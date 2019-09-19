@@ -71,7 +71,7 @@ const other = (theme: Theme): ThemeOptions => {
       MuiPaper: {
         root: {
           boxSizing: 'border-box',
-          margin: largeSpacing,
+          margin: 0,
           padding: largeSpacing,
           ...maxWidthHeight,
         },
