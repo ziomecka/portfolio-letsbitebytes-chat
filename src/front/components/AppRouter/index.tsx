@@ -17,10 +17,14 @@ class AppRouter extends React.PureComponent<AppRouterProps> {
   private unsubscribe?: () => void;
   constructor (props: AppRouterProps) {
     super(props);
+    this.init();
+  }
+
+  private init (): void {
     this.doNotRefresh = this.doNotRefresh.bind(this);
 
     this.unsubscribe = confirmReload
-      ? props.subscribe('beforeunload', this.doNotRefresh)
+      ? this.props.subscribe('beforeunload', this.doNotRefresh)
       : undefined;
   }
 
