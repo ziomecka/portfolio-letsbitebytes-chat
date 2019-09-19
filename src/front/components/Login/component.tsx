@@ -5,26 +5,18 @@ import {
 } from '../../../common/';
 import { AppForm } from '../';
 import { TextField } from '@material-ui/core/';
+import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
-
-const HEADING = 'Login';
-const LOGIN_LABEL = 'Login';
-const PASSWORD_LABEL = 'Password';
-const SUBMIT_BUTTON_TEXT = 'Submit';
-const LOGIN_ERROR_MESSAGE = 'Credentials are invalid. Please try again';
-const CONNECTION_ERROR_MESSAGE = 'Something went wrong. Please try again';
 
 const KEYBOARD_EVENT = 'keydown';
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
   private keyboardEvent: string;
-
   private heading: string;
   private loginLabel: string;
   private passwordLabel: string;
   private submitButtonText: string;
   private loginErrorMessage: string;
-  private connectionErrorMessage: string;
 
   private unsubscribe: () => void;
   constructor (props: LoginWithRouterProps) {
@@ -55,12 +47,11 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private init (): void {
-    this.heading = HEADING;
-    this.loginErrorMessage = LOGIN_ERROR_MESSAGE;
-    this.connectionErrorMessage = CONNECTION_ERROR_MESSAGE;
-    this.loginLabel = LOGIN_LABEL;
-    this.passwordLabel = PASSWORD_LABEL;;
-    this.submitButtonText = SUBMIT_BUTTON_TEXT;
+    this.heading = texts.heading;
+    this.loginErrorMessage = texts.loginErrorMessage;
+    this.loginLabel = texts.loginLabel;
+    this.passwordLabel = texts.passwordLabel;
+    this.submitButtonText = texts.submitButton;
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
