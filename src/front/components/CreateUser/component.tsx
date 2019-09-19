@@ -4,15 +4,15 @@ import {
   AppRoutes,
 } from '../../../common/';
 import {
-  FormHelperText,
-  TextField,
-  Typography,
-} from '@material-ui/core/';
+  AppForm,
+  RouterButton,
+} from '../';
 import {
   LOGIN_REGEXP,
   PASSWORD_REGEXP,
 } from '../../constants';
 import { Link } from 'react-router-dom';
+import { TextField } from '@material-ui/core/';
 import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
@@ -31,7 +31,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   private loginButtonText: string;
   private serverErrorMessage: string;
   private serverSuccessMessage: string;
-  private connectionErrorMessage: string;
   private loginErrorMessage: string;
   private passwordErrorMessage: string;
   private confirmPasswordErrorMessage: string;
@@ -77,7 +76,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
-    this.goToLogin = this.goToLogin.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
     this.typeConfirmPassword = this.typeConfirmPassword.bind(this);
@@ -151,35 +149,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     });
   }
 
-  private goToLogin (): void {
-    this.props.history.push(AppRoutes.loginRoute);
-  }
-
-  private renderButton (disabled: boolean): JSX.Element {
-    return (!this.state.serverResult
-      ? (
-        <AppButton
-          buttonProps={{
-            onClick: this.submit,
-            disabled,
-            type: 'submit',
-          }}
-        >
-          {this.submitButtonText}
-        </AppButton>
-      )
-      : (
-        <AppButton
-          buttonProps={{
-            onClick: this.goToLogin,
-          }}
-        >
-          {this.loginButtonText}
-        </AppButton>
-      )
-    );
-  }
-
   public render (): JSX.Element {
     const {
       state: {
@@ -200,12 +169,14 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     );
 
     return (
-      <form
-        onSubmit={(event:React.FormEvent): void => event.preventDefault()}
+      <AppForm
+        heading={this.heading}
+        formHelperProps={{
+          error: serverResult === false,
+          errorMessage: serverError,
+          connectionError,
+        }}
       >
-        <Typography variant="h2">
-          {this.heading}
-        </Typography>
         <TextField
           autoFocus
           required
@@ -233,20 +204,40 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           error={confirmPasswordError}
           helperText={confirmPasswordError && this.confirmPasswordErrorMessage}
         />
-        <FormHelperText
-          error={serverResult === false || connectionError}
-        >
-          { serverResult === false && serverError }
-          { connectionError && this.connectionErrorMessage }
-          { serverResult && (
+        { this.renderButtons(disabled) }
+      </AppForm>
+    );
+  }
+
+  private renderButtons (disabled: boolean): JSX.Element {
+    return (
+      <React.Fragment>
+        { !this.state.serverResult
+          ? (
+            <AppButton
+              buttonProps={{
+                onClick: this.submit,
+                disabled,
+                type: 'submit',
+              }}
+            >
+              {this.submitButtonText}
+            </AppButton>
+          )
+          : (
             <React.Fragment>
               { this.serverSuccessMessage }
-              <Link to={AppRoutes.loginRoute}> login</Link>
+              <Link to={AppRoutes.loginRoute}>{ this.loginLabel }</Link>
+
+              <RouterButton
+                to={AppRoutes.loginRoute}
+              >
+                {this.loginButtonText}
+              </RouterButton>
             </React.Fragment>
-          )}
-        </FormHelperText>
-        { this.renderButton(disabled) }
-      </form>
+          )
+        }
+      </React.Fragment>
     );
   }
 }
