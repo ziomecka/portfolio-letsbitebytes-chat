@@ -1,40 +1,62 @@
 import * as React from 'react';
 import {
   Box,
-  Typography,
+  Grid,
+  Paper,
 } from '@material-ui/core';
 import { Conversation } from '../Conversation/';
 import { Logout } from '../Logout/';
 import { Redirect } from 'react-router-dom';
-import { Screen } from '../Screen/';
 import { Socket } from '../Socket/';
 import { Users } from '../Users/';
+import { styles } from './styles';
+import { withStyles } from '@material-ui/styles/';
 
-const LOGGED_AS_LABEL = 'Welcome';
+const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
+({
+  isAuthenticated,
+  classes,
+  elevation = 1,
+}) => {
+  return (isAuthenticated ? (
+    <Grid
+      container
+      justify="space-between"
+      component={Paper}
+      elevation={elevation}
+    >
+      <Grid
+        item
+        component={Box}
+        className={classes.box}
+        xs={4}
+      >
+        <Users />
+      </Grid>
+      <Grid
+        item
+        component={Box}
+        className={classes.box}
+        xs={7}
+      >
+        <Conversation />
+      </Grid>
+      <Grid
+        item
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        className={classes.buttonsBox}
+      >
+        <Logout/>
+      </Grid>
+      <Socket />
+    </Grid>
+  ) : (
+    <Redirect to={{ pathname: '', state: {} }}/>
+  ));
+};
 
-export const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
-  ({ activeConversation, isAuthenticated, login, role }) => {
-    const loggedAsLabel = LOGGED_AS_LABEL;
-
-    return (
-      isAuthenticated
-        ? (
-          <Screen>
-            <Box>
-              <Typography variant="h2">
-                { `${ loggedAsLabel } ${ login }` }
-              </Typography>
-            </Box>
-            <Box>
-              <Users />
-              { activeConversation && <Conversation /> }
-            </Box>
-            <Box>
-              <Logout/>
-            </Box>
-            <Socket />
-          </Screen>
-        )
-        : <Redirect to={{ pathname: '', state: {} }} />
-    );
-  };
+const WrappedComponent = withStyles(styles)(ProtectedRoute);
+export { WrappedComponent as ProtectedRoute };
