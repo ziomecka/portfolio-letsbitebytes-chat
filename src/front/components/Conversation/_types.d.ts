@@ -12,3 +12,9 @@ declare interface ConversationProps extends MapStateToConversation,
   WithPublisherProps {
   subscribe?: (e: string, eventCallback: EventCallback<React.KeyboardEvent<HTMLFormElement>>) => () => void
 }
+
+declare interface ConversationState {
+  conversation: Statement[]
+  message: string;
+  error: boolean;
+}

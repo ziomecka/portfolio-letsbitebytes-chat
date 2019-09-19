@@ -10,12 +10,6 @@ import { styles } from './styles';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 import { withStyles } from '@material-ui/styles';
 
-interface ConversationState {
-  conversation: Statement[]
-  message: string;
-  error: boolean;
-}
-
 const CONVERSATION_INPUT_LABEL = 'What would you like to say?';
 const ERROR_MESSAGE = 'Disconnected. Please wait for connection.';
 const MESSAGE_INITIAL_STATE = '';
