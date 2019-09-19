@@ -27,16 +27,14 @@ export class MongoDB {
       return log.info('Mongo connected');
     });
 
-    this.connection = mongoose.connection;
+    const connection = this.connection = mongoose.connection;
 
-    this.connection.on('error', (err: MongooseError) => {
-      log.error('Mongo connection error:', err);
-      this.connect(); // todo this way?
-    });
+    connection.on('error', (err: Error) => log.error('Mongo connection error:', err));
+    connection.on('open', () => log.info('Mongo opened'));
+    connection.on('disconnected', () => log.info('Mongo disconnected'));
+    connection.on('reconnected', () => log.info('Mongo reconnected'));
+    connection.on('close', () => log.info('Mongo closed'));
 
-    this.connection.on('open', () => {
-      log.info('Mongo opened');
-    });
   };
 
   public async create (collection: Collections, data: unknown): Promise<MongooseDocument> {
