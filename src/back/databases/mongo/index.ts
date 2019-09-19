@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import { MONGO_URI } from '../../constants';
 import { logger } from '../../logger';
 import { models } from './models';
 
@@ -13,14 +12,14 @@ const options = {
 export class MongoDB {
   private connection?: MongooseConnection;
   private models: Map<Collections, MongooseModel<MongooseDocument>>;
-  constructor () {
+  constructor (private uri: string) {
     this.connection = undefined;
     this.models = models;
     this.connect();
   }
 
   private connect = async (): Promise<void> => {
-    await mongoose.connect(MONGO_URI, options, (err: Error) => {
+    await mongoose.connect(this.uri, options, (err: Error) => {
       if (err) {
         return log.error('Mongo connection error:', err);
       }
