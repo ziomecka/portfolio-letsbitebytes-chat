@@ -30,6 +30,7 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
         buttonProps={{
           onClick: goToCreateUser,
         }}
+        variant={AppButtonVariant.transparent}
       >
         {createUserButtonText}
       </AppButton>
