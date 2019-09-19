@@ -3,11 +3,8 @@ import {
   AppButton,
   AppRoutes,
 } from '../../../common/';
-import {
-  FormHelperText,
-  TextField,
-  Typography,
-} from '@material-ui/core/';
+import { AppForm } from '../';
+import { TextField } from '@material-ui/core/';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
 const HEADING = 'Login';
@@ -118,40 +115,29 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   public render (): JSX.Element {
-    const {
-      state: {
-        login,
-        password,
-        connectionError,
-        loginError,
-      },
-    } = this;
-
     return (
-      <form
-        onSubmit={(event: React.FormEvent): void => event.preventDefault()}
+      <AppForm
+        heading={this.heading}
+        formHelperProps={{
+          error: this.state.loginError,
+          errorMessage: this.loginErrorMessage,
+          connectionError: this.state.connectionError,
+        }}
       >
-        <Typography variant="h2">
-          {this.heading}
-        </Typography>
         <TextField
           autoFocus
           required
           label={this.loginLabel}
           onChange={this.typeLogin}
-          value={login}
+          value={this.state.login}
         />
         <TextField
           required
           label={this.passwordLabel}
           onChange={this.typePassword}
-          value={password}
+          value={this.state.password}
           type={'password'}
         />
-        <FormHelperText error>
-          { loginError && this.loginErrorMessage }
-          { connectionError && this.connectionErrorMessage }
-        </FormHelperText>
         <AppButton
           buttonProps={{
             onClick: this.submit,
@@ -160,7 +146,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
         >
           {this.submitButtonText}
         </AppButton>
-      </form>
+      </AppForm>
     );
   }
 }
