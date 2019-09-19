@@ -16,18 +16,6 @@ import { Link } from 'react-router-dom';
 import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 
-interface CreateUserState {
-  login: string;
-  password: string;
-  confirmPassword: string;
-  loginError: boolean;
-  passwordError: boolean;
-  confirmPasswordError: boolean;
-  connectionError: boolean;
-  serverResult?: boolean;
-  serverError?: UserErrors | string;
-}
-
 const KEYBOARD_EVENT = 'keydown';
 
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {

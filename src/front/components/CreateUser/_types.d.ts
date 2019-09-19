@@ -10,3 +10,15 @@ declare interface CreateUserProps extends MapStateToCreateUser, MapDispatchToCre
 }
 
 declare interface CreateUserWithRouterProps extends CreateUserProps, WithRouterProps {}
+
+declare interface CreateUserState {
+  login: string;
+  password: string;
+  confirmPassword: string;
+  loginError: boolean;
+  passwordError: boolean;
+  confirmPasswordError: boolean;
+  connectionError: boolean;
+  serverResult?: boolean;
+  serverError?: UserErrors | string;
+}
