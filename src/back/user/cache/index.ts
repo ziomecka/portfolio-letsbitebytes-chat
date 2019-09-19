@@ -10,7 +10,7 @@ const log = logger('userCache');
 export class UserCache {
   private cacheLogins: string;
   // @ts-ignore
-  public sadd(key: string, value: string): Promise<boolean>;
+  public sadd(key: string, ...value: string): Promise<boolean>;
   // @ts-ignore
   public smembers(key: string): Promise<string[]>;
   // @ts-ignore
@@ -34,8 +34,9 @@ export class UserCache {
     await this.client.disconnect()
   )
 
-  public cacheUser = async (login: string): Promise<boolean> => {
+  public cacheUser = async (login: string | string[]): Promise<boolean> => {
     try {
+      // @ts-ignore
       return await this.sadd(this.cacheLogins, login);
     } catch (err) {
       log.error('Login not added to cache:', login, err);
