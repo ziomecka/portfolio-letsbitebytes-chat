@@ -1,8 +1,3 @@
-import { REDIS_URL } from '../constants';
-import { createClient } from './redis';
-
-
-export const redis = createClient(REDIS_URL);
 export {
   MongoDB,
   createMongo,
@@ -10,6 +5,7 @@ export {
 
 export {
   Redis,
+  createRedis,
   setData,
   stringData,
 } from './redis/';

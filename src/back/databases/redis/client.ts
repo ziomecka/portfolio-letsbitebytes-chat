@@ -39,4 +39,4 @@ export class Redis {
   };
 }
 
-export const createClient = (url: string): Redis => new Redis(url);
+export const createRedis = (url: string): Redis => new Redis(url);

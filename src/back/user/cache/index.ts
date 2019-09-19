@@ -1,6 +1,6 @@
 import {
   Redis,
-  redis,
+  createRedis,
   setData,
 } from '../../databases/';
 import { logger } from '../../logger/';
