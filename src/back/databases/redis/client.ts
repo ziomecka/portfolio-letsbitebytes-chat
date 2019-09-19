@@ -14,6 +14,11 @@ export class Redis {
     this.connect(redisUrl);
   }
 
+  public disconnect = async (): Promise<boolean> => {
+    return new Promise((resolve): boolean => (
+      this.client.quit(() => resolve(true))
+    ));
+  }
 
   private connect = (redisUrl: string): void => {
     this.client = RedisLib.createClient(redisUrl);
