@@ -45,6 +45,11 @@ const other = (theme: Theme): ThemeOptions => {
       },
     },
     overrides: {
+      MuiBox: {
+        root: {
+          ...maxWidthHeight,
+        },
+      },
       MuiButton: {
         text: {
           paddingLeft: 0,
@@ -70,6 +75,7 @@ const other = (theme: Theme): ThemeOptions => {
           boxSizing: 'border-box',
           margin: largeSpacing,
           padding: largeSpacing,
+          ...maxWidthHeight,
         },
       },
       MuiTouchRipple: {
