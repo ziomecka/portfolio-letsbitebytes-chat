@@ -62,18 +62,16 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     return conversation ? conversation[ 1 ] : [];
   }
 
-  public componentDidUpdate (prevProps: ConversationProps): void {
+  public componentDidUpdate ({
+    activeConversation: prevActiveConversation,
+    conversations: prevConversations,
+    connectionState: prevSocketConnection,
+  }: ConversationProps): void {
     const {
       activeConversation,
       conversations,
       connectionState,
     } = this.props;
-
-    const {
-      activeConversation: prevActiveConversation,
-      conversations: prevConversations,
-      connectionState: prevSocketConnection,
-    } = prevProps;
 
     if (activeConversation && activeConversation !== prevActiveConversation) {
       this.setState({
