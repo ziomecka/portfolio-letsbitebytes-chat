@@ -1,27 +1,52 @@
 import * as React from 'react';
 import {
   Box,
-  Paper,
-  Typography,
+  List,
+  ListItem,
+  ListItemText,
 } from '@material-ui/core';
+import { styles } from './styles';
+import { withStyles } from '@material-ui/styles';
 
-export const Users: React.FunctionComponent<UsersProps> = ({ users, changeActiveConversation }) => {
-  const onClick = (login: string): ChangeConversationAction => {
-    return changeActiveConversation(login);
-  };
+const Users: React.FunctionComponent<UsersProps> =
+({
+  activeConversation,
+  users,
+  changeActiveConversation,
+  classes,
+}) => {
+
+  const onClick = (login: string): ChangeConversationAction => (
+    changeActiveConversation(login)
+  );
 
   return (
-    <Paper>
+    <List
+      component={Box}
+      classes={{ root: classes.scrollBar }}
+    >
       {users.map(user => (
-        <Box
-          key={ user }
-          onClick={(): ChangeConversationAction => onClick(user)}
+        <ListItem
+          key={user}
+          button={true}
+          onClick={ (): ChangeConversationAction => onClick(user) }
+          classes={{
+            root: classes.listItem,
+          }}
+          selected={user === activeConversation}
         >
-          <Typography variant="body1">
-            {user}
-          </Typography>
-        </Box>
+          <ListItemText
+            primary={user}
+            primaryTypographyProps={{
+              classes: { root: classes.text },
+            }}
+          />
+        </ListItem>
       ))}
-    </Paper>
+    </List>
   );
 };
+
+const WrappedComponent = withStyles(styles)(Users);
+
+export { WrappedComponent as Users };

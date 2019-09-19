@@ -9,6 +9,7 @@ const mapDispatchToProps = (dispatch: ReduxDispatch): MapDispatchToUsers => ({
 });
 
 const mapStateToProps = (state: AppState): MapStateToUsers => ({
+  activeConversation: state.activeConversation,
   users: state.users,
 });
 
