@@ -20,7 +20,7 @@ export class MongoDB {
   }
 
   private connect = async (): Promise<void> => {
-    await mongoose.connect(MONGO_URI, options, (err: MongooseError) => {
+    await mongoose.connect(MONGO_URI, options, (err: Error) => {
       if (err) {
         return log.error('Mongo connection error:', err);
       }
@@ -45,7 +45,7 @@ export class MongoDB {
       const Document = this.models.get(collection);
       const document = new Document(data);
 
-      document.save((err: MongooseError, result: MongooseDocument) => {
+      document.save((err: Error, result: MongooseDocument) => {
         err ? reject(err) : resolve(result);
       });
     });
@@ -55,7 +55,7 @@ export class MongoDB {
     return new Promise((resolve, reject): void => {
       const Document = this.models.get(collection);
 
-      Document.findOne(data, (err: MongooseError, result: MongooseDocuments) => {
+      Document.findOne(data, (err: Error, result: MongooseDocuments) => {
         err ? reject(err) : resolve(result);
       });
     });
