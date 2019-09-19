@@ -74,16 +74,17 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     } = this.props;
 
     if (activeConversation && activeConversation !== prevActiveConversation) {
-      this.setState({
+      this.setState(() => ({
         conversation: this.getActiveConversation(),
-      });
+      }), (): void => this.scroll('auto'));
     }
 
     if (conversations !== prevConversations) {
       const activeConversation = this.getActiveConversation();
-      this.setState({
+      // todo -> set and scroll only if the active conversation has changed!
+      this.setState(() => ({
         conversation: [...activeConversation],
-      });
+      }), this.scroll);
     }
 
     if (connectionState !== prevSocketConnection) {
@@ -97,7 +98,14 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.unsubscribe();
   }
 
+  private scroll (behavior: 'smooth' | 'auto' = 'smooth'): void {
+    const $conversation = document.querySelector(`#${ this.htmlConversationId }`);
 
+    $conversation && $conversation.scroll({
+      top: $conversation.scrollHeight,
+      behavior,
+    });
+  }
 
   private typeMessage (event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
