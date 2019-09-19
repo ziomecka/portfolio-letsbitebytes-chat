@@ -13,13 +13,20 @@ const AppButton: React.FunctionComponent<AppButtonProps> = (props) => {
 
   buttonProps.variant = buttonProps.variant || 'contained';
 
+  const variants = new Map([
+    [ AppButtonVariant.transparent, classes.transparentVariant ],
+    [ AppButtonVariant.flex, classes.flexVariant ],
+  ]);
+
   return (
     <div
       className={ adjustTouchRipple }
       {...{ autoFocus }}
     >
       <Button
-        className={`${ variant === AppButtonVariant.transparent ? transparentVariant : '' }`}
+        classes={{
+          root: variants.get(variant),
+        }}
         { ...buttonProps }
       >
         { props.children }

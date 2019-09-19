@@ -1,7 +1,8 @@
 type ButtonProps = import('@material-ui/core/Button').ButtonProps
 
 declare const enum  AppButtonVariant {
-  'transparent' = 'transparent',
+  transparent = 'transparent',
+  flex = 'flex',
 }
 
 declare interface AppButtonProps extends WithStyles {

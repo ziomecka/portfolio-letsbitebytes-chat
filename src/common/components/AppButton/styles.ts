@@ -26,5 +26,9 @@ export const styles = createStyles((theme: Theme) => {
       border: `1px solid ${ theme.palette.text.secondary }!important`,
       boxShadow: 'none!important',
     },
+    flexVariant: {
+      width: 'auto',
+      margin: 0,
+    },
   };
 });
