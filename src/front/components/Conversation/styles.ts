@@ -18,8 +18,6 @@ export const styles = createStyles((theme: Theme) => {
   const userBackground = palette.primary.light;
   const userMessage = palette.background.paper;
 
-  // !important to override MuiTypography
-  const inlineBlock = 'inline-block!important';
   const regularSpacing = spacing(SPACING_REGULAR);
   const smallSpacing = spacing(SPACING_SMALL);
   const INPUT_HEIGHT = '80';
@@ -31,10 +29,17 @@ export const styles = createStyles((theme: Theme) => {
       padding: regularSpacing,
     },
     inputBox: {
-      width: '100%',
+      marginTop: 0,
+      marginBottom: 0,
+      paddingTop: 0,
+      maxHeight: `${ INPUT_HEIGHT }px`,
+      height: `${ INPUT_HEIGHT }px`,
     },
     input: {
-      paddingLeft: `${ margin * 2 }px!important`,
+      padding: 0,
+      paddingBottom: smallSpacing,
+      margin: 0,
+      borderRadius,
     },
     typography: {
       flex: '0 auto',
