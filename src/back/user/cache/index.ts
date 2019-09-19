@@ -27,6 +27,10 @@ export class UserCache {
     });
   }
 
+  public disconnect = async (): Promise<boolean> => (
+    await this.client.disconnect()
+  )
+
   public cacheUser = async (login: string): Promise<boolean> => {
     try {
       return await this.sadd(this.cacheLogins, login);
