@@ -6,6 +6,13 @@ export const styles = createStyles((theme: Theme) => {
   const widthAdjustment = '1rem';
 
   return {
+    box: {
+      // move to common style as reset of Box overridden properties (see theme overrides MuiBox)
+      height: 'initial',
+      width: 'initial',
+      maxWidth: 'none',
+      maxHeight: 'none',
+    },
     adjustTouchRipple: {
       '& button': {
         '& span': {
