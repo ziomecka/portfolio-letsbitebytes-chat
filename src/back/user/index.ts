@@ -8,7 +8,7 @@ import {
 } from './cache';
 import {
   UserDatabase,
-  userDatabase,
+  createUserDatabase,
 } from './database';
 import {
   UserSession,
@@ -27,8 +27,8 @@ class User {
   constructor () {
     this.authorization = authorization;
     this.userCache = userCache;
-    this.userDatabase = userDatabase;
     this.userSession = userSession;
+    this.userDatabase = createUserDatabase(databaseUri);
   }
 
   private isValidLogin (login: string): boolean {

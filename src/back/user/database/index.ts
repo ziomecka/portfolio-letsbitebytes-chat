@@ -195,6 +195,6 @@ export class UserDatabase {
   }
 }
 
-const userDatabase = new UserDatabase(mongoDB);
-
-export { userDatabase };
+export const createUserDatabase = (uri: string): UserDatabase => {
+  return new UserDatabase(createMongo(uri));
+};
