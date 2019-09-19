@@ -1,8 +1,7 @@
 import { Theme } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
 
-// TODO verify important
-export const styles = createStyles((theme: Theme) => {
+export const styles = createStyles(({ palette }: Theme) => {
   const widthAdjustment = '1rem';
 
   return {
@@ -18,8 +17,8 @@ export const styles = createStyles((theme: Theme) => {
         '& span': {
           left: '0!important',
           '& span': {
-            left: '0!important', // TODO is needed?
-            width: '100%!important', // TODO is needed?
+            left: '0!important',
+            width: '100%!important',
             '& span': {
               left: `calc(${ widthAdjustment } / 2)!important`,
               width: `calc(100% - ${ widthAdjustment })!important`,
@@ -29,9 +28,9 @@ export const styles = createStyles((theme: Theme) => {
       },
     },
     transparentVariant: {
-      backgroundColor: `#${ theme.palette.background.default }!important`,
-      border: `1px solid ${ theme.palette.text.secondary }!important`,
-      boxShadow: 'none!important',
+      backgroundColor: palette.background.paper,
+      border: `1px solid ${ palette.text.secondary }`,
+      boxShadow: 'none',
     },
     flexVariant: {
       width: 'auto',
