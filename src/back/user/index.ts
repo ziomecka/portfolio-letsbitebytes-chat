@@ -4,7 +4,7 @@ import {
 } from './authorization/';
 import {
   UserCache,
-  userCache,
+  createUserCache,
 } from './cache';
 import {
   UserDatabase,
@@ -26,8 +26,8 @@ class User {
   private userSession: UserSession;
   constructor () {
     this.authorization = authorization;
-    this.userCache = userCache;
     this.userSession = userSession;
+    this.userCache = createUserCache(cacheUri);
     this.userDatabase = createUserDatabase(databaseUri);
   }
 

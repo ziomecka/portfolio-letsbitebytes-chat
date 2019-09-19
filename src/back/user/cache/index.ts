@@ -44,4 +44,4 @@ export class UserCache {
   }
 }
 
-export const userCache = new UserCache(redis);
+export const createUserCache = (uri: string): UserCache => new UserCache(createRedis(uri));
