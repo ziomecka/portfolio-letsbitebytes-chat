@@ -121,6 +121,29 @@ export class UserDatabase {
     }
   }
 
+  public async update (login:string, data: Partial<UserDocument>): Promise<UserDocument> {
+    let user: UserDocument;
+
+    try {
+      user = await this.database.findOne(Collections.users, { login });
+    } catch (err) {
+      log.error(
+        'User not updated, user not found:', login, data
+      );
+      return Promise.reject(err);
+    }
+
+    try {
+      Object.assign(user, data);
+      const result = await user.save();
+      log.info('User updated:', login, data);
+      return result;
+    } catch (err) {
+      log.error('User not updated:', login, data, err);
+      return Promise.reject(err);
+    }
+  }
+
   public async updateMessage (
     login: string, to: string, messageId: string
   ): Promise<UserDocument> {
