@@ -202,6 +202,24 @@ export class User {
       return false;
     }
   }
+
+  public async update (
+    login: string,
+    data: Partial<UserDocument> & { password?: string }
+  ): Promise<boolean> {
+    if ('password' in data) {
+      Object.assign(data, this.authorization.encryptPassword(data.password));
+    }
+
+    try {
+      await this.userDatabase.update(login, data);
+      log.info('User updated:', login, data);
+      return true;
+    } catch (err) {
+      log.error('User not updated:', login, data, err);
+      return false;
+    }
+  }
 }
 
 export const createUserManager = (databaseUri: string, cacheUri: string): User => (
