@@ -1,5 +1,5 @@
-import { user } from '../../../user/';
+import { usersManager } from '../../../';
 
 export const getAsyncState = async (): Promise<AsyncInitialAppState> => {
-  return await user.buildAsyncState();
+  return await usersManager.buildAsyncState();
 };

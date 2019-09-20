@@ -1,4 +1,4 @@
-import { user } from '../../user/';
+import { usersManager } from '../../';
 
 export const login = async ({ query }: ExpressRequest, res: ExpressResponse): Promise<void> => {
   let response = {
@@ -6,7 +6,7 @@ export const login = async ({ query }: ExpressRequest, res: ExpressResponse): Pr
   } as ApiResponse;
 
   try {
-    response = await user.login(query.login, query.password);
+    response = await usersManager.login(query.login, query.password);
   } catch (err) {
     response.error = err;
   }

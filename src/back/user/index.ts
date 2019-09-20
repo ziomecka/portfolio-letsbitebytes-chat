@@ -19,12 +19,12 @@ import { logger } from '../logger/';
 
 const log = logger('user');
 
-class User {
-  private authorization: Authorization;
-  private userCache: UserCache;
-  private userDatabase: UserDatabase;
-  private userSession: UserSession;
-  constructor () {
+export class User {
+  public readonly authorization: Authorization;
+  public readonly userCache: UserCache;
+  public readonly userDatabase: UserDatabase;
+  public readonly userSession: UserSession;
+  constructor (databaseUri: string, cacheUri: string) {
     this.authorization = authorization;
     this.userSession = userSession;
     this.userCache = createUserCache(cacheUri);
@@ -204,4 +204,12 @@ class User {
   }
 }
 
-export const user = new User();
+export const createUserManager = (databaseUri: string, cacheUri: string): User => (
+  new User(databaseUri, cacheUri)
+);
+
+export {
+  Authorization,
+  UserCache,
+  UserDatabase,
+};

@@ -3,7 +3,7 @@ import {
   emitMapper,
 } from './mappers';
 import { logger } from '../logger';
-import { user } from '../user/';
+import { usersManager } from '../';
 
 const log = logger('messages');
 
@@ -13,7 +13,7 @@ export const messagesHandler = async (socket: Socket): Promise<void> => {
     socket.to(`/${ request.to }`).emit(ServerSocketMessages.receive, response);
 
     // todo session storage
-    user.storeMessage(
+    usersManager.storeMessage(
       response.from,
       request.to,
       [ response.messageId, response.message ],
@@ -28,7 +28,7 @@ export const messagesHandler = async (socket: Socket): Promise<void> => {
 
     // todo session storage
     // todo should I pass message in case not stored in emit step?
-    user.updateMessage(
+    usersManager.updateMessage(
       request.from,
       response.to,
       response.messageId,

@@ -1,4 +1,4 @@
-import { user } from '../../user/';
+import { usersManager } from '../../';
 
 export const createUser =
 async ({ query }: ExpressRequest, res: ExpressResponse): Promise<void> => {
@@ -6,7 +6,7 @@ async ({ query }: ExpressRequest, res: ExpressResponse): Promise<void> => {
 
   try {
     res.send({
-      result: await user.createUser(login, password, confirmPassword),
+      result: await usersManager.createUser(login, password, confirmPassword),
     });
   } catch (err) {
     res.send({
