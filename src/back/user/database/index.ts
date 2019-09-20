@@ -1,6 +1,6 @@
 import {
   MongoDB,
-  mongoDB,
+  createMongo,
 } from '../../databases/mongo/';
 import { UserError } from '../user-error';
 import { logger } from '../../logger/';
@@ -16,6 +16,15 @@ interface CreateUserProps {
 
 export class UserDatabase {
   constructor (private database: MongoDB) {
+  }
+
+  public async disconnect (): Promise<boolean> {
+    try {
+      await this.database.disconnect.bind(this.database)();
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   public async createUser ({ login, password, salt, hash }: CreateUserProps): Promise<boolean> {
@@ -35,6 +44,26 @@ export class UserDatabase {
     }
   }
 
+  public async getUsers (): Promise<UserDocument[]> {
+    try {
+      const result = await this.database.find(Collections.users);
+      log.info('Users retrieved from database');
+      return result;
+    } catch (err) {
+      log.error('Users not retrieved from database:', err);
+      return Promise.reject(err);
+    }
+  }
+
+  public async getUsersLogins (): Promise<string[]> {
+    try {
+      const result = await this.getUsers();
+      return result.map(userDocument => userDocument.login);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
   public async findUser (login: string): Promise<UserDocument> {
     try {
       const result = await this.database.findOne(Collections.users, { login });
@@ -42,6 +71,17 @@ export class UserDatabase {
       return result;
     } catch (err) {
       log.error('User not found:', login, err);
+      return Promise.reject(err);
+    }
+  }
+
+  public async deleteUsers (): Promise<boolean> {
+    try {
+      const result = await this.database.delete(Collections.users);
+      log.info('Users deleted');
+      return result;
+    } catch (err) {
+      log.error('Users not deleted:', err);
       return Promise.reject(err);
     }
   }
@@ -77,6 +117,29 @@ export class UserDatabase {
       return result;
     } catch (err) {
       log.error('Message not stored:', login, to, message[ 0 ], err);
+      return Promise.reject(err);
+    }
+  }
+
+  public async update (login:string, data: Partial<UserDocument>): Promise<UserDocument> {
+    let user: UserDocument;
+
+    try {
+      user = await this.database.findOne(Collections.users, { login });
+    } catch (err) {
+      log.error(
+        'User not updated, user not found:', login, data
+      );
+      return Promise.reject(err);
+    }
+
+    try {
+      Object.assign(user, data);
+      const result = await user.save();
+      log.info('User updated:', login, data);
+      return result;
+    } catch (err) {
+      log.error('User not updated:', login, data, err);
       return Promise.reject(err);
     }
   }
@@ -132,6 +195,6 @@ export class UserDatabase {
   }
 }
 
-const userDatabase = new UserDatabase(mongoDB);
-
-export { userDatabase };
+export const createUserDatabase = (uri: string): UserDatabase => {
+  return new UserDatabase(createMongo(uri));
+};

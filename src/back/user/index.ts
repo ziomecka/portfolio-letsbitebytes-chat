@@ -4,31 +4,39 @@ import {
 } from './authorization/';
 import {
   UserCache,
-  userCache,
+  createUserCache,
 } from './cache';
 import {
   UserDatabase,
-  userDatabase,
+  createUserDatabase,
 } from './database';
 import {
   UserSession,
-  userSession,
+  createUserSession,
 } from './session';
 import { UserError } from './user-error';
 import { logger } from '../logger/';
 
 const log = logger('user');
 
-class User {
-  private authorization: Authorization;
-  private userCache: UserCache;
-  private userDatabase: UserDatabase;
-  private userSession: UserSession;
-  constructor () {
+export class User {
+  public readonly authorization: Authorization;
+  public readonly userCache: UserCache;
+  public readonly userDatabase: UserDatabase;
+  public readonly userSession: UserSession;
+  constructor (databaseUri: string, cacheUri: string) {
     this.authorization = authorization;
-    this.userCache = userCache;
-    this.userDatabase = userDatabase;
-    this.userSession = userSession;
+    this.userSession = createUserSession(cacheUri);
+    this.userCache = createUserCache(cacheUri);
+    this.userDatabase = createUserDatabase(databaseUri);
+  }
+
+  public async destroy (): Promise<boolean[]> {
+    return Promise.all([
+      await this.userCache.disconnect(),
+      await this.userDatabase.disconnect(),
+      await this.userSession.disconnect(),
+    ]);
   }
 
   private isValidLogin (login: string): boolean {
@@ -195,6 +203,32 @@ class User {
       return false;
     }
   }
+
+  public async update (
+    login: string,
+    data: Partial<UserDocument> & { password?: string }
+  ): Promise<boolean> {
+    if ('password' in data) {
+      Object.assign(data, this.authorization.encryptPassword(data.password));
+    }
+
+    try {
+      await this.userDatabase.update(login, data);
+      log.info('User updated:', login, data);
+      return true;
+    } catch (err) {
+      log.error('User not updated:', login, data, err);
+      return false;
+    }
+  }
 }
 
-export const user = new User();
+export const createUserManager = (databaseUri: string, cacheUri: string): User => (
+  new User(databaseUri, cacheUri)
+);
+
+export {
+  Authorization,
+  UserCache,
+  UserDatabase,
+};

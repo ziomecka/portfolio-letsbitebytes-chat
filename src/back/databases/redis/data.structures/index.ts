@@ -15,6 +15,7 @@ export const stringData = {
 };
 
 export const setData = {
+  delKey,
   sadd,
   smembers,
 };

@@ -5,5 +5,5 @@ export {
 
 export {
   Redis,
-  createClient,
+  createRedis,
 } from './client';

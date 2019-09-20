@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
+    "@babel/node": "7.6.1",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
@@ -72,6 +73,7 @@
     "jest-enzyme": "7.1.0",
     "jest-sinon": "0.5.2",
     "lost": "8.3.1",
+    "make-runnable": "1.3.6",
     "mini-css-extract-plugin": "0.8.0",
     "node-sass": "4.12.0",
     "nodemon": "1.19.1",
@@ -108,7 +110,11 @@
     "test:watch": "npm run test -- --watch",
     "tsc:compile": "rm -rf tsc && tsc -p tsconfig.json",
     "tsc:watch": "npm run tsc:compile -- -w",
-    "work": "run-p nodemon build:watch test:watch tsc:watch"
+    "work": "run-p nodemon build:watch test:watch tsc:watch",
+    "maintenance:sync:usersCache": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts syncUsersCache",
+    "maintenance:delete:users": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts deleteUsers",
+    "maintenance:create:defaultUsers": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts createDefaultUsers",
+    "maintenance:update:defaultUsers": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts updateDefaultUsers"
   },
   "keywords": [
     "React",
