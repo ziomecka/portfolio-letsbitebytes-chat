@@ -1,11 +1,15 @@
 import {
   Redis,
-  redis,
+  createRedis,
 } from '../../databases/';
 
 export class UserSession {
   constructor (private client: Redis) {
   }
+
+  public disconnect = async (): Promise<boolean> => (
+    await this.client.disconnect()
+  )
 }
 
-export const userSession = new UserSession(redis);
+export const createUserSession = (uri: string): UserSession => new UserSession(createRedis(uri));

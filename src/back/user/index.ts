@@ -12,7 +12,7 @@ import {
 } from './database';
 import {
   UserSession,
-  userSession,
+  createUserSession,
 } from './session';
 import { UserError } from './user-error';
 import { logger } from '../logger/';
@@ -26,7 +26,7 @@ export class User {
   public readonly userSession: UserSession;
   constructor (databaseUri: string, cacheUri: string) {
     this.authorization = authorization;
-    this.userSession = userSession;
+    this.userSession = createUserSession(cacheUri);
     this.userCache = createUserCache(cacheUri);
     this.userDatabase = createUserDatabase(databaseUri);
   }
@@ -35,6 +35,7 @@ export class User {
     return Promise.all([
       await this.userCache.disconnect(),
       await this.userDatabase.disconnect(),
+      await this.userSession.disconnect(),
     ]);
   }
 
