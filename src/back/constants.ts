@@ -20,6 +20,11 @@ export const VENDOR_FILE = '/vendor.js';
 
 export const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
+export const DOMAIN = IS_PRODUCTION ? PRODUCTION_URL : 'localhost';
+
+export const SESSION_COOKIE_NAME = 'lbbChat';
+export const SESSION_COOKIE_AGE = 60 * 60 * 1000;
+
 export {
   MAX_LOGIN_LENGTH,
   MAX_PASSWORD_LENGTH,
