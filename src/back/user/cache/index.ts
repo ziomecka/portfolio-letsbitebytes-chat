@@ -15,7 +15,7 @@ export class UserCache {
   public smembers(key: string): Promise<string[]>;
   // @ts-ignore
   public sdelete(key: string): Promise<boolean>;
-  constructor (private client: Redis) {
+  constructor (public readonly client: Redis) {
     this.init();
   }
 
