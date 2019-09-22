@@ -1,6 +1,7 @@
 import {
   BUTTON_GREY_SHADE,
   BUTTON_SIZE,
+  DIALOG_MAX_WIDTH,
   SPACING_LARGE,
   SPACING_REGULAR,
 } from './other-constants';
@@ -29,6 +30,8 @@ const other = ({
   const regularSpacing = spacing(SPACING_REGULAR);
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
+
+  const dialogMaxWidth = DIALOG_MAX_WIDTH;
 
   const maxWidthHeight = {
     maxHeight: '100%',
@@ -66,6 +69,26 @@ const other = ({
         root: {
           width: typography.fontSize * buttonSize,
           ...marginPadding,
+        },
+      },
+      MuiDialog: {
+        paper: {
+          maxHeight: 'none',
+          width: 'initial',
+          height: 'initial',
+          position: 'relative',
+          whiteSpace: 'pre-wrap',
+          overflow: 'hidden',
+          padding: largeSpacing,
+          maxWidth: dialogMaxWidth,
+          borderRadius,
+        },
+      },
+      MuiDialogContentText: {
+        root: {
+          fontFamily: typography.fontFamily,
+          fontSize: typography.fontSize,
+          fontWeight: typography.fontWeightLight,
         },
       },
       MuiInputBase: {
