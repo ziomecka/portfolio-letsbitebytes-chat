@@ -12,6 +12,7 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = initialState, act
         activeConversation: state.activeConversation,
         connectionState: state.connectionState,
         users: state.users,
+        dialog: state.dialog,
       }, action as CommonActions
     ),
   };
