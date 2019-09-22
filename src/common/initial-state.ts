@@ -25,7 +25,7 @@ export const defaultInitialState: AppState = {
   },
 };
 
-const state = process.env.IS_BROWSER == 'true'
+const state = process.env.IS_BROWSER
   ? (window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState
   : defaultInitialState;
 
