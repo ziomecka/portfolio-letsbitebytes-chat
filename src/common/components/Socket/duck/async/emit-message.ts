@@ -1,4 +1,5 @@
 import { emitAction } from '../actions';
+import { encode as escapeHtml } from 'he';
 import { socket } from './initiate-connection';
 
 const buildId = (): string => Date.now().toString();
@@ -10,7 +11,7 @@ export const emitMessage = (message: string, clientSocket = socket): AppThunkAct
     const messageDetails = {
       to: getState().activeConversation,
       messageId: buildId(),
-      message,
+      message: escapeHtml(message),
     };
 
     clientSocket
