@@ -1,4 +1,4 @@
-import { SPACING_REGULAR } from '../../common/theme/other-constants';
+import { SPACING_REGULAR } from '../theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
 
