@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  AppButton,
-  AppRoutes,
-} from '../../../common/';
+import { AppButton } from '../';
 
 const BUTTON_TEXT = 'Logout';
 
