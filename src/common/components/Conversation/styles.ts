@@ -2,7 +2,7 @@ import {
   BUTTON_GREY_SHADE,
   SPACING_REGULAR,
   SPACING_SMALL,
-} from '../../../common/theme/other-constants';
+} from '../../theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
 import { styles as commonStyles } from '../styles';
 import { createStyles } from '@material-ui/styles';

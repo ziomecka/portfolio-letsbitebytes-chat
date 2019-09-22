@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import { AppButton } from '../../../common';
+import { AppButton } from '../';
 import { HTML_CONVERSATION_ID } from '../../constants';
 import { styles } from './styles';
 import texts from './texts';
