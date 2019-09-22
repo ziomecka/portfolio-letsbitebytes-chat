@@ -1,3 +1,5 @@
+import { defaultInitialState } from '../../common/';
+
 const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, action) => {
   const { type, ...actionPayload } = action;
 
