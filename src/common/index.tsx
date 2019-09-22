@@ -4,7 +4,7 @@ export {
   SSR_STYLE_ROOT_ID,
 } from './constants';
 
-export { DEFAULT_INITIAL_STATE } from './initial-state';
+export { initialState } from './initial-state';
 
 export { AppButton, Public } from './components/';
 
