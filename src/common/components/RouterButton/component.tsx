@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppButton } from '../../../common/';
+import { AppButton } from '../';
 
 const RouterButton: React.FunctionComponent<RouterButtonProps> = ({
   children,
