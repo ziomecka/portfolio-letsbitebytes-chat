@@ -3,7 +3,7 @@ import { buildDevelopmentUser } from './build-development-user';
 import { initialState } from '../../../../common/';
 
 export const buildInitialState =
-async (): Promise<AppState> => {
+async ({ notifications }: PartialSsrInitialState): Promise<AppState> => {
   // todo copy conversations
   return {
     ...initialState,
@@ -17,5 +17,9 @@ async (): Promise<AppState> => {
       },
     users: [] as string[],
     dialog: { ...initialState.dialog },
+    notifications: {
+      history: [...notifications.history],
+      actual: [...notifications.actual],
+    },
   };
 };
