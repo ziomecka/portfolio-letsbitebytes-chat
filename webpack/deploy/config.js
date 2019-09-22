@@ -1,9 +1,13 @@
 const CompressionPlugin = require('compression-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: false,
   optimization: {
     minimize: true,
+    minimizer: [new UglifyJsPlugin({
+      extractComments: true,
+    })],
     splitChunks: {
       chunks: "all",
       maxInitialRequests: Infinity,
