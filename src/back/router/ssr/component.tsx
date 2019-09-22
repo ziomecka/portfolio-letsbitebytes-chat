@@ -8,12 +8,12 @@ import {
   StaticRouter,
 } from 'react-router-dom';
 
-interface BackComponentProps {
+interface BackProps {
   store: ReduxStore;
 }
 
-const BackComponent: React.FunctionComponent<BackComponentProps> = (
-  { store }: BackComponentProps
+const Back: React.FunctionComponent<BackProps> = (
+  { store }: BackProps
 ) => (
   <Common store={store}>
     <StaticRouter>
@@ -22,4 +22,4 @@ const BackComponent: React.FunctionComponent<BackComponentProps> = (
   </Common>
 );
 
-export { BackComponent };
+export { Back };

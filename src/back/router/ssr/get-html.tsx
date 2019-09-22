@@ -10,13 +10,13 @@ import {
   SSR_STYLE_ROOT_ID,
   WINDOW_INITIAL_STATE,
 } from '../../../common/';
-import { BackComponent } from './component';
+import { Back } from './component';
 import { ServerStyleSheets } from '@material-ui/styles';
 
 export const sheets = new ServerStyleSheets();
 
 export const getHtml = (store: ReduxStore): string => {
-  const html = ReactDOMServer.renderToString(sheets.collect(<BackComponent store={store}/>));
+  const html = ReactDOMServer.renderToString(sheets.collect(<Back store={store}/>));
   const css = sheets.toString();
 
   return `
