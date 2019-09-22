@@ -16,5 +16,6 @@ async (): Promise<AppState> => {
         ...buildDevelopmentUser(),
       },
     users: [] as string[],
+    dialog: { ...initialState.dialog },
   };
 };
