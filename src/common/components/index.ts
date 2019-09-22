@@ -1,4 +1,8 @@
 export { AppButton } from './AppButton';
+export {
+  AppDialog,
+  mapDialogToDispatch,
+} from './AppDialog/';
 export { AppForm } from './AppForm';
 export { Common } from './Common';
 export { Conversation } from './Conversation';

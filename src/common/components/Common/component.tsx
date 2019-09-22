@@ -1,6 +1,9 @@
 /* eslint-disable no-global-assign */
 import * as React from 'react';
 import {
+  AppDialog,
+} from '../';
+import {
   Grid,
   MuiThemeProvider,
   Paper,
@@ -58,6 +61,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
           >
             { children }
           </Grid>
+          <AppDialog />
         </Grid>
       </PublisherProvider>
     </MuiThemeProvider>
