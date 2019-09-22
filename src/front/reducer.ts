@@ -1,5 +1,5 @@
 import { commonStateReducer } from '../common/duck/';
-import { initialState } from '../common';
+import { initialState } from '../common/';
 import { loginReducer } from '../common/components/Login/';
 import { socketReducer } from '../common/components/Socket/';
 
@@ -13,6 +13,7 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = initialState, act
         connectionState: state.connectionState,
         users: state.users,
         dialog: state.dialog,
+        notifications: state.notifications,
       }, action as CommonActions
     ),
   };
