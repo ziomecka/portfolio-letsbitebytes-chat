@@ -99,7 +99,7 @@ export class User {
         role,
       } = await this.userDatabase.findUser(login);
 
-      const { hash, salt, isValid } =
+      const { hash, salt, isValid, token } =
       this.authorization.verifyPassword(storedHash, storedSalt, password);
 
       if (isValid) {
@@ -110,7 +110,7 @@ export class User {
           hash,
           salt,
           role,
-          // todo do it on client side
+          token,
           conversations: this.buildConversations(conversations),
         };
       }
@@ -149,19 +149,20 @@ export class User {
     return {};
   }
 
-  public async login (login: string, password: string): Promise<ApiResponse> {
+  public async login (login: string, password: string): Promise<ApiResponse & { token?: string }> {
     const response = {
       result: false,
       data: {
         role: 'unknown',
         users: [] as string[],
       },
-    } as ApiResponse;
+    } as ApiResponse & { token?: string };
 
     try {
-      const { isValid, role, conversations } = await this.verifyPassword(login, password);
+      const { isValid, role, conversations, token } = await this.verifyPassword(login, password);
 
       response.result = isValid;
+      response.token = token;
       response.data.role = role;
       response.data.conversations = conversations;
       response.data.users = await this.getUsers(login);
