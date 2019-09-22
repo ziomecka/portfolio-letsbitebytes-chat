@@ -1,28 +1,25 @@
-import { NODE_ENV } from '../../../constants';
+import { IS_PRODUCTION } from '../../../constants';
 import { buildDevelopmentUser } from './build-development-user';
-import {
-  DEFAULT_INITIAL_STATE as defaultInitialState,
-} from '../../../../common/';
+import { initialState } from '../../../../common/';
 
 export const buildInitialState =
-async (): Promise<AppState> => {
-  let user = {
-    ...defaultInitialState.user,
-  };
-
-  if (NODE_ENV !== 'production') {
-    user = {
-      ...user,
-      ...buildDevelopmentUser(),
-    };
-  }
-
+async ({ notifications }: PartialSsrInitialState): Promise<AppState> => {
   // todo copy conversations
   return {
-    ...defaultInitialState,
+    ...initialState,
     conversations: {} as Conversations,
     connectionState: ConnectionState.unknown,
-    user,
+    user: IS_PRODUCTION
+      ? { ...initialState.user }
+      : {
+        ...initialState.user,
+        ...buildDevelopmentUser(),
+      },
     users: [] as string[],
+    dialog: { ...initialState.dialog },
+    notifications: {
+      history: [...notifications.history],
+      actual: [...notifications.actual],
+    },
   };
 };

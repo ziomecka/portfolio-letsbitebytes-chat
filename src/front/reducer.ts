@@ -1,9 +1,9 @@
-import { INITIAL_STATE } from './initial-state';
-import { commonStateReducer } from './duck/';
-import { loginReducer } from './components/Login/';
-import { socketReducer } from './components/Socket/';
+import { commonStateReducer } from '../common/duck/';
+import { initialState } from '../common/';
+import { loginReducer } from '../common/components/Login/';
+import { socketReducer } from '../common/components/Socket/';
 
-const appReducer: ReduxReducer<AppState, AppAction> = (state = INITIAL_STATE, action) => {
+const appReducer: ReduxReducer<AppState, AppAction> = (state = initialState, action) => {
   return {
     user: loginReducer(state.user, action),
     conversations: socketReducer(state.conversations, action),
@@ -12,6 +12,8 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = INITIAL_STATE, ac
         activeConversation: state.activeConversation,
         connectionState: state.connectionState,
         users: state.users,
+        dialog: state.dialog,
+        notifications: state.notifications,
       }, action as CommonActions
     ),
   };

@@ -81,6 +81,7 @@ module.exports = {
       'process.env.SOCKET_PORT': JSON.stringify(process.env.SOCKET_PORT),
       'process.env.CLIENT_CONFIRM_RELOAD': JSON.stringify(process.env.CLIENT_CONFIRM_RELOAD),
       'process.env.PRODUCTION_URL': JSON.stringify(process.env.PRODUCTION_URL),
+      'process.env.IS_BROWSER': JSON.stringify(true),
     }),
     new CopyWebpackPlugin(
       [

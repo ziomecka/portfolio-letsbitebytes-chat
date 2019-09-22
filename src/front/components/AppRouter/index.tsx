@@ -1,13 +1,10 @@
 import * as React from 'react';
 import {
-  AppRoutes,
-  Public,
-} from '../../../common/';
-import {
   CreateUser,
   Login,
   ProtectedRoute,
-} from '../';
+  Public,
+} from '../../../common/';
 import { Route } from 'react-router-dom';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
 

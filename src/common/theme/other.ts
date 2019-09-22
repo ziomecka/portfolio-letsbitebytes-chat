@@ -1,13 +1,13 @@
 import {
   BUTTON_GREY_SHADE,
   BUTTON_SIZE,
+  DIALOG_MAX_WIDTH,
   SPACING_LARGE,
   SPACING_REGULAR,
 } from './other-constants';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
@@ -16,14 +16,22 @@ const buildMarginPadding = (margin: number, padding: number): unknown => ({
   paddingLeft: 0,
 });
 
-const other = (theme: Theme): ThemeOptions => {
-  const buttonSize = BUTTON_SIZE;
-  const backgroundColorButton = theme.palette.grey[ BUTTON_GREY_SHADE ];
+const other = ({
+  palette,
+  spacing,
+  typography,
+  shape: { borderRadius },
+}: Theme): ThemeOptions => {
 
-  const largeSpacing = theme.spacing(SPACING_LARGE);
-  const regularSpacing = theme.spacing(SPACING_REGULAR);
+  const buttonSize = BUTTON_SIZE;
+  const backgroundColorButton = palette.grey[ BUTTON_GREY_SHADE ];
+
+  const largeSpacing = spacing(SPACING_LARGE);
+  const regularSpacing = spacing(SPACING_REGULAR);
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
+
+  const dialogMaxWidth = DIALOG_MAX_WIDTH;
 
   const maxWidthHeight = {
     maxHeight: '100%',
@@ -59,8 +67,28 @@ const other = (theme: Theme): ThemeOptions => {
       },
       MuiButtonBase: {
         root: {
-          width: theme.typography.fontSize * buttonSize,
+          width: typography.fontSize * buttonSize,
           ...marginPadding,
+        },
+      },
+      MuiDialog: {
+        paper: {
+          maxHeight: 'none',
+          width: 'initial',
+          height: 'initial',
+          position: 'relative',
+          whiteSpace: 'pre-wrap',
+          overflow: 'hidden',
+          padding: largeSpacing,
+          maxWidth: dialogMaxWidth,
+          borderRadius,
+        },
+      },
+      MuiDialogContentText: {
+        root: {
+          fontFamily: typography.fontFamily,
+          fontSize: typography.fontSize,
+          fontWeight: typography.fontWeightLight,
         },
       },
       MuiInputBase: {
@@ -87,7 +115,7 @@ const other = (theme: Theme): ThemeOptions => {
           margin: 0,
           '&$h1': {
             width: '100%',
-            marginBottom: fontSizes.h1,
+            marginBottom: typography.h1.fontSize,
           },
           '&$h2': {
             width: '100%',

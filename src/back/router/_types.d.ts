@@ -7,3 +7,4 @@ declare type ExpressResponse = import('express').Response;
 declare type ExpressNext = import('express').NextFunction;
 
 declare type Middleware = (req: ExpressRequest, res: ExpressResponse, next: NextFunction) => void;
+declare type ExpressApplication = import('express').Application;

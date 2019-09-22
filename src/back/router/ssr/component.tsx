@@ -1,25 +1,29 @@
 import * as React from 'react';
 import {
   Common,
+  ProtectedRoute,
   Public,
 } from '../../../common/';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router-dom';
+import {
+  Route,
+  StaticRouter,
+} from 'react-router-dom';
 
-interface BackComponentProps {
+interface BackProps {
   store: ReduxStore;
 }
 
-const BackComponent: React.FunctionComponent<BackComponentProps> = (
-  props: BackComponentProps
+const Back: React.FunctionComponent<BackProps> = (
+  { store }: BackProps
 ) => (
-  <Provider store={props.store}>
+  <Common store={store}>
     <StaticRouter>
-      <Common>
-        <Public />
-      </Common>
+      <Route exact path={AppRoutes.publicRoute} component={Public}/>
+      <Route exact path = {AppRoutes.loginRoute} />
+      <Route exact path = {AppRoutes.createUserRoute} />
+      <ProtectedRoute path = {AppRoutes.protectedRoute} />
     </StaticRouter>
-  </Provider>
+  </Common>
 );
 
-export { BackComponent };
+export { Back };
