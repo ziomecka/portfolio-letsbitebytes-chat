@@ -15,3 +15,9 @@ export const setUsers: ReduxActionCreator<SetUsersAction> =
     type: CommonActionTypes.setUsers,
     users,
   });
+
+export const setNotifications: ReduxActionCreator<SetNotificationsAction> =
+({ notifications }: SetNotificationsProps) => ({
+  type: CommonActionTypes.setNotifications,
+  notifications,
+});
