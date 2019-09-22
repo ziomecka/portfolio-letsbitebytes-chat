@@ -1,3 +1,4 @@
+import { encode as escapeHtml } from 'he';
 import { receiveAction } from '../actions';
 
 const confirm = (socket: SocketIOClient.Socket, confirm: unknown) => (
@@ -15,7 +16,13 @@ export const listenReceive = (socket: SocketIOClient.Socket) => (
             socket, { from: request.from, to: getState().user.login, messageId: request.messageId }
           )
         );
-        return dispatch(receiveAction(request));
+        const { from, message, messageId } = request;
+
+        return dispatch(receiveAction({
+          from,
+          messageId,
+          message: escapeHtml(message),
+        }));
       }
     );
   }
