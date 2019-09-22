@@ -3,7 +3,8 @@ import {
   AppButton,
   AppRoutes,
 } from '../../../common/';
-import { AppForm } from '../';
+  AppForm,
+} from '../';
 import { TextField } from '@material-ui/core/';
 import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
