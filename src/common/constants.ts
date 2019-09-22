@@ -21,3 +21,5 @@ export const PASSWORD_REGEXP =
     `(?=^.{${ MIN_PASSWORD_LENGTH },${ MAX_PASSWORD_LENGTH }}$)(^[\\w${ SPECIAL_CHARACTERS }]*[${ SPECIAL_CHARACTERS }]+[\\w${ SPECIAL_CHARACTERS }]*$)`, // eslint-disable-line max-len
     'i'
   );
+
+export const HTML_CONVERSATION_ID = 'app-conversation';
