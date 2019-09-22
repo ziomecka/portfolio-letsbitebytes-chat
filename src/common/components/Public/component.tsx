@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { AppButton } from '../AppButton/';
-import { AppRoutes } from '../../../common/constants';
 import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
