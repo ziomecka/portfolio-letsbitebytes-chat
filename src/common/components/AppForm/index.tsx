@@ -34,7 +34,7 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
       {children}
 
       <RouterButton
-        to={ServerRoutes.publicRoute}
+        to={AppRoutes.publicRoute}
         variant={AppButtonVariant.transparent}
       >
         { texts.homeLabel }

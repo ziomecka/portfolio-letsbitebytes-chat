@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {
   AppButton,
-  AppRoutes,
-} from '../../../common/';
   AppForm,
 } from '../';
 import { TextField } from '@material-ui/core/';

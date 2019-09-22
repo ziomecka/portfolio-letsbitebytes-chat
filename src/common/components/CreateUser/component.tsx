@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {
   AppButton,
-  AppRoutes,
-} from '../../../common/';
-import {
   AppForm,
   RouterButton,
 } from '../';
