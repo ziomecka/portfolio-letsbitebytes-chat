@@ -27,7 +27,7 @@ const windowObject = process.env.IS_BROWSER != 'true'
 const Common: React.FunctionComponent<CommonProps> = ({
   children,
   classes,
-  elevation = 0,
+  elevation = 1,
   login,
   appTitle = APP_TITLE,
   store,
