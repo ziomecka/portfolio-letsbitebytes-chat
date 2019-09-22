@@ -2,10 +2,13 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
+import { SPACING_LARGE } from '../../theme/other-constants';
 
-export const styles = createStyles(({ typography }: Theme) => ({
+export const styles = createStyles(({ spacing, typography }: Theme) => ({
   rootBox: {
+    position: 'relative',
     margin: 0,
+    padding: spacing(SPACING_LARGE),
     width: '100%',
     height: '100%',
     overflow: 'hidden',
@@ -15,5 +18,4 @@ export const styles = createStyles(({ typography }: Theme) => ({
     height: `calc(100% - ${ typography.h1.fontSize } * 2)`,
     width: '100%',
   },
-}
-));
+}));
