@@ -5,8 +5,10 @@ export {
   SSR_STYLE_ROOT_ID,
 } from './constants';
 
-export { initialState } from './initial-state';
-
+export {
+  defaultInitialState,
+  initialState,
+} from './initial-state';
 
 export {
   Login,
