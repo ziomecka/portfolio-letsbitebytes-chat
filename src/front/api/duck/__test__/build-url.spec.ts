@@ -27,6 +27,12 @@ const scenarios = [
     },
     result: `${ url }?bar=foo%25bar%26`,
   },
+  {
+    queryParams: {
+      poo: '<script>foo</script>',
+    },
+    result: `${ url }?poo=%3Cscript%3Efoo%3C%2Fscript%3E`,
+  },
 ];
 
 describe('build query params', () => {
