@@ -3,23 +3,23 @@ import {
   Common,
   Public,
 } from '../../../common/';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router-dom';
+import {
+  Route,
+  StaticRouter,
+} from 'react-router-dom';
 
 interface BackComponentProps {
   store: ReduxStore;
 }
 
 const BackComponent: React.FunctionComponent<BackComponentProps> = (
-  props: BackComponentProps
+  { store }: BackComponentProps
 ) => (
-  <Provider store={props.store}>
+  <Common store={store}>
     <StaticRouter>
-      <Common>
-        <Public />
-      </Common>
+      <Route exact path={AppRoutes.publicRoute} component={Public}/>
     </StaticRouter>
-  </Provider>
+  </Common>
 );
 
 export { BackComponent };
