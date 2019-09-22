@@ -16,7 +16,7 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
 ({
   isAuthenticated,
   classes,
-  elevation = 1,
+  elevation = 0,
 }) => {
   return (isAuthenticated ? (
     <Grid
