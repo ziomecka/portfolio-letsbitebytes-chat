@@ -10,29 +10,3 @@ declare type EventCallback<E> = import('publisher-subscriber-react-hoc').EventCa
 
 declare type GetState = () => AppState;
 
-declare interface AppState {
-  user: UserState;
-  conversations: SocketState;
-  activeConversation: string;
-  connectionState: ConnectionState;
-  users: string[];
-}
-
-declare interface PartialAppState {
-  user?: Partial<UserState>;
-  conversations?: SocketState;
-  activeConversation?: string;
-  connectionState?: ConnectionState;
-  users?: string[];
-}
-
-declare interface AsyncInitialAppState {
-}
-
-declare type AppWindow = Window & {
-  __INITIAL_STATE__: string;
-}
-
-declare type AppAction = |
-  LoginActions |
-  CommonActions;
