@@ -1,7 +1,2 @@
-export { AppForm } from './AppForm/';
-export { AppRouter } from './AppRouter/';
-export { Conversation } from './Conversation/';
-export { CreateUser } from './CreateUser/';
-export { Login } from './Login';
-export { ProtectedRoute } from './ProtectedRoute/';
-export { RouterButton } from './RouterButton/';
+export { AppRouter } from './AppRouter';
+export { Front } from './component';
