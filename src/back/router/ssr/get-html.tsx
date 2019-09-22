@@ -13,9 +13,8 @@ import {
 import { Back } from './component';
 import { ServerStyleSheets } from '@material-ui/styles';
 
-export const sheets = new ServerStyleSheets();
-
 export const getHtml = (store: ReduxStore): string => {
+  const sheets = new ServerStyleSheets();
   const html = ReactDOMServer.renderToString(sheets.collect(<Back store={store}/>));
   const css = sheets.toString();
 
