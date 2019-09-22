@@ -1,0 +1,1 @@
+export { NotificationsButton } from './container';

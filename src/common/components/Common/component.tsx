@@ -2,6 +2,7 @@
 import * as React from 'react';
 import {
   AppDialog,
+  NotificationsButton,
 } from '../';
 import {
   Grid,
@@ -62,6 +63,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
             { children }
           </Grid>
           <AppDialog />
+          <NotificationsButton />
         </Grid>
       </PublisherProvider>
     </MuiThemeProvider>

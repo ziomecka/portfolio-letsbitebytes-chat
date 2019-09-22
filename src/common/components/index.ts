@@ -10,6 +10,7 @@ export { CreateUser } from './CreateUser';
 export { Login } from './Login';
 export { Logout } from './Logout';
 export { ProtectedRoute } from './ProtectedRoute';
+export { NotificationsButton } from './NotificationsButton';
 export { Public } from './Public';
 export { RouterButton } from './RouterButton';
 export { Socket } from './Socket';
