@@ -19,6 +19,10 @@ export const defaultInitialState: AppState = {
     closeButton: true,
     buttonsVariant: ButtonsVariants.none,
   },
+  notifications: {
+    history: [],
+    actual: [],
+  },
 };
 
 const state = process.env.IS_BROWSER == 'true'
@@ -31,4 +35,8 @@ export const initialState = {
   users: [...state.users],
   conversations: { ...state.conversations },
   dialog: { ...state.dialog },
+  notifications: {
+    history: [...state.notifications.history],
+    actual: [...state.notifications.actual],
+  },
 };
