@@ -5,9 +5,6 @@ module.exports = {
   devtool: false,
   optimization: {
     minimize: true,
-    minimizer: [new UglifyJsPlugin({
-      extractComments: true,
-    })],
     splitChunks: {
       chunks: "all",
       maxInitialRequests: Infinity,
@@ -26,6 +23,12 @@ module.exports = {
       algorithm: 'gzip',
       test: /\.js(\?.*)?$/i,
       deleteOriginalAssets: true
+    }),
+    new UglifyJsPlugin({
+      extractComments: true,
+      uglifyOptions: {
+        mangle: true,
+      },
     }),
   ],
 };
