@@ -12,6 +12,13 @@ export const defaultInitialState: AppState = {
   activeConversation: '',
   connectionState: ConnectionState.unknown,
   users: [],
+  dialog: {
+    open: false,
+    title: '',
+    content: '',
+    closeButton: true,
+    buttonsVariant: ButtonsVariants.none,
+  },
 };
 
 const state = process.env.IS_BROWSER == 'true'
@@ -23,4 +30,5 @@ export const initialState = {
   user: { ...state.user },
   users: [...state.users],
   conversations: { ...state.conversations },
+  dialog: { ...state.dialog },
 };

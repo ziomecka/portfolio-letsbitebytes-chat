@@ -14,6 +14,7 @@ declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
   users: string[];
+  dialog: DialogState;
 }
 
 declare interface ChangeConversationActionProps {
@@ -35,4 +36,5 @@ declare interface ChangeSocketConnectionAction extends ChangeSocketConnectionAct
 declare type CommonActions = |
   ChangeConversationAction |
   ChangeSocketConnectionAction |
-  SetUsersAction;
+  SetUsersAction |
+  DialogActions;
