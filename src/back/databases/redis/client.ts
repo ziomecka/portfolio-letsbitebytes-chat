@@ -34,8 +34,6 @@ export class Redis {
     this.client.on ('end', () => {
       log.info('Redis connection ended');
     });
-
-    this.client.auth(this.auth.split(':')[ 1 ]);
   };
 }
 
