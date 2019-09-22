@@ -1,3 +1,4 @@
+import * as escapeHtml from 'escape-html';
 import { emitAction } from '../actions';
 import { socket } from './initiate-connection';
 
@@ -10,7 +11,7 @@ export const emitMessage = (message: string, clientSocket = socket): AppThunkAct
     const messageDetails = {
       to: getState().activeConversation,
       messageId: buildId(),
-      message,
+      message: escapeHtml(message),
     };
 
     clientSocket
