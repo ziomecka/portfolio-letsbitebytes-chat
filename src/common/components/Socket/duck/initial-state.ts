@@ -1,3 +1,3 @@
-import { INITIAL_STATE } from '../../../initial-state';
+import { initialState } from '../../../initial-state';
 
-export const socketInitialState = INITIAL_STATE.conversations;
+export const socketInitialState = initialState.conversations;

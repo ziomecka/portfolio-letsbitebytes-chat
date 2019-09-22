@@ -1,5 +1,5 @@
-import { INITIAL_STATE } from '../../../initial-state';
+import { initialState } from '../../../initial-state';
 
 export const loginInitialState = {
-  ...INITIAL_STATE.user,
+  ...initialState.user,
 } as UserState;
