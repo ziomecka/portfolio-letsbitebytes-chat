@@ -1,3 +1,4 @@
+import * as escapeHtml from 'escape-html';
 import {
   MongoDB,
   createMongo,
@@ -96,18 +97,24 @@ export class UserDatabase {
   }
 
   public async storeMessage (
-    login: string, to: string, message: Statement
+    login: string, to: string, [ messageId, message, isDelivered ]: Statement
   ): Promise<UserDocument> {
     try {
       const user = await this.database.findOne(Collections.users, { login });
       const conversation = this.findConversation(user, to);
 
+      const statement = [
+        messageId,
+        escapeHtml(message),
+        isDelivered,
+      ] as Statement;
+
       if (conversation) {
-        conversation.push([...message] as Statement);
+        conversation.push(statement);
       } else {
         user.conversations.push({
           login: to,
-          conversation: [[...message] as Statement],
+          conversation: [statement],
         });
       }
 
@@ -173,8 +180,8 @@ export class UserDatabase {
         // todo improve implementation ?
         const newMessage: Statement =
           (delivered !== undefined)
-            ? [ messageId, message, true ]
-            : [ messageId, message ];
+            ? [ messageId, escapeHtml(message), true ]
+            : [ messageId, escapeHtml(message) ];
 
         conversation.splice(index, 1, newMessage);
 
