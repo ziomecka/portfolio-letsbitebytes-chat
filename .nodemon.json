@@ -1,7 +1,9 @@
 {
   "ignore": [
     ".git",
-    "node_modules"
+    "node_modules",
+    "*/**/*.spec.*",
+    "*/**/*.test.*"
   ],
   "watch": [
     "src",
