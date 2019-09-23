@@ -9,11 +9,10 @@
 # Concepts used
 
 * Server side rendering
-* Publisher-subscriber pattern (publisher-subscriber-react-hoc npm package coded by me)
 * Server-side cache (redis)
-* Session-storage (redis)
-* Database (mongoDB)
 * User authorization (hash + salt)
+* Cookie-based authentication and Session-storage (redis)
+* Database (mongoDB)
 
 ---
 

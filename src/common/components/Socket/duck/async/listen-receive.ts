@@ -1,4 +1,4 @@
-import * as escapeHtml from 'escape-html';
+import { encode as escapeHtml } from 'he';
 import { receiveAction } from '../actions';
 
 const confirm = (socket: SocketIOClient.Socket, confirm: unknown) => (

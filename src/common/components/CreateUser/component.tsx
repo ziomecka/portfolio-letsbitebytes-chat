@@ -11,12 +11,8 @@ import {
 import { Link } from 'react-router-dom';
 import { TextField } from '@material-ui/core/';
 import texts from './texts';
-import { withPublisher } from 'publisher-subscriber-react-hoc';
-
-const KEYBOARD_EVENT = 'keydown';
 
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {
-  private keyboardEvent: string;
   private loginRegExp: RegExp;
   private passwordRegExp: RegExp;
 
@@ -32,7 +28,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   private passwordErrorMessage: string;
   private confirmPasswordErrorMessage: string;
 
-  private unsubscribe: () => void;
   constructor (props: CreateUserWithRouterProps) {
     super(props);
 
@@ -49,10 +44,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     };
 
     this.init();
-  }
-
-  public componentWillUnmount (): void {
-    this.unsubscribe();
   }
 
   private init (): void {
@@ -76,9 +67,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
     this.typeConfirmPassword = this.typeConfirmPassword.bind(this);
-
-    this.keyboardEvent = KEYBOARD_EVENT;
-    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.submitOnEnter);
   }
 
   private async submit (): Promise<void> {
@@ -173,6 +161,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           errorMessage: serverError,
           connectionError,
         }}
+        onKeyDown={this.submitOnEnter}
       >
         <TextField
           autoFocus
@@ -239,5 +228,4 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   }
 }
 
-const WrappedComponent = withPublisher(CreateUser);
-export { WrappedComponent as CreateUser };
+export { CreateUser };

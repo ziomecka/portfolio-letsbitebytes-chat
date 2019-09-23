@@ -5,4 +5,5 @@ declare interface AppFormProps {
     errorMessage?: string;
     connectionError?: boolean;
   };
+  onKeyDown?(event?: React.KeyboardEvent<HTMLElement>): void;
 }

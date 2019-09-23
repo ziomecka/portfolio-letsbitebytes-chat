@@ -13,10 +13,7 @@ import { HTML_CONVERSATION_ID } from '../../constants';
 import { convertHtmlEntitiesToUnicode } from '../../utils/convert-html-entities-to-unicode';
 import { styles } from './styles';
 import texts from './texts';
-import { withPublisher } from 'publisher-subscriber-react-hoc';
 import { withStyles } from '@material-ui/styles';
-
-const KEYBOARD_EVENT = 'keydown';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private conversationInputLabel: string;
@@ -24,8 +21,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   private messageInitialState: string;
   private submitButtonLabel: string;
   private htmlConversationId: string;
-  private keyboardEvent: string;
-  private unsubscribe: () => void;
   constructor (props: ConversationProps) {
     super(props);
 
@@ -49,9 +44,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.sendMessageOnEnter = this.sendMessageOnEnter.bind(this);
 
     this.htmlConversationId = HTML_CONVERSATION_ID;
-
-    this.keyboardEvent = KEYBOARD_EVENT;
-    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.sendMessageOnEnter);
   }
 
   private getActiveConversation (conversations = this.props.conversations): Statement[] {
@@ -95,10 +87,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
   }
 
-  public componentWillUnmount (): void {
-    this.unsubscribe();
-  }
-
   private scroll (behavior: 'smooth' | 'auto' = 'smooth'): void {
     const $conversation = document.querySelector(`#${ this.htmlConversationId }`);
 
@@ -133,7 +121,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   // TODO async
-  private sendMessageOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private sendMessageOnEnter (event: React.KeyboardEvent<HTMLElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
       this.sendMessage();
@@ -231,6 +219,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
             autoFocus
             multiline
             onChange={this.typeMessage}
+            onKeyDown={this.sendMessageOnEnter}
             placeholder={this.conversationInputLabel}
             value={message}
             FormHelperTextProps={{
@@ -268,6 +257,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 }
 
-const WrappedConversation = withPublisher(withStyles(styles)(Conversation));
+const WrappedConversation = withStyles(styles)(Conversation);
 
 export { WrappedConversation as Conversation };

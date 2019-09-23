@@ -11,13 +11,18 @@ class NotificationsButton extends
     super(props);
     this.state = {
       isAnimationWaiting: props.dialogOpened,
-      svgAnimation: (props.actualNotifications.length
-        ? props.classes.shake
-        : ''
-      ),
+      svgAnimation: '',
     };
 
     this.animationRemoveTimeout = 2005;
+  }
+
+  public componentDidMount (): void {
+    this.setState({
+      svgAnimation: (this.props.actualNotifications.length
+        ? this.props.classes.shake
+        : ''),
+    });
   }
 
   public componentDidUpdate ({
