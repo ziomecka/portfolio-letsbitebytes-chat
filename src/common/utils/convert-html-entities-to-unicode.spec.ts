@@ -1,7 +1,7 @@
 const { convertHtmlEntitiesToUnicode } = require('./convert-html-entities-to-unicode');
 
 describe('convertHtmlEntitiesToUnicode utility', () => {
-  it('', () => {
+  it('converts html entities to unicode', () => {
     const scenarios = [
       {
         str: 'abc',
