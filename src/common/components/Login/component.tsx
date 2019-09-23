@@ -5,19 +5,14 @@ import {
 } from '../';
 import { TextField } from '@material-ui/core/';
 import texts from './texts';
-import { withPublisher } from 'publisher-subscriber-react-hoc';
-
-const KEYBOARD_EVENT = 'keydown';
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
-  private keyboardEvent: string;
   private heading: string;
   private loginLabel: string;
   private passwordLabel: string;
   private submitButtonText: string;
   private loginErrorMessage: string;
 
-  private unsubscribe: () => void;
   constructor (props: LoginWithRouterProps) {
     super(props);
 
@@ -41,10 +36,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     }
   }
 
-  public componentWillUnmount (): void {
-    this.unsubscribe();
-  }
-
   private init (): void {
     this.heading = texts.heading;
     this.loginErrorMessage = texts.loginErrorMessage;
@@ -56,9 +47,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.submitOnEnter = this.submitOnEnter.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
-
-    this.keyboardEvent = KEYBOARD_EVENT;
-    this.unsubscribe = this.props.subscribe(this.keyboardEvent, this.submitOnEnter);
   }
 
   private async submit (): Promise<void> {
@@ -141,5 +129,4 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 }
 
-const WrappedLogin = withPublisher(Login);
-export { WrappedLogin as Login };
+export { Login };
