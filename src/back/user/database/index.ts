@@ -1,8 +1,11 @@
-import * as escapeHtml from 'escape-html';
 import {
   MongoDB,
   createMongo,
 } from '../../databases/mongo/';
+import {
+  encode as escapeHtml,
+  decode as unescapeHtml,
+} from 'he';
 import { UserError } from '../user-error';
 import { logger } from '../../logger/';
 
@@ -103,9 +106,11 @@ export class UserDatabase {
       const user = await this.database.findOne(Collections.users, { login });
       const conversation = this.findConversation(user, to);
 
+      // unescape before escaping to avoid double escaping
+      // I assume that either safe or unsafe data may come from the front
       const statement = [
         messageId,
-        escapeHtml(message),
+        escapeHtml(unescapeHtml(message)),
         isDelivered,
       ] as Statement;
 
@@ -176,8 +181,7 @@ export class UserDatabase {
       if (index !== -1) {
         const [ messageId, message, delivered ] = conversation[ index ];
 
-        // delivered !== undefined for verification if sent message is being updated
-        // todo improve implementation ?
+        // no need to unescape as data comes from the database
         const newMessage: Statement =
           (delivered !== undefined)
             ? [ messageId, escapeHtml(message), true ]
