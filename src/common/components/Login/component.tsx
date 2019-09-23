@@ -101,6 +101,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           errorMessage: this.loginErrorMessage,
           connectionError: this.state.connectionError,
         }}
+        onKeyDown={this.submitOnEnter}
       >
         <TextField
           autoFocus
