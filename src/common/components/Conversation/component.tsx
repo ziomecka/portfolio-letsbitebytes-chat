@@ -121,7 +121,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   // TODO async
-  private sendMessageOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private sendMessageOnEnter (event: React.KeyboardEvent<HTMLElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
       this.sendMessage();
@@ -219,6 +219,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
             autoFocus
             multiline
             onChange={this.typeMessage}
+            onKeyDown={this.sendMessageOnEnter}
             placeholder={this.conversationInputLabel}
             value={message}
             FormHelperTextProps={{
