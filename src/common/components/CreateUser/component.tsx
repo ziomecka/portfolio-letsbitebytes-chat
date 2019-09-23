@@ -161,6 +161,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           errorMessage: serverError,
           connectionError,
         }}
+        onKeyDown={this.submitOnEnter}
       >
         <TextField
           autoFocus
