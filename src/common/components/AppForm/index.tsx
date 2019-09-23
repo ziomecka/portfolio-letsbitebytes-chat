@@ -16,6 +16,7 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
     errorMessage,
     connectionError,
   } = {},
+  onKeyDown,
 }) => {
 
   return (
@@ -25,6 +26,7 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
       direction="column"
       alignItems="center"
       onSubmit={(event: React.FormEvent): void => event.preventDefault()}
+      onKeyDown={onKeyDown}
       wrap="nowrap"
     >
       <Typography variant="h2">
