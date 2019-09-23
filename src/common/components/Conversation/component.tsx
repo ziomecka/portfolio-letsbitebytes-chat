@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { AppButton } from '../';
 import { HTML_CONVERSATION_ID } from '../../constants';
+import { convertHtmlEntitiesToUnicode } from '../../utils/convert-html-entities-to-unicode';
 import { styles } from './styles';
 import texts from './texts';
 import { withPublisher } from 'publisher-subscriber-react-hoc';
@@ -203,7 +204,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
                   component="span"
                   classes={{ root: typoClass }}
                 >
-                  { message }
+                  { convertHtmlEntitiesToUnicode(message) }
                 </Typography>
               </ListItem>
             );
