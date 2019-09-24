@@ -28,9 +28,8 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.init();
   }
 
-  public componentDidUpdate (prevProps: LoginProps): void {
+  public componentDidUpdate ({ isAuthenticated: prevIsAuthenticated }: LoginProps): void {
     const { isAuthenticated } = this.props;
-    const { isAuthenticated: prevIsAuthenticated } = prevProps;
 
     if (isAuthenticated !== prevIsAuthenticated && isAuthenticated) {
       this.props.history.push(AppRoutes.protectedRoute);
@@ -77,7 +76,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     }
   }
 
-  // TODO async
   private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       this.submit();

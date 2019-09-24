@@ -3,7 +3,7 @@ import { loginActionSuccess } from './actions';
 import { setConversationsAction } from '../../Socket/';
 import { setUsers } from '../../../duck/';
 
-export const login = (props: LoginActionProps): AppThunkAction<boolean> => (async (
+export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
   getState: GetState,
   { api }: { api: Api }
@@ -15,13 +15,14 @@ export const login = (props: LoginActionProps): AppThunkAction<boolean> => (asyn
     }: {
       result: boolean,
       data?: ApiLoginResponse,
-    } =
-    await api.request(ServerRoutes.loginRoute, { queryParams: props }) as ApiResponse;
+    } = await api.request(
+      ServerRoutes.loginRoute, { queryParams: { login, password } }
+    ) as ApiResponse;
 
     if (result) {
       users && dispatch(setUsers({ users }));
       conversations && dispatch(setConversationsAction({ conversations }));
-      dispatch(loginActionSuccess({ ...props, role }));
+      dispatch(loginActionSuccess({ login, password, role }));
 
       if (logout) {
         dispatch(addNotification({
