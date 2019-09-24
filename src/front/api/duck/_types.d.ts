@@ -1,11 +1,14 @@
+declare type QueryParams = |
+  LoginActionProps |
+  LogoutActionProps;
+
 declare interface ApiRequestProps {
-  queryParams?: LoginActionProps;
+  queryParams?: QueryParams;
   body?: Record<string, unknown>;
 }
 
 declare type ApiMethods = 'get' | 'post';
 
-// TODO make a Partial
 declare type ApiRequestInit = {
   method?: ApiMethods;
   credentials?: RequestCredentials;
