@@ -17,7 +17,7 @@ export const defaultInitialState: AppState = {
     title: '',
     content: '',
     closeButton: true,
-    buttonsVariant: ButtonsVariants.none,
+    buttonsVariant: ButtonsVariants.ok,
   },
   notifications: {
     history: [],

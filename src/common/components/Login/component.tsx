@@ -22,14 +22,14 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       confirmPassword: '',
       loginError: false,
       connectionError: false,
+      waitingForResponse: false,
     };
 
     this.init();
   }
 
-  public componentDidUpdate (prevProps: LoginProps): void {
+  public componentDidUpdate ({ isAuthenticated: prevIsAuthenticated }: LoginProps): void {
     const { isAuthenticated } = this.props;
-    const { isAuthenticated: prevIsAuthenticated } = prevProps;
 
     if (isAuthenticated !== prevIsAuthenticated && isAuthenticated) {
       this.props.history.push(AppRoutes.protectedRoute);
@@ -51,25 +51,31 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
   private async submit (): Promise<void> {
     const { state: { login, password } } = this;
+    this.setState({ waitingForResponse: true });
 
     try {
       const result = await this.props.login({ login, password });
 
-      if (!result) {
+      if (result) {
         this.setState({
+          waitingForResponse: false,
+        });
+      } else {
+        this.setState({
+          waitingForResponse: false,
           loginError: true,
           connectionError: false,
         });
       }
     } catch {
       this.setState({
+        waitingForResponse: false,
         loginError: false,
         connectionError: true,
       });
     }
   }
 
-  // TODO async
   private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       this.submit();
@@ -121,6 +127,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           buttonProps={{
             onClick: this.submit,
             type: 'submit',
+            disabled: this.state.waitingForResponse,
           }}
         >
           {this.submitButtonText}

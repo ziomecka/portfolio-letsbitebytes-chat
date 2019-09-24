@@ -19,7 +19,13 @@ declare interface DialogState {
   buttonsVariant: ButtonsVariants;
 }
 
-declare type OpenDialogProps = Partial<DialogState>; // todo change Partial to other type
+declare type OpenDialogProps = &
+{
+  closeButton?: boolean;
+  title: string;
+  content: string;
+  buttonsVariant?: ButtonsVariants;
+};
 
 declare interface MapDialogToDispatch {
   openDialog(props?: OpenDialogProps): OpenDialogAction;

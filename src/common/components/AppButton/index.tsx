@@ -10,7 +10,7 @@ const AppButton: React.FunctionComponent<AppButtonProps> = ({
   autoFocus = false,
   children,
   classes,
-  buttonProps,
+  buttonProps = {},
   variant,
 }) => {
   buttonProps.variant = buttonProps.variant || 'contained';
@@ -27,9 +27,7 @@ const AppButton: React.FunctionComponent<AppButtonProps> = ({
       {...{ autoFocus }}
     >
       <Button
-        classes={{
-          root: variants.get(variant),
-        }}
+        classes={{ root: variants.get(variant) }}
         { ...buttonProps }
       >
         { children }

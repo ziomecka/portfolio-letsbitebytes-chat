@@ -1,13 +1,18 @@
+declare type QueryParams = |
+  LoginActionProps |
+  LogoutActionProps;
+
 declare interface ApiRequestProps {
-  queryParams?: LoginActionProps;
+  queryParams?: QueryParams;
   body?: Record<string, unknown>;
 }
 
 declare type ApiMethods = 'get' | 'post';
 
-// TODO make a Partial
 declare type ApiRequestInit = {
-  method: ApiMethods;
+  method?: ApiMethods;
+  credentials?: RequestCredentials;
+  headers?: Headers;
 };
 
 declare type ApiRequest = [ ServerRoutes, ApiRequestProps, ApiRequestInit? ];
@@ -18,13 +23,14 @@ declare interface ApiResponse {
   error?: ApiErrors;
 }
 
-declare interface ApiLoginData {
+declare interface ApiLoginResponse {
   role?: UserRole;
   users?: string[];
   conversations?: Conversations;
+  logout?: boolean;
 }
 
 type ApiResponseData = |
-  ApiLoginData;
+  ApiLoginResponse;
 
 declare type ApiErrors = UserErrors;

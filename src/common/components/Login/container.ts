@@ -1,6 +1,6 @@
 import { Login } from './component';
 import { connect } from 'react-redux';
-import { login } from './duck/async';
+import { login } from './duck/';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state: AppState): MapStateToLogin => ({

@@ -1,8 +1,9 @@
+import { addNotification } from '../../../duck';
 import { loginActionSuccess } from './actions';
 import { setConversationsAction } from '../../Socket/';
 import { setUsers } from '../../../duck/';
 
-export const login = (props: LoginActionProps): AppThunkAction<boolean> => (async (
+export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
   getState: GetState,
   { api }: { api: Api }
@@ -10,17 +11,25 @@ export const login = (props: LoginActionProps): AppThunkAction<boolean> => (asyn
   try {
     const {
       result,
-      data: { users, role, conversations },
+      data: { users, role, conversations, logout },
     }: {
       result: boolean,
-      data?: ApiLoginData,
-    } =
-    await api.request(ServerRoutes.loginRoute, { queryParams: props }) as ApiResponse;
+      data?: ApiLoginResponse,
+    } = await api.request(
+      ServerRoutes.loginRoute, { queryParams: { login, password } }
+    ) as ApiResponse;
 
     if (result) {
       users && dispatch(setUsers({ users }));
       conversations && dispatch(setConversationsAction({ conversations }));
-      dispatch(loginActionSuccess({ ...props, role }));
+      dispatch(loginActionSuccess({ login, password, role }));
+
+      if (logout) {
+        dispatch(addNotification({
+          title: 'You are already logged in',
+          content: 'You will be logged out from the other session',
+        }));
+      }
     }
 
     return Promise.resolve(result);

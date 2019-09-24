@@ -20,7 +20,7 @@ const Users: React.FunctionComponent<UsersProps> =
     changeActiveConversation(login)
   );
 
-  return (
+  return (users && users.length &&
     <List
       component={Box}
       classes={{ root: classes.scrollBar }}
@@ -44,7 +44,7 @@ const Users: React.FunctionComponent<UsersProps> =
         </ListItem>
       ))}
     </List>
-  );
+  || null);
 };
 
 const WrappedComponent = withStyles(styles)(Users);

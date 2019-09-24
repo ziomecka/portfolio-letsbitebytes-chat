@@ -20,4 +20,5 @@ declare interface LoginState {
   confirmPassword: string;
   loginError: boolean;
   connectionError: boolean;
+  waitingForResponse: boolean;
 }

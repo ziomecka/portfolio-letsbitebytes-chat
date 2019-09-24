@@ -25,6 +25,9 @@ export const DOMAIN = IS_PRODUCTION ? PRODUCTION_URL : 'localhost';
 export const SESSION_COOKIE_NAME = 'lbbChat';
 export const SESSION_COOKIE_AGE = 60 * 60 * 1000;
 
+export const SESSION_STORAGE_PREFIX = 'lbbChat';
+export const SESSION_STORAGE_AGE = 60 * 60 * 1000;
+
 export {
   MAX_LOGIN_LENGTH,
   MAX_PASSWORD_LENGTH,

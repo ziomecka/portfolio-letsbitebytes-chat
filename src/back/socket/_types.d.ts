@@ -1,7 +1,10 @@
 type Server = import('http').Server;
 declare type Socket = import('socket.io').Socket;
+declare type SocketPacket = import('socket.io').Packet;
 declare type GetSocket = (app: Server) => void;
 declare type SocketAcknowledgment = (response: string) => void;
+declare type SocketCallback = (...args: any[]) => void;
+declare type SocketNext = (object?: unknown) => void;
 
 declare const enum ServerSocketMessages {
   connected = 'connection',

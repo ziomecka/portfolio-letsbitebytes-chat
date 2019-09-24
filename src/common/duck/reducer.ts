@@ -31,7 +31,7 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
     case (DialogActionTypes.open): {
       return {
         ...state,
-        users: { ...state.users },
+        users: [...state.users],
         dialog: {
           ...state.dialog,
           ...actionPayload as OpenDialogAction,
@@ -43,7 +43,7 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
     case (DialogActionTypes.clear): {
       return {
         ...state,
-        users: { ...state.users },
+        users: [...state.users],
         dialog: {
           ...defaultInitialState.dialog,
           open: false,
@@ -54,7 +54,7 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
     case (DialogActionTypes.close): {
       return {
         ...state,
-        users: { ...state.users },
+        users: [...state.users],
         dialog: {
           ...state.dialog,
           open: false,
@@ -68,6 +68,16 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
         notifications: {
           actual: [...(actionPayload as SetNotificationsProps).notifications.actual],
           history: [...(actionPayload as SetNotificationsProps).notifications.history],
+        },
+      };
+    }
+
+    case (CommonActionTypes.addNotification): {
+      return {
+        ...state,
+        notifications: {
+          actual: [ ...state.notifications.actual, { ...(actionPayload as AddNotificationProps) } ],
+          history: [...state.notifications.history],
         },
       };
     }

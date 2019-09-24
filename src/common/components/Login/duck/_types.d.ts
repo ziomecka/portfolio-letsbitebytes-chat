@@ -2,7 +2,10 @@ declare interface LoginActionSuccess extends LoginActionProps, ReduxAction {}
 
 declare type LoginActionFailure = ReduxAction;
 
-declare type LoginActionProps = Partial<UserState>;
+declare type LoginActionProps = {
+  login: string;
+  password: string;
+};
 
 declare const enum LoginActionTypes {
   loginSuccess = '@APP/Login/login success',

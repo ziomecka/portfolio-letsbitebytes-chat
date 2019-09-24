@@ -149,7 +149,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     const partnerTypo = `${ classes.typographyBox } ${ classes.partnerTypography }`;
     const userTypo = `${ classes.typographyBox } ${ classes.userTypography }`;
 
-    return (
+    return (conversation &&
       <Grid
         item
         xs={12}
@@ -199,7 +199,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
           }) }
         </Grid>
       </Grid>
-    );
+    || null);
   }
 
   private renderConversationInput (): JSX.Element {
