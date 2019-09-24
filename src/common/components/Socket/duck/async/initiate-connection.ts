@@ -5,6 +5,7 @@ import {
 import { changeConnectionState } from '../../../../duck/actions';
 import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
+import { logout } from '../.././../Logout/duck/async';
 import { monitorConnection } from './monitor-connection';
 
 let socket: SocketIOClient.Socket;
@@ -31,6 +32,12 @@ export const initiateConnection =
     socket.on(ClientSocketMessages.disconnected, () => (
       dispatch(changeConnectionState(ConnectionState.disconnected))
     ));
+
+    socket.on(ClientSocketMessages.error, (err: string) => {
+      if(err === SocketErrors.notAuthenticated) {
+        dispatch(logout());
+      }
+    });
   }
 );
 

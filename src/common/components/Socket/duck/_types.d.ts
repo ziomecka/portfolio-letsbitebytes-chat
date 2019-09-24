@@ -35,6 +35,11 @@ declare const enum ClientSocketMessages {
   emit = 'emit',
   receive = 'receive',
   delivered = 'delivered',
+  error = 'error',
+}
+
+declare const enum SocketErrors {
+  notAuthenticated = 'Not authenticated',
 }
 
 declare type ClientDeliveredRequest = {
