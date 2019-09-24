@@ -72,6 +72,16 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
       };
     }
 
+    case (CommonActionTypes.addNotification): {
+      return {
+        ...state,
+        notifications: {
+          actual: [ ...state.notifications.actual, { ...(actionPayload as AddNotificationProps) } ],
+          history: [...state.notifications.history],
+        },
+      };
+    }
+
     default: {
       return { ...state };
     }

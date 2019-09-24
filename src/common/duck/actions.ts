@@ -21,3 +21,9 @@ export const setNotifications: ReduxActionCreator<SetNotificationsAction> =
   type: CommonActionTypes.setNotifications,
   notifications,
 });
+
+export const addNotification: ReduxActionCreator<AddNotificationAction> =
+(props: AddNotificationProps) => ({
+  type: CommonActionTypes.addNotification,
+  ...props,
+});
