@@ -16,13 +16,6 @@ import { getTheme } from '../../theme';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/core/styles';
 
-const windowObject = process.env.IS_BROWSER != 'true'
-  ? {
-    addEventListener: (): void => {},
-    removeEventListener: (): void => {},
-  }
-  : window;
-
 const Common: React.FunctionComponent<CommonProps> = ({
   children,
   classes,
@@ -41,7 +34,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
         justify="center"
       >
         <Typography variant="h1">
-          { `${ appTitle } ${ login && `, ${ login }!` }` }
+          { `${ appTitle }${ login && `, ${ login }!` }` }
         </Typography>
         <Grid
           container
