@@ -17,7 +17,7 @@ import {
 import { UserError } from './user-error';
 import { logger } from '../logger/';
 
-const log = logger('user');
+const log = logger('userSession');
 
 export class User {
   public readonly authorization: Authorization;
@@ -161,12 +161,15 @@ export class User {
     try {
       const { isValid, role, conversations, token } = await this.verifyPassword(login, password);
 
+      response.data.logout = await this.logout(login);
+
+      await this.storeSession(login, token);
+
       response.result = isValid;
       response.token = token;
       response.data.role = role;
       response.data.conversations = conversations;
-      response.data.users = await this.getUsers(login);
-
+      response.data.users = await this.getUsers(login) || [];
       log.info('User logged in:', login);
     } catch (err) {
       log.error('User not logged in:', login, err);
@@ -219,6 +222,46 @@ export class User {
       return true;
     } catch (err) {
       log.error('User not updated:', login, data, err);
+      return false;
+    }
+  }
+
+  public async storeSession (login: string, value: string): Promise<boolean> {
+    try {
+      return await this.userSession.storeSession(login, value);
+    } catch (err) {
+      log.error('Session not stored', login, value, err);
+      return false;
+    }
+  }
+
+  public async logout (login: string): Promise<boolean> {
+    let session: string;
+
+    try {
+      session = await this.userSession.getSession(login);
+
+      if (session) {
+        await this.userSession.deleteSession(session, login);
+      }
+
+      return !!session;
+    } catch (err) {
+      log.error('User not logged out', login, session, err);
+      return false;
+    }
+  }
+
+  public isAuthenticated = async (login: string, cookie: string): Promise<boolean> => {
+    try {
+      const loginResult = await this.userSession.getSession(login);
+      const cookieResult = await this.userSession.getSession(cookie);
+
+      log.info('User is authenticated', loginResult, cookieResult);
+
+      return !!loginResult && !!cookieResult;
+    } catch (err) {
+      log.error('User is not authenticated', login, cookie, err);
       return false;
     }
   }
