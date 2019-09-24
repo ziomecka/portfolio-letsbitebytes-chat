@@ -1,4 +1,5 @@
 import * as ioSocket from 'socket.io';
+import { authenticationHandler } from './authentication-handler';
 import { connectHandler } from './connect-handler';
 import { logger } from '../logger/';
 import { messagesHandler } from './messages-handler';
@@ -13,6 +14,7 @@ export const socket: GetSocket = (app) => {
 
   io.on(ServerSocketMessages.connected, (socket: Socket) => {
     connectHandler(socket);
+    socket.use(authenticationHandler(socket));
     messagesHandler(socket);
   });
 };
