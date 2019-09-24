@@ -99,9 +99,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   };
 
   return (
-    // @ts-ignore
-    <Grid
-      component={Dialog}
+    <Dialog
       open={open}
       PaperProps={{ component: Grid }}
       hideBackdrop={true}
@@ -112,7 +110,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       { title && renderDialogTitle() }
       { content && renderDialogContent() }
       { (buttonsVariant !== ButtonsVariants.none) && renderBottomActions() }
-    </Grid>
+    </Dialog>
   );
 };
 
