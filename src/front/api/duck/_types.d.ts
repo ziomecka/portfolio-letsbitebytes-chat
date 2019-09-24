@@ -27,6 +27,7 @@ declare interface ApiLoginData {
   role?: UserRole;
   users?: string[];
   conversations?: Conversations;
+  logout?: boolean;
 }
 
 type ApiResponseData = |
