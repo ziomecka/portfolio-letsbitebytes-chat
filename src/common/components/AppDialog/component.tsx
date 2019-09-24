@@ -8,12 +8,10 @@ import {
   Grid,
   IconButton,
 } from '@material-ui/core';
+import { AppButton } from '../AppButton/';
 import { Close } from '@material-ui/icons';
 import { styles } from './styles';
 import withStyles from '@material-ui/core/styles/withStyles';
-
-// todo
-const OkButton: React.FunctionComponent = null;
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
@@ -28,6 +26,12 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
   const ariaLabelledBy = 'app-dialog-title';
   const ariaDescribedBy = 'app-dialog-content';
+
+  const OkButton: React.FunctionComponent<Partial<AppButtonProps>> = () => (
+    <AppButton buttonProps={{ onClick: closeDialog }}>
+      ok
+    </AppButton>
+  );
 
   const buttonsVariants = new Map([
     [ ButtonsVariants.ok, OkButton ],
