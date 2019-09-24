@@ -23,7 +23,7 @@ declare interface ApiResponse {
   error?: ApiErrors;
 }
 
-declare interface ApiLoginData {
+declare interface ApiLoginResponse {
   role?: UserRole;
   users?: string[];
   conversations?: Conversations;
@@ -31,6 +31,6 @@ declare interface ApiLoginData {
 }
 
 type ApiResponseData = |
-  ApiLoginData;
+  ApiLoginResponse;
 
 declare type ApiErrors = UserErrors;

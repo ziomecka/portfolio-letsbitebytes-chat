@@ -14,7 +14,7 @@ export const login = (props: LoginActionProps): AppThunkAction<boolean> => (asyn
       data: { users, role, conversations, logout },
     }: {
       result: boolean,
-      data?: ApiLoginData,
+      data?: ApiLoginResponse,
     } =
     await api.request(ServerRoutes.loginRoute, { queryParams: props }) as ApiResponse;
 
