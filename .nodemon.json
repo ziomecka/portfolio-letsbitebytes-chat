@@ -3,11 +3,13 @@
     ".git",
     "node_modules",
     "*/**/*.spec.*",
-    "*/**/*.test.*"
+    "*/**/*.test.*",
+    "src/front/*"
   ],
   "watch": [
-    "src",
-    "build"
+    "src/back/*",
+    "src/common/*",
+    "build/*"
   ],
   "exec": "npm run nodemon:start",
   "ext": "ts,tsx,js,jsx,sass,css"
