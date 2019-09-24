@@ -9,16 +9,6 @@ import { monitorConnection } from './monitor-connection';
 
 let socket: SocketIOClient.Socket;
 
-const connectedCallback = (dispatch: AppThunkDispatch<InitiateSocketAction>): void => {
-  dispatch(changeConnectionState(ConnectionState.connected));
-  dispatch(listenReceive(socket));
-  dispatch(listenDelivered(socket));
-};
-
-const disconnectedCallback = (dispatch: AppThunkDispatch<InitiateSocketAction>): void => {
-  dispatch(changeConnectionState(ConnectionState.disconnected));
-};
-
 export const initiateConnection =
 (connectionTimeout = CONNECTION_TIMEOUT): AppThunkAction<InitiateSocketAction, void> => (
   async (
@@ -31,8 +21,16 @@ export const initiateConnection =
     socket = io(SOCKET_URL, { query: `login=${ getState().user.login }` });
 
     monitorConnection(dispatch, getState, connectionTimeout, socket);
-    socket.on(ClientSocketMessages.connected, () => connectedCallback(dispatch));
-    socket.on(ClientSocketMessages.disconnected, () => disconnectedCallback(dispatch));
+
+    socket.on(ClientSocketMessages.connected, () => {
+      dispatch(changeConnectionState(ConnectionState.connected));
+      dispatch(listenReceive(socket));
+      dispatch(listenDelivered(socket));
+    });
+
+    socket.on(ClientSocketMessages.disconnected, () => (
+      dispatch(changeConnectionState(ConnectionState.disconnected))
+    ));
   }
 );
 
