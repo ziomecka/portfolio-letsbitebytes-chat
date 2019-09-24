@@ -7,7 +7,9 @@ declare type ApiMethods = 'get' | 'post';
 
 // TODO make a Partial
 declare type ApiRequestInit = {
-  method: ApiMethods;
+  method?: ApiMethods;
+  credentials?: RequestCredentials;
+  headers?: Headers;
 };
 
 declare type ApiRequest = [ ServerRoutes, ApiRequestProps, ApiRequestInit? ];
