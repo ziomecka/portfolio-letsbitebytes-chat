@@ -10,6 +10,7 @@ export {
   withAppSize,
 } from './AppSize';
 export { AppNav } from './AppNav';
+export { ChatBox } from './ChatBox';
 export { Common } from './Common';
 export { Conversation } from './Conversation';
 export { CreateUser } from './CreateUser';
