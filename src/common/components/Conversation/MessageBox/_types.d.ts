@@ -6,7 +6,7 @@ type TextField = Partial<import('@material-ui/core/TextField').TextFieldProps> &
 
 declare interface MessageBoxProps extends WithStyles {
   TextFieldProps: TextField;
-  ButtonProps: Partial<ButtonProps> & {
+  ButtonProps: Partial<import('@material-ui/core/Button').ButtonProps> & {
     onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   }
 }
