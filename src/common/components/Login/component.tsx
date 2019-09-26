@@ -56,11 +56,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     try {
       const result = await this.props.login({ login, password });
 
-      if (result) {
-        this.setState({
-          waitingForResponse: false,
-        });
-      } else {
+      if (!result) {
         this.setState({
           waitingForResponse: false,
           loginError: true,
