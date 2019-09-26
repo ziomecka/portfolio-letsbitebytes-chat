@@ -1,5 +1,9 @@
 import * as React from 'react';
 import {
+  Box,
+  Grid,
+} from '@material-ui/core';
+import {
   Conversation,
   Socket,
   Users,
@@ -9,8 +13,7 @@ import {
   Redirect,
   Route,
 } from 'react-router-dom';
-import { AppMenu } from './AppMenu/'
-import { Grid } from '@material-ui/core';
+import { AppMenu } from './AppMenu/';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/styles/';
 
@@ -28,6 +31,7 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
       <Grid
         container
         className={classes.box}
+        component={Box}
         justify="space-between"
       >
         { !isCompact && <Users />}
