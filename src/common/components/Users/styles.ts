@@ -4,14 +4,9 @@ import { scrollBar } from '../styles';
 export const styles = createStyles((theme: Theme) => {
   const {
     typography: { fontWeightLight },
-    shape: { borderRadius },
   } = theme;
 
   return {
-    listItem: {
-      borderRadius,
-      padding: 0,
-    },
     text: {
       fontWeight: fontWeightLight,
     },
