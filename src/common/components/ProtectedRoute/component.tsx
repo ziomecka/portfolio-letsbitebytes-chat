@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-import { Logout } from '../Logout/';
   Conversation,
   Socket,
   Users,
@@ -32,17 +31,8 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
         justify="space-between"
       >
         { !isCompact && <Users />}
+        <AppMenu isCompact={isCompact} />
         <Conversation />
-        <Grid
-          item
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          className={classes.buttonsBox}
-        >
-          <Logout/>
-        </Grid>
         <Socket />
       </Grid>
     ) : (
