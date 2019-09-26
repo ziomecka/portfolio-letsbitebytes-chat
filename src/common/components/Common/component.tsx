@@ -2,6 +2,7 @@
 import * as React from 'react';
 import {
   AppDialog,
+  AppSizeProvider,
   NotificationsButton,
 } from '../';
 import {
@@ -24,8 +25,9 @@ const Common: React.FunctionComponent<CommonProps> = ({
   appTitle = APP_TITLE,
   store,
 }) => (
-  <Provider store={store} >
+  <Provider store={store}>
     <MuiThemeProvider theme={ getTheme() }>
+      <AppSizeProvider>
       <Grid
         container
         className={classes.rootBox}
@@ -48,6 +50,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
         <AppDialog />
         <NotificationsButton />
       </Grid>
+      </AppSizeProvider>
     </MuiThemeProvider>
   </Provider>
 );
