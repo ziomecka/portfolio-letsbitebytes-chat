@@ -9,3 +9,4 @@ export const APP_NAV_HEIGHT = 60;
 export const DIALOG_MAX_WIDTH = 600;
 export const MENU_MAX_HEIGHT = 400;
 export const MENU_WIDTH = 200;
+export const USERS_WIDTH = 300;
