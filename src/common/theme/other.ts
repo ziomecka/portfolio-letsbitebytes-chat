@@ -113,6 +113,13 @@ const other = ({
         root: {
           ...marginPadding,
         },
+        multiline: {
+          padding: 0,
+          margin: 0,
+          height: '100%',
+          alignItems: 'flex-end',
+          overflow: 'hidden',
+        },
       },
       MuiList: {
         root: {
