@@ -1,4 +1,5 @@
 import {
+  APP_NAV_HEIGHT,
   BUTTON_GREY_SHADE,
   BUTTON_SIZE,
   DIALOG_MAX_WIDTH,
@@ -31,6 +32,7 @@ const other = ({
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
 
+  const appBarHeight = APP_NAV_HEIGHT;
   const dialogMaxWidth = DIALOG_MAX_WIDTH;
 
   const maxWidthHeight = {
@@ -52,6 +54,15 @@ const other = ({
       },
     },
     overrides: {
+      MuiAppBar: {
+        root: {
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          height: appBarHeight,
+          maxHeight: appBarHeight,
+        },
+      },
       MuiBox: {
         root: {
           ...maxWidthHeight,
@@ -114,8 +125,8 @@ const other = ({
         root: {
           margin: 0,
           '&$h1': {
-            width: '100%',
-            marginBottom: typography.h1.fontSize,
+            display: 'inline-block',
+            width: 'auto',
           },
           '&$h2': {
             width: '100%',

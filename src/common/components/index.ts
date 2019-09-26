@@ -9,6 +9,7 @@ export {
   AppSizeProvider,
   withAppSize,
 } from './AppSize';
+export { AppNav } from './AppNav';
 export { Common } from './Common';
 export { Conversation } from './Conversation';
 export { CreateUser } from './CreateUser';
