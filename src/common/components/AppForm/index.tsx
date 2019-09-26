@@ -12,26 +12,28 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
   children,
   heading,
   homeButton = true,
-  formHelperProps,
-  formHelperProps: {
+  FormHelperProps,
+  FormHelperProps: {
     error,
     errorMessage,
     connectionError,
   } = {},
+  GridProps = {},
   onKeyDown,
 }) => {
 
   return (
     <React.Fragment>
       <Grid
-        container
         component="form"
         direction="column"
         alignItems="center"
-        justify="center"
+        justify="flex-start"
+        wrap="wrap"
+        { ...GridProps }
+        container
         onSubmit={(event: React.FormEvent): void => event.preventDefault()}
         onKeyDown={onKeyDown}
-        wrap="wrap"
         style={{ width: '100%' }}
       >
         { heading &&
@@ -45,14 +47,14 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
         {homeButton &&
           <RouterButton
             to={AppRoutes.publicRoute}
-            variant={AppButtonVariant.transparent}
+            buttonProps={{ variant: 'outlined' }}
           >
             { texts.homeLabel }
           </RouterButton>
         }
       </Grid>
       <div>
-        { formHelperProps &&
+        { FormHelperProps &&
           <FormHelperText
             error
             component={Paper}
