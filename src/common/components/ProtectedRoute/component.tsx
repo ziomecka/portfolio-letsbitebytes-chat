@@ -4,6 +4,7 @@ import { Logout } from '../Logout/';
   Conversation,
   Socket,
   Users,
+  withAppSize,
 } from '../';
 import {
   Redirect,
@@ -15,11 +16,11 @@ import { withStyles } from '@material-ui/styles/';
 
 const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
 ({
+  appSize,
   classes,
   isAuthenticated,
   path,
 }) => {
-
   const renderComponent = (): JSX.Element => (
     isAuthenticated ? (
       <Grid
@@ -50,5 +51,5 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
   );
 };
 
-const WrappedComponent = withStyles(styles)(ProtectedRoute);
+const WrappedComponent = withStyles(styles)(withAppSize(ProtectedRoute));
 export { WrappedComponent as ProtectedRoute };
