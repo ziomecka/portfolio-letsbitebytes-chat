@@ -11,45 +11,60 @@ import texts from './texts';
 const AppForm: React.FunctionComponent<AppFormProps> = ({
   children,
   heading,
-  formHelperProps: {
+  homeButton = true,
+  FormHelperProps,
+  FormHelperProps: {
     error,
     errorMessage,
     connectionError,
   } = {},
+  GridProps = {},
   onKeyDown,
 }) => {
 
   return (
-    <Grid
-      container
-      component="form"
-      direction="column"
-      alignItems="center"
-      onSubmit={(event: React.FormEvent): void => event.preventDefault()}
-      onKeyDown={onKeyDown}
-      wrap="nowrap"
-    >
-      <Typography variant="h2">
-        {heading}
-      </Typography>
-
-      {children}
-
-      <RouterButton
-        to={AppRoutes.publicRoute}
-        variant={AppButtonVariant.transparent}
+    <React.Fragment>
+      <Grid
+        component="form"
+        direction="column"
+        alignItems="center"
+        justify="flex-start"
+        wrap="wrap"
+        { ...GridProps }
+        container
+        onSubmit={(event: React.FormEvent): void => event.preventDefault()}
+        onKeyDown={onKeyDown}
+        style={{ width: '100%' }}
       >
-        { texts.homeLabel }
-      </RouterButton>
+        { heading &&
+          <Typography variant="h2">
+            {heading}
+          </Typography>
+        }
 
-      <FormHelperText
-        error
-        component={Paper}
-      >
-        { error && errorMessage }
-        { connectionError && texts.connectionError }
-      </FormHelperText>
-    </Grid>
+        {children}
+
+        {homeButton &&
+          <RouterButton
+            to={AppRoutes.publicRoute}
+            buttonProps={{ variant: 'outlined' }}
+          >
+            { texts.homeLabel }
+          </RouterButton>
+        }
+      </Grid>
+      <div>
+        { FormHelperProps &&
+          <FormHelperText
+            error
+            component={Paper}
+          >
+            { error && errorMessage }
+            { connectionError && texts.connectionError }
+          </FormHelperText>
+        }
+      </div>
+    </React.Fragment>
   );
 };
 

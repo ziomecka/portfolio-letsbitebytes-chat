@@ -156,7 +156,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     return (
       <AppForm
         heading={this.heading}
-        formHelperProps={{
+        FormHelperProps={{
           error: serverResult === false,
           errorMessage: serverError,
           connectionError,

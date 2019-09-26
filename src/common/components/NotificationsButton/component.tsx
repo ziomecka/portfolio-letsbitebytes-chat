@@ -81,14 +81,10 @@ class NotificationsButton extends
     } = this;
 
     return (!!actualNotifications.length &&
-      <IconButton
-        onClick={this.onClick}
-        classes={{ root: `${ classes.button }` }}
-      >
-        <NotificationIcon color="secondary"
-          classes={{
-            root: `${ classes.svg } ${ svgAnimation }`,
-          }}
+      <IconButton onClick={this.onClick}>
+        <NotificationIcon
+          color="secondary"
+          classes={{ root: `${ classes.svg } ${ svgAnimation }` }}
         />
       </IconButton>
     );

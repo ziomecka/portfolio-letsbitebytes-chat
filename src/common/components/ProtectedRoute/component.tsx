@@ -2,61 +2,52 @@ import * as React from 'react';
 import {
   Box,
   Grid,
-  Paper,
 } from '@material-ui/core';
-import { Conversation } from '../Conversation/';
-import { Logout } from '../Logout/';
-import { Redirect } from 'react-router-dom';
-import { Socket } from '../Socket/';
-import { Users } from '../Users/';
+import {
+  Conversation,
+  Socket,
+  Users,
+  withAppSize,
+} from '../';
+import {
+  Redirect,
+  Route,
+} from 'react-router-dom';
+import { AppMenu } from './AppMenu/';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/styles/';
 
 const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
 ({
-  isAuthenticated,
+  appSize,
   classes,
-  elevation = 0,
+  isAuthenticated,
+  path,
 }) => {
-  return (isAuthenticated ? (
-    <Grid
-      container
-      justify="space-between"
-      component={Paper}
-      elevation={elevation}
-    >
+  const isCompact = appSize === AppSize.compact;
+
+  const renderComponent = (): JSX.Element => (
+    isAuthenticated ? (
       <Grid
-        item
-        component={Box}
-        className={classes.box}
-        xs={4}
-      >
-        <Users />
-      </Grid>
-      <Grid
-        item
-        component={Box}
-        className={classes.box}
-        xs={7}
-      >
-        <Conversation />
-      </Grid>
-      <Grid
-        item
         container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        className={classes.buttonsBox}
+        className={classes.box}
+        component={Box}
+        justify="space-between"
       >
-        <Logout/>
+        { !isCompact && <Users />}
+        <AppMenu isCompact={isCompact} />
+        <Conversation />
+        <Socket />
       </Grid>
-      <Socket />
-    </Grid>
-  ) : (
-    <Redirect to={{ pathname: '', state: {} }}/>
-  ));
+    ) : (
+      <Redirect to={{ pathname: '', state: {} }}/>
+    )
+  );
+
+  return (
+    <Route exact path={path} render={renderComponent} />
+  );
 };
 
-const WrappedComponent = withStyles(styles)(ProtectedRoute);
+const WrappedComponent = withStyles(styles)(withAppSize(ProtectedRoute));
 export { WrappedComponent as ProtectedRoute };

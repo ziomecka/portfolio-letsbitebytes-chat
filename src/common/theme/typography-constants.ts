@@ -2,7 +2,8 @@ export const fontSizes = {
   h1: '1.5rem',
   h2: '1.3rem',
   h3: '1.2rem',
-  button: '1.1em',
+  button: '1.1rem',
+  inputLabel: '1rem',
 };
 
 export const fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
@@ -15,6 +16,7 @@ export const fontWeightRegular = 500;
 export const fontWeightBold = 600;
 
 export const lineHeight = '1.5em';
+export const headingLineHeight = '1.2em';
 
 export const fontWeightHeading = 400;
 export const letterSpacingHeading = '-.02em';

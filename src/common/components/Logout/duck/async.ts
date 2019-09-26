@@ -1,6 +1,6 @@
 import {
-  changeConnectionState,
   changeActiveConversation,
+  changeConnectionState,
   setUsers,
 } from '../../../duck/actions';
 import { clearConversationsAction } from '../../Socket/';

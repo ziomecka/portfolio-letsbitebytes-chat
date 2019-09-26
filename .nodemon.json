@@ -4,12 +4,12 @@
     "node_modules",
     "*/**/*.spec.*",
     "*/**/*.test.*",
-    "src/front/*"
+    "src/front/*",
+    "src/common/*",
+    "build"
   ],
   "watch": [
-    "src/back/*",
-    "src/common/*",
-    "build/*"
+    "src/back/*"
   ],
   "exec": "npm run nodemon:start",
   "ext": "ts,tsx,js,jsx,sass,css"

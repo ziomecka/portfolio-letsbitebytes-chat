@@ -2,15 +2,17 @@
 import * as React from 'react';
 import {
   AppDialog,
+  AppNav,
+  AppSizeProvider,
   NotificationsButton,
 } from '../';
 import {
+  BottomNavigation,
   Grid,
   MuiThemeProvider,
   Paper,
-  Typography,
 } from '@material-ui/core';
-import { APP_TITLE } from '../../constants';
+import { APP_ROOT_ID } from '../../constants';
 import { Provider } from 'react-redux';
 import { getTheme } from '../../theme';
 import { styles } from './styles';
@@ -20,38 +22,31 @@ const Common: React.FunctionComponent<CommonProps> = ({
   children,
   classes,
   elevation = 1,
-  login,
-  appTitle = APP_TITLE,
   store,
 }) => (
-  <Provider store={store} >
+  <Provider store={store}>
     <MuiThemeProvider theme={ getTheme() }>
-      <Grid
-        container
-        className={classes.rootBox}
-        component={Paper}
-        elevation={elevation}
-        justify="center"
-      >
-        <Typography variant="h1">
-          { `${ appTitle }${ login && `, ${ login }!` }` }
-        </Typography>
+      <AppSizeProvider>
         <Grid
           container
-          direction="column"
-          alignItems="center"
+          className={classes.rootBox}
+          component={Paper}
+          elevation={elevation}
           justify="center"
-          classes={{ root: classes.box }}
+          id={APP_ROOT_ID}
         >
+          <AppNav />
           { children }
+          <BottomNavigation>
+            <NotificationsButton />
+          </BottomNavigation>
+          <AppDialog />
         </Grid>
-        <AppDialog />
-        <NotificationsButton />
-      </Grid>
+      </AppSizeProvider>
     </MuiThemeProvider>
   </Provider>
 );
 
-const WrappedCommon = withStyles(styles)(Common);
+const WrappedComponent = withStyles(styles)(Common);
 
-export { WrappedCommon as Common };
+export { WrappedComponent as Common };

@@ -11,6 +11,7 @@ export const styles = createStyles(({ palette }: Theme) => {
       width: 'initial',
       maxWidth: 'none',
       maxHeight: 'none',
+      display: 'inline-block',
     },
     adjustTouchRipple: {
       '& button': {
@@ -26,15 +27,6 @@ export const styles = createStyles(({ palette }: Theme) => {
           },
         },
       },
-    },
-    transparentVariant: {
-      backgroundColor: palette.background.paper,
-      border: `1px solid ${ palette.text.secondary }`,
-      boxShadow: 'none',
-    },
-    flexVariant: {
-      width: 'auto',
-      margin: 0,
     },
   };
 });

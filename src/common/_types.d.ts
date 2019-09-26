@@ -11,7 +11,6 @@ declare const enum ServerRoutes {
 declare const enum AppRoutes {
   createUserRoute = '/createUser',
   loginRoute = '/login',
-  logoutRoute = '/logout',
   publicRoute = '/',
   protectedRoute = '/protected',
 }

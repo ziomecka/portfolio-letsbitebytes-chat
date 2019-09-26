@@ -2,7 +2,7 @@ import { SPACING_REGULAR } from '../theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
 
-export const styles = createStyles(({
+export const scrollBar = createStyles(({
   palette,
   spacing,
 }: Theme) => {

@@ -1,4 +1,4 @@
-declare interface ProtectedRouteProps extends ProtectedRouteState, WithStyles {
+declare interface ProtectedRouteProps extends ProtectedRouteState, WithStyles, WithAppSize {
   path: string;
   elevation?: PaperElevation;
 }

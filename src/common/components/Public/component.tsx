@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { AppButton } from '../AppButton/';
+import {
+  AppButton,
+  AppForm,
+} from '../';
+import {
+  Box,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
@@ -14,26 +22,49 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
     history.push(AppRoutes.createUserRoute);
   };
 
+  const fontSize = '2rem';
+
   return (
-    <React.Fragment>
-      <AppButton
-        autoFocus
-        buttonProps={{
-          autoFocus: true,
-          onClick: goToLogin,
+    <Grid
+      container
+      component={Box}
+      style={{ alignContent: 'center' }}
+      justify="center"
+    >
+      <Typography variant="h2"
+        style={{
+          fontSize,
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
-        {loginButtonText}
-      </AppButton>
-      <AppButton
-        buttonProps={{
-          onClick: goToCreateUser,
+        {texts.heading}
+      </Typography>
+      <AppForm
+        GridProps={{
+          alignItems: 'center',
+          justify: 'center',
         }}
-        variant={AppButtonVariant.transparent}
       >
-        {createUserButtonText}
-      </AppButton>
-    </React.Fragment>
+        <AppButton
+          autoFocus
+          buttonProps={{
+            autoFocus: true,
+            onClick: goToLogin,
+          }}
+        >
+          {loginButtonText}
+        </AppButton>
+        <AppButton
+          buttonProps={{
+            onClick: goToCreateUser,
+            variant: 'outlined',
+          }}
+        >
+          {createUserButtonText}
+        </AppButton>
+      </AppForm>
+    </Grid>
   );
 };
 

@@ -56,11 +56,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     try {
       const result = await this.props.login({ login, password });
 
-      if (result) {
-        this.setState({
-          waitingForResponse: false,
-        });
-      } else {
+      if (!result) {
         this.setState({
           waitingForResponse: false,
           loginError: true,
@@ -102,7 +98,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     return (
       <AppForm
         heading={this.heading}
-        formHelperProps={{
+        FormHelperProps={{
           error: this.state.loginError,
           errorMessage: this.loginErrorMessage,
           connectionError: this.state.connectionError,

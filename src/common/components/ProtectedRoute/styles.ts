@@ -1,20 +1,25 @@
-import { Theme } from '@material-ui/core/styles';
-import { createStyles } from '@material-ui/styles';
+import {
+  APP_NAV_HEIGHT,
+  SPACING_LARGE,
+  SPACING_REGULAR,
+} from '../../theme/other-constants';
+import { Theme, createStyles } from '@material-ui/core';
 
 export const styles = createStyles(({
-  shape: { borderRadius },
+  breakpoints,
+  spacing,
 }: Theme) => {
-  const boxHeight = '80px'; // todo calculate from theme ?
+  const padding = spacing(SPACING_REGULAR);
+  const paddingTop = spacing(SPACING_LARGE);
 
   return {
     box: {
-      borderRadius,
-      height: `calc(100% - ${ boxHeight })`,
-      overflow: 'hidden',
-      width: 'auto',
-    },
-    buttonsBox: {
-      height: boxHeight,
+      height: `calc(100% - ${ APP_NAV_HEIGHT }px)`,
+      paddingTop,
+      [ breakpoints.up('md') ]: {
+        padding: `0 ${ padding }px`,
+        paddingTop,
+      },
     },
   };
 });

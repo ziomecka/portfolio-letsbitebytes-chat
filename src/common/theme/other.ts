@@ -1,13 +1,15 @@
 import {
-  BUTTON_GREY_SHADE,
+  APP_NAV_HEIGHT,
   BUTTON_SIZE,
   DIALOG_MAX_WIDTH,
+  FORM_HELPER_TEXT_MAX_WIDTH,
   SPACING_LARGE,
   SPACING_REGULAR,
 } from './other-constants';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
@@ -24,14 +26,20 @@ const other = ({
 }: Theme): ThemeOptions => {
 
   const buttonSize = BUTTON_SIZE;
-  const backgroundColorButton = palette.grey[ BUTTON_GREY_SHADE ];
 
   const largeSpacing = spacing(SPACING_LARGE);
   const regularSpacing = spacing(SPACING_REGULAR);
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
 
+  const appBarHeight = APP_NAV_HEIGHT;
   const dialogMaxWidth = DIALOG_MAX_WIDTH;
+  const formHelperTextMaxWidth = FORM_HELPER_TEXT_MAX_WIDTH;
+
+  const {
+    fontSize,
+    fontWeightBold,
+  } = typography;
 
   const maxWidthHeight = {
     maxHeight: '100%',
@@ -52,6 +60,27 @@ const other = ({
       },
     },
     overrides: {
+      MuiAppBar: {
+        root: {
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          height: appBarHeight,
+          maxHeight: appBarHeight,
+        },
+      },
+      MuiBottomNavigation: {
+        root: {
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          height: APP_NAV_HEIGHT,
+          justifyContent: 'flex-end',
+          boxSizing: 'border-box',
+          padding: `0 ${ largeSpacing }px`,
+          backgroundColor: 'transparent',
+        },
+      },
       MuiBox: {
         root: {
           ...maxWidthHeight,
@@ -61,14 +90,26 @@ const other = ({
         text: {
           paddingLeft: 0,
         },
-        contained: {
-          backgroundColor: backgroundColorButton,
+        outlined: {
+          fontWeight: fontWeightBold,
+          borderWidth: '2px',
+        },
+        containedPrimary: {
+          fontWeight: fontWeightBold,
+        },
+        containedSecondary: {
+          fontWeight: fontWeightBold,
         },
       },
       MuiButtonBase: {
         root: {
-          width: typography.fontSize * buttonSize,
+          width: fontSize * buttonSize,
           ...marginPadding,
+        },
+      },
+      MuiInputLabel: {
+        root: {
+          fontSize: fontSizes.inputLabel,
         },
       },
       MuiDialog: {
@@ -91,9 +132,62 @@ const other = ({
           fontWeight: typography.fontWeightLight,
         },
       },
+      MuiFormHelperText: {
+        root: {
+          maxWidth: formHelperTextMaxWidth,
+        },
+      },
+      MuiIconButton: {
+        root: {
+          margin: 0,
+          padding: 0,
+          width: 'auto',
+          borderRadius: '50%',
+        },
+      },
       MuiInputBase: {
         root: {
           ...marginPadding,
+        },
+        multiline: {
+          padding: 0,
+          paddingBottom: regularSpacing,
+          margin: 0,
+          height: '100%',
+          alignItems: 'flex-end',
+          overflow: 'hidden',
+        },
+      },
+      MuiList: {
+        root: {
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+          width: '100%',
+          borderRadius,
+        },
+        padding: {
+          paddingTop: 0,
+          paddingBottom: 0,
+        },
+      },
+      MuiListItem: {
+        root: {
+          width: '100%',
+          margin: `${ regularSpacing }px 0`,
+          padding: regularSpacing,
+          '&$selected': {
+            backgroundColor: palette.grey[ 100 ],
+            borderRadius,
+          },
+        },
+      },
+      MuiListItemText: {
+        root: {
+          margin: 0,
+          marginTop: 0,
+          marginBottom: 0,
+          padding: 0,
+          fontSize: '1rem',
         },
       },
       MuiPaper: {
@@ -114,12 +208,11 @@ const other = ({
         root: {
           margin: 0,
           '&$h1': {
-            width: '100%',
-            marginBottom: typography.h1.fontSize,
+            display: 'inline-block',
+            width: 'auto',
           },
           '&$h2': {
-            width: '100%',
-            marginBottom: regularSpacing,
+            marginBottom: largeSpacing,
           },
         },
       },

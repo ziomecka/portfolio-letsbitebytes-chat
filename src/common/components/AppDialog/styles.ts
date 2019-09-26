@@ -7,7 +7,9 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 
-export const styles = createStyles(({ spacing }: Theme) => {
+export const styles = createStyles(({
+  spacing,
+}: Theme) => {
   const height = 40;
   const regularSpacing = spacing(SPACING_REGULAR);
 
