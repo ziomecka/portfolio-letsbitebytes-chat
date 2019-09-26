@@ -28,14 +28,5 @@ export const styles = createStyles(({ palette }: Theme) => {
         },
       },
     },
-    transparentVariant: {
-      backgroundColor: palette.background.paper,
-      border: `1px solid ${ palette.text.secondary }`,
-      boxShadow: 'none',
-    },
-    flexVariant: {
-      width: 'auto',
-      margin: 0,
-    },
   };
 });

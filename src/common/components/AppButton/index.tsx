@@ -11,14 +11,12 @@ const AppButton: React.FunctionComponent<AppButtonProps> = ({
   children,
   classes,
   buttonProps = {},
-  variant,
 }) => {
-  buttonProps.variant = buttonProps.variant || 'contained';
 
-  const variants = new Map([
-    [ AppButtonVariant.transparent, classes.transparentVariant ],
-    [ AppButtonVariant.flex, classes.flexVariant ],
-  ]);
+  Object.assign(buttonProps, {
+    variant: buttonProps.variant || 'contained',
+    color: buttonProps.color || 'primary',
+  });
 
   return (
     <Grid
@@ -26,10 +24,7 @@ const AppButton: React.FunctionComponent<AppButtonProps> = ({
       className={ `${ classes.box } ${ classes.adjustTouchRipple }` }
       {...{ autoFocus }}
     >
-      <Button
-        classes={{ root: variants.get(variant) }}
-        { ...buttonProps }
-      >
+      <Button { ...buttonProps }>
         { children }
       </Button>
     </Grid>
