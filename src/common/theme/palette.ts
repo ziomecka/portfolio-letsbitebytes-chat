@@ -2,7 +2,7 @@ import createPalette from '@material-ui/core/styles/createPalette';
 
 const palette = createPalette({
   common: {
-    black: '#272932',
+    black: '#272932', // black
     white: '#fefefe',
   },
   background: {
@@ -34,7 +34,15 @@ const palette = createPalette({
     hint: '#c4c4c7',
   },
   grey: {
-    '500': '#d9d9db',
+    '900': '#3a3c44',
+    '800': '#4e4f57',
+    '700': '#616369',
+    '600': '#75767c',
+    '500': '#898a8f',
+    '400': '#9c9da1',
+    '300': '#b0b1b4',
+    '200': '#c4c4c7',
+    '100': '#d7d8d9',
   },
 });
 
