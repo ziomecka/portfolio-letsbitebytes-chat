@@ -1,18 +1,7 @@
-import {
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/core/styles';
 
-export const styles = createStyles(({
-  palette: { secondary: { main }, grey: { [ 500 ]: grey } },
-}: Theme) => {
+export const styles = createStyles(() => {
   return {
-    button: {
-      margin: 0,
-      textAlign: 'center',
-      width: 'auto',
-      borderRadius: '50%',
-    },
     svg: {
       fontSize: '2rem',
       transformOrigin: '50% 90%',
