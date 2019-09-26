@@ -2,13 +2,12 @@
 import * as React from 'react';
 import {
   AppDialog,
+  AppNav,
   AppSizeProvider,
   NotificationsButton,
-  AppNav,
 } from '../';
 import {
   BottomNavigation,
-  Box,
   Grid,
   MuiThemeProvider,
   Paper,
@@ -34,7 +33,6 @@ const Common: React.FunctionComponent<CommonProps> = ({
           component={Paper}
           elevation={elevation}
           justify="center"
-          alignContent="center"
           id={APP_ROOT_ID}
         >
           <AppNav />
@@ -49,6 +47,6 @@ const Common: React.FunctionComponent<CommonProps> = ({
   </Provider>
 );
 
-const WrappedCommon = withStyles(styles)(Common);
+const WrappedComponent = withStyles(styles)(Common);
 
-export { WrappedCommon as Common };
+export { WrappedComponent as Common };
