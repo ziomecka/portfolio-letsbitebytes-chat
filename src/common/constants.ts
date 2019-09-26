@@ -1,9 +1,10 @@
 export const APP_TITLE = 'Let\'s chat';
-export const HTML_ROOT_ID = 'root';
 export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 
+export const HTML_ROOT_ID = 'root';
 export const SSR_STYLE_ROOT_ID = 'ssr-styles';
 export const HTML_CONVERSATION_ID = 'lbb-conversation';
+export const APP_ROOT_ID = 'lbb-root';
 export const APP_MENU_ID = 'lbb-menu';
 
 export const MIN_LOGIN_LENGTH = 6;
