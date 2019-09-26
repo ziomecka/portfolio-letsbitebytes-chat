@@ -13,6 +13,21 @@ import { Close } from '@material-ui/icons';
 import { styles } from './styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+const iUnderstand = 'I understand';
+
+const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({ closeDialog, classes }) => (
+  <AppButton
+    buttonProps={{
+      onClick: closeDialog,
+      variant: 'text',
+      color: 'primary',
+      className: classes.button,
+    }}
+  >
+    { iUnderstand }
+  </AppButton>
+);
+
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
   closeButton,
@@ -26,12 +41,6 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
   const ariaLabelledBy = 'app-dialog-title';
   const ariaDescribedBy = 'app-dialog-content';
-
-  const OkButton: React.FunctionComponent<Partial<AppButtonProps>> = () => (
-    <AppButton buttonProps={{ onClick: closeDialog }}>
-      ok
-    </AppButton>
-  );
 
   const buttonsVariants = new Map([
     [ ButtonsVariants.ok, OkButton ],
@@ -53,7 +62,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
     return (
       <DialogActions>
-        <Component />
+        <Component { ...{ closeDialog, classes } }/>
       </DialogActions>
     );
   };
