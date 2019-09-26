@@ -151,6 +151,7 @@ const other = ({
         },
         multiline: {
           padding: 0,
+          paddingBottom: regularSpacing,
           margin: 0,
           height: '100%',
           alignItems: 'flex-end',
