@@ -191,8 +191,7 @@ const other = ({
             width: 'auto',
           },
           '&$h2': {
-            width: '100%',
-            marginBottom: regularSpacing,
+            marginBottom: largeSpacing,
           },
         },
       },
