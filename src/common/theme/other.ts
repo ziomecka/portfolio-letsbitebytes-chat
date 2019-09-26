@@ -63,6 +63,18 @@ const other = ({
           maxHeight: appBarHeight,
         },
       },
+      MuiBottomNavigation: {
+        root: {
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          height: APP_NAV_HEIGHT,
+          justifyContent: 'flex-end',
+          boxSizing: 'border-box',
+          padding: `0 ${ largeSpacing }px`,
+          backgroundColor: 'transparent',
+        },
+      },
       MuiBox: {
         root: {
           ...maxWidthHeight,

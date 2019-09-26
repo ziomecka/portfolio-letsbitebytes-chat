@@ -7,6 +7,7 @@ import {
   AppNav,
 } from '../';
 import {
+  BottomNavigation,
   Grid,
   MuiThemeProvider,
   Paper,
@@ -41,9 +42,11 @@ const Common: React.FunctionComponent<CommonProps> = ({
         >
           <AppNav />
           { children }
+          <BottomNavigation>
+            <NotificationsButton />
+          </BottomNavigation>
         </Grid>
         <AppDialog />
-        <NotificationsButton />
       </Grid>
       </AppSizeProvider>
     </MuiThemeProvider>

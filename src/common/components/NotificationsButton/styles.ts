@@ -2,24 +2,15 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
-import { SPACING_REGULAR } from '../../theme/other-constants';
 
 export const styles = createStyles(({
-  spacing,
   palette: { secondary: { main }, grey: { [ 500 ]: grey } },
 }: Theme) => {
-  const regularSpacing = spacing(SPACING_REGULAR);
-  // const border = '.5rem';
-
   return {
     button: {
-      position: 'absolute',
-      right: regularSpacing,
-      bottom: regularSpacing,
+      margin: 0,
       textAlign: 'center',
       width: 'auto',
-      backgroundColor: grey,
-      // border: `${ border } solid ${ main }`,
       borderRadius: '50%',
     },
     svg: {
