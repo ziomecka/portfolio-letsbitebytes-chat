@@ -3,7 +3,11 @@ import {
   AppButton,
   AppForm,
 } from '../';
-import { Typography } from '@material-ui/core';
+import {
+  Box,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
@@ -18,17 +22,30 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
     history.push(AppRoutes.createUserRoute);
   };
 
+  const fontSize = '2rem';
+
   return (
-    <React.Fragment>
+    <Grid
+      container
+      component={Box}
+      style={{ alignContent: 'center' }}
+      justify="center"
+    >
       <Typography variant="h2"
         style={{
-          fontSize: '2rem',
-          height: '2rem',
+          fontSize,
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
       >
         {texts.heading}
       </Typography>
-      <AppForm >
+      <AppForm
+        GridProps={{
+          alignItems: 'center',
+          justify: 'center',
+        }}
+      >
         <AppButton
           autoFocus
           buttonProps={{
@@ -41,13 +58,13 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
         <AppButton
           buttonProps={{
             onClick: goToCreateUser,
+            variant: 'outlined',
           }}
-          variant={AppButtonVariant.transparent}
         >
           {createUserButtonText}
         </AppButton>
       </AppForm>
-    </React.Fragment>
+    </Grid>
   );
 };
 
