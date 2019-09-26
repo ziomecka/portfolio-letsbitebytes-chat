@@ -9,6 +9,7 @@ import {
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import { fontSizes } from './typography-constants';
 
 const buildMarginPadding = (margin: number, padding: number): unknown => ({
   margin,
@@ -96,6 +97,11 @@ const other = ({
         root: {
           width: fontSize * buttonSize,
           ...marginPadding,
+        },
+      },
+      MuiInputLabel: {
+        root: {
+          fontSize: fontSizes.inputLabel,
         },
       },
       MuiDialog: {
