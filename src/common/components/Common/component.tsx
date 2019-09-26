@@ -4,14 +4,13 @@ import {
   AppDialog,
   AppSizeProvider,
   NotificationsButton,
+  AppNav,
 } from '../';
 import {
   Grid,
   MuiThemeProvider,
   Paper,
-  Typography,
 } from '@material-ui/core';
-import { APP_TITLE } from '../../constants';
 import { Provider } from 'react-redux';
 import { getTheme } from '../../theme';
 import { styles } from './styles';
@@ -21,8 +20,6 @@ const Common: React.FunctionComponent<CommonProps> = ({
   children,
   classes,
   elevation = 1,
-  login,
-  appTitle = APP_TITLE,
   store,
 }) => (
   <Provider store={store}>
@@ -35,9 +32,6 @@ const Common: React.FunctionComponent<CommonProps> = ({
         elevation={elevation}
         justify="center"
       >
-        <Typography variant="h1">
-          { `${ appTitle }${ login && `, ${ login }!` }` }
-        </Typography>
         <Grid
           container
           direction="column"
@@ -45,6 +39,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
           justify="center"
           classes={{ root: classes.box }}
         >
+          <AppNav />
           { children }
         </Grid>
         <AppDialog />
