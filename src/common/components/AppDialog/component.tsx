@@ -21,7 +21,6 @@ const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({ closeDialo
       onClick: closeDialog,
       variant: 'text',
       color: 'primary',
-      className: classes.button,
     }}
   >
     { iUnderstand }
