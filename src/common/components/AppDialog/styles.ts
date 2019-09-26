@@ -8,9 +8,7 @@ import {
 } from '@material-ui/core/styles';
 
 export const styles = createStyles(({
-  palette,
   spacing,
-  typography,
 }: Theme) => {
   const height = 40;
   const regularSpacing = spacing(SPACING_REGULAR);
@@ -35,9 +33,6 @@ export const styles = createStyles(({
     },
     title: {
       paddingTop: `${ height - regularSpacing * 2.5 }px`,
-    },
-    button: {
-      fontWeight: typography.fontWeightBold,
     },
   };
 });
