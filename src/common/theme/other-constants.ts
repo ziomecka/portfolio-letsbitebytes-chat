@@ -5,6 +5,8 @@ export const SPACING_SMALL = .5;
 export const SPACING_REGULAR = 1;
 export const SPACING_LARGE = 2;
 
+export const APP_MAX_WIDTH = 800;
+export const APP_MIN_HEIGHT = 700;
 export const APP_NAV_HEIGHT = 60;
 export const DIALOG_MAX_WIDTH = 600;
 export const MENU_MAX_HEIGHT = 400;
