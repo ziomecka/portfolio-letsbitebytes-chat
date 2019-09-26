@@ -8,10 +8,12 @@ import {
 } from '../';
 import {
   BottomNavigation,
+  Box,
   Grid,
   MuiThemeProvider,
   Paper,
 } from '@material-ui/core';
+import { APP_ROOT_ID } from '../../constants';
 import { Provider } from 'react-redux';
 import { getTheme } from '../../theme';
 import { styles } from './styles';
@@ -26,28 +28,22 @@ const Common: React.FunctionComponent<CommonProps> = ({
   <Provider store={store}>
     <MuiThemeProvider theme={ getTheme() }>
       <AppSizeProvider>
-      <Grid
-        container
-        className={classes.rootBox}
-        component={Paper}
-        elevation={elevation}
-        justify="center"
-      >
         <Grid
           container
-          direction="column"
-          alignItems="center"
+          className={classes.rootBox}
+          component={Paper}
+          elevation={elevation}
           justify="center"
-          classes={{ root: classes.box }}
+          alignContent="center"
+          id={APP_ROOT_ID}
         >
           <AppNav />
           { children }
           <BottomNavigation>
             <NotificationsButton />
           </BottomNavigation>
+          <AppDialog />
         </Grid>
-        <AppDialog />
-      </Grid>
       </AppSizeProvider>
     </MuiThemeProvider>
   </Provider>
