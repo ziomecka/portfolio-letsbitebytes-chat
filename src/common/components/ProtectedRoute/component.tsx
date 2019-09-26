@@ -10,6 +10,7 @@ import {
   Redirect,
   Route,
 } from 'react-router-dom';
+import { AppMenu } from './AppMenu/'
 import { Grid } from '@material-ui/core';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/styles/';
@@ -21,6 +22,8 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
   isAuthenticated,
   path,
 }) => {
+  const isCompact = appSize === AppSize.compact;
+
   const renderComponent = (): JSX.Element => (
     isAuthenticated ? (
       <Grid
@@ -28,6 +31,7 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
         className={classes.box}
         justify="space-between"
       >
+        { !isCompact && <Users />}
         <Conversation />
         <Grid
           item
