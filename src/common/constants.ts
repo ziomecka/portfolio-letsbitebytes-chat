@@ -3,6 +3,7 @@ export const HTML_ROOT_ID = 'root';
 export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 
 export const SSR_STYLE_ROOT_ID = 'ssr-styles';
+export const HTML_CONVERSATION_ID = 'lbb-conversation';
 export const APP_MENU_ID = 'lbb-menu';
 
 export const MIN_LOGIN_LENGTH = 6;
@@ -22,5 +23,3 @@ export const PASSWORD_REGEXP =
     `(?=^.{${ MIN_PASSWORD_LENGTH },${ MAX_PASSWORD_LENGTH }}$)(^[\\w${ SPECIAL_CHARACTERS }]*[${ SPECIAL_CHARACTERS }]+[\\w${ SPECIAL_CHARACTERS }]*$)`, // eslint-disable-line max-len
     'i'
   );
-
-export const HTML_CONVERSATION_ID = 'app-conversation';
