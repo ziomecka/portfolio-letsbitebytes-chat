@@ -4,6 +4,11 @@ export {
   mapDialogToDispatch,
 } from './AppDialog/';
 export { AppForm } from './AppForm';
+export {
+  AppSizeConsumer,
+  AppSizeProvider,
+  withAppSize,
+} from './AppSize';
 export { Common } from './Common';
 export { Conversation } from './Conversation';
 export { CreateUser } from './CreateUser';
