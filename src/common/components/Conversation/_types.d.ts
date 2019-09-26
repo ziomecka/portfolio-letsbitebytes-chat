@@ -7,8 +7,7 @@ declare interface MapStateToConversation {
 declare interface MapDispatchToConversation extends MapSocketToProps {}
 
 declare interface ConversationProps extends MapStateToConversation,
-  MapDispatchToConversation,
-  WithStyles {}
+  MapDispatchToConversation {}
 
 declare interface ConversationState {
   conversation: Statement[]
