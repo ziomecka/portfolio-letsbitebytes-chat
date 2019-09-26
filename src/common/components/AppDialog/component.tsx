@@ -51,6 +51,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       <DialogTitle
         id={ariaLabelledBy}
         classes = {{ root: classes.title }}
+        color="primary"
       >
         { title }
       </DialogTitle>
