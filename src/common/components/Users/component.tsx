@@ -1,52 +1,44 @@
 import * as React from 'react';
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-} from '@material-ui/core';
+import { List } from './List/';
+import { Menu } from './Menu/';
 import { styles } from './styles';
+import { withAppSize } from '../';
 import { withStyles } from '@material-ui/styles';
 
 const Users: React.FunctionComponent<UsersProps> =
 ({
+  appSize,
   activeConversation,
   users,
   changeActiveConversation,
   classes,
 }) => {
 
-  const onClick = (login: string): ChangeConversationAction => (
-    changeActiveConversation(login)
-  );
+  const isCompact = appSize === AppSize.compact;
 
-  return (users && users.length &&
-    <List
-      component={Box}
-      classes={{ root: classes.scrollBar }}
-    >
-      {users.map(user => (
-        <ListItem
-          key={user}
-          button={true}
-          onClick={ (): ChangeConversationAction => onClick(user) }
-          classes={{
-            root: classes.listItem,
-          }}
-          selected={user === activeConversation}
-        >
-          <ListItemText
-            primary={user}
-            primaryTypographyProps={{
-              classes: { root: classes.text },
-            }}
+  return (
+    (
+      users && users.length && (
+        isCompact &&
+          <Menu
+            activeConversation={activeConversation}
+            changeActiveConversation={changeActiveConversation}
+            classes={classes}
+            users={users}
           />
-        </ListItem>
-      ))}
-    </List>
-  || null);
+        || (
+          <List
+            activeConversation={activeConversation}
+            changeActiveConversation={changeActiveConversation}
+            classes={classes}
+            users={users}
+          />
+        )
+      ) || null
+    )
+  );
 };
 
-const WrappedComponent = withStyles(styles)(Users);
+const WrappedComponent = withStyles(styles)(withAppSize(Users));
 
 export { WrappedComponent as Users };

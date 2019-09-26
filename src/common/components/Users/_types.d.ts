@@ -7,4 +7,5 @@ declare interface MapDispatchToUsers {
   changeActiveConversation(login: string): ChangeConversationAction;
 }
 
-declare interface UsersProps extends MapStateToUsers, MapDispatchToUsers, WithStyles {}
+declare interface UsersProps extends MapStateToUsers, MapDispatchToUsers, WithStyles, WithAppSize {
+}
