@@ -13,7 +13,7 @@ export default {
   confirmPasswordLabel: 'Confirm password',
   submitButton: 'Create user',
   loginButton: 'Login',
-  serverErrorMessage: 'Something went wrong. Please try again',
+  serverErrorMessage: 'Something went wrong. Please try again.',
   serverSuccessMessage: 'User created. You may',
   loginError:
     'Start from letter and use from ' +

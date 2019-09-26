@@ -1,4 +1,4 @@
 export default {
-  connectionError: 'Something went wrong. Please try again',
+  connectionError: 'Something went wrong. Please try again.',
   homeLabel: 'Home',
 };
