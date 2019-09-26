@@ -142,6 +142,7 @@ const other = ({
           margin: 0,
           padding: 0,
           width: 'auto',
+          borderRadius: '50%',
         },
       },
       MuiInputBase: {
