@@ -1,26 +1,14 @@
 import * as React from 'react';
-import {
-  Box,
-  FormHelperText,
-  Grid,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from '@material-ui/core';
-import { AppButton } from '../';
+import { ChatBox } from '../';
+import { ConversationBox } from './ConversationBox/';
+import { FormHelperText } from '@material-ui/core';
 import { HTML_CONVERSATION_ID } from '../../constants';
-import { convertHtmlEntitiesToUnicode } from '../../utils/convert-html-entities-to-unicode';
-import { styles } from './styles';
+import { MessageBox } from './MessageBox';
 import texts from './texts';
-import { withStyles } from '@material-ui/styles';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
-  private conversationInputLabel: string;
-  private errorMessage: string;
-  private messageInitialState: string;
-  private submitButtonLabel: string;
   private htmlConversationId: string;
+  private texts: Record<string, string>
   constructor (props: ConversationProps) {
     super(props);
 
@@ -34,16 +22,12 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   private init (): void {
-    this.errorMessage = texts.errorMessage;
-    this.messageInitialState = texts.messageInitialState;
-    this.submitButtonLabel = texts.submitButton;
-    this.conversationInputLabel = texts.conversationInputLabel;
+    this.htmlConversationId = HTML_CONVERSATION_ID;
+    this.texts = texts;
 
     this.typeMessage = this.typeMessage.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.sendMessageOnEnter = this.sendMessageOnEnter.bind(this);
-
-    this.htmlConversationId = HTML_CONVERSATION_ID;
   }
 
   private getActiveConversation (conversations = this.props.conversations): Statement[] {
@@ -110,7 +94,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     if (connectionState === ConnectionState.connected && message !== '') {
       try {
-        this.setState({ message: this.messageInitialState });
+        this.setState({ message: this.texts.messageInitialState });
 
         return await this.props.emitMessage(message);
       } catch {
@@ -120,7 +104,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
   }
 
-  // TODO async
   private sendMessageOnEnter (event: React.KeyboardEvent<HTMLElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
@@ -129,134 +112,46 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   }
 
   public render (): JSX.Element {
-    return (
-      <Grid
-        container
-        component={Box}
-      >
-        {this.renderConversation()}
-        {this.props.activeConversation && this.renderConversationInput()}
-      </Grid>
-    );
-  }
-
-  private renderConversation (): JSX.Element {
     const {
-      state: { conversation = [] },
-      props: { classes },
+      props: { activeConversation },
+      state: { error },
+      texts,
     } = this;
 
-    const partnerTypo = `${ classes.typographyBox } ${ classes.partnerTypography }`;
-    const userTypo = `${ classes.typographyBox } ${ classes.userTypography }`;
-
-    return (conversation &&
-      <Grid
-        item
-        xs={12}
-        component={Box}
-        className={classes.mainBox}
-        container
-        direction="column"
-        justify="flex-end"
-      >
-        <Grid
-          container
-          item
-          component={List}
-          id={ this.htmlConversationId }
-          alignItems="flex-end"
-          className={`${ classes.conversationBox } ${ classes.scrollBar }`}
-        >
-          { conversation.map(([ messageId, message, isDelivered ]) => {
-            const isUser = isDelivered !== undefined;
-
-            let typoClass = classes.typography;
-            let itemClass = '';
-
-            if (isUser) {
-              typoClass += ` ${ userTypo }`;
-              itemClass += classes.userListItem;
-            } else {
-              typoClass += ` ${ partnerTypo }` +
-                ` ${ isDelivered ? classes.delivered : classes.undelivered }`;
-            }
-
-            return (
-              <ListItem
-                key={ messageId }
-                disableGutters
-                className={ itemClass }
-              >
-                <Typography
-                  variant="body2"
-                  component="span"
-                  classes={{ root: typoClass }}
-                >
-                  { convertHtmlEntitiesToUnicode(message) }
-                </Typography>
-              </ListItem>
-            );
-          }) }
-        </Grid>
-      </Grid>
-    || null);
-  }
-
-  private renderConversationInput (): JSX.Element {
-    const {
-      props: { classes },
-      state: { error, message },
-    } = this;
+    const heading = activeConversation
+      ? `${ texts.activeConversationHeading } <span>${ activeConversation }</span>`
+      : texts.noActiveConversationHeading;
 
     return (
-      <Grid
-        container
-        alignItems="flex-end"
-        className={classes.messageBox}
+      <ChatBox
+        GridProps={{ style: { flex: '1 0 0' } }}
+        boldHeading={true}
+        heading={heading}
       >
-        <Grid item xs={8}>
-          <TextField
-            autoFocus
-            multiline
-            onChange={this.typeMessage}
-            onKeyDown={this.sendMessageOnEnter}
-            placeholder={this.conversationInputLabel}
-            value={message}
-            FormHelperTextProps={{
-              style: {
-                position: 'absolute',
-              },
-            }}
-            InputProps={{
-              classes: {
-                root: classes.inputBox,
-              },
-            }}
-          />
-        </Grid>
-        <Grid
-          item
-          container
-          xs={4}
-          justify="flex-end"
-        >
-          <AppButton
-            buttonProps={{ onClick: this.sendMessage }}
-            variant={AppButtonVariant.flex}
-          >
-            {this.submitButtonLabel}
-          </AppButton>
-        </Grid>
+        <ConversationBox conversation={this.state.conversation} />
+        {
+          activeConversation && (
+            <MessageBox
+              TextFieldProps={{
+                onChange: this.typeMessage,
+                onKeyDown: this.sendMessageOnEnter,
+                value: this.state.message,
+              }}
+              ButtonProps={{ onClick: this.sendMessage }}
+            />
+          )
+        }
         { error && (
-          <FormHelperText error>
-            { this.errorMessage }
+          <FormHelperText
+            error
+            style={{ position: 'absolute', bottom: '-3rem' }}
+          >
+            { texts.errorMessage }
           </FormHelperText>
         )}
-      </Grid>
+      </ChatBox>
     );
   }
 }
 
-const WrappedConversation = withStyles(styles)(Conversation);
-
-export { WrappedConversation as Conversation };
+export { Conversation };
