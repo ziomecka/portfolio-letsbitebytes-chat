@@ -2,7 +2,8 @@ export const fontSizes = {
   h1: '1.5rem',
   h2: '1.3rem',
   h3: '1.2rem',
-  button: '1.1em',
+  button: '1.1rem',
+  inputLabel: '1rem',
 };
 
 export const fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
