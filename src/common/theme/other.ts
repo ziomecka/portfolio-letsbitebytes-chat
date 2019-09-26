@@ -35,6 +35,10 @@ const other = ({
   const appBarHeight = APP_NAV_HEIGHT;
   const dialogMaxWidth = DIALOG_MAX_WIDTH;
 
+  const {
+    fontSize,
+  } = typography;
+
   const maxWidthHeight = {
     maxHeight: '100%',
     maxWidth: '100%',
@@ -90,7 +94,7 @@ const other = ({
       },
       MuiButtonBase: {
         root: {
-          width: typography.fontSize * buttonSize,
+          width: fontSize * buttonSize,
           ...marginPadding,
         },
       },
