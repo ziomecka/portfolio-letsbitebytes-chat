@@ -1,5 +1,6 @@
 declare interface AppFormProps {
-  heading: string;
+  heading?: string;
+  homeButton?: boolean;
   formHelperProps?: {
     error?: boolean;
     errorMessage?: string;
