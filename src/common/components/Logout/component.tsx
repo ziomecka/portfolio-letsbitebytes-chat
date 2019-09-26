@@ -36,8 +36,10 @@ class Logout extends React.Component<LogoutWithRouterProps> {
   public render (): JSX.Element {
     return (
       <AppButton
-        buttonProps={{ onClick: this.logout }}
-        variant={ AppButtonVariant.transparent }
+        buttonProps={{
+          onClick: this.logout,
+          variant: 'text',
+        }}
       >
         {this.buttonText}
       </AppButton>
