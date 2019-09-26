@@ -102,6 +102,13 @@ const other = ({
           fontWeight: typography.fontWeightLight,
         },
       },
+      MuiIconButton: {
+        root: {
+          margin: 0,
+          padding: 0,
+          width: 'auto',
+        },
+      },
       MuiInputBase: {
         root: {
           ...marginPadding,
