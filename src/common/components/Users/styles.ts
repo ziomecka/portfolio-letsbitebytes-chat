@@ -9,10 +9,6 @@ export const styles = createStyles((theme: Theme) => {
       fontSize: `${ fontSize }px!important`,
     },
     button: {
-      margin: 0,
-      textAlign: 'center',
-      width: 'auto',
-      borderRadius: '50%',
       animation: 'drawAttention .7s linear .5s 5 alternate',
     },
     '@global': {
