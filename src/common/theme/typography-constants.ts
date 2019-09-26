@@ -16,6 +16,7 @@ export const fontWeightRegular = 500;
 export const fontWeightBold = 600;
 
 export const lineHeight = '1.5em';
+export const headingLineHeight = '1.2em';
 
 export const fontWeightHeading = 400;
 export const letterSpacingHeading = '-.02em';
