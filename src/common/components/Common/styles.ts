@@ -1,6 +1,7 @@
 import {
   APP_MAX_WIDTH,
   APP_MIN_HEIGHT,
+  APP_NAV_HEIGHT,
   SPACING_LARGE,
 } from '../../theme/other-constants';
 import {
@@ -20,6 +21,7 @@ export const styles = createStyles(({
       position: 'relative',
       margin: '0 auto',
       padding: largeSpacing,
+      paddingTop: `${ APP_NAV_HEIGHT * 1.5 }px`,
       maxWidth: APP_MAX_WIDTH,
       width: '100%',
       maxHeight: '100vh',
