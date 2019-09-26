@@ -2,13 +2,11 @@ import { Theme, createStyles } from '@material-ui/core';
 import { scrollBar } from '../styles';
 
 export const styles = createStyles((theme: Theme) => {
-  const {
-    typography: { fontWeightLight },
-  } = theme;
+  const { typography: { fontSize } } = theme;
 
   return {
     text: {
-      fontWeight: fontWeightLight,
+      fontSize: `${ fontSize }px!important`,
     },
     button: {
       margin: 0,
