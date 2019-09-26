@@ -8,8 +8,10 @@ import {
   fontWeightLight,
   fontWeightMedium,
   fontWeightRegular,
+  headingLineHeight,
   letterSpacingButton,
   letterSpacingHeading,
+  lineHeight,
   lineHeightButton,
   textTransformButton,
 } from './typography-constants';
@@ -28,19 +30,19 @@ const typography = createTypography(palette, {
   h1: {
     fontSize: h1,
     fontWeight: fontWeightHeading,
-    lineHeight: h1,
+    lineHeight: headingLineHeight,
     letterSpacing: letterSpacingHeading,
   },
   h2: {
     fontSize: h2,
     fontWeight: fontWeightHeading,
-    lineHeight: h2,
+    lineHeight: headingLineHeight,
     letterSpacing: letterSpacingHeading,
   },
   h3: {
     fontSize: h3,
     fontWeight: fontWeightHeading,
-    lineHeight: h3,
+    lineHeight: headingLineHeight,
     letterSpacing: letterSpacingHeading,
   },
   button: {
@@ -50,6 +52,12 @@ const typography = createTypography(palette, {
     lineHeight: lineHeightButton,
     letterSpacing: letterSpacingButton,
     fontWeight: fontWeightButton,
+  },
+  body2: {
+    lineHeight,
+  },
+  body1: {
+    lineHeight,
   },
 });
 
