@@ -107,6 +107,38 @@ const other = ({
           ...marginPadding,
         },
       },
+      MuiList: {
+        root: {
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+          width: '100%',
+          borderRadius,
+        },
+        padding: {
+          paddingTop: 0,
+          paddingBottom: 0,
+        },
+      },
+      MuiListItem: {
+        root: {
+          width: '100%',
+          margin: `${ regularSpacing }px 0`,
+          padding: regularSpacing,
+          '&$selected': {
+            backgroundColor: palette.grey[ 100 ],
+            borderRadius,
+          },
+        },
+      },
+      MuiListItemText: {
+        root: {
+          margin: 0,
+          marginTop: 0,
+          marginBottom: 0,
+          padding: 0,
+          fontSize: '1rem',
+        },
+      },
       MuiPaper: {
         root: {
           boxSizing: 'border-box',
