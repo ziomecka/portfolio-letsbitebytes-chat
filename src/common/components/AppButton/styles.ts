@@ -11,6 +11,7 @@ export const styles = createStyles(({ palette }: Theme) => {
       width: 'initial',
       maxWidth: 'none',
       maxHeight: 'none',
+      display: 'inline-block',
     },
     adjustTouchRipple: {
       '& button': {
