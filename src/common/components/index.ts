@@ -14,6 +14,7 @@ export { ChatBox } from './ChatBox';
 export { Common } from './Common';
 export { Conversation } from './Conversation';
 export { CreateUser } from './CreateUser';
+export { HomeButton } from './HomeButton';
 export { Login } from './Login';
 export { Logout } from './Logout';
 export { ProtectedRoute } from './ProtectedRoute';

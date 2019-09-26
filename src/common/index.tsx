@@ -14,6 +14,7 @@ export {
   Login,
   Common,
   CreateUser,
+  HomeButton,
   ProtectedRoute,
   Public,
 } from './components/';
