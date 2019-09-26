@@ -2,6 +2,7 @@ import {
   APP_NAV_HEIGHT,
   BUTTON_SIZE,
   DIALOG_MAX_WIDTH,
+  FORM_HELPER_TEXT_MAX_WIDTH,
   SPACING_LARGE,
   SPACING_REGULAR,
 } from './other-constants';
@@ -33,6 +34,7 @@ const other = ({
 
   const appBarHeight = APP_NAV_HEIGHT;
   const dialogMaxWidth = DIALOG_MAX_WIDTH;
+  const formHelperTextMaxWidth = FORM_HELPER_TEXT_MAX_WIDTH;
 
   const {
     fontSize,
@@ -128,6 +130,11 @@ const other = ({
           fontFamily: typography.fontFamily,
           fontSize: typography.fontSize,
           fontWeight: typography.fontWeightLight,
+        },
+      },
+      MuiFormHelperText: {
+        root: {
+          maxWidth: formHelperTextMaxWidth,
         },
       },
       MuiIconButton: {
