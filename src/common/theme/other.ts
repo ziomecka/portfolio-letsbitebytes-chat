@@ -1,6 +1,5 @@
 import {
   APP_NAV_HEIGHT,
-  BUTTON_GREY_SHADE,
   BUTTON_SIZE,
   DIALOG_MAX_WIDTH,
   SPACING_LARGE,
@@ -26,7 +25,6 @@ const other = ({
 }: Theme): ThemeOptions => {
 
   const buttonSize = BUTTON_SIZE;
-  const backgroundColorButton = palette.grey[ BUTTON_GREY_SHADE ];
 
   const largeSpacing = spacing(SPACING_LARGE);
   const regularSpacing = spacing(SPACING_REGULAR);
@@ -38,6 +36,7 @@ const other = ({
 
   const {
     fontSize,
+    fontWeightBold,
   } = typography;
 
   const maxWidthHeight = {
@@ -89,8 +88,15 @@ const other = ({
         text: {
           paddingLeft: 0,
         },
-        contained: {
-          backgroundColor: backgroundColorButton,
+        outlined: {
+          fontWeight: fontWeightBold,
+          borderWidth: '2px',
+        },
+        containedPrimary: {
+          fontWeight: fontWeightBold,
+        },
+        containedSecondary: {
+          fontWeight: fontWeightBold,
         },
       },
       MuiButtonBase: {
