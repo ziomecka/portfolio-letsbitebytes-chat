@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { AppButton } from '../AppButton/';
+import {
+  AppButton,
+  AppForm,
+} from '../';
+import { Typography } from '@material-ui/core';
 import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
@@ -16,23 +20,33 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
 
   return (
     <React.Fragment>
-      <AppButton
-        autoFocus
-        buttonProps={{
-          autoFocus: true,
-          onClick: goToLogin,
+      <Typography variant="h2"
+        style={{
+          fontSize: '2rem',
+          height: '2rem',
         }}
       >
-        {loginButtonText}
-      </AppButton>
-      <AppButton
-        buttonProps={{
-          onClick: goToCreateUser,
-        }}
-        variant={AppButtonVariant.transparent}
-      >
-        {createUserButtonText}
-      </AppButton>
+        {texts.heading}
+      </Typography>
+      <AppForm >
+        <AppButton
+          autoFocus
+          buttonProps={{
+            autoFocus: true,
+            onClick: goToLogin,
+          }}
+        >
+          {loginButtonText}
+        </AppButton>
+        <AppButton
+          buttonProps={{
+            onClick: goToCreateUser,
+          }}
+          variant={AppButtonVariant.transparent}
+        >
+          {createUserButtonText}
+        </AppButton>
+      </AppForm>
     </React.Fragment>
   );
 };
