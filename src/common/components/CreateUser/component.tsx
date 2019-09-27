@@ -89,11 +89,21 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
         this.props.deactivateWaitForServer();
 
-        this.setState({
+        const newState = {
           serverResult: result,
           serverError: error,
           connectionError: false,
-        });
+        };
+
+        if (result) {
+          Object.assign(newState, {
+            login: '',
+            password: '',
+            confirmPassword: '',
+          });
+        }
+
+        this.setState(newState);
       } catch {
         this.props.deactivateWaitForServer();
 
