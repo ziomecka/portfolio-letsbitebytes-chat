@@ -1,6 +1,6 @@
 import {
-  SPACING_REGULAR,
-  SPACING_SMALL,
+  REGULAR_SPACING,
+  SMALL_SPACING,
 } from '../../../theme/other-constants';
 import { Theme } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/styles';
@@ -11,8 +11,8 @@ export const styles = createStyles((theme: Theme) => {
     spacing,
   } = theme;
 
-  const regularSpacing = spacing(SPACING_REGULAR);
-  const smallSpacing = spacing(SPACING_SMALL);
+  const regularSpacing = spacing(REGULAR_SPACING);
+  const smallSpacing = spacing(SMALL_SPACING);
   const INPUT_HEIGHT = '80';
 
   return {

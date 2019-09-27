@@ -1,7 +1,7 @@
 import {
   APP_NAV_HEIGHT,
-  SPACING_LARGE,
-  SPACING_REGULAR,
+  LARGE_SPACING,
+  REGULAR_SPACING,
 } from '../../theme/other-constants';
 import { Theme, createStyles } from '@material-ui/core';
 
@@ -9,8 +9,8 @@ export const styles = createStyles(({
   breakpoints,
   spacing,
 }: Theme) => {
-  const padding = spacing(SPACING_REGULAR);
-  const paddingTop = spacing(SPACING_LARGE);
+  const padding = spacing(REGULAR_SPACING);
+  const paddingTop = spacing(LARGE_SPACING);
 
   return {
     box: {

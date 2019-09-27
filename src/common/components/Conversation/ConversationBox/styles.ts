@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core';
-import { SPACING_REGULAR } from '../../../theme/other-constants';
+import { REGULAR_SPACING } from '../../../theme/other-constants';
 import { scrollBar } from '../../styles';
 
 export const styles = createStyles((theme: Theme) => {
@@ -12,7 +12,7 @@ export const styles = createStyles((theme: Theme) => {
   const userBackground = palette.primary.light;
   const userMessage = palette.background.paper;
 
-  const regularSpacing = spacing(SPACING_REGULAR);
+  const regularSpacing = spacing(REGULAR_SPACING);
   const INPUT_HEIGHT = '80';
 
   return {

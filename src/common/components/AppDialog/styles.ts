@@ -1,6 +1,6 @@
 import {
-  SPACING_LARGE,
-  SPACING_REGULAR,
+  LARGE_SPACING,
+  REGULAR_SPACING,
 } from '../../theme/other-constants';
 import {
   Theme,
@@ -11,7 +11,7 @@ export const styles = createStyles(({
   spacing,
 }: Theme) => {
   const height = 40;
-  const regularSpacing = spacing(SPACING_REGULAR);
+  const regularSpacing = spacing(REGULAR_SPACING);
 
   return {
     actionButton: {

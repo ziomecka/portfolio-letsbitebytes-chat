@@ -2,7 +2,7 @@ import {
   APP_MAX_WIDTH,
   APP_MIN_HEIGHT,
   APP_NAV_HEIGHT,
-  SPACING_LARGE,
+  LARGE_SPACING,
 } from '../../theme/other-constants';
 import {
   Theme,
@@ -13,7 +13,7 @@ export const styles = createStyles(({
   breakpoints,
   spacing,
 }: Theme) => {
-  const largeSpacing = spacing(SPACING_LARGE);
+  const largeSpacing = spacing(LARGE_SPACING);
 
   return {
     rootBox: {

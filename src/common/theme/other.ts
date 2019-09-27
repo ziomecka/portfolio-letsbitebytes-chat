@@ -3,8 +3,8 @@ import {
   BUTTON_SIZE,
   DIALOG_MAX_WIDTH,
   FORM_HELPER_TEXT_MAX_WIDTH,
-  SPACING_LARGE,
-  SPACING_REGULAR,
+  LARGE_SPACING,
+  REGULAR_SPACING,
 } from './other-constants';
 import { Overrides } from '@material-ui/core/styles/overrides';
 import { Theme } from '@material-ui/core';
@@ -27,8 +27,8 @@ const other = ({
 
   const buttonSize = BUTTON_SIZE;
 
-  const largeSpacing = spacing(SPACING_LARGE);
-  const regularSpacing = spacing(SPACING_REGULAR);
+  const largeSpacing = spacing(LARGE_SPACING);
+  const regularSpacing = spacing(REGULAR_SPACING);
 
   const marginPadding = buildMarginPadding(regularSpacing, regularSpacing);
 

@@ -1,6 +1,6 @@
 import {
-  SPACING_LARGE,
-  SPACING_REGULAR,
+  LARGE_SPACING,
+  REGULAR_SPACING,
 } from '../../theme/other-constants';
 import { Theme, createStyles } from '@material-ui/core';
 
@@ -11,8 +11,8 @@ export const styles = createStyles(({
   spacing,
   typography,
 }: Theme) => {
-  const largeSpacing = spacing(SPACING_LARGE);
-  const regularSpacing = spacing(SPACING_REGULAR);
+  const largeSpacing = spacing(LARGE_SPACING);
+  const regularSpacing = spacing(REGULAR_SPACING);
 
   const headingColor = palette.grey[ 700 ];
   const highlightedHeadingColor = palette.secondary.main;
