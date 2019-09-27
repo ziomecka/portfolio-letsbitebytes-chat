@@ -43,17 +43,6 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
       };
     }
 
-    case (DialogActionTypes.clear): {
-      return {
-        ...state,
-        users: [...state.users],
-        dialog: {
-          ...defaultInitialState.dialog,
-          open: false,
-        },
-      };
-    }
-
     case (DialogActionTypes.close): {
       return {
         ...state,

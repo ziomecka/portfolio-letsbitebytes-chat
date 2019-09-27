@@ -32,7 +32,6 @@ const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
   closeButton,
-  clearDialog,
   title,
   content,
   buttonsVariant,
@@ -100,7 +99,6 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   function renderClose (): JSX.Element {
     const onClick = (): void => {
       closeDialog();
-      clearDialog();
     };
 
     return (
