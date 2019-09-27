@@ -12,7 +12,7 @@ declare type ApiMethods = 'get' | 'post';
 declare type ApiRequestInit = {
   method?: ApiMethods;
   credentials?: RequestCredentials;
-  headers?: Headers;
+  headers?: import('node-fetch').Headers;
 };
 
 declare type ApiRequest = [ ServerRoutes, ApiRequestProps, ApiRequestInit? ];

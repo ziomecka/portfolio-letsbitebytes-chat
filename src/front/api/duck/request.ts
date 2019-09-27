@@ -1,4 +1,7 @@
+import * as Fetch from 'node-fetch';
 import { buildUrl } from './build-url';
+
+const { Headers, default: fetch } = Fetch;
 
 const defaultRequestInit = {
   method: 'get',
