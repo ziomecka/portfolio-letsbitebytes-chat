@@ -1,5 +1,6 @@
 import { defaultInitialState } from '../../common/';
 
+// @ts-ignore
 const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, action) => {
   const { type, ...actionPayload } = action;
 
@@ -35,6 +36,8 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
         dialog: {
           ...state.dialog,
           ...actionPayload as OpenDialogAction,
+          title: [...(actionPayload as OpenDialogAction).title],
+          content: [...(actionPayload as OpenDialogAction).content],
           open: true,
         },
       };

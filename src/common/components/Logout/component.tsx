@@ -44,8 +44,8 @@ class Logout extends React.Component<LogoutWithRouterProps, LogoutState> {
 
       // todo - add to application general error message in the bottom navigation
       this.props.addNotification({
-        title: this.texts.titleError,
-        content: this.texts.descriptionError,
+        title: [[this.texts.titleError]],
+        content: [[this.texts.descriptionError]],
       });
     }
   }

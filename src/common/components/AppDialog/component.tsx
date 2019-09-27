@@ -15,7 +15,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const iUnderstand = 'I understand';
 
-const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({ closeDialog, classes }) => (
+const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({
+  closeDialog,
+}) => (
   <AppButton
     buttonProps={{
       onClick: closeDialog,
@@ -45,6 +47,22 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
     [ ButtonsVariants.ok, OkButton ],
   ]);
 
+  function buildString (content: DialogContent | DialogTitle, tag?: HtmlTag): string {
+    let openingTag = '';
+    let closingTag = '';
+
+    if (tag) {
+      openingTag = `<${ tag }>`;
+      closingTag = `</${ tag }>`;
+    }
+
+    return content
+      .reduce((str: string, [ paragraph, tag ]: DialogLine): string => {
+        str += `${ openingTag }${ paragraph }${ closingTag }`;
+        return str;
+      }, '');
+  };
+
   function renderDialogTitle (): JSX.Element {
     return (
       <DialogTitle
@@ -52,7 +70,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
         classes = {{ root: classes.title }}
         color="primary"
       >
-        { title }
+        <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
       </DialogTitle>
     );
   };
@@ -72,9 +90,9 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       <DialogContent>
         <DialogContentText
           id={ariaDescribedBy}
-        >
-          { content }
-        </DialogContentText>
+          style={{ whiteSpace: 'pre-wrap' }}
+          dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
+        />
       </DialogContent>
     );
   };

@@ -14,8 +14,8 @@ export const defaultInitialState: AppState = {
   users: [],
   dialog: {
     open: false,
-    title: '',
-    content: '',
+    title: [],
+    content: [],
     closeButton: true,
     buttonsVariant: ButtonsVariants.ok,
   },

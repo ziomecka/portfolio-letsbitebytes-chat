@@ -26,8 +26,8 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
 
       if (logout) {
         dispatch(addNotification({
-          title: 'You are already logged in',
-          content: 'You will be logged out from the other session',
+          title: [['You are already logged in']],
+          content: [['You will be logged out from the other session']],
         }));
       }
     }

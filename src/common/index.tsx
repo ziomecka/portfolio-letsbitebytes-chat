@@ -9,6 +9,7 @@ export {
 
 export {
   HTML_ROOT_ID,
+  SIGNATURE_CLASS,
   SSR_STYLE_ROOT_ID,
   WINDOW_INITIAL_STATE,
 } from './constants';
