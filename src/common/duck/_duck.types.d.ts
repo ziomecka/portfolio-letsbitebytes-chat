@@ -25,6 +25,7 @@ declare interface CommonState {
   users: string[];
   dialog: DialogState;
   notifications: NotificationsState;
+  waitForServer: boolean;
 }
 
 declare interface ChangeConversationActionProps {
