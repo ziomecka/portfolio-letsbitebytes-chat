@@ -17,7 +17,7 @@ const RouterButton: React.FunctionComponent<RouterButtonProps> = ({
       !icon && (
         <AppButton
           buttonProps={ { ...buttonProps, onClick }}
-          { ...{ ...other } }
+          { ...other }
         >
           {children}
         </AppButton>
