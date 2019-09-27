@@ -1,13 +1,11 @@
-/* eslint-disable no-global-assign */
 import * as React from 'react';
 import {
   AppDialog,
   AppNav,
   AppSizeProvider,
-  NotificationsButton,
+  BottomNav,
 } from '../';
 import {
-  BottomNavigation,
   Grid,
   MuiThemeProvider,
   Paper,
@@ -37,9 +35,7 @@ const Common: React.FunctionComponent<CommonProps> = ({
         >
           <AppNav />
           { children }
-          <BottomNavigation>
-            <NotificationsButton />
-          </BottomNavigation>
+          <BottomNav/>
           <AppDialog />
         </Grid>
       </AppSizeProvider>
