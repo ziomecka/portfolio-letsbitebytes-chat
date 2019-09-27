@@ -19,6 +19,4 @@ export {
   initialState,
 } from './initial-state';
 
-export { store } from './store';
-
 export { api } from '../front/api/';
