@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { AppRouter } from './AppRouter/';
+import { AppRouter } from '../';
 import { BrowserRouter } from 'react-router-dom';
-import { Common } from '../../common/';
-import { ssrClean } from './ssr-clean';
+import { Common } from '../../../common/';
 
-require('./css/reset.sass');
+require('./css/index.sass');
 
 interface FrontProps {
   store: ReduxStore,
 }
 
 export const Front: React.FunctionComponent<FrontProps> = ({ store }) => {
-  ssrClean();
   return (
     <Common store={store}>
       <BrowserRouter>

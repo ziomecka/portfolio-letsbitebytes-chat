@@ -11,24 +11,29 @@ declare const enum ButtonsVariants {
 
 interface AppDialogProps extends MapStateToDialog, MapDispatchToDialog {}
 
+declare type HtmlTag = 'p' | 'h2' | 'h3';
+
+declare type DialogLine = [ string, HtmlTag? ];
+declare type DialogContent = DialogLine[];
+declare type DialogTitle = DialogLine[];
+
 declare interface DialogState {
   open: boolean;
   closeButton: boolean;
-  title: string;
-  content: string;
+  title: DialogTitle;
+  content: DialogContent;
   buttonsVariant: ButtonsVariants;
 }
 
 declare type OpenDialogProps = &
 {
   closeButton?: boolean;
-  title: string;
-  content: string;
+  title: DialogTitle;
+  content: DialogContent;
   buttonsVariant?: ButtonsVariants;
 };
 
 declare interface MapDialogToDispatch {
   openDialog(props?: OpenDialogProps): OpenDialogAction;
   closeDialog(): CloseDialogAction;
-  clearDialog(props?: OpenDialogProps): ClearDialogAction;
 }

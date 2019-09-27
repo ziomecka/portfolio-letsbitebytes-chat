@@ -1,6 +1,6 @@
 import { extractCookie } from '../utils/extract-cookie';
 import { logger } from '../logger/';
-import { usersManager } from '..';
+import { usersManager } from '../index';
 
 const log = logger('socket');
 

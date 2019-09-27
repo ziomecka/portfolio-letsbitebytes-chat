@@ -7,7 +7,7 @@ export const getNotification = (): AppThunkAction<OpenDialogProps> => async (
   const state = getState();
 
   // can be other logic applied -depending on notification priority
-  const actual = [...state.notifications.actual];
+  const { actual } = state.notifications;
   const notification = actual.shift();
 
   dispatch(setNotifications({

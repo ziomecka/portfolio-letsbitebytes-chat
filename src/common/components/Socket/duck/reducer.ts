@@ -1,62 +1,65 @@
 import { socketInitialState } from './initial-state';
+import update from 'immutability-helper';
 
 export const socketReducer: ReduxReducer<SocketState, SocketActions> =
-// @ts-ignore
-  (state = socketInitialState, action) => {
+  (state = update({} as SocketState, { $set: socketInitialState }), action) => {
     const { type, ...actionPayload } = action;
 
     switch (type) {
       case (SocketActionTypes.emit): {
         const { message, to, messageId } = actionPayload as EmitAction;
+        if (!state[ to ]) state[ to ] = [];
+
         return {
-          ...state,
-          [ to ]: [
-            ...(state [ to ] || []),
-            [ messageId, message, false ],
-          ],
+          ...update({} as SocketState, { $set: state }),
+          [ to ]: update(state[ to ], {
+            $push: [[ messageId, message, false ]],
+          }),
         };
       }
 
       case (SocketActionTypes.delivered): {
         const { to, messageId } = actionPayload as DeliveredAction;
-        const conversation = [...state[ to ]];
 
-        const index = conversation.findIndex(message => message[ 0 ] === messageId);
-        conversation.splice(index, 1, [ messageId, conversation[ index ][ 1 ], true ]);
+        const index = (state[ to ] || [])
+          .findIndex((message: Statement) => message[ 0 ] === messageId);
 
-        return {
-          ...state,
-          [ to ]: conversation,
-        };
+        if (index !== -1) {
+          return {
+            ...update({} as SocketState, { $set: state }),
+            [ to ]: update(state[ to ], {
+              $splice: [[ index, 1, [ messageId, state[ to ][ index ][ 1 ], true ] ]],
+            }),
+          };
+        }
+
+        return update({} as SocketState, { $set: state });
       }
 
       case (SocketActionTypes.receive): {
         const { message, from, messageId } = actionPayload as ReceiveAction;
 
         return {
-          ...state,
-          [ from ]: [
-            ...(state [ from ] || []),
-            [ messageId, message ],
-          ],
+          ...update({} as SocketState, { $set: state }),
+          [ from ]: update(state[ from ], {
+            $push: [[ messageId, message ]],
+          }),
         };
       }
 
       case (SocketActionTypes.clearConversations): {
-        return { ...socketInitialState };
+        return update(state, { $set: socketInitialState });
       }
 
       case (SocketActionTypes.setConversations): {
-        const { conversations } = actionPayload as SetConversationsAction;
-
         return {
-          ...state,
-          ...conversations, // to do copy
-        }; // todo copy
+          ...update({} as SocketState, { $set: state }),
+          ...update(state, { $set: (actionPayload as SetConversationsAction).conversations }),
+        };
       }
 
       default: {
-        return { ...state };
+        return update({} as SocketState, { $set: state });
       };
     }
   };

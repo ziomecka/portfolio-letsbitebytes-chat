@@ -6,6 +6,7 @@ declare interface AppState {
   users: string[];
   dialog: DialogState;
   notifications: NotificationsState;
+  waitForServer: boolean;
 }
 
 declare interface PartialAppState {
@@ -16,6 +17,7 @@ declare interface PartialAppState {
   users?: string[];
   dialog?: Partial<DialogState>;
   notifications?: NotificationsState;
+  waitForServer?: boolean;
 }
 
 declare interface AsyncInitialAppState {}

@@ -1,9 +1,11 @@
 import { commonStateReducer } from '../common/duck/';
-import { initialState } from '../common/';
-import { loginReducer } from '../common/components/Login/';
-import { socketReducer } from '../common/components/Socket/';
+import { initialState } from './initial-state';
+import { loginReducer } from './components/Login/';
+import { socketReducer } from './components/Socket/';
+import update from 'immutability-helper';
 
-const appReducer: ReduxReducer<AppState, AppAction> = (state = initialState, action) => {
+const appReducer: ReduxReducer<AppState, AppAction> =
+(state = update({} as AppState, { $set: initialState }), action) => {
   return {
     user: loginReducer(state.user, action),
     conversations: socketReducer(state.conversations, action),
@@ -14,6 +16,7 @@ const appReducer: ReduxReducer<AppState, AppAction> = (state = initialState, act
         users: state.users,
         dialog: state.dialog,
         notifications: state.notifications,
+        waitForServer: state.waitForServer,
       }, action as CommonActions
     ),
   };

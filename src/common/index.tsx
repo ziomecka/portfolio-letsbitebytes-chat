@@ -1,8 +1,17 @@
 export {
-  HTML_CONVERSATION_ID,
-  WINDOW_INITIAL_STATE,
+  Common,
+  CreateUser,
+  HomeButton,
+  Login,
+  ProtectedRoute,
+  Public,
+} from './components/';
+
+export {
   HTML_ROOT_ID,
+  SIGNATURE_CLASS,
   SSR_STYLE_ROOT_ID,
+  WINDOW_INITIAL_STATE,
 } from './constants';
 
 export {
@@ -10,11 +19,6 @@ export {
   initialState,
 } from './initial-state';
 
-export {
-  Login,
-  Common,
-  CreateUser,
-  HomeButton,
-  ProtectedRoute,
-  Public,
-} from './components/';
+export { store } from './store';
+
+export { api } from '../front/api/';

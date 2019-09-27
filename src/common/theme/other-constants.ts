@@ -1,8 +1,8 @@
 export const BUTTON_SIZE = 8; // used as buttonSize x 1rem
 
-export const SPACING_SMALL = .5;
-export const SPACING_REGULAR = 1;
-export const SPACING_LARGE = 2;
+export const SMALL_SPACING = .5;
+export const REGULAR_SPACING = 1;
+export const LARGE_SPACING = 2;
 
 export const APP_MAX_WIDTH = 800;
 export const APP_MIN_HEIGHT = 700;

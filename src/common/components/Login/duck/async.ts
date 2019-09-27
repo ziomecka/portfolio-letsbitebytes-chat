@@ -1,7 +1,10 @@
-import { addNotification } from '../../../duck';
+import {
+  addNotification,
+  deactivateWaitForServer,
+  setUsers,
+} from '../../../duck';
 import { loginActionSuccess } from './actions';
 import { setConversationsAction } from '../../Socket/';
-import { setUsers } from '../../../duck/';
 
 export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
@@ -19,6 +22,8 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
       ServerRoutes.loginRoute, { queryParams: { login, password } }
     ) as ApiResponse;
 
+    dispatch(deactivateWaitForServer());
+
     if (result) {
       users && dispatch(setUsers({ users }));
       conversations && dispatch(setConversationsAction({ conversations }));
@@ -26,8 +31,8 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
 
       if (logout) {
         dispatch(addNotification({
-          title: 'You are already logged in',
-          content: 'You will be logged out from the other session',
+          title: [['You are already logged in']],
+          content: [['You will be logged out from the other session']],
         }));
       }
     }

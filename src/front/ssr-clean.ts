@@ -1,4 +1,4 @@
-import { SSR_STYLE_ROOT_ID } from '../../common/';
+import { SSR_STYLE_ROOT_ID } from '../common/';
 
 const ssrHtmlNodes = [
   {

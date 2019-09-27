@@ -14,8 +14,8 @@ export const defaultInitialState: AppState = {
   users: [],
   dialog: {
     open: false,
-    title: '',
-    content: '',
+    title: [],
+    content: [],
     closeButton: true,
     buttonsVariant: ButtonsVariants.ok,
   },
@@ -23,20 +23,11 @@ export const defaultInitialState: AppState = {
     history: [],
     actual: [],
   },
+  waitForServer: false,
 };
 
 const state = process.env.IS_BROWSER
   ? (window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState
   : defaultInitialState;
 
-export const initialState = {
-  ...state,
-  user: { ...state.user },
-  users: [...state.users],
-  conversations: { ...state.conversations },
-  dialog: { ...state.dialog },
-  notifications: {
-    history: [...state.notifications.history],
-    actual: [...state.notifications.actual],
-  },
-};
+export const initialState = state;

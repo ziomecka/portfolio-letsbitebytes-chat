@@ -4,16 +4,11 @@ import texts from './texts';
 
 const BUTTON_TEXT = 'Logout';
 
-class Logout extends React.Component<LogoutWithRouterProps, LogoutState> {
+class Logout extends React.Component<LogoutWithRouterProps> {
   private buttonText: string;
   private texts: Record<string, string>;
   constructor (props: LogoutWithRouterProps) {
     super(props);
-
-    // todo - add to application general waitingForResponse state
-    this.state = {
-      waitingForResponse: false,
-    };
 
     this.init();
   }
@@ -36,16 +31,16 @@ class Logout extends React.Component<LogoutWithRouterProps, LogoutState> {
 
   private async logout (): Promise<void> {
     try {
-      this.setState({ waitingForResponse: true });
+      this.props.activateWaitForServer();
 
       await this.props.logout();
     } catch {
-      this.setState({ waitingForResponse: false });
+      this.props.deactivateWaitForServer();
 
       // todo - add to application general error message in the bottom navigation
       this.props.addNotification({
-        title: this.texts.titleError,
-        content: this.texts.descriptionError,
+        title: [[this.texts.titleError]],
+        content: [[this.texts.descriptionError]],
       });
     }
   }
@@ -56,7 +51,7 @@ class Logout extends React.Component<LogoutWithRouterProps, LogoutState> {
         buttonProps={{
           onClick: this.logout,
           variant: 'text',
-          disabled: this.state.waitingForResponse,
+          disabled: this.props.waitForServer,
         }}
       >
         {this.buttonText}

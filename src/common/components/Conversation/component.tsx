@@ -5,6 +5,7 @@ import { FormHelperText } from '@material-ui/core';
 import { HTML_CONVERSATION_ID } from '../../constants';
 import { MessageBox } from './MessageBox';
 import texts from './texts';
+import update from 'immutability-helper';
 
 class Conversation extends React.Component<ConversationProps, ConversationState> {
   private htmlConversationId: string;
@@ -60,7 +61,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       const activeConversation = this.getActiveConversation();
       // todo -> set and scroll only if the active conversation has changed!
       this.setState(() => ({
-        conversation: [...activeConversation],
+        conversation: update([] as Statement[], { $set: activeConversation }),
       }), this.scroll);
     }
 

@@ -27,3 +27,13 @@ export const addNotification: ReduxActionCreator<AddNotificationAction> =
   type: CommonActionTypes.addNotification,
   ...props,
 });
+
+export const activateWaitForServer: ReduxActionCreator<ReduxAction> =
+() => ({
+  type: CommonActionTypes.activateWaitForServer,
+});
+
+export const deactivateWaitForServer: ReduxActionCreator<ReduxAction> =
+() => ({
+  type: CommonActionTypes.deactivateWaitForServer,
+});

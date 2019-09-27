@@ -1,7 +1,8 @@
 declare interface MapStateToCreateUser {
+  waitForServer: boolean;
 }
 
-declare interface MapDispatchToCreateUser {
+declare interface MapDispatchToCreateUser extends MapWaitForServerToDispatch {
   createUser(props: CreateUserActionProps): Promise<CreateUserResponse>;
 }
 
