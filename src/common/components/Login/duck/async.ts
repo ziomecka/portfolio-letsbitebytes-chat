@@ -1,7 +1,10 @@
-import { addNotification } from '../../../duck';
+import {
+  addNotification,
+  deactivateWaitForServer,
+  setUsers,
+} from '../../../duck';
 import { loginActionSuccess } from './actions';
 import { setConversationsAction } from '../../Socket/';
-import { setUsers } from '../../../duck/';
 
 export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
@@ -18,6 +21,8 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
     } = await api.request(
       ServerRoutes.loginRoute, { queryParams: { login, password } }
     ) as ApiResponse;
+
+    dispatch(deactivateWaitForServer());
 
     if (result) {
       users && dispatch(setUsers({ users }));

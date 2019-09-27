@@ -8,8 +8,11 @@ import {
   LOGIN_REGEXP,
   PASSWORD_REGEXP,
 } from '../../constants';
+import {
+  TextField,
+  Typography,
+} from '@material-ui/core/';
 import { Link } from 'react-router-dom';
-import { TextField } from '@material-ui/core/';
 import texts from './texts';
 
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {
@@ -83,14 +86,30 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     if (!loginError && !passwordError && !confirmPasswordError) {
       try {
+        this.props.activateWaitForServer();
+
         const { result, error } = await this.props.createUser({ login, password, confirmPassword });
 
-        this.setState({
+        this.props.deactivateWaitForServer();
+
+        const newState = {
           serverResult: result,
           serverError: error,
           connectionError: false,
-        });
+        };
+
+        if (result) {
+          Object.assign(newState, {
+            login: '',
+            password: '',
+            confirmPassword: '',
+          });
+        }
+
+        this.setState(newState);
       } catch {
+        this.props.deactivateWaitForServer();
+
         this.setState({
           serverResult: false,
           serverError: this.serverErrorMessage,
@@ -147,10 +166,17 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         confirmPasswordError,
         serverError,
       },
+      props: { waitForServer },
     } = this;
 
     const disabled = (
-      !login || !password || !confirmPassword || loginError || passwordError || confirmPasswordError
+      !login ||
+      !password ||
+      !confirmPassword ||
+      waitForServer ||
+      loginError ||
+      passwordError ||
+      confirmPasswordError
     );
 
     return (
@@ -212,8 +238,14 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           )
           : (
             <React.Fragment>
-              { this.serverSuccessMessage }
-              <Link to={AppRoutes.loginRoute}>{ this.loginLabel }</Link>
+              <Typography style={{ whiteSpace: 'pre-wrap' }}>
+                {`${ this.serverSuccessMessage } `}
+                <Typography component="span" color="secondary">
+                  <Link to={AppRoutes.loginRoute}>
+                    { this.loginLabel.toLowerCase() }
+                  </Link>
+                </Typography>
+              </Typography>
 
               <RouterButton
                 to={AppRoutes.loginRoute}

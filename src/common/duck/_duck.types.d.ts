@@ -4,6 +4,8 @@ declare const enum CommonActionTypes {
   setUsers = '@APP/Common/set users',
   setNotifications = '@APP/Common/set notifications',
   addNotification = '@APP/Common/add notification',
+  activateWaitForServer = '@APP/Common/activate waiting for server',
+  deactivateWaitForServer = '@APP/Common/deactivate waiting for server',
 }
 
 declare const enum ConnectionState {
@@ -25,6 +27,7 @@ declare interface CommonState {
   users: string[];
   dialog: DialogState;
   notifications: NotificationsState;
+  waitForServer: boolean;
 }
 
 declare interface ChangeConversationActionProps {

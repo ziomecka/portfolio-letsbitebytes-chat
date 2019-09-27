@@ -16,6 +16,7 @@ const appReducer: ReduxReducer<AppState, AppAction> =
         users: state.users,
         dialog: state.dialog,
         notifications: state.notifications,
+        waitForServer: state.waitForServer,
       }, action as CommonActions
     ),
   };

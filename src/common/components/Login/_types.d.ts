@@ -2,9 +2,10 @@ declare interface MapStateToLogin {
   isAuthenticated: boolean;
   userLogin: string;
   userPassword: string;
+  waitForServer: boolean;
 }
 
-declare interface MapDispatchToLogin {
+declare interface MapDispatchToLogin extends MapWaitForServerToDispatch {
   login(props: LoginActionProps):  Promise<boolean>;
 }
 
@@ -20,5 +21,4 @@ declare interface LoginState {
   confirmPassword: string;
   loginError: boolean;
   connectionError: boolean;
-  waitingForResponse: boolean;
 }
