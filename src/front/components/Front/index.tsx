@@ -2,7 +2,6 @@ import * as React from 'react';
 import { AppRouter } from '../';
 import { BrowserRouter } from 'react-router-dom';
 import { Common } from '../../../common/';
-import { ssrClean } from './ssr-clean';
 
 require('./css/index.sass');
 
@@ -11,7 +10,6 @@ interface FrontProps {
 }
 
 export const Front: React.FunctionComponent<FrontProps> = ({ store }) => {
-  ssrClean();
   return (
     <Common store={store}>
       <BrowserRouter>
