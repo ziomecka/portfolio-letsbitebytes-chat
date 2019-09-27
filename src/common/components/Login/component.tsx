@@ -22,7 +22,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       confirmPassword: '',
       loginError: false,
       connectionError: false,
-      waitingForResponse: false,
     };
 
     this.init();
@@ -51,21 +50,24 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
   private async submit (): Promise<void> {
     const { state: { login, password } } = this;
-    this.setState({ waitingForResponse: true });
+
+    this.props.activateWaitForServer();
 
     try {
       const result = await this.props.login({ login, password });
 
       if (!result) {
+        this.props.deactivateWaitForServer();
+
         this.setState({
-          waitingForResponse: false,
           loginError: true,
           connectionError: false,
         });
       }
     } catch {
+      this.props.deactivateWaitForServer();
+
       this.setState({
-        waitingForResponse: false,
         loginError: false,
         connectionError: true,
       });
@@ -123,7 +125,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           buttonProps={{
             onClick: this.submit,
             type: 'submit',
-            disabled: this.state.waitingForResponse,
+            disabled: this.props.waitForServer,
           }}
         >
           {this.submitButtonText}
