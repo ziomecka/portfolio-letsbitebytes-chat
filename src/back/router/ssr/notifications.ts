@@ -16,7 +16,16 @@ const test = {
 
 const welcome = {
   open: false,
-  title: 'Welcome in the chat application',
+  title: 'First steps',
+  // content: [
+  //   '<p>If you want to test the application, you can log in as trainee or trainer.</p>',
+  //   `<p>The passwords are: ${ trainee } and ${ trainer }, respectively</p>`,
+  //   '<p>I suggest that you write it down, because after the message disappears you will not have access to it.</p>',
+  //   '<p>Feel free to chat with me. I\'m the user: ziomecka. </p>',
+  //   '<p>Have a nice chatting!</p>',
+  //   '<p>Kasia Ziomek-Zdanowicz,</p>',
+  //   '<p>Front end developer</p>',
+  // ],
   content: '' +
   'If you want to test the application, you can log in as trainee or trainer.' +
   '\n' +
