@@ -4,25 +4,40 @@ import { PriorityHigh as NotificationIcon } from '@material-ui/icons';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/styles';
 
+const { IS_BROWSER } = process.env;
+
 class NotificationsButton extends
   React.Component<NotificationsButtonProps, NotificationsButtonState> {
   private animationRemoveTimeout: number;
+  private isBrowser: string;
   constructor (props: NotificationsButtonProps) {
     super(props);
+
     this.state = {
       isAnimationWaiting: props.dialogOpened,
       svgAnimation: '',
     };
 
+    this.init();
+  }
+
+  private init (): void {
     this.animationRemoveTimeout = 2005;
+    this.isBrowser = IS_BROWSER;
   }
 
   public componentDidMount (): void {
-    this.setState({
-      svgAnimation: (this.props.actualNotifications.length
-        ? this.props.classes.shake
-        : ''),
-    });
+    if (this.isBrowser) {
+      const {
+        props: { actualNotifications, classes },
+      } = this;
+
+      this.setState({
+        svgAnimation: (actualNotifications.length
+          ? classes.shake
+          : ''),
+      });
+    }
   }
 
   public componentDidUpdate ({
@@ -75,16 +90,16 @@ class NotificationsButton extends
   };
 
   public render (): JSX.Element {
-    const {
-      props: { classes, actualNotifications },
-      state: { svgAnimation },
-    } = this;
+    const { props: { classes, actualNotifications } } = this;
 
     return (!!actualNotifications.length &&
-      <IconButton onClick={this.onClick}>
+      <IconButton
+        onClick={this.onClick}
+        color="secondary"
+      >
         <NotificationIcon
           color="secondary"
-          classes={{ root: `${ classes.svg } ${ svgAnimation }` }}
+          classes={{ root: `${ classes.svg } ${ this.state.svgAnimation }` }}
         />
       </IconButton>
     );

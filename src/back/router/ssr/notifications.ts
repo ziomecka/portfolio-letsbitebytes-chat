@@ -10,7 +10,7 @@ const findByLogin =
 const { password: trainee } = findByLogin(defaultUsers, 'trainee');
 const { password: trainer } = findByLogin(defaultUsers, 'trainer');
 
-const signature = +
+const signature = '' +
 `<span class="${ SIGNATURE_CLASS }"><em>` +
 'Katarzyna Ziomek-Zdanowicz,</em><em>Front end developer</em></span>';
 
@@ -35,7 +35,7 @@ const welcome = {
     [
       'If you want to test the application, you can log in as <strong>trainee</strong> or <strong>trainer</strong>.' +
       ` The passwords are: <strong>${ trainee }</strong> and <strong>${ trainer }</strong>, respectively.` +
-      ' I suggest that you write them down, because after the message disappears you will not have access to them.',
+      ' I suggest that you write them down, because after the message disappears, you will not have access to them.',
     ],
     [
       'Feel free to chat with me. I\'m the user: <strong>ziomecka</strong>.',
@@ -53,7 +53,6 @@ export default {
   test,
   welcome,
 };
-
 
 // In Future add to welcome:
 // 'If you send me a message, I will receive an email notification and try to join the chat as soon as possible :-)'

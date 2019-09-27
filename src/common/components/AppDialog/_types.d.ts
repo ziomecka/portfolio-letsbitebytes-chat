@@ -36,5 +36,4 @@ declare type OpenDialogProps = &
 declare interface MapDialogToDispatch {
   openDialog(props?: OpenDialogProps): OpenDialogAction;
   closeDialog(): CloseDialogAction;
-  clearDialog(props?: OpenDialogProps): ClearDialogAction;
 }

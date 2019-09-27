@@ -1,92 +1,76 @@
 import { defaultInitialState } from '../../common/';
+import update from 'immutability-helper';
 
-// @ts-ignore
 const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, action) => {
   const { type, ...actionPayload } = action;
 
   switch (type) {
     case (CommonActionTypes.changeActiveConversation): {
-      return {
-        ...state,
-        dialog: { ...state.dialog },
-        activeConversation: (actionPayload as ChangeConversationAction).activeConversation,
-      };
+      return update(state, {
+        activeConversation: {
+          $set: (actionPayload as ChangeConversationAction).activeConversation,
+        },
+      });
     }
 
     case (CommonActionTypes.changeConnectionState): {
-      return {
-        ...state,
-        dialog: { ...state.dialog },
-        connectionState: (actionPayload as ChangeSocketConnectionAction).connectionState,
-      };
+      return update(state, {
+        connectionState: { $set: (actionPayload as ChangeSocketConnectionAction).connectionState },
+      });
     }
 
     case (CommonActionTypes.setUsers): {
-      return {
-        ...state,
-        dialog: { ...state.dialog },
-        users: [...(actionPayload as SetUsersAction).users],
-      };
+      return update(state, {
+        users: { $set: (actionPayload as SetUsersAction).users },
+      });
     }
 
     case (DialogActionTypes.open): {
       return {
-        ...state,
-        users: [...state.users],
-        dialog: {
-          ...state.dialog,
-          ...actionPayload as OpenDialogAction,
-          title: [...(actionPayload as OpenDialogAction).title],
-          content: [...(actionPayload as OpenDialogAction).content],
-          open: true,
-        },
-      };
-    }
-
-    case (DialogActionTypes.clear): {
-      return {
-        ...state,
-        users: [...state.users],
-        dialog: {
-          ...defaultInitialState.dialog,
-          open: false,
-        },
+        ...update({} as CommonState, { $set: state }),
+        dialog: update(state.dialog,
+          { $merge: { ...(actionPayload as OpenDialogAction), open: true } },
+        ),
       };
     }
 
     case (DialogActionTypes.close): {
       return {
-        ...state,
-        users: [...state.users],
-        dialog: {
-          ...state.dialog,
-          open: false,
-        },
+        ...update({} as CommonState, { $set: state }),
+        dialog: update(state.dialog,
+          { $merge: { ...(defaultInitialState.dialog), open: false } },
+        ),
       };
     }
 
     case (CommonActionTypes.setNotifications): {
       return {
-        ...state,
+        ...update({} as CommonState, { $set: state }),
         notifications: {
-          actual: [...(actionPayload as SetNotificationsProps).notifications.actual],
-          history: [...(actionPayload as SetNotificationsProps).notifications.history],
+          actual: update(state.notifications.actual, {
+            $set: (actionPayload as SetNotificationsProps).notifications.actual,
+          }),
+          history: update(state.notifications.history, {
+            $set: (actionPayload as SetNotificationsProps).notifications.history,
+          }),
         },
       };
     }
 
     case (CommonActionTypes.addNotification): {
       return {
-        ...state,
+        ...update({} as CommonState, { $set: state }),
         notifications: {
-          actual: [ ...state.notifications.actual, { ...(actionPayload as AddNotificationProps) } ],
-          history: [...state.notifications.history],
+          history: update([] as NotificationsList, { $set: state.notifications.history }),
+          actual: update(state.notifications.actual, {
+            $push: [(actionPayload as AddNotificationProps)],
+          }),
         },
       };
     }
 
     default: {
-      return { ...state };
+      return update({} as CommonState, { $set: state });
     }
   }
 };

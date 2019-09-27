@@ -3,10 +3,6 @@ export const openDialog: ReduxActionCreator<OpenDialogAction> = (props: OpenDial
   ...props,
 });
 
-export const clearDialog: ReduxActionCreator<ClearDialogAction> = () => ({
-  type: DialogActionTypes.clear,
-});
-
 export const closeDialog: ReduxActionCreator<CloseDialogAction> = () => ({
   type: DialogActionTypes.close,
 });
