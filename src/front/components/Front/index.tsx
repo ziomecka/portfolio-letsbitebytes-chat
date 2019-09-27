@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AppRouter } from './AppRouter/';
+import { AppRouter } from '../';
 import { BrowserRouter } from 'react-router-dom';
-import { Common } from '../../common/';
+import { Common } from '../../../common/';
 import { ssrClean } from './ssr-clean';
 
 require('./css/reset.sass');
