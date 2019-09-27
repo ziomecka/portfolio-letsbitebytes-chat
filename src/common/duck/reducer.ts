@@ -69,6 +69,20 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
       };
     }
 
+    case (CommonActionTypes.activateWaitForServer): {
+      return {
+        ...update({} as CommonState, { $set: state }),
+        waitForServer: true,
+      };
+    }
+
+    case (CommonActionTypes.deactivateWaitForServer): {
+      return {
+        ...update({} as CommonState, { $set: state }),
+        waitForServer: false,
+      };
+    }
+
     default: {
       return update({} as CommonState, { $set: state });
     }

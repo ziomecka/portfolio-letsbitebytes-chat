@@ -22,3 +22,8 @@ declare type ReduxReducer<S, A> = import('redux').Reducer<S, A>;
 declare type ReduxStore = import('redux').Store;
 
 declare type WithStyles = import('@material-ui/core/styles').WithStyles;
+
+declare interface MapWaitForServerToDispatch {
+  activateWaitForServer(): ReduxAction;
+  deactivateWaitForServer(): ReduxAction;
+}
