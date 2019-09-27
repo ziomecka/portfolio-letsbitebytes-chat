@@ -11,6 +11,7 @@ export const styles = createStyles(({
   spacing,
 }: Theme) => {
   const height = 40;
+  const largeSpacing = spacing(LARGE_SPACING);
   const regularSpacing = spacing(REGULAR_SPACING);
 
   return {
@@ -23,16 +24,17 @@ export const styles = createStyles(({
     },
     topActions: {
       display: 'flex',
-      justify: 'flex-end',
+      justifyContent: 'flex-end',
       position: 'absolute',
-      top: regularSpacing * .5,
+      top: 0,
       left: 0,
       width: '100%',
       height,
-      marginBottom: '0',
+      padding: `0 ${ regularSpacing + largeSpacing }px`,
+      margin: `${ largeSpacing + regularSpacing }px 0 ${ regularSpacing }px`,
     },
     title: {
-      paddingTop: `${ height - regularSpacing * 2.5 }px`,
+      paddingTop: `${ height + largeSpacing + regularSpacing }px`,
     },
   };
 });
