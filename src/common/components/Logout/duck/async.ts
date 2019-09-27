@@ -1,6 +1,7 @@
 import {
   changeActiveConversation,
   changeConnectionState,
+  deactivateWaitForServer,
   setUsers,
 } from '../../../duck/actions';
 import { clearConversationsAction } from '../../Socket/';
@@ -14,6 +15,8 @@ export const logout = (): AppThunkAction<boolean> => (
       const { result } = await api.request(
         ServerRoutes.logoutRoute, { queryParams: { login: getState().user.login } }
       );
+
+      dispatch(deactivateWaitForServer());
 
       if (result) {
         dispatch(logoutActionSuccess());
