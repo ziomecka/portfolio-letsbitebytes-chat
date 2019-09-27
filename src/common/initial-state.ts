@@ -29,14 +29,4 @@ const state = process.env.IS_BROWSER
   ? (window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState
   : defaultInitialState;
 
-export const initialState = {
-  ...state,
-  user: { ...state.user },
-  users: [...state.users],
-  conversations: { ...state.conversations },
-  dialog: { ...state.dialog },
-  notifications: {
-    history: [...state.notifications.history],
-    actual: [...state.notifications.actual],
-  },
-};
+export const initialState = state;
