@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Common } from '../../../common/';
 import { ssrClean } from './ssr-clean';
 
-require('./css/reset.sass');
+require('./css/index.sass');
 
 interface FrontProps {
   store: ReduxStore,
