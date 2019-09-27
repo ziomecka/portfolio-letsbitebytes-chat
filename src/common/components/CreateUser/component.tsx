@@ -83,7 +83,11 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     if (!loginError && !passwordError && !confirmPasswordError) {
       try {
+        this.props.activateWaitForServer();
+
         const { result, error } = await this.props.createUser({ login, password, confirmPassword });
+
+        this.props.deactivateWaitForServer();
 
         this.setState({
           serverResult: result,
@@ -91,6 +95,8 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           connectionError: false,
         });
       } catch {
+        this.props.deactivateWaitForServer();
+
         this.setState({
           serverResult: false,
           serverError: this.serverErrorMessage,
@@ -147,10 +153,17 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         confirmPasswordError,
         serverError,
       },
+      props: { waitForServer },
     } = this;
 
     const disabled = (
-      !login || !password || !confirmPassword || loginError || passwordError || confirmPasswordError
+      !login ||
+      !password ||
+      !confirmPassword ||
+      waitForServer ||
+      loginError ||
+      passwordError ||
+      confirmPasswordError
     );
 
     return (
