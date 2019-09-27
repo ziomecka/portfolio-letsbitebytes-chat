@@ -1,11 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {
-  HTML_ROOT_ID,
-  store,
-} from '../common';
 import { Front } from './components/';
+import { HTML_ROOT_ID } from '../common';
 import { ssrClean } from './ssr-clean';
+import { store } from '../common/store';
 
 ReactDOM.hydrate(
   <Front store={store} />,
