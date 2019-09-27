@@ -113,6 +113,7 @@
     "maintenance:sync:usersCache": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts syncUsersCache",
     "maintenance:delete:users": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts deleteUsers",
     "maintenance:create:defaultUsers": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts createDefaultUsers",
+    "maintenance:restore:testDB": "npm run maintenance:delete:users && npm run maintenance:create:defaultUsers && npm run maintenance:sync:usersCache",
     "maintenance:update:defaultUsers": "ts-node --project tsconfig.json -r dotenv/config --files src/back/maintenance/index.ts updateDefaultUsers"
   },
   "keywords": [
