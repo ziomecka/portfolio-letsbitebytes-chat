@@ -2,7 +2,7 @@ import {
   applyMiddleware,
   createStore,
 } from 'redux';
-import { api } from './api/';
+import { api } from './';
 import { appReducer } from './reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
