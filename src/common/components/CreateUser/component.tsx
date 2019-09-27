@@ -8,8 +8,11 @@ import {
   LOGIN_REGEXP,
   PASSWORD_REGEXP,
 } from '../../constants';
+import {
+  TextField,
+  Typography,
+} from '@material-ui/core/';
 import { Link } from 'react-router-dom';
-import { TextField } from '@material-ui/core/';
 import texts from './texts';
 
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {
@@ -235,8 +238,14 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           )
           : (
             <React.Fragment>
-              { this.serverSuccessMessage }
-              <Link to={AppRoutes.loginRoute}>{ this.loginLabel }</Link>
+              <Typography style={{ whiteSpace: 'pre-wrap' }}>
+                {`${ this.serverSuccessMessage } `}
+                <Typography component="span" color="secondary">
+                  <Link to={AppRoutes.loginRoute}>
+                    { this.loginLabel.toLowerCase() }
+                  </Link>
+                </Typography>
+              </Typography>
 
               <RouterButton
                 to={AppRoutes.loginRoute}
