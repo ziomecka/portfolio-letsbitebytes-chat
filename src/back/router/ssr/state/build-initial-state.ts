@@ -1,25 +1,22 @@
 import { IS_PRODUCTION } from '../../../constants';
 import { buildDevelopmentUser } from './build-development-user';
 import { initialState } from '../../../../common/';
+import update from 'immutability-helper';
 
 export const buildInitialState =
 async ({ notifications }: PartialSsrInitialState): Promise<AppState> => {
-  // todo copy conversations
+  const initialUser = update({} as UserState, { $set: initialState.user });
   return {
     ...initialState,
-    conversations: {} as Conversations,
     connectionState: ConnectionState.unknown,
     user: IS_PRODUCTION
-      ? { ...initialState.user }
+      ? initialUser
       : {
-        ...initialState.user,
+        ...initialUser,
         ...buildDevelopmentUser(),
       },
     users: [] as string[],
-    dialog: { ...initialState.dialog },
-    notifications: {
-      history: [...notifications.history],
-      actual: [...notifications.actual],
-    },
+    dialog: update({} as DialogState, { $set: initialState.dialog }),
+    notifications: update({} as NotificationsState, { $set: notifications }),
   };
 };
