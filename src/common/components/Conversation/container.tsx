@@ -1,6 +1,7 @@
 import { Conversation } from './component';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { mapHelperToDispatch } from '../../dispatch-common-actions';
 import { mapSocketToProps } from '../Socket/';
 
 const mapStateToProps = ({
@@ -15,6 +16,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToConversation => ({
   ...mapSocketToProps(dispatch),
+  ...mapHelperToDispatch(dispatch),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Conversation);

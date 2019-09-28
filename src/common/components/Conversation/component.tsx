@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ChatBox } from '../';
 import { ConversationBox } from './ConversationBox/';
-import { FormHelperText } from '@material-ui/core';
 import { HTML_CONVERSATION_ID } from '../../constants';
 import { MessageBox } from './MessageBox';
 import texts from './texts';
@@ -16,7 +15,6 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     this.state = {
       conversation: this.getActiveConversation(),
       message: texts.messageInitialState,
-      error: false,
     };
 
     this.init();
@@ -66,9 +64,11 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     }
 
     if (connectionState !== prevSocketConnection) {
-      this.setState({
-        error: connectionState === ConnectionState.disconnected,
-      });
+      if (connectionState === ConnectionState.disconnected) {
+        this.props.addHelper({ helperText: this.texts.connectionError });
+      } else {
+        this.props.removeHelper();
+      }
     }
   }
 
@@ -91,16 +91,17 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
     const {
       props: { connectionState },
       state: { message },
+      texts,
     } = this;
+
+    this.props.removeHelper();
 
     if (connectionState === ConnectionState.connected && message !== '') {
       try {
         this.setState({ message: this.texts.messageInitialState });
-
         return await this.props.emitMessage(message);
       } catch {
-        // TODO
-        console.log('Something went wrong'); // eslint-disable-line no-console
+        this.props.addHelper({ helperText: texts.emitError });
       }
     }
   }
@@ -115,7 +116,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
   public render (): JSX.Element {
     const {
       props: { activeConversation },
-      state: { error },
+      state,
       texts,
     } = this;
 
@@ -129,27 +130,19 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
         boldHeading={true}
         heading={heading}
       >
-        <ConversationBox conversation={this.state.conversation} />
+        <ConversationBox conversation={state.conversation} />
         {
           activeConversation && (
             <MessageBox
               TextFieldProps={{
                 onChange: this.typeMessage,
                 onKeyDown: this.sendMessageOnEnter,
-                value: this.state.message,
+                value: state.message,
               }}
               ButtonProps={{ onClick: this.sendMessage }}
             />
           )
         }
-        { error && (
-          <FormHelperText
-            error
-            style={{ position: 'absolute', bottom: '-3rem' }}
-          >
-            { texts.errorMessage }
-          </FormHelperText>
-        )}
       </ChatBox>
     );
   }
