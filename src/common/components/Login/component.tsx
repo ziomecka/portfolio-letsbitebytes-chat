@@ -33,7 +33,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.texts = texts;
 
     this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
   }
@@ -64,8 +64,9 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     }
   }
 
-  private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private onKeyDown (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
+      event.preventDefault();
       this.submit();
     }
   }
@@ -91,7 +92,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     return (
       <AppForm
         heading={texts.heading}
-        onKeyDown={this.submitOnEnter}
+        onKeyDown={this.onKeyDown}
       >
         <TextField
           autoFocus
