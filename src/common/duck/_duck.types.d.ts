@@ -21,6 +21,13 @@ declare interface NotificationsState {
 
 declare type NotificationsList = OpenDialogProps[];
 
+declare type HelperType = 'error' | 'message';
+
+declare interface HelperState {
+  helperText: string;
+  helperType?: HelperType;
+}
+
 declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
@@ -28,6 +35,7 @@ declare interface CommonState {
   dialog: DialogState;
   notifications: NotificationsState;
   waitForServer: boolean;
+  helper: HelperState;
 }
 
 declare interface ChangeConversationActionProps {

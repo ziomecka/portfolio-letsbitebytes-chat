@@ -24,6 +24,9 @@ export const defaultInitialState: AppState = {
     actual: [],
   },
   waitForServer: false,
+  helper: {
+    helperText: '',
+  },
 };
 
 const state = process.env.IS_BROWSER
