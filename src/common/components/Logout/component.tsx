@@ -2,10 +2,7 @@ import * as React from 'react';
 import { AppButton } from '../';
 import texts from './texts';
 
-const BUTTON_TEXT = 'Logout';
-
 class Logout extends React.Component<LogoutWithRouterProps> {
-  private buttonText: string;
   private texts: Record<string, string>;
   constructor (props: LogoutWithRouterProps) {
     super(props);
@@ -14,7 +11,6 @@ class Logout extends React.Component<LogoutWithRouterProps> {
   }
 
   private init (): void {
-    this.buttonText = BUTTON_TEXT;
     this.texts = texts;
 
     this.logout = this.logout.bind(this);
@@ -54,7 +50,7 @@ class Logout extends React.Component<LogoutWithRouterProps> {
           disabled: this.props.waitForServer,
         }}
       >
-        {this.buttonText}
+        {this.texts.button}
       </AppButton>
     );
   }
