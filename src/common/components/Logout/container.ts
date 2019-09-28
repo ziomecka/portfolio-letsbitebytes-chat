@@ -5,9 +5,12 @@ import { logout } from './duck/async';
 import { mapWaitForServerToDispatch } from '../../dispatch-common-actions';
 import { withRouter } from 'react-router';
 
-const mapStateToProps = (state: AppState): MapStateToLogout => ({
-  isAuthenticated: state.user.isAuthenticated,
-  waitForServer: state.waitForServer,
+const mapStateToProps = ({
+  user: { isAuthenticated },
+  waitForServer,
+} : AppState): MapStateToLogout => ({
+  isAuthenticated,
+  waitForServer,
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions>): MapDispatchToLogout => ({
