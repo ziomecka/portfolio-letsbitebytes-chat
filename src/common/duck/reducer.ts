@@ -1,7 +1,9 @@
+import { commonInitialState } from './initial-state';
 import { defaultInitialState } from '../../common/';
 import update from 'immutability-helper';
 
-const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, action) => {
+const commonStateReducer: ReduxReducer<CommonState, CommonActions>
+= (state = update({} as CommonState, { $set: commonInitialState }), action) => {
   const { type, ...actionPayload } = action;
 
   switch (type) {
