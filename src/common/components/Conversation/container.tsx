@@ -3,10 +3,14 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { mapSocketToProps } from '../Socket/';
 
-const mapStateToProps = (state: AppState): MapStateToConversation => ({
-  conversations: state.conversations,
-  activeConversation: state.activeConversation,
-  connectionState: state.connectionState,
+const mapStateToProps = ({
+  activeConversation,
+  connectionState,
+  conversations,
+}: AppState): MapStateToConversation => ({
+  activeConversation,
+  conversations,
+  connectionState,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToConversation => ({
