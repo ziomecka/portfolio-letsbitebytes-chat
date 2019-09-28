@@ -5,6 +5,7 @@ import {
 } from '../../../duck';
 import { loginActionSuccess } from './actions';
 import { setConversationsAction } from '../../Socket/';
+import texts from './texts';
 
 export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
   dispatch: AppThunkDispatch<LoginActions>,
@@ -31,8 +32,8 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
 
       if (logout) {
         dispatch(addNotification({
-          title: [['You are already logged in']],
-          content: [['You will be logged out from the other session']],
+          title: [[texts.loggedInTitle]],
+          content: [[texts.loggedInContent]],
         }));
       }
     }
