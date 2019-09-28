@@ -26,12 +26,14 @@ class Logout extends React.Component<LogoutWithRouterProps> {
   }
 
   private async logout (): Promise<void> {
-    try {
-      this.props.activateWaitForServer();
+    const { props } = this;
 
-      await this.props.logout();
+    try {
+      props.activateWaitForServer();
+
+      await props.logout();
     } catch {
-      this.props.deactivateWaitForServer();
+      props.deactivateWaitForServer();
 
       // todo - add to application general error message in the bottom navigation
       this.props.addNotification({
