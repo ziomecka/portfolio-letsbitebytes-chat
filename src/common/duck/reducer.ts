@@ -83,6 +83,24 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions> = (state, act
       };
     }
 
+    case (CommonActionTypes.addHelper): {
+      return update(state, {
+        helper: {
+          $set: update({} as HelperState, { $set: actionPayload as AddHelperProps }),
+        },
+      });
+    }
+
+    case (CommonActionTypes.removeHelper): {
+      return {
+        ...update(state, {
+          helper: {
+            $set: update({} as HelperState, { $set: defaultInitialState.helper }),
+          },
+        }),
+      };
+    }
+
     default: {
       return update({} as CommonState, { $set: state });
     }
