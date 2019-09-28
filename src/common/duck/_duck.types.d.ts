@@ -53,6 +53,8 @@ declare interface ChangeConversationAction extends ChangeConversationActionProps
 declare interface ChangeSocketConnectionAction extends ChangeSocketConnectionActionProps, ReduxAction {}
 declare interface SetNotificationsAction extends ReduxAction, SetNotificationsProps {}
 declare interface AddNotificationAction extends ReduxAction, AddNotificationProps {}
+declare interface ActivateWaitForServerAction extends ReduxAction {}
+declare interface DeactivateWaitForServerAction extends ReduxAction {}
 
 declare type CommonActions = |
   ChangeConversationAction |
@@ -60,4 +62,6 @@ declare type CommonActions = |
   SetUsersAction |
   DialogActions |
   SetNotificationsAction |
-  AddNotificationAction;
+  AddNotificationAction |
+  ActivateWaitForServerAction |
+  DeactivateWaitForServerAction;

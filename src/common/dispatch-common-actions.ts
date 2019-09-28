@@ -5,6 +5,7 @@ import {
 
 export const mapWaitForServerToDispatch =
 (dispatch: ReduxDispatch): MapWaitForServerToDispatch => ({
-  activateWaitForServer: (): ReduxAction => dispatch(activateWaitForServer()),
-  deactivateWaitForServer: (): ReduxAction => dispatch(deactivateWaitForServer()),
+  activateWaitForServer: (): ActivateWaitForServerAction => dispatch(activateWaitForServer()),
+  deactivateWaitForServer: (): DeactivateWaitForServerAction => dispatch(deactivateWaitForServer()),
+});
 });
