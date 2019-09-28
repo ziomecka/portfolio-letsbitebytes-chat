@@ -51,6 +51,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
   private async submit (): Promise<void> {
     const {
+      props,
       state: {
         login,
         password,
@@ -63,11 +64,11 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     if (!loginError && !passwordError && !confirmPasswordError) {
       try {
-        this.props.activateWaitForServer();
+        props.activateWaitForServer();
 
-        const { result, error } = await this.props.createUser({ login, password, confirmPassword });
+        const { result, error } = await props.createUser({ login, password, confirmPassword });
 
-        this.props.deactivateWaitForServer();
+        props.deactivateWaitForServer();
 
         const newState = {
           serverResult: result,
@@ -85,7 +86,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
         this.setState(newState);
       } catch {
-        this.props.deactivateWaitForServer();
+        props.deactivateWaitForServer();
 
         this.setState({
           serverResult: false,
