@@ -11,9 +11,6 @@ import {
 import texts from './texts';
 
 const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => {
-  const loginButtonText = texts.loginButton;
-  const createUserButtonText = texts.createUserButton;
-
   const goToLogin = (): void => {
     history.push(AppRoutes.loginRoute);
   };
@@ -53,7 +50,7 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
             onClick: goToLogin,
           }}
         >
-          {loginButtonText}
+          {texts.loginButton}
         </AppButton>
         <AppButton
           buttonProps={{
@@ -61,7 +58,7 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
             variant: 'outlined',
           }}
         >
-          {createUserButtonText}
+          {texts.createUserButton}
         </AppButton>
       </AppForm>
     </Grid>
