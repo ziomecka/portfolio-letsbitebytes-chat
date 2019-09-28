@@ -13,8 +13,8 @@ export default {
   confirmPasswordLabel: 'Confirm password',
   submitButton: 'Create user',
   loginButton: 'Login',
-  serverErrorMessage: 'Something went wrong. Please try again.',
-  serverSuccessMessage: 'User created. You may',
+  serverError: 'Something went wrong. Please try again.',
+  serverSuccess: 'User created. You may',
   loginError:
     'Start from letter and use from ' +
     `${ MIN_LOGIN_LENGTH } to ${ MAX_LOGIN_LENGTH } letters or digits`,

@@ -18,19 +18,7 @@ import texts from './texts';
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {
   private loginRegExp: RegExp;
   private passwordRegExp: RegExp;
-
-  private heading: string;
-  private loginLabel: string;
-  private passwordLabel: string;
-  private confirmPasswordLabel: string;
-  private submitButtonText: string;
-  private loginButtonText: string;
-  private serverErrorMessage: string;
-  private serverSuccessMessage: string;
-  private loginErrorMessage: string;
-  private passwordErrorMessage: string;
-  private confirmPasswordErrorMessage: string;
-
+  private texts: Record<string, string>;
   constructor (props: CreateUserWithRouterProps) {
     super(props);
 
@@ -50,20 +38,9 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   }
 
   private init (): void {
-    this.heading = texts.heading;
-    this.serverErrorMessage = texts.serverErrorMessage;
-    this.serverSuccessMessage = texts.serverSuccessMessage;
-    this.loginLabel = texts.loginLabel;
-    this.passwordLabel = texts.passwordLabel;
-    this.confirmPasswordLabel = texts.confirmPasswordLabel;
-    this.submitButtonText = texts.submitButton;
-    this.loginButtonText = texts.loginButton;
-    this.loginErrorMessage = texts.loginError;
-    this.passwordErrorMessage = texts.passwordError;
-    this.confirmPasswordErrorMessage = texts.confirmPasswordError;
-
     this.loginRegExp = LOGIN_REGEXP;
     this.passwordRegExp = PASSWORD_REGEXP;
+    this.texts = texts;
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
@@ -112,7 +89,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
         this.setState({
           serverResult: false,
-          serverError: this.serverErrorMessage,
+          serverError: this.texts.serverError,
           connectionError: true,
         });
       }
@@ -155,6 +132,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
   public render (): JSX.Element {
     const {
+      texts,
       state: {
         login,
         password,
@@ -181,7 +159,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     return (
       <AppForm
-        heading={this.heading}
+        heading={texts.heading}
         FormHelperProps={{
           error: serverResult === false,
           errorMessage: serverError,
@@ -192,29 +170,29 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         <TextField
           autoFocus
           required
-          label={this.loginLabel}
+          label={texts.loginLabel}
           onChange={this.typeLogin}
           value={login}
           error={loginError}
-          helperText={loginError && this.loginErrorMessage}
+          helperText={loginError && texts.loginErrorMessage}
         />
         <TextField
           required
-          label={this.passwordLabel}
+          label={texts.passwordLabel}
           onChange={this.typePassword}
           value={password}
           type={'password'}
           error={passwordError}
-          helperText={passwordError && this.passwordErrorMessage}
+          helperText={passwordError && texts.passwordErrorMessage}
         />
         <TextField
           required
-          label={this.confirmPasswordLabel}
+          label={texts.confirmPasswordLabel}
           onChange={this.typeConfirmPassword}
           value={confirmPassword}
           type={'password'}
           error={confirmPasswordError}
-          helperText={confirmPasswordError && this.confirmPasswordErrorMessage}
+          helperText={confirmPasswordError && texts.confirmPasswordErrorMessage}
         />
         { this.renderButtons(disabled) }
       </AppForm>
@@ -222,6 +200,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   }
 
   private renderButtons (disabled: boolean): JSX.Element {
+    const { texts } = this;
     return (
       <React.Fragment>
         { !this.state.serverResult
@@ -233,24 +212,21 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
                 type: 'submit',
               }}
             >
-              {this.submitButtonText}
+              {texts.submitButton}
             </AppButton>
           )
           : (
             <React.Fragment>
               <Typography style={{ whiteSpace: 'pre-wrap' }}>
-                {`${ this.serverSuccessMessage } `}
+                {`${ texts.serverSuccess } `}
                 <Typography component="span" color="secondary">
                   <Link to={AppRoutes.loginRoute}>
-                    { this.loginLabel.toLowerCase() }
+                    { texts.loginLabel.toLowerCase() }
                   </Link>
                 </Typography>
               </Typography>
-
-              <RouterButton
-                to={AppRoutes.loginRoute}
-              >
-                {this.loginButtonText}
+              <RouterButton to={AppRoutes.loginRoute}>
+                {texts.loginButton}
               </RouterButton>
             </React.Fragment>
           )
