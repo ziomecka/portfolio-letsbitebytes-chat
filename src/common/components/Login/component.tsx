@@ -7,12 +7,7 @@ import { TextField } from '@material-ui/core/';
 import texts from './texts';
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
-  private heading: string;
-  private loginLabel: string;
-  private passwordLabel: string;
-  private submitButtonText: string;
-  private loginErrorMessage: string;
-
+  private texts: Record<string, string>
   constructor (props: LoginWithRouterProps) {
     super(props);
 
@@ -36,11 +31,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private init (): void {
-    this.heading = texts.heading;
-    this.loginErrorMessage = texts.loginErrorMessage;
-    this.loginLabel = texts.loginLabel;
-    this.passwordLabel = texts.passwordLabel;
-    this.submitButtonText = texts.submitButton;
+    this.texts = texts;
 
     this.submit = this.submit.bind(this);
     this.submitOnEnter = this.submitOnEnter.bind(this);
@@ -97,26 +88,27 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   public render (): JSX.Element {
+    const { texts } = this;
     return (
       <AppForm
-        heading={this.heading}
         FormHelperProps={{
           error: this.state.loginError,
           errorMessage: this.loginErrorMessage,
           connectionError: this.state.connectionError,
         }}
+        heading={texts.heading}
         onKeyDown={this.submitOnEnter}
       >
         <TextField
           autoFocus
           required
-          label={this.loginLabel}
+          label={texts.loginLabel}
           onChange={this.typeLogin}
           value={this.state.login}
         />
         <TextField
           required
-          label={this.passwordLabel}
+          label={texts.passwordLabel}
           onChange={this.typePassword}
           value={this.state.password}
           type={'password'}
@@ -128,7 +120,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
             disabled: this.props.waitForServer,
           }}
         >
-          {this.submitButtonText}
+          {texts.submitButton}
         </AppButton>
       </AppForm>
     );
