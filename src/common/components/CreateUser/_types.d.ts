@@ -2,7 +2,9 @@ declare interface MapStateToCreateUser {
   waitForServer: boolean;
 }
 
-declare interface MapDispatchToCreateUser extends MapWaitForServerToDispatch {
+declare interface MapDispatchToCreateUser extends
+MapWaitForServerToDispatch,
+MapHelperToDispatch {
   createUser(props: CreateUserActionProps): Promise<CreateUserResponse>;
 }
 
@@ -19,7 +21,5 @@ declare interface CreateUserState {
   loginError: boolean;
   passwordError: boolean;
   confirmPasswordError: boolean;
-  connectionError: boolean;
   serverResult?: boolean;
-  serverError?: UserErrors | string;
 }

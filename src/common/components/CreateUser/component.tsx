@@ -29,9 +29,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       loginError: false,
       passwordError: false,
       confirmPasswordError: false,
-      connectionError: false,
       serverResult: undefined,
-      serverError: undefined,
     };
 
     this.init();
@@ -60,6 +58,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         passwordError,
         confirmPasswordError,
       },
+      texts,
     } = this;
 
     if (!loginError && !passwordError && !confirmPasswordError) {
@@ -70,11 +69,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
         props.deactivateWaitForServer();
 
-        const newState = {
-          serverResult: result,
-          serverError: error,
-          connectionError: false,
-        };
+        const newState = { serverResult: result };
 
         if (result) {
           Object.assign(newState, {
@@ -84,15 +79,15 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           });
         }
 
+        if (!result || error) {
+          props.addHelper({ helperText: texts.serverError });
+        }
+
         this.setState(newState);
       } catch {
         props.deactivateWaitForServer();
-
-        this.setState({
-          serverResult: false,
-          serverError: this.texts.serverError,
-          connectionError: true,
-        });
+        props.addHelper({ helperText: texts.serverError });
+        this.setState({ serverResult: false });
       }
     }
   }
@@ -102,6 +97,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       event.preventDefault();
       this.submit();
     }
+    this.props.removeHelper();
   }
 
   private typeLogin ({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void {
@@ -109,7 +105,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       login: value,
       loginError: !this.loginRegExp.test(value),
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
@@ -118,7 +113,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       confirmPassword: value,
       confirmPasswordError: this.state.password && value && this.state.password !== value,
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
@@ -127,7 +121,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       password: value,
       passwordError: !this.passwordRegExp.test(value),
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
@@ -138,12 +131,9 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         login,
         password,
         confirmPassword,
-        connectionError,
-        serverResult,
         loginError,
         passwordError,
         confirmPasswordError,
-        serverError,
       },
       props: { waitForServer },
     } = this;
