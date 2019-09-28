@@ -98,7 +98,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
 
     if (connectionState === ConnectionState.connected && message !== '') {
       try {
-        this.setState({ message: this.texts.messageInitialState });
+        this.setState({ message: texts.messageInitialState });
         return await this.props.emitMessage(message);
       } catch {
         this.props.addHelper({ helperText: texts.emitError });
