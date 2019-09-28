@@ -5,7 +5,7 @@ declare interface MapStateToLogin {
   waitForServer: boolean;
 }
 
-declare interface MapDispatchToLogin extends MapWaitForServerToDispatch {
+declare interface MapDispatchToLogin extends MapWaitForServerToDispatch, MapHelperToDispatch {
   login(props: LoginActionProps):  Promise<boolean>;
 }
 
@@ -18,6 +18,4 @@ declare interface LoginWithRouterProps extends LoginProps, WithRouterProps {}
 declare interface LoginState {
   login: string;
   password: string;
-  loginError: boolean;
-  connectionError: boolean;
 }

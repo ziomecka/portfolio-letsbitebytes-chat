@@ -14,8 +14,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.state = {
       login: props.userLogin,
       password: props.userPassword,
-      loginError: false,
-      connectionError: false,
     };
 
     this.init();
@@ -42,6 +40,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     const {
       props,
       state: { login, password },
+      texts,
     } = this;
 
     props.activateWaitForServer();
@@ -51,17 +50,11 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
 
       if (!result) {
         props.deactivateWaitForServer();
-        this.setState({
-          loginError: true,
-          connectionError: false,
-        });
+        props.addHelper(({ helperText: texts.loginError }));
       }
     } catch {
       props.deactivateWaitForServer();
-      this.setState({
-        loginError: false,
-        connectionError: true,
-      });
+      props.addHelper(({ helperText: texts.connectionError }));
     }
   }
 
@@ -70,22 +63,15 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       event.preventDefault();
       this.submit();
     }
+    this.props.removeHelper();
   }
 
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      login: event.target.value,
-      loginError: false,
-      connectionError: false,
-    });
+    this.setState({ login: event.target.value });
   }
 
   private typePassword (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      password: event.target.value,
-      loginError: false,
-      connectionError: false,
-    });
+    this.setState({ password: event.target.value });
   }
 
   public render (): JSX.Element {
