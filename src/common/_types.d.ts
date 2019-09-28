@@ -15,6 +15,7 @@ declare const enum AppRoutes {
   protectedRoute = '/protected',
 }
 
+declare type CSSProperties = import('@material-ui/styles').CSSProperties;
 declare type ReduxAction = import('redux').Action;
 declare type ReduxActionCreator<A> = import('redux').ActionCreator<A>;
 declare type ReduxDispatch = import('redux').Dispatch;
