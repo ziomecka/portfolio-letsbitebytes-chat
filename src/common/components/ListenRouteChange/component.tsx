@@ -1,13 +1,12 @@
 import * as React from 'react';
-
-const { IS_BROWSER } = process.env;
+import { isBrowser } from '../../constants';
 
 const ListenRouteChange: React.FunctionComponent<ListenRouteChangeProps> = ({
   deactivateWaitForServer,
   history,
   removeHelper,
 }) => {
-  if (IS_BROWSER) {
+  if (isBrowser) {
     React.useEffect(() => (
       history.listen(() => {
         deactivateWaitForServer();

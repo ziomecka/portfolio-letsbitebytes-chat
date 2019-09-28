@@ -1,4 +1,7 @@
-import { WINDOW_INITIAL_STATE } from './constants';
+import {
+  WINDOW_INITIAL_STATE,
+  isBrowser,
+} from './constants';
 
 export const defaultInitialState: AppState = {
   user: {
@@ -29,7 +32,7 @@ export const defaultInitialState: AppState = {
   },
 };
 
-const state = process.env.IS_BROWSER
+const state = isBrowser
   ? (window as AppWindow)[ WINDOW_INITIAL_STATE ] as unknown as AppState
   : defaultInitialState;
 

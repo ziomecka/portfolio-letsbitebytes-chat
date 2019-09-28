@@ -16,8 +16,6 @@ import { getTheme } from '../../theme';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/core/styles';
 
-const { IS_BROWSER } = process.env;
-
 const Common: React.FunctionComponent<CommonProps> = ({
   children,
   classes,

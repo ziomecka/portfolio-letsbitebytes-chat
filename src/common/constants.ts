@@ -25,3 +25,6 @@ export const PASSWORD_REGEXP =
     `(?=^.{${ MIN_PASSWORD_LENGTH },${ MAX_PASSWORD_LENGTH }}$)(^[\\w${ SPECIAL_CHARACTERS }]*[${ SPECIAL_CHARACTERS }]+[\\w${ SPECIAL_CHARACTERS }]*$)`, // eslint-disable-line max-len
     'i'
   );
+
+const { IS_BROWSER } = process.env;
+export const isBrowser = (IS_BROWSER as unknown as boolean) == true;
