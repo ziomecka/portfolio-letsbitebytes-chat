@@ -43,7 +43,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     this.texts = texts;
 
     this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
     this.typeConfirmPassword = this.typeConfirmPassword.bind(this);
@@ -96,7 +96,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     }
   }
 
-  private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private onKeyDown (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
       this.submit();
@@ -160,6 +160,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     return (
       <AppForm
         heading={texts.heading}
+        onKeyDown={this.onKeyDown}
       >
         <TextField
           autoFocus
