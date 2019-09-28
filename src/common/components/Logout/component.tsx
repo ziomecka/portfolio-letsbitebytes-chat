@@ -30,16 +30,12 @@ class Logout extends React.Component<LogoutWithRouterProps> {
 
     try {
       props.activateWaitForServer();
+      props.removeHelper();
 
       await props.logout();
     } catch {
       props.deactivateWaitForServer();
-
-      // todo - add to application general error message in the bottom navigation
-      this.props.addNotification({
-        title: [[this.texts.titleError]],
-        content: [[this.texts.descriptionError]],
-      });
+      props.addHelper({ helperText: this.texts.error });
     }
   }
 
