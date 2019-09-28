@@ -14,7 +14,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     this.state = {
       login: props.userLogin,
       password: props.userPassword,
-      confirmPassword: '',
       loginError: false,
       connectionError: false,
     };
