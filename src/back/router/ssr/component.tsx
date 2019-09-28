@@ -3,6 +3,7 @@ import {
   Common,
   ProtectedRoute,
   Public,
+  ListenRouteChange,
 } from '../../../common/';
 import {
   Route,
@@ -22,6 +23,7 @@ const Back: React.FunctionComponent<BackProps> = (
       <Route exact path = {AppRoutes.loginRoute} />
       <Route exact path = {AppRoutes.createUserRoute} />
       <ProtectedRoute path = {AppRoutes.protectedRoute} />
+      <ListenRouteChange />
     </StaticRouter>
   </Common>
 );
