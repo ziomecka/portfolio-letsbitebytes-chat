@@ -160,12 +160,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
     return (
       <AppForm
         heading={texts.heading}
-        FormHelperProps={{
-          error: serverResult === false,
-          errorMessage: serverError,
-          connectionError,
-        }}
-        onKeyDown={this.submitOnEnter}
       >
         <TextField
           autoFocus

@@ -91,11 +91,6 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
     const { state, texts } = this;
     return (
       <AppForm
-        FormHelperProps={{
-          error: this.state.loginError,
-          errorMessage: this.loginErrorMessage,
-          connectionError: this.state.connectionError,
-        }}
         heading={texts.heading}
         onKeyDown={this.submitOnEnter}
       >
