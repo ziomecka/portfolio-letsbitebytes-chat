@@ -39,24 +39,25 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private async submit (): Promise<void> {
-    const { state: { login, password } } = this;
+    const {
+      props,
+      state: { login, password },
+    } = this;
 
-    this.props.activateWaitForServer();
+    props.activateWaitForServer();
 
     try {
-      const result = await this.props.login({ login, password });
+      const result = await props.login({ login, password });
 
       if (!result) {
-        this.props.deactivateWaitForServer();
-
+        props.deactivateWaitForServer();
         this.setState({
           loginError: true,
           connectionError: false,
         });
       }
     } catch {
-      this.props.deactivateWaitForServer();
-
+      props.deactivateWaitForServer();
       this.setState({
         loginError: false,
         connectionError: true,
