@@ -8,12 +8,8 @@ import {
   Helper,
   NotificationsButton,
 } from '../';
-import { FORM_HELPER_TEXT_MAX_WIDTH } from '../../theme/other-constants';
 
-const Box: React.FunctionComponent<{ style?: CSSProperties }> = ({
-  children,
-  style = {},
-}): JSX.Element => (
+const Box: React.FunctionComponent = ({ children }): JSX.Element => (
   <Grid
     container
     item
@@ -23,7 +19,6 @@ const Box: React.FunctionComponent<{ style?: CSSProperties }> = ({
       height: '100%',
       minWidth: '1px',
       width: 'auto',
-      ...style,
     }}
   >
     {children}
@@ -40,7 +35,7 @@ const BottomNav: React.FunctionComponent<BottomNavProps> = ({ waitForServer }) =
         />
       )}
     </Box>
-    <Box style={{ maxWidth: FORM_HELPER_TEXT_MAX_WIDTH }}>
+    <Box>
       <Helper/>
     </Box>
     <Box>
