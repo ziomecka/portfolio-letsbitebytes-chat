@@ -88,7 +88,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   public render (): JSX.Element {
-    const { texts } = this;
+    const { state, texts } = this;
     return (
       <AppForm
         FormHelperProps={{
@@ -104,13 +104,13 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
           required
           label={texts.loginLabel}
           onChange={this.typeLogin}
-          value={this.state.login}
+          value={state.login}
         />
         <TextField
           required
           label={texts.passwordLabel}
           onChange={this.typePassword}
-          value={this.state.password}
+          value={state.password}
           type={'password'}
         />
         <AppButton
