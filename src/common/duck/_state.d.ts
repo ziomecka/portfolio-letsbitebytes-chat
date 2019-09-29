@@ -3,7 +3,7 @@ declare interface AppState {
   conversations: SocketState;
   activeConversation: string;
   connectionState: ConnectionState;
-  users: string[];
+  contacts: ContactsState;
   dialog: DialogState;
   notifications: NotificationsState;
   waitForServer: boolean;
@@ -15,7 +15,7 @@ declare interface PartialAppState {
   conversations?: SocketState;
   activeConversation?: string;
   connectionState?: ConnectionState;
-  users?: string[];
+  contacts?: ContactsState;
   dialog?: Partial<DialogState>;
   notifications?: NotificationsState;
   waitForServer?: boolean;
@@ -32,4 +32,4 @@ declare type AppAction = |
   LoginActions |
   CommonActions |
   DialogActions |
-  UsersActions;
+  ContactsActions;

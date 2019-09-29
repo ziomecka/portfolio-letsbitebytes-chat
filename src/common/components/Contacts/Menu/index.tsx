@@ -10,15 +10,15 @@ import {
 } from '../../../theme/other-constants';
 import { APP_MENU_ID } from '../../../constants';
 import PersonIcon from '@material-ui/icons/Person';
-import { renderUsersList } from '../renderUsersList/';
+import { renderContactsList } from '../renderContactsList/';
 
-const ICON_TITLE = 'Users';
+const ICON_TITLE = 'Contacts';
 
-const Menu: React.FunctionComponent<Partial<UsersProps>> = ({
+const Menu: React.FunctionComponent<Partial<ContactsProps>> = ({
   activeConversation,
   changeActiveConversation,
   classes,
-  users,
+  contacts,
 }) => {
 
   const [ anchorElement, setAnchorElement ] = React.useState(null);
@@ -62,10 +62,10 @@ const Menu: React.FunctionComponent<Partial<UsersProps>> = ({
         }}
       >
         {
-          renderUsersList({
+          renderContactsList({
             Component: MenuItem,
             onClick: onMenuItemClick,
-            users,
+            contacts,
             activeConversation,
             classes,
           })

@@ -5,11 +5,11 @@ import { styles } from './styles';
 import { withAppSize } from '../';
 import { withStyles } from '@material-ui/styles';
 
-const Users: React.FunctionComponent<UsersProps> =
+const Contacts: React.FunctionComponent<ContactsProps> =
 ({
   appSize,
   activeConversation,
-  users,
+  contacts,
   changeActiveConversation,
   classes,
 }) => {
@@ -18,20 +18,20 @@ const Users: React.FunctionComponent<UsersProps> =
 
   return (
     (
-      users && users.length && (
+      contacts && contacts.length && (
         isCompact &&
           <Menu
             activeConversation={activeConversation}
             changeActiveConversation={changeActiveConversation}
             classes={classes}
-            users={users}
+            contacts={contacts}
           />
         || (
           <List
             activeConversation={activeConversation}
             changeActiveConversation={changeActiveConversation}
             classes={classes}
-            users={users}
+            contacts={contacts}
           />
         )
       ) || null
@@ -39,6 +39,6 @@ const Users: React.FunctionComponent<UsersProps> =
   );
 };
 
-const WrappedComponent = withStyles(styles)(withAppSize(Users));
+const WrappedComponent = withStyles(styles)(withAppSize(Contacts));
 
-export { WrappedComponent as Users };
+export { WrappedComponent as Contacts };

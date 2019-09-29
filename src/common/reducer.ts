@@ -1,7 +1,7 @@
 import {
+  contactsReducer,
   loginReducer,
   socketReducer,
-  usersReducer,
 } from './components';
 import { commonStateReducer } from '../common/duck/';
 import { initialState } from './initial-state';
@@ -12,7 +12,7 @@ const appReducer: ReduxReducer<AppState, AppAction> =
   return {
     user: loginReducer(state.user, action),
     conversations: socketReducer(state.conversations, action),
-    users: usersReducer(state.users, action as UsersActions),
+    contacts: contactsReducer(state.contacts, action as ContactsActions),
     ...commonStateReducer(
       {
         activeConversation: state.activeConversation,

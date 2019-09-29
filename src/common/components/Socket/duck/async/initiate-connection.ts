@@ -3,7 +3,7 @@ import {
   SOCKET_URL,
 } from './_constants';
 import { changeConnectionState } from '../../../../duck/actions';
-import { listenAddUser } from './listen-add-user';
+import { listenAddContact } from './listen-add-contact';
 import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
 import { logout } from '../.././../Logout/duck/async';
@@ -26,7 +26,7 @@ export const initiateConnection =
 
     socket.on(ClientSocketMessages.connected, () => {
       dispatch(changeConnectionState(ConnectionState.connected));
-      dispatch(listenAddUser(socket));
+      dispatch(listenAddContact(socket));
       dispatch(listenReceive(socket));
       dispatch(listenDelivered(socket));
     });

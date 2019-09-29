@@ -3,7 +3,7 @@ import { initialState } from '../initial-state';
 const {
   conversations,
   user,
-  users,
+  contacts,
   ...other
 } = initialState;
 

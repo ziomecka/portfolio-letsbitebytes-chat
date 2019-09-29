@@ -34,8 +34,8 @@ export {
   socketReducer,
 } from './Socket';
 export {
-  Users,
-  addUser,
-  setUsers,
-  usersReducer,
-} from './Users';
+  Contacts,
+  addContact,
+  setContacts,
+  contactsReducer,
+} from './Contacts';

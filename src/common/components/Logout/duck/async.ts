@@ -5,7 +5,7 @@ import {
 } from '../../../duck/actions';
 import {
   clearConversationsAction,
-  setUsers,
+  setContacts,
 } from '../../';
 import { logoutActionSuccess } from './actions';
 
@@ -26,7 +26,7 @@ export const logout = (): AppThunkAction<boolean> => (
         dispatch(logoutActionSuccess());
         dispatch(clearConversationsAction());
         dispatch(changeActiveConversation());
-        dispatch(setUsers({ users: [] }));
+        dispatch(setContacts({ contacts: [] }));
         dispatch(changeConnectionState(ConnectionState.unknown));
       }
 

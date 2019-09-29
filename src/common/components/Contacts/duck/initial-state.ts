@@ -1,5 +1,5 @@
 import { initialState } from '../../../initial-state';
 
-const userInitialState = initialState.users;
+const userInitialState = initialState.contacts;
 
 export { userInitialState as initialState };

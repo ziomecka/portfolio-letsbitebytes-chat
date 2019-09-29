@@ -14,7 +14,7 @@ export const defaultInitialState: AppState = {
   conversations: {} as Record<string, Statement[]>,
   activeConversation: '',
   connectionState: ConnectionState.unknown,
-  users: [],
+  contacts: [],
   dialog: {
     open: false,
     title: [],

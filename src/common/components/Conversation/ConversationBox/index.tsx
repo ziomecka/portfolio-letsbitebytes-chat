@@ -16,7 +16,7 @@ const ConversationBox: React.FunctionComponent<ConversationBoxProps> = ({
   classes,
 }) => {
   const htmlConversationId = HTML_CONVERSATION_ID;
-  const partnerTypography = `${ classes.typography } ${ classes.partnerTypography }`;
+  const contactTypography = `${ classes.typography } ${ classes.contactTypography }`;
   const userTypography = `${ classes.typography } ${ classes.userTypography }`;
 
   return (conversation &&
@@ -44,7 +44,7 @@ const ConversationBox: React.FunctionComponent<ConversationBoxProps> = ({
           if (isUser) {
             itemClass += ` ${ classes.userListItem } ${ userTypography }`;
           } else {
-            itemClass += ` ${ classes.userListItem } ${ partnerTypography }` +
+            itemClass += ` ${ classes.userListItem } ${ contactTypography }` +
               ` ${ isDelivered ? classes.delivered : classes.undelivered }`;
           }
 

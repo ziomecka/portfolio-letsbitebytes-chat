@@ -3,9 +3,9 @@ import {
   deactivateWaitForServer,
 } from '../../../duck';
 import {
+  setContacts,
   setConversationsAction,
-  setUsers,
-} from '../../'
+} from '../../';
 import { loginActionSuccess } from './actions';
 import texts from './texts';
 
@@ -17,7 +17,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
   try {
     const {
       result,
-      data: { users, role, conversations, logout },
+      data: { contacts, role, conversations, logout },
     }: {
       result: boolean,
       data?: ApiLoginResponse,
@@ -28,7 +28,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
     dispatch(deactivateWaitForServer());
 
     if (result) {
-      users && dispatch(setUsers({ users, loggedUser: login }));
+      contacts && dispatch(setContacts({ contacts, loggedUser: login }));
       conversations && dispatch(setConversationsAction({ conversations }));
       dispatch(loginActionSuccess({ login, password, role }));
 

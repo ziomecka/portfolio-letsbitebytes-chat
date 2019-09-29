@@ -5,12 +5,12 @@ import {
 } from '@material-ui/core';
 import { ChatBox } from '../../';
 import { USERS_WIDTH } from '../../../theme/other-constants';
-import { renderUsersList } from '../renderUsersList/';
+import { renderContactsList } from '../renderContactsList/';
 
-const List: React.FunctionComponent<Partial<UsersProps>> =
+const List: React.FunctionComponent<Partial<ContactsProps>> =
 ({
   classes,
-  users,
+  contacts,
   activeConversation,
   changeActiveConversation,
 }) => {
@@ -21,7 +21,7 @@ const List: React.FunctionComponent<Partial<UsersProps>> =
 
   return (
     <ChatBox
-      heading="Users"
+      heading="Contacts"
       containedHeading={true}
       GridProps={{ style: {
         width: USERS_WIDTH,
@@ -31,11 +31,11 @@ const List: React.FunctionComponent<Partial<UsersProps>> =
     >
       <MuiList classes={{ root: classes.scrollBar }}>
         {
-          renderUsersList({
+          renderContactsList({
             Component: ListItem,
             activeConversation,
             onClick: onListItemClick,
-            users,
+            contacts,
             classes,
           })
         }
