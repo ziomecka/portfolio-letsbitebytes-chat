@@ -6,24 +6,13 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import { AppButton } from '../AppButton/';
+import { OkButton } from './buttons/';
 import { styles } from './styles';
-import texts from './texts';
 import { withStyles } from '@material-ui/core/styles';
 
-const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({
-  closeDialog,
-}) => (
-  <AppButton
-    buttonProps={{
-      onClick: closeDialog,
-      variant: 'text',
-      color: 'primary',
-    }}
-  >
-    { texts.ok }
-  </AppButton>
-);
+const buttonsVariants = new Map([
+  [ ButtonsVariants.ok, OkButton ],
+]);
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
@@ -35,10 +24,6 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 }) => {
   const ariaLabelledBy = 'app-dialog-title';
   const ariaDescribedBy = 'app-dialog-content';
-
-  const buttonsVariants = new Map([
-    [ ButtonsVariants.ok, OkButton ],
-  ]);
 
   const buildString = (content: DialogContent | DialogTitle, tag?: HtmlTag): string => {
     let openingTag = '';
