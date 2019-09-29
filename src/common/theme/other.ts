@@ -65,6 +65,7 @@ const other = ({
         PaperProps: { component: Grid },
         hideBackdrop: true,
         disablePortal: true,
+        transitionDuration: { exit: 0 },
       },
     },
     overrides: {
