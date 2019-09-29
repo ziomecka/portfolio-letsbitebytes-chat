@@ -1,7 +1,6 @@
 declare const enum CommonActionTypes {
   changeActiveConversation = '@APP/Common/change active conversation',
   changeConnectionState = '@APP/Common/change socket connection',
-  setUsers = '@APP/Common/set users',
   setNotifications = '@APP/Common/set notifications',
   addNotification = '@APP/Common/add notification',
   activateWaitForServer = '@APP/Common/activate waiting for server',
@@ -33,7 +32,6 @@ declare interface HelperState {
 declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
-  users: string[];
   dialog: DialogState;
   notifications: NotificationsState;
   waitForServer: boolean;
@@ -48,10 +46,6 @@ declare interface ChangeSocketConnectionActionProps {
   connectionState: ConnectionState;
 }
 
-declare interface SetUsersActionProps {
-  users: string[];
-}
-
 declare interface SetNotificationsProps {
   notifications: NotificationsState;
 }
@@ -61,7 +55,6 @@ declare interface AddNotificationProps extends OpenDialogProps {}
 declare interface AddHelperProps extends HelperState {}
 declare interface RemoveHelperProps extends HelperState {}
 
-declare interface SetUsersAction extends ReduxAction, SetUsersActionProps {}
 declare interface ChangeConversationAction extends ChangeConversationActionProps, ReduxAction {}
 declare interface ChangeSocketConnectionAction extends ChangeSocketConnectionActionProps, ReduxAction {}
 declare interface SetNotificationsAction extends ReduxAction, SetNotificationsProps {}
@@ -74,7 +67,6 @@ declare interface RemoveHelperAction extends ReduxAction {}
 declare type CommonActions = |
   ChangeConversationAction |
   ChangeSocketConnectionAction |
-  SetUsersAction |
   DialogActions |
   SetNotificationsAction |
   AddNotificationAction |

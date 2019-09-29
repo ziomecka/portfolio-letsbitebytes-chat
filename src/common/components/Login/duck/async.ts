@@ -1,10 +1,12 @@
 import {
   addNotification,
   deactivateWaitForServer,
-  setUsers,
 } from '../../../duck';
+import {
+  setConversationsAction,
+  setUsers,
+} from '../../'
 import { loginActionSuccess } from './actions';
-import { setConversationsAction } from '../../Socket/';
 import texts from './texts';
 
 export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (

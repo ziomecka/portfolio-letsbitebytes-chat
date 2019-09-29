@@ -21,12 +21,6 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions>
       });
     }
 
-    case (CommonActionTypes.setUsers): {
-      return update(state, {
-        users: { $set: (actionPayload as SetUsersAction).users },
-      });
-    }
-
     case (DialogActionTypes.open): {
       return {
         ...update({} as CommonState, { $set: state }),

@@ -2,9 +2,11 @@ import {
   changeActiveConversation,
   changeConnectionState,
   deactivateWaitForServer,
-  setUsers,
 } from '../../../duck/actions';
-import { clearConversationsAction } from '../../Socket/';
+import {
+  clearConversationsAction,
+  setUsers,
+} from '../../';
 import { logoutActionSuccess } from './actions';
 
 export const logout = (): AppThunkAction<boolean> => (

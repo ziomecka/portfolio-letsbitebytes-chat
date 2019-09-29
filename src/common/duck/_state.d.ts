@@ -31,4 +31,5 @@ declare type AppWindow = Window & {
 declare type AppAction = |
   LoginActions |
   CommonActions |
-  DialogActions;
+  DialogActions |
+  UsersActions;

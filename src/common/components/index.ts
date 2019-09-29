@@ -27,10 +27,15 @@ export { NotificationsButton } from './NotificationsButton';
 export { Public } from './Public';
 export { RouterButton } from './RouterButton';
 export { ListenRouteChange } from './ListenRouteChange';
-export { Users } from './Users';
 export {
   Socket,
   clearConversationsAction,
   setConversationsAction,
   socketReducer,
 } from './Socket';
+export {
+  Users,
+  addUser,
+  setUsers,
+  usersReducer,
+} from './Users';
