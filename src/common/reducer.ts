@@ -1,7 +1,9 @@
+import {
+  loginReducer,
+  socketReducer,
+} from './components';
 import { commonStateReducer } from '../common/duck/';
 import { initialState } from './initial-state';
-import { loginReducer } from './components/Login/';
-import { socketReducer } from './components/Socket/';
 import update from 'immutability-helper';
 
 const appReducer: ReduxReducer<AppState, AppAction> =
