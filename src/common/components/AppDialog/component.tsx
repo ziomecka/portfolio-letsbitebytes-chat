@@ -94,6 +94,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       open={open}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
+      classes={{ root: classes.root }}
     >
       { title && renderDialogTitle() }
       { content && renderDialogContent() }
