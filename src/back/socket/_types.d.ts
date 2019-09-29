@@ -9,6 +9,7 @@ declare type SocketNext = (object?: unknown) => void;
 declare const enum ServerSocketMessages {
   connected = 'connection',
   disconnected = 'disconnect',
+  addUser = 'addUser',
   emit = 'emit',
   receive = 'receive',
   delivered = 'delivered',
