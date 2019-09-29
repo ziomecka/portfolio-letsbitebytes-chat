@@ -1,9 +1,12 @@
 import {
   activateWaitForServer,
-  addHelper,
   deactivateWaitForServer,
-  removeHelper,
 } from './duck/actions';
+
+import {
+  addHelper,
+  removeHelper,
+} from './components';
 
 export const mapWaitForServerToDispatch =
 (dispatch: ReduxDispatch): MapWaitForServerToDispatch => ({

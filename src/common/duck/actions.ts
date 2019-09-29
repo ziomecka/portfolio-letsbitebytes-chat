@@ -31,15 +31,3 @@ export const deactivateWaitForServer: ReduxActionCreator<DeactivateWaitForServer
 () => ({
   type: CommonActionTypes.deactivateWaitForServer,
 });
-
-export const addHelper: ReduxActionCreator<AddHelperAction> =
-({ helperText, helperType }: AddHelperProps) => ({
-  type: CommonActionTypes.addHelper,
-  helperText,
-  helperType,
-});
-
-export const removeHelper: ReduxActionCreator<RemoveHelperAction> =
-() => ({
-  type: CommonActionTypes.removeHelper,
-});
