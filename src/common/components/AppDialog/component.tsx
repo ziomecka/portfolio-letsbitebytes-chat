@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Grid,
   IconButton,
 } from '@material-ui/core';
 import { AppButton } from '../AppButton/';
@@ -120,8 +119,6 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   return (
     <Dialog
       open={open}
-      PaperProps={{ component: Grid }}
-      hideBackdrop={true}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
     >
