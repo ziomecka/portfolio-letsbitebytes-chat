@@ -169,7 +169,7 @@ export class User {
       response.token = token;
       response.data.role = role;
       response.data.conversations = conversations;
-      response.data.users = await this.getUsers(login) || [];
+      response.data.contacts = await this.getUsers(login) || [];
       log.info('User logged in:', login);
     } catch (err) {
       log.error('User not logged in:', login, err);
