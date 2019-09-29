@@ -7,6 +7,7 @@ declare type UsersState = string[];
 
 declare interface SetUsersActionProps {
   users: string[];
+  loggedUser?: string;
 }
 
 declare interface AddUserActionProps {

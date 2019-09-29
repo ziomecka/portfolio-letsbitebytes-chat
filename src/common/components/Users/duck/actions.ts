@@ -1,7 +1,8 @@
 export const setUsers: ReduxActionCreator<SetUsersAction> =
-  ({ users }: SetUsersActionProps) => ({
+  ({ users, loggedUser }: SetUsersActionProps) => ({
     type: UsersActionTypes.setUsers,
     users,
+    loggedUser,
   });
 
 export const addUser: ReduxActionCreator<AddUserAction> =

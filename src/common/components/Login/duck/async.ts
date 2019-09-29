@@ -28,7 +28,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
     dispatch(deactivateWaitForServer());
 
     if (result) {
-      users && dispatch(setUsers({ users }));
+      users && dispatch(setUsers({ users, loggedUser: login }));
       conversations && dispatch(setConversationsAction({ conversations }));
       dispatch(loginActionSuccess({ login, password, role }));
 
