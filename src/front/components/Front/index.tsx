@@ -1,7 +1,10 @@
 import * as React from 'react';
+import {
+  Common,
+  ListenRouteChange,
+} from '../../../common/';
 import { AppRouter } from '../';
 import { BrowserRouter } from 'react-router-dom';
-import { Common } from '../../../common/';
 
 require('./css/index.sass');
 
@@ -14,6 +17,7 @@ export const Front: React.FunctionComponent<FrontProps> = ({ store }) => {
     <Common store={store}>
       <BrowserRouter>
         <AppRouter />
+        <ListenRouteChange />
       </BrowserRouter>
     </Common>
   );

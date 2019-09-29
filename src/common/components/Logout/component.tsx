@@ -2,10 +2,7 @@ import * as React from 'react';
 import { AppButton } from '../';
 import texts from './texts';
 
-const BUTTON_TEXT = 'Logout';
-
 class Logout extends React.Component<LogoutWithRouterProps> {
-  private buttonText: string;
   private texts: Record<string, string>;
   constructor (props: LogoutWithRouterProps) {
     super(props);
@@ -14,7 +11,6 @@ class Logout extends React.Component<LogoutWithRouterProps> {
   }
 
   private init (): void {
-    this.buttonText = BUTTON_TEXT;
     this.texts = texts;
 
     this.logout = this.logout.bind(this);
@@ -30,18 +26,16 @@ class Logout extends React.Component<LogoutWithRouterProps> {
   }
 
   private async logout (): Promise<void> {
+    const { props } = this;
+
     try {
-      this.props.activateWaitForServer();
+      props.activateWaitForServer();
+      props.removeHelper();
 
-      await this.props.logout();
+      await props.logout();
     } catch {
-      this.props.deactivateWaitForServer();
-
-      // todo - add to application general error message in the bottom navigation
-      this.props.addNotification({
-        title: [[this.texts.titleError]],
-        content: [[this.texts.descriptionError]],
-      });
+      props.deactivateWaitForServer();
+      props.addHelper({ helperText: this.texts.error });
     }
   }
 
@@ -54,7 +48,7 @@ class Logout extends React.Component<LogoutWithRouterProps> {
           disabled: this.props.waitForServer,
         }}
       >
-        {this.buttonText}
+        {this.texts.button}
       </AppButton>
     );
   }

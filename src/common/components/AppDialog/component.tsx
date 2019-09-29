@@ -5,48 +5,27 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Grid,
-  IconButton,
 } from '@material-ui/core';
-import { AppButton } from '../AppButton/';
-import { Close } from '@material-ui/icons';
+import { OkButton } from './buttons/';
 import { styles } from './styles';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withStyles } from '@material-ui/core/styles';
 
-const iUnderstand = 'I understand';
-
-const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({
-  closeDialog,
-}) => (
-  <AppButton
-    buttonProps={{
-      onClick: closeDialog,
-      variant: 'text',
-      color: 'primary',
-    }}
-  >
-    { iUnderstand }
-  </AppButton>
-);
+const buttonsVariants = new Map([
+  [ ButtonsVariants.ok, OkButton ],
+]);
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
-  closeButton,
   title,
   content,
   buttonsVariant,
   open,
   classes,
 }) => {
-
   const ariaLabelledBy = 'app-dialog-title';
   const ariaDescribedBy = 'app-dialog-content';
 
-  const buttonsVariants = new Map([
-    [ ButtonsVariants.ok, OkButton ],
-  ]);
-
-  function buildString (content: DialogContent | DialogTitle, tag?: HtmlTag): string {
+  const buildString = (content: DialogContent | DialogTitle, tag?: HtmlTag): string => {
     let openingTag = '';
     let closingTag = '';
 
@@ -62,79 +41,37 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       }, '');
   };
 
-  function renderDialogTitle (): JSX.Element {
-    return (
-      <DialogTitle
-        id={ariaLabelledBy}
-        classes = {{ root: classes.title }}
-        color="primary"
-      >
-        <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
-      </DialogTitle>
-    );
-  };
-
-  function renderBottomActions (): JSX.Element {
-    const Component = buttonsVariants.get(buttonsVariant);
-
-    return (
-      <DialogActions>
-        <Component { ...{ closeDialog, classes } }/>
-      </DialogActions>
-    );
-  };
-
-  function renderDialogContent (): JSX.Element {
-    return (
-      <DialogContent>
-        <DialogContentText
-          id={ariaDescribedBy}
-          style={{ whiteSpace: 'pre-wrap' }}
-          dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
-        />
-      </DialogContent>
-    );
-  };
-
-  function renderClose (): JSX.Element {
-    const onClick = (): void => {
-      closeDialog();
-    };
-
-    return (
-      <IconButton
-        onClick={onClick}
-        classes={{
-          root: classes.actionButton,
-        }}
-      >
-        <Close />
-      </IconButton>
-    );
-  };
-
-  function renderTopActions (): JSX.Element {
-    return (
-      <DialogActions
-        classes={{ root: classes.topActions }}
-      >
-        { closeButton && renderClose() }
-      </DialogActions>
-    );
-  };
+  const Component = buttonsVariants.get(buttonsVariant);
 
   return (
     <Dialog
       open={open}
-      PaperProps={{ component: Grid }}
-      hideBackdrop={true}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
+      classes={{ root: classes.root }}
     >
-      { (closeButton) && renderTopActions() }
-      { title && renderDialogTitle() }
-      { content && renderDialogContent() }
-      { (buttonsVariant !== ButtonsVariants.none) && renderBottomActions() }
+      { title && (
+        <DialogTitle
+          id={ariaLabelledBy}
+          color="primary"
+        >
+          <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
+        </DialogTitle>
+      ) }
+      { content && (
+        <DialogContent>
+          <DialogContentText
+            id={ariaDescribedBy}
+            style={{ whiteSpace: 'pre-wrap' }}
+            dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
+          />
+        </DialogContent>
+      ) }
+      { (buttonsVariant !== ButtonsVariants.none) && (
+        <DialogActions>
+          <Component { ...{ closeDialog, classes } }/>
+        </DialogActions>
+      ) }
     </Dialog>
   );
 };

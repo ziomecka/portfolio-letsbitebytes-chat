@@ -1,0 +1,7 @@
+declare interface MapDispatchToListenRouteChange extends
+MapHelperToDispatch,
+MapWaitForServerToDispatch {}
+
+declare interface ListenRouteChangeProps extends
+MapDispatchToListenRouteChange,
+WithRouterProps {}

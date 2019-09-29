@@ -2,20 +2,45 @@ import * as React from 'react';
 import {
   BottomNavigation,
   CircularProgress,
+  Grid,
 } from '@material-ui/core';
-import { NotificationsButton } from '../';
+import {
+  Helper,
+  NotificationsButton,
+} from '../';
+
+const Box: React.FunctionComponent = ({ children }): JSX.Element => (
+  <Grid
+    container
+    item
+    alignContent="center"
+    // minWidth of 1px to avoid jumping of elements
+    style={{
+      height: '100%',
+      minWidth: '1px',
+      width: 'auto',
+    }}
+  >
+    {children}
+  </Grid>
+);
 
 const BottomNav: React.FunctionComponent<BottomNavProps> = ({ waitForServer }) => (
   <BottomNavigation>
-    <div style={{ display: 'inline-block', minHeight: '1px', minWidth: '1px' }}>
+    <Box>
       { waitForServer && (
         <CircularProgress
           color="secondary"
           variant="indeterminate"
         />
       )}
-    </div>
-    <NotificationsButton />
+    </Box>
+    <Box>
+      <Helper/>
+    </Box>
+    <Box>
+      <NotificationsButton />
+    </Box>
   </BottomNavigation>
 );
 

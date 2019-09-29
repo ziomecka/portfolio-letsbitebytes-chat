@@ -2,23 +2,27 @@ import {
   fontFamily,
   fontSize,
   fontSizes,
-  fontWeightBold,
-  fontWeightButton,
-  fontWeightHeading,
-  fontWeightLight,
-  fontWeightMedium,
-  fontWeightRegular,
-  headingLineHeight,
-  letterSpacingButton,
-  letterSpacingHeading,
-  lineHeight,
-  lineHeightButton,
+  fontWeights,
+  letterSpacings,
+  lineHeights,
   textTransformButton,
 } from './typography-constants';
 import createTypography from '@material-ui/core/styles/createTypography';
 import { palette } from './palette';
 
 const { h1, h2, h3, button } = fontSizes;
+const { lineHeight } = lineHeights;
+const {
+  fontWeightBold,
+  fontWeightLight,
+  fontWeightMedium,
+  fontWeightRegular,
+} = fontWeights;
+const commonHeadingProps = {
+  fontWeight: fontWeights.heading,
+  lineHeight: lineHeights.heading,
+  letterSpacing: letterSpacings.heading,
+};
 
 const typography = createTypography(palette, {
   fontFamily,
@@ -29,29 +33,23 @@ const typography = createTypography(palette, {
   fontWeightBold,
   h1: {
     fontSize: h1,
-    fontWeight: fontWeightHeading,
-    lineHeight: headingLineHeight,
-    letterSpacing: letterSpacingHeading,
+    ...commonHeadingProps,
   },
   h2: {
     fontSize: h2,
-    fontWeight: fontWeightHeading,
-    lineHeight: headingLineHeight,
-    letterSpacing: letterSpacingHeading,
+    ...commonHeadingProps,
   },
   h3: {
     fontSize: h3,
-    fontWeight: fontWeightHeading,
-    lineHeight: headingLineHeight,
-    letterSpacing: letterSpacingHeading,
+    ...commonHeadingProps,
   },
   button: {
     fontSize: button,
     textTransform: textTransformButton,
     fontFamily,
-    lineHeight: lineHeightButton,
-    letterSpacing: letterSpacingButton,
-    fontWeight: fontWeightButton,
+    lineHeight: lineHeights.button,
+    letterSpacing: letterSpacings.button,
+    fontWeight: fontWeights.button,
   },
   body2: {
     lineHeight,

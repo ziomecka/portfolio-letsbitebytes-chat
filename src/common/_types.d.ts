@@ -15,6 +15,7 @@ declare const enum AppRoutes {
   protectedRoute = '/protected',
 }
 
+declare type CSSProperties = import('@material-ui/styles').CSSProperties;
 declare type ReduxAction = import('redux').Action;
 declare type ReduxActionCreator<A> = import('redux').ActionCreator<A>;
 declare type ReduxDispatch = import('redux').Dispatch;
@@ -24,6 +25,11 @@ declare type ReduxStore = import('redux').Store;
 declare type WithStyles = import('@material-ui/core/styles').WithStyles;
 
 declare interface MapWaitForServerToDispatch {
-  activateWaitForServer(): ReduxAction;
-  deactivateWaitForServer(): ReduxAction;
+  activateWaitForServer(): ActivateWaitForServerAction;
+  deactivateWaitForServer(): DeactivateWaitForServerAction;
+}
+
+declare interface MapHelperToDispatch {
+  addHelper(props: AddHelperProps): AddHelperAction;
+  removeHelper(): RemoveHelperAction;
 }

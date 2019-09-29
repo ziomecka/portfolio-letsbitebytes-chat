@@ -28,12 +28,24 @@ export const addNotification: ReduxActionCreator<AddNotificationAction> =
   ...props,
 });
 
-export const activateWaitForServer: ReduxActionCreator<ReduxAction> =
+export const activateWaitForServer: ReduxActionCreator<ActivateWaitForServerAction> =
 () => ({
   type: CommonActionTypes.activateWaitForServer,
 });
 
-export const deactivateWaitForServer: ReduxActionCreator<ReduxAction> =
+export const deactivateWaitForServer: ReduxActionCreator<DeactivateWaitForServerAction> =
 () => ({
   type: CommonActionTypes.deactivateWaitForServer,
+});
+
+export const addHelper: ReduxActionCreator<AddHelperAction> =
+({ helperText, helperType }: AddHelperProps) => ({
+  type: CommonActionTypes.addHelper,
+  helperText,
+  helperType,
+});
+
+export const removeHelper: ReduxActionCreator<RemoveHelperAction> =
+() => ({
+  type: CommonActionTypes.removeHelper,
 });

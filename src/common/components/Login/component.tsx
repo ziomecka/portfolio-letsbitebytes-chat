@@ -7,21 +7,13 @@ import { TextField } from '@material-ui/core/';
 import texts from './texts';
 
 class Login extends React.Component<LoginWithRouterProps, LoginState> {
-  private heading: string;
-  private loginLabel: string;
-  private passwordLabel: string;
-  private submitButtonText: string;
-  private loginErrorMessage: string;
-
+  private texts: Record<string, string>
   constructor (props: LoginWithRouterProps) {
     super(props);
 
     this.state = {
       login: props.userLogin,
       password: props.userPassword,
-      confirmPassword: '',
-      loginError: false,
-      connectionError: false,
     };
 
     this.init();
@@ -36,89 +28,71 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
   }
 
   private init (): void {
-    this.heading = texts.heading;
-    this.loginErrorMessage = texts.loginErrorMessage;
-    this.loginLabel = texts.loginLabel;
-    this.passwordLabel = texts.passwordLabel;
-    this.submitButtonText = texts.submitButton;
+    this.texts = texts;
 
     this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
   }
 
   private async submit (): Promise<void> {
-    const { state: { login, password } } = this;
+    const {
+      props,
+      state: { login, password },
+      texts,
+    } = this;
 
-    this.props.activateWaitForServer();
+    props.activateWaitForServer();
 
     try {
-      const result = await this.props.login({ login, password });
+      const result = await props.login({ login, password });
 
       if (!result) {
-        this.props.deactivateWaitForServer();
-
-        this.setState({
-          loginError: true,
-          connectionError: false,
-        });
+        props.deactivateWaitForServer();
+        props.addHelper(({ helperText: texts.loginError }));
       }
     } catch {
-      this.props.deactivateWaitForServer();
-
-      this.setState({
-        loginError: false,
-        connectionError: true,
-      });
+      props.deactivateWaitForServer();
+      props.addHelper(({ helperText: texts.connectionError }));
     }
   }
 
-  private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private onKeyDown (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
+      event.preventDefault();
       this.submit();
     }
+    this.props.removeHelper();
   }
 
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      login: event.target.value,
-      loginError: false,
-      connectionError: false,
-    });
+    this.setState({ login: event.target.value });
   }
 
   private typePassword (event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({
-      password: event.target.value,
-      loginError: false,
-      connectionError: false,
-    });
+    this.setState({ password: event.target.value });
   }
 
   public render (): JSX.Element {
+    const { state, texts } = this;
     return (
       <AppForm
-        heading={this.heading}
-        FormHelperProps={{
-          error: this.state.loginError,
-          errorMessage: this.loginErrorMessage,
-          connectionError: this.state.connectionError,
-        }}
-        onKeyDown={this.submitOnEnter}
+        heading={texts.heading}
+        onKeyDown={this.onKeyDown}
       >
         <TextField
           autoFocus
           required
-          label={this.loginLabel}
+          label={texts.loginLabel}
           onChange={this.typeLogin}
-          value={this.state.login}
+          value={state.login}
         />
         <TextField
           required
-          label={this.passwordLabel}
+          label={texts.passwordLabel}
           onChange={this.typePassword}
-          value={this.state.password}
+          value={state.password}
           type={'password'}
         />
         <AppButton
@@ -128,7 +102,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
             disabled: this.props.waitForServer,
           }}
         >
-          {this.submitButtonText}
+          {texts.submitButton}
         </AppButton>
       </AppForm>
     );

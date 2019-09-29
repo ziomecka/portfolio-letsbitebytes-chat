@@ -4,7 +4,9 @@ declare interface MapStateToConversation {
   connectionState: ConnectionState;
 }
 
-declare interface MapDispatchToConversation extends MapSocketToProps {}
+declare interface MapDispatchToConversation extends
+MapSocketToProps,
+MapHelperToDispatch {}
 
 declare interface ConversationProps extends MapStateToConversation,
   MapDispatchToConversation {}
@@ -12,5 +14,4 @@ declare interface ConversationProps extends MapStateToConversation,
 declare interface ConversationState {
   conversation: Statement[]
   message: string;
-  error: boolean;
 }

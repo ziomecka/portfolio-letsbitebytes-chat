@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { IconButton } from '@material-ui/core';
 import { PriorityHigh as NotificationIcon } from '@material-ui/icons';
+import { isBrowser } from '../../constants';
 import { styles } from './styles';
 import { withStyles } from '@material-ui/styles';
-
-const { IS_BROWSER } = process.env;
 
 class NotificationsButton extends
   React.Component<NotificationsButtonProps, NotificationsButtonState> {
   private animationRemoveTimeout: number;
-  private isBrowser: string;
+  private isBrowser: boolean;
   constructor (props: NotificationsButtonProps) {
     super(props);
 
@@ -23,7 +22,7 @@ class NotificationsButton extends
 
   private init (): void {
     this.animationRemoveTimeout = 2005;
-    this.isBrowser = IS_BROWSER;
+    this.isBrowser = isBrowser;
   }
 
   public componentDidMount (): void {

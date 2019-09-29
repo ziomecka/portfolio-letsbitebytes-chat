@@ -6,8 +6,11 @@ import {
   LARGE_SPACING,
   REGULAR_SPACING,
 } from './other-constants';
+import {
+  Grid,
+  Theme,
+} from '@material-ui/core';
 import { Overrides } from '@material-ui/core/styles/overrides';
-import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import { fontSizes } from './typography-constants';
 
@@ -57,6 +60,12 @@ const other = ({
         disableRipple: false,
         disableTouchRipple: true,
         focusRipple: true,
+      },
+      MuiDialog: {
+        PaperProps: { component: Grid },
+        hideBackdrop: true,
+        disablePortal: true,
+        transitionDuration: { exit: 0 },
       },
     },
     overrides: {
@@ -120,9 +129,15 @@ const other = ({
           position: 'relative',
           whiteSpace: 'pre-wrap',
           overflow: 'hidden',
-          padding: largeSpacing,
+          padding: 0,
           maxWidth: dialogMaxWidth,
           borderRadius,
+        },
+      },
+      MuiDialogContent: {
+        root: {
+          borderBottom: `1px solid ${ palette.grey[ 100 ] }`,
+          borderTop: `1px solid ${ palette.grey[ 100 ] }`,
         },
       },
       MuiDialogContentText: {

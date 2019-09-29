@@ -19,7 +19,6 @@ declare type DialogTitle = DialogLine[];
 
 declare interface DialogState {
   open: boolean;
-  closeButton: boolean;
   title: DialogTitle;
   content: DialogContent;
   buttonsVariant: ButtonsVariants;
@@ -27,7 +26,6 @@ declare interface DialogState {
 
 declare type OpenDialogProps = &
 {
-  closeButton?: boolean;
   title: DialogTitle;
   content: DialogContent;
   buttonsVariant?: ButtonsVariants;

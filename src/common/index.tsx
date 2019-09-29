@@ -5,6 +5,7 @@ export {
   Login,
   ProtectedRoute,
   Public,
+  ListenRouteChange,
 } from './components/';
 
 export {

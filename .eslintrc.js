@@ -45,6 +45,7 @@ module.exports = {
       'no-console': 'error',
       'no-duplicate-imports': 'error',
       'no-multi-spaces': 'error',
+      'no-multiple-empty-lines': 'error',
       'no-trailing-spaces': 'error',
       'no-undef': 'off',
       'object-curly-spacing': ['error', 'always'],
@@ -64,6 +65,12 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-member-accessibility': 'off',
+      },
+    },
+    {
+      files: ['*.spec.*', '*.test.*'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
       },
     },
   ],

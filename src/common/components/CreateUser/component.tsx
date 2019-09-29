@@ -18,19 +18,7 @@ import texts from './texts';
 class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserState> {
   private loginRegExp: RegExp;
   private passwordRegExp: RegExp;
-
-  private heading: string;
-  private loginLabel: string;
-  private passwordLabel: string;
-  private confirmPasswordLabel: string;
-  private submitButtonText: string;
-  private loginButtonText: string;
-  private serverErrorMessage: string;
-  private serverSuccessMessage: string;
-  private loginErrorMessage: string;
-  private passwordErrorMessage: string;
-  private confirmPasswordErrorMessage: string;
-
+  private texts: Record<string, string>;
   constructor (props: CreateUserWithRouterProps) {
     super(props);
 
@@ -41,32 +29,19 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       loginError: false,
       passwordError: false,
       confirmPasswordError: false,
-      connectionError: false,
       serverResult: undefined,
-      serverError: undefined,
     };
 
     this.init();
   }
 
   private init (): void {
-    this.heading = texts.heading;
-    this.serverErrorMessage = texts.serverErrorMessage;
-    this.serverSuccessMessage = texts.serverSuccessMessage;
-    this.loginLabel = texts.loginLabel;
-    this.passwordLabel = texts.passwordLabel;
-    this.confirmPasswordLabel = texts.confirmPasswordLabel;
-    this.submitButtonText = texts.submitButton;
-    this.loginButtonText = texts.loginButton;
-    this.loginErrorMessage = texts.loginError;
-    this.passwordErrorMessage = texts.passwordError;
-    this.confirmPasswordErrorMessage = texts.confirmPasswordError;
-
     this.loginRegExp = LOGIN_REGEXP;
     this.passwordRegExp = PASSWORD_REGEXP;
+    this.texts = texts;
 
     this.submit = this.submit.bind(this);
-    this.submitOnEnter = this.submitOnEnter.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
     this.typeLogin = this.typeLogin.bind(this);
     this.typePassword = this.typePassword.bind(this);
     this.typeConfirmPassword = this.typeConfirmPassword.bind(this);
@@ -74,6 +49,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
   private async submit (): Promise<void> {
     const {
+      props,
       state: {
         login,
         password,
@@ -82,21 +58,18 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
         passwordError,
         confirmPasswordError,
       },
+      texts,
     } = this;
 
     if (!loginError && !passwordError && !confirmPasswordError) {
       try {
-        this.props.activateWaitForServer();
+        props.activateWaitForServer();
 
-        const { result, error } = await this.props.createUser({ login, password, confirmPassword });
+        const { result, error } = await props.createUser({ login, password, confirmPassword });
 
-        this.props.deactivateWaitForServer();
+        props.deactivateWaitForServer();
 
-        const newState = {
-          serverResult: result,
-          serverError: error,
-          connectionError: false,
-        };
+        const newState = { serverResult: result };
 
         if (result) {
           Object.assign(newState, {
@@ -106,24 +79,25 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           });
         }
 
+        if (!result || error) {
+          props.addHelper({ helperText: texts.serverError });
+        }
+
         this.setState(newState);
       } catch {
-        this.props.deactivateWaitForServer();
-
-        this.setState({
-          serverResult: false,
-          serverError: this.serverErrorMessage,
-          connectionError: true,
-        });
+        props.deactivateWaitForServer();
+        props.addHelper({ helperText: texts.serverError });
+        this.setState({ serverResult: false });
       }
     }
   }
 
-  private submitOnEnter (event: React.KeyboardEvent<HTMLFormElement>): void {
+  private onKeyDown (event: React.KeyboardEvent<HTMLFormElement>): void {
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
       this.submit();
     }
+    this.props.removeHelper();
   }
 
   private typeLogin ({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void {
@@ -131,7 +105,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       login: value,
       loginError: !this.loginRegExp.test(value),
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
@@ -140,7 +113,6 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       confirmPassword: value,
       confirmPasswordError: this.state.password && value && this.state.password !== value,
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
@@ -149,22 +121,19 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       password: value,
       passwordError: !this.passwordRegExp.test(value),
       serverResult: undefined,
-      connectionError: false,
     });
   }
 
   public render (): JSX.Element {
     const {
+      texts,
       state: {
         login,
         password,
         confirmPassword,
-        connectionError,
-        serverResult,
         loginError,
         passwordError,
         confirmPasswordError,
-        serverError,
       },
       props: { waitForServer },
     } = this;
@@ -181,40 +150,35 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
 
     return (
       <AppForm
-        heading={this.heading}
-        FormHelperProps={{
-          error: serverResult === false,
-          errorMessage: serverError,
-          connectionError,
-        }}
-        onKeyDown={this.submitOnEnter}
+        heading={texts.heading}
+        onKeyDown={this.onKeyDown}
       >
         <TextField
           autoFocus
           required
-          label={this.loginLabel}
+          label={texts.loginLabel}
           onChange={this.typeLogin}
           value={login}
           error={loginError}
-          helperText={loginError && this.loginErrorMessage}
+          helperText={loginError && texts.loginErrorMessage}
         />
         <TextField
           required
-          label={this.passwordLabel}
+          label={texts.passwordLabel}
           onChange={this.typePassword}
           value={password}
           type={'password'}
           error={passwordError}
-          helperText={passwordError && this.passwordErrorMessage}
+          helperText={passwordError && texts.passwordErrorMessage}
         />
         <TextField
           required
-          label={this.confirmPasswordLabel}
+          label={texts.confirmPasswordLabel}
           onChange={this.typeConfirmPassword}
           value={confirmPassword}
           type={'password'}
           error={confirmPasswordError}
-          helperText={confirmPasswordError && this.confirmPasswordErrorMessage}
+          helperText={confirmPasswordError && texts.confirmPasswordErrorMessage}
         />
         { this.renderButtons(disabled) }
       </AppForm>
@@ -222,6 +186,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
   }
 
   private renderButtons (disabled: boolean): JSX.Element {
+    const { texts } = this;
     return (
       <React.Fragment>
         { !this.state.serverResult
@@ -233,24 +198,21 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
                 type: 'submit',
               }}
             >
-              {this.submitButtonText}
+              {texts.submitButton}
             </AppButton>
           )
           : (
             <React.Fragment>
               <Typography style={{ whiteSpace: 'pre-wrap' }}>
-                {`${ this.serverSuccessMessage } `}
+                {`${ texts.serverSuccess } `}
                 <Typography component="span" color="secondary">
                   <Link to={AppRoutes.loginRoute}>
-                    { this.loginLabel.toLowerCase() }
+                    { texts.loginLabel.toLowerCase() }
                   </Link>
                 </Typography>
               </Typography>
-
-              <RouterButton
-                to={AppRoutes.loginRoute}
-              >
-                {this.loginButtonText}
+              <RouterButton to={AppRoutes.loginRoute}>
+                {texts.loginButton}
               </RouterButton>
             </React.Fragment>
           )

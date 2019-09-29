@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { APP_ROOT_ID } from '../../constants';
+import {
+  APP_ROOT_ID,
+  isBrowser,
+} from '../../constants';
 import { Provider } from './context';
 import { breakpoints } from './constants';
-
-const { IS_BROWSER } = process.env;
 
 class AppSizeProvider extends React.PureComponent<AppSizeProviderProps, AppSizeProviderState> {
   constructor (props: object) {
@@ -11,8 +12,8 @@ class AppSizeProvider extends React.PureComponent<AppSizeProviderProps, AppSizeP
     this.state = { appSize: this.initAppSize };
   }
 
-  private isBrowser = IS_BROWSER;
-  private parentNode = IS_BROWSER ? document.getElementById(APP_ROOT_ID) : null;
+  private isBrowser = isBrowser;
+  private parentNode = isBrowser ? document.getElementById(APP_ROOT_ID) : null;
   private breakpoints = breakpoints;
 
   public componentDidMount (): void {

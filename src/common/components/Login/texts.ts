@@ -3,5 +3,5 @@ export default {
   loginLabel: 'Login',
   passwordLabel: 'Password',
   submitButton: 'Submit',
-  loginErrorMessage: 'Credentials are invalid. Please try again',
+  loginError: 'Credentials are invalid. Please try again',
 };

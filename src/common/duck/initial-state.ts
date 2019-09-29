@@ -1,3 +1,9 @@
 import { initialState } from '../initial-state';
 
-export const commonInitialState = initialState;
+const {
+  conversations,
+  user,
+  ...other
+} = initialState;
+
+export const commonInitialState = other;

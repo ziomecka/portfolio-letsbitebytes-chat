@@ -3,9 +3,10 @@ declare interface MapStateToLogout {
   waitForServer: boolean;
 }
 
-declare interface MapDispatchToLogout extends MapWaitForServerToDispatch {
+declare interface MapDispatchToLogout extends
+MapWaitForServerToDispatch,
+MapHelperToDispatch {
   logout():  Promise<boolean>;
-  addNotification(props: OpenDialogProps): AddNotificationAction;
 }
 
 declare interface LogoutProps extends MapStateToLogout, MapDispatchToLogout {}
