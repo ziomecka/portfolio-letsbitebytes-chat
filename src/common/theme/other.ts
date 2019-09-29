@@ -128,9 +128,15 @@ const other = ({
           position: 'relative',
           whiteSpace: 'pre-wrap',
           overflow: 'hidden',
-          padding: largeSpacing,
+          padding: 0,
           maxWidth: dialogMaxWidth,
           borderRadius,
+        },
+      },
+      MuiDialogContent: {
+        root: {
+          borderBottom: `1px solid ${ palette.grey[ 100 ] }`,
+          borderTop: `1px solid ${ palette.grey[ 100 ] }`,
         },
       },
       MuiDialogContentText: {
