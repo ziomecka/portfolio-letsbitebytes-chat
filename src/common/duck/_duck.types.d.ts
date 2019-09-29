@@ -32,7 +32,6 @@ declare interface HelperState {
 declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
-  dialog: DialogState;
   notifications: NotificationsState;
   waitForServer: boolean;
   helper: HelperState;
@@ -67,7 +66,6 @@ declare interface RemoveHelperAction extends ReduxAction {}
 declare type CommonActions = |
   ChangeConversationAction |
   ChangeSocketConnectionAction |
-  DialogActions |
   SetNotificationsAction |
   AddNotificationAction |
   ActivateWaitForServerAction |

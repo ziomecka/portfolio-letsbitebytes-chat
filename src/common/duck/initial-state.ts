@@ -4,6 +4,7 @@ const {
   conversations,
   user,
   contacts,
+  dialog,
   ...other
 } = initialState;
 

@@ -21,24 +21,6 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions>
       });
     }
 
-    case (DialogActionTypes.open): {
-      return {
-        ...update({} as CommonState, { $set: state }),
-        dialog: update(state.dialog,
-          { $merge: { ...(actionPayload as OpenDialogAction), open: true } },
-        ),
-      };
-    }
-
-    case (DialogActionTypes.close): {
-      return {
-        ...update({} as CommonState, { $set: state }),
-        dialog: update(state.dialog,
-          { $merge: { ...(defaultInitialState.dialog), open: false } },
-        ),
-      };
-    }
-
     case (CommonActionTypes.setNotifications): {
       return {
         ...update({} as CommonState, { $set: state }),

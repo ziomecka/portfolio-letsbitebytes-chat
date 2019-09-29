@@ -1,5 +1,6 @@
 import {
   contactsReducer,
+  dialogReducer,
   loginReducer,
   socketReducer,
 } from './components';
@@ -13,11 +14,11 @@ const appReducer: ReduxReducer<AppState, AppAction> =
     user: loginReducer(state.user, action),
     conversations: socketReducer(state.conversations, action),
     contacts: contactsReducer(state.contacts, action as ContactsActions),
+    dialog: dialogReducer(state.dialog, action as DialogActions),
     ...commonStateReducer(
       {
         activeConversation: state.activeConversation,
         connectionState: state.connectionState,
-        dialog: state.dialog,
         notifications: state.notifications,
         waitForServer: state.waitForServer,
         helper: state.helper,
