@@ -7,7 +7,12 @@ const usersReducer: ReduxReducer<UsersState, UsersActions>
 
   switch (type) {
     case (UsersActionTypes.setUsers): {
-      return update(state, { $set: (actionPayload as SetUsersAction).users });
+      const { users, loggedUser } = actionPayload as SetUsersAction;
+
+      const newUsers = new Set(users);
+      newUsers.delete(loggedUser);
+
+      return update([], { $set: Array.from(newUsers) });
     }
 
     case (UsersActionTypes.addUser): {
