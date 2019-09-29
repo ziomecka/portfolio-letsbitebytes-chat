@@ -5,10 +5,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton,
 } from '@material-ui/core';
 import { AppButton } from '../AppButton/';
-import { Close } from '@material-ui/icons';
 import { styles } from './styles';
 import texts from './texts';
 import { withStyles } from '@material-ui/core/styles';
@@ -29,7 +27,6 @@ const OkButton: React.FunctionComponent<Partial<AppDialogProps>> = ({
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
   closeDialog,
-  closeButton,
   title,
   content,
   buttonsVariant,
@@ -63,7 +60,6 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
     return (
       <DialogTitle
         id={ariaLabelledBy}
-        classes = {{ root: classes.title }}
         color="primary"
       >
         <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
@@ -93,36 +89,12 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
     );
   };
 
-  function renderClose (): JSX.Element {
-    const onClick = (): void => {
-      closeDialog();
-    };
-
-    return (
-      <IconButton
-        onClick={onClick}
-        classes={{ root: classes.actionButton }}
-      >
-        <Close />
-      </IconButton>
-    );
-  };
-
-  function renderTopActions (): JSX.Element {
-    return (
-      <DialogActions classes={{ root: classes.topActions }}>
-        { closeButton && renderClose() }
-      </DialogActions>
-    );
-  };
-
   return (
     <Dialog
       open={open}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
     >
-      { (closeButton) && renderTopActions() }
       { title && renderDialogTitle() }
       { content && renderDialogContent() }
       { (buttonsVariant !== ButtonsVariants.none) && renderBottomActions() }
