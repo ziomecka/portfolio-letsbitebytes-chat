@@ -40,7 +40,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
     [ ButtonsVariants.ok, OkButton ],
   ]);
 
-  function buildString (content: DialogContent | DialogTitle, tag?: HtmlTag): string {
+  const buildString = (content: DialogContent | DialogTitle, tag?: HtmlTag): string => {
     let openingTag = '';
     let closingTag = '';
 
@@ -56,38 +56,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       }, '');
   };
 
-  function renderDialogTitle (): JSX.Element {
-    return (
-      <DialogTitle
-        id={ariaLabelledBy}
-        color="primary"
-      >
-        <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
-      </DialogTitle>
-    );
-  };
-
-  function renderBottomActions (): JSX.Element {
-    const Component = buttonsVariants.get(buttonsVariant);
-
-    return (
-      <DialogActions>
-        <Component { ...{ closeDialog, classes } }/>
-      </DialogActions>
-    );
-  };
-
-  function renderDialogContent (): JSX.Element {
-    return (
-      <DialogContent>
-        <DialogContentText
-          id={ariaDescribedBy}
-          style={{ whiteSpace: 'pre-wrap' }}
-          dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
-        />
-      </DialogContent>
-    );
-  };
+  const Component = buttonsVariants.get(buttonsVariant);
 
   return (
     <Dialog
@@ -96,9 +65,28 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       aria-describedby={ariaDescribedBy}
       classes={{ root: classes.root }}
     >
-      { title && renderDialogTitle() }
-      { content && renderDialogContent() }
-      { (buttonsVariant !== ButtonsVariants.none) && renderBottomActions() }
+      { title && (
+        <DialogTitle
+          id={ariaLabelledBy}
+          color="primary"
+        >
+          <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
+        </DialogTitle>
+      ) }
+      { content && (
+        <DialogContent>
+          <DialogContentText
+            id={ariaDescribedBy}
+            style={{ whiteSpace: 'pre-wrap' }}
+            dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
+          />
+        </DialogContent>
+      ) }
+      { (buttonsVariant !== ButtonsVariants.none) && (
+        <DialogActions>
+          <Component { ...{ closeDialog, classes } }/>
+        </DialogActions>
+      ) }
     </Dialog>
   );
 };
