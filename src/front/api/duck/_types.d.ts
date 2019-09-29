@@ -25,7 +25,7 @@ declare interface ApiResponse {
 
 declare interface ApiLoginResponse {
   role?: UserRole;
-  users?: string[];
+  contacts?: string[];
   conversations?: Conversations;
   logout?: boolean;
 }
