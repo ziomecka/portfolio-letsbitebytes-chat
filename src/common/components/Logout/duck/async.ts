@@ -11,7 +11,9 @@ import { logoutActionSuccess } from './actions';
 
 export const logout = (): AppThunkAction<boolean> => (
   async (
-    dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
+    dispatch: AppThunkDispatch<LogoutActions>,
+    getState: GetState,
+    { api }: { api: Api },
   ): Promise<boolean> => {
     try {
       const { result } = await api.request(
