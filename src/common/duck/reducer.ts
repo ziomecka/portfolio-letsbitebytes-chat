@@ -1,5 +1,4 @@
 import { commonInitialState } from './initial-state';
-import { defaultInitialState } from '../../common/';
 import update from 'immutability-helper';
 
 const commonStateReducer: ReduxReducer<CommonState, CommonActions>
@@ -58,24 +57,6 @@ const commonStateReducer: ReduxReducer<CommonState, CommonActions>
       return {
         ...update({} as CommonState, { $set: state }),
         waitForServer: false,
-      };
-    }
-
-    case (CommonActionTypes.addHelper): {
-      return update(state, {
-        helper: {
-          $set: update({} as HelperState, { $set: actionPayload as AddHelperProps }),
-        },
-      });
-    }
-
-    case (CommonActionTypes.removeHelper): {
-      return {
-        ...update(state, {
-          helper: {
-            $set: update({} as HelperState, { $set: defaultInitialState.helper }),
-          },
-        }),
       };
     }
 

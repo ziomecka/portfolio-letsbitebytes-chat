@@ -5,6 +5,7 @@ const {
   user,
   contacts,
   dialog,
+  helper,
   ...other
 } = initialState;
 
