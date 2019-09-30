@@ -3,10 +3,6 @@ import {
   authorization,
 } from './authorization/';
 import {
-  UserCache,
-  createUserCache,
-} from './cache';
-import {
   UserDatabase,
   createUserDatabase,
 } from './database';
@@ -14,26 +10,30 @@ import {
   UserSession,
   createUserSession,
 } from './session';
+import { Redis } from '../databases';
 import { UserError } from './user-error';
+import { UsersCache } from './cache';
 import { logger } from '../logger/';
 
 const log = logger('userSession');
 
 export class User {
   public readonly authorization: Authorization;
-  public readonly userCache: UserCache;
+  public readonly usersCache: UsersCache;
   public readonly userDatabase: UserDatabase;
   public readonly userSession: UserSession;
   constructor (databaseUri: string, cacheUri: string) {
     this.authorization = authorization;
     this.userSession = createUserSession(cacheUri);
-    this.userCache = createUserCache(cacheUri);
     this.userDatabase = createUserDatabase(databaseUri);
+
+    const redis = new Redis(cacheUri);
+    this.usersCache = new UsersCache(redis);
   }
 
   public async destroy (): Promise<boolean[]> {
     return Promise.all([
-      await this.userCache.disconnect(),
+      await this.usersCache.disconnect(),
       await this.userDatabase.disconnect(),
       await this.userSession.disconnect(),
     ]);
@@ -67,7 +67,7 @@ export class User {
 
       const storedInDatabase = await this.userDatabase.createUser({ login, password, salt, hash });
 
-      this.userCache.cacheUser(login);
+      await this.usersCache.createUser(login);
 
       log.info('User stored in database:', login);
 
@@ -125,24 +125,8 @@ export class User {
     }
   }
 
-  private async getUsers (login?: string): Promise<string[]> {
-    let users: string[];
-
-    try {
-      users = await this.userCache.getUsers();
-      log.info('Users\' list read from cache');
-    } catch (err) {
-      log.error('Users\' list not read from cache', err);
-      users = [];
-    }
-
-    // todo: do it on client side?
-    if (login && users.length) {
-      const index = users.findIndex(userLogin => userLogin === login);
-      index !== -1 && users.splice(index, 1);
-    }
-
-    return users;
+  private async getUsers (): Promise<GetUsersFromCache> {
+    return await this.usersCache.getUsers();
   }
 
   public async buildAsyncState (): Promise<AsyncInitialAppState> {
@@ -165,11 +149,15 @@ export class User {
 
       await this.storeSession(login, token);
 
+      const { activeUsers, allUsers } = await this.getUsers();
+
       response.result = isValid;
       response.token = token;
       response.data.role = role;
       response.data.conversations = conversations;
-      response.data.contacts = await this.getUsers(login) || [];
+      response.data.contacts = allUsers;
+      response.data.activeContacts = activeUsers;
+
       log.info('User logged in:', login);
     } catch (err) {
       log.error('User not logged in:', login, err);
@@ -273,6 +261,6 @@ export const createUserManager = (databaseUri: string, cacheUri: string): User =
 
 export {
   Authorization,
-  UserCache,
+  UsersCache,
   UserDatabase,
 };
