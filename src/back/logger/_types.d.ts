@@ -7,5 +7,5 @@ declare type Loggers = |
   'socket' |
   'user' |
   'userCache' |
-  'userDatabase' |
+  'usersDatabase' |
   'usersSessions';
