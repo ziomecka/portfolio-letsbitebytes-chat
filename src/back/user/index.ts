@@ -3,9 +3,9 @@ import {
   authorization,
 } from './authorization/';
 import { Redis } from '../databases';
-import { UsersDatabase } from './database';
 import { UserError } from './user-error';
 import { UsersCache } from './cache';
+import { UsersDatabase } from './database';
 import { UsersSessions } from './session';
 import { logger } from '../logger/';
 
