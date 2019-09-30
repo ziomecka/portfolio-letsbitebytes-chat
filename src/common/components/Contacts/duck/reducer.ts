@@ -16,7 +16,13 @@ const contactsReducer: ReduxReducer<ContactsState, ContactsActions>
     }
 
     case (ContactsActionTypes.addContact): {
-      return update(state, { $push: [(actionPayload as AddContactAction).login] });
+      const { login } = (actionPayload as AddContactAction);
+
+      if (login && !state.includes(login)) {
+        return update(state, { $push: [login] });
+      } else {
+        return update(state, { $set: state });
+      }
     }
 
     default: {
