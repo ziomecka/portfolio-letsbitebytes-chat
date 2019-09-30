@@ -26,5 +26,9 @@ export const PASSWORD_REGEXP =
     'i'
   );
 
-const { IS_BROWSER } = process.env;
+const {
+  IS_BROWSER,
+  NODE_ENV,
+} = process.env;
 export const isBrowser = (IS_BROWSER as unknown as boolean) == true;
+export const isProduction = NODE_ENV === 'production';
