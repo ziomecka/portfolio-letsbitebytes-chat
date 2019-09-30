@@ -1,10 +1,15 @@
 import { addContact } from '../../../';
 
 export const listenAddContact = (socket: SocketIOClient.Socket) => (
-  async (dispatch: ReduxDispatch): Promise<void> => {
+  async (
+    dispatch: ReduxDispatch,
+    getState: GetState,
+  ): Promise<void> => {
     socket.on(ClientSocketMessages.addContact,
       (request: ClientAddContactRequest): AddContactAction => {
-        return dispatch(addContact(request));
+        if (getState().user.login !== request.login) {
+          return dispatch(addContact(request));
+        }
       }
     );
   }
