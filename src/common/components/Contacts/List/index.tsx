@@ -22,7 +22,7 @@ const List: React.FunctionComponent<Partial<ContactsProps>> =
   return (
     <ChatBox
       heading="Contacts"
-      containedHeading={true}
+      boldHeading={true}
       GridProps={{ style: {
         width: USERS_WIDTH,
         paddingLeft: 0,
