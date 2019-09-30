@@ -2,7 +2,7 @@
 
 * The application is a portfolio project and is being developed.
 * The current version is running at [heroku](http://letsbitebytes-chat.herokuapp.com/).
-  For demonstration purposes, I provided two users &#39;trainer&#39; and &#39;trainee&#39; with empty passwords. Please note that the user data is not currently stored in any database (only logins and passwords in the server&#39;s memory).
+  For demonstration purposes, I provided two users &#39;trainer&#39; and &#39;trainee&#39;.
 
 ----
 
