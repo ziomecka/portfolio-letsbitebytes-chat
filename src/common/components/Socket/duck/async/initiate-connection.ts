@@ -8,6 +8,8 @@ import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
 import { logout } from '../.././../Logout/duck/async';
 import { monitorConnection } from './monitor-connection';
+import { openDialog } from '../../../';
+import texts from './texts';
 
 let socket: SocketIOClient.Socket;
 
@@ -38,6 +40,10 @@ export const initiateConnection =
     socket.on(ClientSocketMessages.error, (err: string) => {
       if(err === SocketErrors.notAuthenticated) {
         dispatch(logout());
+        dispatch(openDialog({
+          title: [[texts.dialogTitle]],
+          content: [[texts.dialogContent]],
+        }));
       }
     });
   }
