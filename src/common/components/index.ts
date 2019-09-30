@@ -1,8 +1,9 @@
 export { AppButton } from './AppButton';
 export {
   AppDialog,
+  closeDialog,
   dialogReducer,
-  mapDialogToDispatch,
+  openDialog,
 } from './AppDialog/';
 export { AppForm } from './AppForm';
 export {
