@@ -61,7 +61,7 @@ export const appenders = {
     filename: 'log/user-database.log',
     layout,
   },
-  userSession: {
+  usersSessions: {
     type: 'file',
     filename: 'log/user-session.log',
     layout,

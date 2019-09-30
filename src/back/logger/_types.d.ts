@@ -8,4 +8,4 @@ declare type Loggers = |
   'user' |
   'userCache' |
   'userDatabase' |
-  'userSession';
+  'usersSessions';
