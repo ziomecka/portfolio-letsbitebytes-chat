@@ -1,5 +1,13 @@
+declare type CreateHmac = (algorithm: string, key: import('crypto').BinaryLike) => (
+  import('crypto').Hmac
+);
+
+declare type GetRandomString = () => string;
+
 declare interface AuthorizationProps {
   saltSize?: number;
+  createAuthenticationCode?: CreateHmac;
+  getRandomString?: GetRandomString;
 }
 
 declare interface AuthorizationHash {
