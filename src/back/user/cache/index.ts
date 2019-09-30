@@ -3,8 +3,9 @@ import { logger } from '../../logger/';
 
 const log = logger('userCache');
 
-export class UserCache {
-  private cacheLogins: string;
+export class UsersCache {
+  private allUsersCache: UserCaches;
+  private activeUsersCache: UserCaches;
   public readonly client: Redis;
   constructor (...args: CacheProps) {
     const [ client, url ] = args;
@@ -13,37 +14,68 @@ export class UserCache {
   }
 
   private init ():void {
-    this.cacheLogins = UserCaches.logins;
+    this.allUsersCache = UserCaches.allUsers;
+    this.activeUsersCache = UserCaches.activeUsers;
   }
 
-  public disconnect = async (): Promise<boolean> => (
-    await this.client.disconnect()
-  )
-
-  public cacheUser = async (login: string | string[]): Promise<boolean> => {
-    try {
-      // @ts-ignore
-      return await this.client.sadd(this.cacheLogins, login);
-    } catch (err) {
-      log.error('Login not added to cache:', login, err);
-    }
+  private cache = async (value: string | string[], cache: UserCaches): Promise<boolean> => {
+    return await this.client.sadd(cache, value);
   }
 
-  public deleteUsers = async (): Promise<boolean> => {
-    try {
-      return await this.client.del(this.cacheLogins);
-    } catch (err) {
-      log.error('Logins not deleted from cache:', err);
-    }
+  private delete = async (value: string | string[], cache: UserCaches): Promise<boolean> => {
+    return await this.client.srem(cache, value);
   }
 
-  public getUsers = async (): Promise<string[]> => {
-    try {
-      return await this.client.smembers(this.cacheLogins) as string[];
-    } catch (err) {
-      log.error('Logins not returned from cache:', this.cacheLogins);
-    }
+  public disconnect = async (): Promise<boolean> => {
+    return await this.client.disconnect();
+  }
+
+  public createUser = async (value: string | string[]): Promise<boolean> => {
+    return this.cache(value, this.allUsersCache);
+  }
+
+  public loginUser = async (value: string): Promise<boolean> => {
+    return this.cache(value, this.activeUsersCache);
+  }
+
+  public logoutUser = async (value: string): Promise<boolean> => {
+    return this.delete(value, this.activeUsersCache);
+  }
+
+  public getUsers (): Promise<GetUsersFromCache> {
+    return new Promise((resolve, reject): void => {
+      const multi = this.client.multi();
+
+      multi.smembers(this.allUsersCache);
+      multi.smembers(this.activeUsersCache);
+
+      multi.exec((err: Error, result: string[][]): void => {
+        if (err) {
+          log.error('Users not read from caches:', err);
+          reject(false);
+        } else {
+          const [ allUsers, activeUsers ] = result;
+          resolve({ allUsers, activeUsers });
+        }
+      });
+    });
+  }
+
+  public deleteCaches = async (): Promise<boolean[]> => {
+    return new Promise((resolve, reject): void => {
+      const multi = this.client.multi();
+
+      multi.del(this.allUsersCache);
+      multi.del(this.activeUsersCache);
+
+      multi.exec((err: Error, result: boolean[]): void => {
+        if (err) {
+          log.error('Users caches not deleted:', err);
+          reject([false]);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 }
-
-export const createUserCache = (uri: string): UserCache => new UserCache(createRedis(uri));
