@@ -160,7 +160,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           onChange={this.typeLogin}
           value={login}
           error={loginError}
-          helperText={loginError && texts.loginErrorMessage}
+          helperText={loginError ? texts.loginError : ''}
         />
         <TextField
           required
@@ -169,7 +169,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           value={password}
           type={'password'}
           error={passwordError}
-          helperText={passwordError && texts.passwordErrorMessage}
+          helperText={passwordError ? texts.passwordError : ''}
         />
         <TextField
           required
@@ -178,7 +178,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
           value={confirmPassword}
           type={'password'}
           error={confirmPasswordError}
-          helperText={confirmPasswordError && texts.confirmPasswordErrorMessage}
+          helperText={confirmPasswordError ? texts.confirmPasswordError : ''}
         />
         { this.renderButtons(disabled) }
       </AppForm>
