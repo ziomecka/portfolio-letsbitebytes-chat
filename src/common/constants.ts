@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 export const APP_TITLE = 'Let\'s chat';
 export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 
@@ -28,7 +26,6 @@ export const PASSWORD_REGEXP =
     'i'
   );
 
-const { IS_BROWSER, NODE_ENV } = process.env;
+const { IS_BROWSER } = process.env;
 
 export const isBrowser = (IS_BROWSER as unknown as boolean) == true;
-export const isProduction = NODE_ENV == 'production';
