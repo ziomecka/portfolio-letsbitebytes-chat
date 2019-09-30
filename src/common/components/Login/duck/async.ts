@@ -1,11 +1,9 @@
 import {
-  addNotification,
-  deactivateWaitForServer,
-} from '../../../duck';
-import {
+  openDialog,
   setContacts,
   setConversationsAction,
 } from '../../';
+import { deactivateWaitForServer } from '../../../duck';
 import { loginActionSuccess } from './actions';
 import texts from './texts';
 
@@ -33,9 +31,9 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
       dispatch(loginActionSuccess({ login, password, role }));
 
       if (logout) {
-        dispatch(addNotification({
-          title: [[texts.loggedInTitle]],
-          content: [[texts.loggedInContent]],
+        dispatch(openDialog({
+          title: [[texts.dialogTitle]],
+          content: [[texts.dialogContent]],
         }));
       }
     }

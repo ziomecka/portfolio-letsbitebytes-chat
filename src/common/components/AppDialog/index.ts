@@ -1,3 +1,6 @@
 export { AppDialog } from './container';
-export { dialogReducer } from './duck';
-export { mapDialogToDispatch } from './dispatch-dialog';
+export {
+  closeDialog,
+  dialogReducer,
+  openDialog,
+} from './duck';

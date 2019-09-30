@@ -1,4 +1,6 @@
-declare interface MapDispatchToDialog extends MapDialogToDispatch {}
+declare interface MapDispatchToDialog {
+  closeDialog(): CloseDialogAction;
+}
 
 declare interface MapStateToDialog extends DialogState {}
 
@@ -30,8 +32,3 @@ declare type OpenDialogProps = &
   content: DialogContent;
   buttonsVariant?: ButtonsVariants;
 };
-
-declare interface MapDialogToDispatch {
-  openDialog(props?: OpenDialogProps): OpenDialogAction;
-  closeDialog(): CloseDialogAction;
-}

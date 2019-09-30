@@ -12,7 +12,7 @@ export const socketReducer: ReduxReducer<SocketState, SocketActions> =
 
         return {
           ...update({} as SocketState, { $set: state }),
-          [ to ]: update(state[ to ], {
+          [ to ]: update(state[ to ] || [], {
             $push: [[ messageId, message, false ]],
           }),
         };
@@ -41,7 +41,7 @@ export const socketReducer: ReduxReducer<SocketState, SocketActions> =
 
         return {
           ...update({} as SocketState, { $set: state }),
-          [ from ]: update(state[ from ], {
+          [ from ]: update(state[ from ] || [], {
             $push: [[ messageId, message ]],
           }),
         };
@@ -52,10 +52,9 @@ export const socketReducer: ReduxReducer<SocketState, SocketActions> =
       }
 
       case (SocketActionTypes.setConversations): {
-        return {
-          ...update({} as SocketState, { $set: state }),
-          ...update(state, { $set: (actionPayload as SetConversationsAction).conversations }),
-        };
+        return update(state, {
+          $set: (actionPayload as SetConversationsAction).conversations,
+        });
       }
 
       default: {

@@ -23,13 +23,3 @@ declare type ReduxReducer<S, A> = import('redux').Reducer<S, A>;
 declare type ReduxStore = import('redux').Store;
 
 declare type WithStyles = import('@material-ui/core/styles').WithStyles;
-
-declare interface MapWaitForServerToDispatch {
-  activateWaitForServer(): ActivateWaitForServerAction;
-  deactivateWaitForServer(): DeactivateWaitForServerAction;
-}
-
-declare interface MapHelperToDispatch {
-  addHelper(props: AddHelperProps): AddHelperAction;
-  removeHelper(): RemoveHelperAction;
-}

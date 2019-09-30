@@ -1,4 +1,4 @@
 export default {
-  loggedInTitle: 'You are already logged in',
-  loggedInContent: 'You will be logged out from the other session',
+  dialogTitle: 'You have been logged in',
+  dialogContent: 'You will be logged out from the other session',
 };

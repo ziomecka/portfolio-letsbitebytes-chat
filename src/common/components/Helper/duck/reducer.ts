@@ -9,16 +9,14 @@ const helperReducer: ReduxReducer<HelperState, HelperActions>
   switch (type) {
     case (HelperActionTypes.addHelper): {
       return update(state, {
-        $set: update({} as HelperState, { $set: actionPayload as AddHelperProps }),
+        $merge: actionPayload as AddHelperProps,
       });
     }
 
     case (HelperActionTypes.removeHelper): {
-      return {
-        ...update(state, {
-          $set: update({} as HelperState, { $set: defaultInitialState.helper }),
-        }),
-      };
+      return update(state, {
+        $set: update({} as HelperState, { $set: defaultInitialState.helper }),
+      });
     }
 
     default: {

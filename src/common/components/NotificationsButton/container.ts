@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { NotificationsButton } from './component';
 import { connect } from 'react-redux';
 import { getNotification } from './duck';
-import { mapDialogToDispatch } from '../';
+import { mapDialogToDispatch } from '../../dispatch-common-actions';
 
 const mapStateToProps = (state: AppState): MapStateToNotificationsButton => ({
   actualNotifications: state.notifications.actual,
