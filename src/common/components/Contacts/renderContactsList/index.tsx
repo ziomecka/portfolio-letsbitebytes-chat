@@ -3,31 +3,31 @@ import { ListItemProps } from '@material-ui/core/ListItem';
 import { ListItemText } from '@material-ui/core';
 import { MenuItemProps } from '@material-ui/core/MenuItem';
 
-interface RenderUsersListProps {
+interface RenderContactsListProps {
   Component: React.FunctionComponent<Partial<MenuItemProps | ListItemProps>>,
   onClick: (value: string) => void,
-  users: string[],
+  contacts: string[],
   activeConversation: string,
   classes: Record<string, string>,
 }
 
-export const renderUsersList = ({
+export const renderContactsList = ({
   Component,
   onClick,
-  users,
+  contacts,
   activeConversation,
   classes,
-}: RenderUsersListProps): JSX.Element[] => (
-  users.map(user => (
+}: RenderContactsListProps): JSX.Element[] => (
+  contacts.map(contact => (
     <Component
-      key={user}
+      key={contact}
       button={true}
-      onClick={(): void => onClick(user)}
-      selected={user === activeConversation}
+      onClick={(): void => onClick(contact)}
+      selected={contact === activeConversation}
       className={classes.text}
     >
       <ListItemText
-        primary={user}
+        primary={contact}
         primaryTypographyProps={{
           classes: { root: classes.text },
         }}

@@ -10,12 +10,6 @@ export const changeConnectionState: ReduxActionCreator<ChangeSocketConnectionAct
     connectionState,
   });
 
-export const setUsers: ReduxActionCreator<SetUsersAction> =
-  ({ users }: SetUsersActionProps) => ({
-    type: CommonActionTypes.setUsers,
-    users,
-  });
-
 export const setNotifications: ReduxActionCreator<SetNotificationsAction> =
 ({ notifications }: SetNotificationsProps) => ({
   type: CommonActionTypes.setNotifications,
@@ -36,16 +30,4 @@ export const activateWaitForServer: ReduxActionCreator<ActivateWaitForServerActi
 export const deactivateWaitForServer: ReduxActionCreator<DeactivateWaitForServerAction> =
 () => ({
   type: CommonActionTypes.deactivateWaitForServer,
-});
-
-export const addHelper: ReduxActionCreator<AddHelperAction> =
-({ helperText, helperType }: AddHelperProps) => ({
-  type: CommonActionTypes.addHelper,
-  helperText,
-  helperType,
-});
-
-export const removeHelper: ReduxActionCreator<RemoveHelperAction> =
-() => ({
-  type: CommonActionTypes.removeHelper,
 });

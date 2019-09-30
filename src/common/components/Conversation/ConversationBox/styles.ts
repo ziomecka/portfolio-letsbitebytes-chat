@@ -8,7 +8,7 @@ export const styles = createStyles((theme: Theme) => {
     spacing,
   } = theme;
 
-  const partnerBackground = palette.grey[ 300 ];
+  const contactBackground = palette.grey[ 300 ];
   const userBackground = palette.primary.light;
   const userMessage = palette.background.paper;
 
@@ -33,8 +33,9 @@ export const styles = createStyles((theme: Theme) => {
       color: userMessage,
       backgroundColor: userBackground,
     },
-    partnerTypography: {
-      backgroundColor: partnerBackground,
+    contactTypography: {
+      backgroundColor: contactBackground,
+      alignSelf: 'flex-start',
     },
     delivered: { // todo pseudo
     },

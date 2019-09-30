@@ -2,14 +2,18 @@ import {
   changeActiveConversation,
   changeConnectionState,
   deactivateWaitForServer,
-  setUsers,
 } from '../../../duck/actions';
-import { clearConversationsAction } from '../../Socket/';
+import {
+  clearConversationsAction,
+  setContacts,
+} from '../../';
 import { logoutActionSuccess } from './actions';
 
 export const logout = (): AppThunkAction<boolean> => (
   async (
-    dispatch: AppThunkDispatch<LogoutActions>, getState: GetState, { api }: { api: Api }
+    dispatch: AppThunkDispatch<LogoutActions>,
+    getState: GetState,
+    { api }: { api: Api },
   ): Promise<boolean> => {
     try {
       const { result } = await api.request(
@@ -22,7 +26,7 @@ export const logout = (): AppThunkAction<boolean> => (
         dispatch(logoutActionSuccess());
         dispatch(clearConversationsAction());
         dispatch(changeActiveConversation());
-        dispatch(setUsers({ users: [] }));
+        dispatch(setContacts({ contacts: [] }));
         dispatch(changeConnectionState(ConnectionState.unknown));
       }
 

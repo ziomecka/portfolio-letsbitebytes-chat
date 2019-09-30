@@ -15,7 +15,7 @@ async ({ notifications }: PartialSsrInitialState): Promise<AppState> => {
         ...initialUser,
         ...buildDevelopmentUser(),
       },
-    users: [] as string[],
+    contacts: [] as ContactsState,
     dialog: update({} as DialogState, { $set: initialState.dialog }),
     notifications: update({} as NotificationsState, { $set: notifications }),
     helper: update({} as HelperState, { $set: initialState.helper }),

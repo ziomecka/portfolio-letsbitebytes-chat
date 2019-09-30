@@ -3,10 +3,13 @@ import {
   SOCKET_URL,
 } from './_constants';
 import { changeConnectionState } from '../../../../duck/actions';
+import { listenAddContact } from './listen-add-contact';
 import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
 import { logout } from '../.././../Logout/duck/async';
 import { monitorConnection } from './monitor-connection';
+import { openDialog } from '../../../';
+import texts from './texts';
 
 let socket: SocketIOClient.Socket;
 
@@ -25,6 +28,7 @@ export const initiateConnection =
 
     socket.on(ClientSocketMessages.connected, () => {
       dispatch(changeConnectionState(ConnectionState.connected));
+      dispatch(listenAddContact(socket));
       dispatch(listenReceive(socket));
       dispatch(listenDelivered(socket));
     });
@@ -36,6 +40,10 @@ export const initiateConnection =
     socket.on(ClientSocketMessages.error, (err: string) => {
       if(err === SocketErrors.notAuthenticated) {
         dispatch(logout());
+        dispatch(openDialog({
+          title: [[texts.dialogTitle]],
+          content: [[texts.dialogContent]],
+        }));
       }
     });
   }

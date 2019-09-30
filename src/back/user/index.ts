@@ -2,40 +2,34 @@ import {
   Authorization,
   authorization,
 } from './authorization/';
-import {
-  UserCache,
-  createUserCache,
-} from './cache';
-import {
-  UserDatabase,
-  createUserDatabase,
-} from './database';
-import {
-  UserSession,
-  createUserSession,
-} from './session';
+import { Redis } from '../databases';
 import { UserError } from './user-error';
+import { UsersCache } from './cache';
+import { UsersDatabase } from './database';
+import { UsersSessions } from './session';
 import { logger } from '../logger/';
 
-const log = logger('userSession');
+const log = logger('usersSessions');
 
-export class User {
+export class UsersManager {
   public readonly authorization: Authorization;
-  public readonly userCache: UserCache;
-  public readonly userDatabase: UserDatabase;
-  public readonly userSession: UserSession;
+  public readonly usersCache: UsersCache;
+  public readonly usersDatabase: UsersDatabase;
+  public readonly usersSessions: UsersSessions;
   constructor (databaseUri: string, cacheUri: string) {
     this.authorization = authorization;
-    this.userSession = createUserSession(cacheUri);
-    this.userCache = createUserCache(cacheUri);
-    this.userDatabase = createUserDatabase(databaseUri);
+
+    const redis = new Redis(cacheUri);
+    this.usersSessions = new UsersSessions(redis);
+    this.usersCache = new UsersCache(redis);
+    this.usersDatabase = new UsersDatabase(null, databaseUri);
   }
 
   public async destroy (): Promise<boolean[]> {
     return Promise.all([
-      await this.userCache.disconnect(),
-      await this.userDatabase.disconnect(),
-      await this.userSession.disconnect(),
+      await this.usersCache.disconnect(),
+      await this.usersDatabase.disconnect(),
+      await this.usersSessions.disconnect(),
     ]);
   }
 
@@ -65,9 +59,9 @@ export class User {
     try {
       const { hash, salt } = this.authorization.encryptPassword(password);
 
-      const storedInDatabase = await this.userDatabase.createUser({ login, password, salt, hash });
+      const storedInDatabase = await this.usersDatabase.createUser({ login, password, salt, hash });
 
-      this.userCache.cacheUser(login);
+      await this.usersCache.createUser(login);
 
       log.info('User stored in database:', login);
 
@@ -97,7 +91,7 @@ export class User {
         salt: storedSalt,
         conversations,
         role,
-      } = await this.userDatabase.findUser(login);
+      } = await this.usersDatabase.findUser(login);
 
       const { hash, salt, isValid, token } =
       this.authorization.verifyPassword(storedHash, storedSalt, password);
@@ -125,24 +119,8 @@ export class User {
     }
   }
 
-  private async getUsers (login?: string): Promise<string[]> {
-    let users: string[];
-
-    try {
-      users = await this.userCache.getUsers();
-      log.info('Users\' list read from cache');
-    } catch (err) {
-      log.error('Users\' list not read from cache', err);
-      users = [];
-    }
-
-    // todo: do it on client side?
-    if (login && users.length) {
-      const index = users.findIndex(userLogin => userLogin === login);
-      index !== -1 && users.splice(index, 1);
-    }
-
-    return users;
+  private async getUsers (): Promise<GetUsersFromCache> {
+    return await this.usersCache.getUsers();
   }
 
   public async buildAsyncState (): Promise<AsyncInitialAppState> {
@@ -165,11 +143,15 @@ export class User {
 
       await this.storeSession(login, token);
 
+      const { activeUsers, allUsers } = await this.getUsers();
+
       response.result = isValid;
       response.token = token;
       response.data.role = role;
       response.data.conversations = conversations;
-      response.data.users = await this.getUsers(login) || [];
+      response.data.contacts = allUsers;
+      response.data.activeContacts = activeUsers;
+
       log.info('User logged in:', login);
     } catch (err) {
       log.error('User not logged in:', login, err);
@@ -183,8 +165,8 @@ export class User {
     from: string, to: string, [ messageId, message ]: [ string, string ]
   ): Promise<boolean> {
     try {
-      await this.userDatabase.storeMessage(from, to, [ messageId, message, false ]);
-      await this.userDatabase.storeMessage(to, from, [ messageId, message ]);
+      await this.usersDatabase.storeMessage(from, to, [ messageId, message, false ]);
+      await this.usersDatabase.storeMessage(to, from, [ messageId, message ]);
 
       // todo what if one fails?
       log.info('User\'s message registered:', from, to, messageId);
@@ -199,7 +181,7 @@ export class User {
     login: string, to: string, messageId: string
   ): Promise<boolean> {
     try {
-      await this.userDatabase.updateMessage(login, to, messageId);
+      await this.usersDatabase.updateMessage(login, to, messageId);
       log.info('User\'s message registered as delivered:', login, to, messageId);
       return true;
     } catch (err) {
@@ -217,7 +199,7 @@ export class User {
     }
 
     try {
-      await this.userDatabase.update(login, data);
+      await this.usersDatabase.update(login, data);
       log.info('User updated:', login, data);
       return true;
     } catch (err) {
@@ -226,12 +208,12 @@ export class User {
     }
   }
 
-  public async storeSession (login: string, value: string): Promise<boolean> {
+  public async storeSession (login: string, value: string): Promise<boolean[]> {
     try {
-      return await this.userSession.storeSession(login, value);
+      return await this.usersSessions.storeSession(login, value);
     } catch (err) {
       log.error('Session not stored', login, value, err);
-      return false;
+      return err;
     }
   }
 
@@ -239,10 +221,10 @@ export class User {
     let session: string;
 
     try {
-      session = await this.userSession.getSession(login);
+      session = await this.usersSessions.getSession(login);
 
       if (session) {
-        await this.userSession.deleteSession(session, login);
+        await this.usersSessions.deleteSession(session, login);
       }
 
       return !!session;
@@ -254,8 +236,8 @@ export class User {
 
   public isAuthenticated = async (login: string, cookie: string): Promise<boolean> => {
     try {
-      const loginResult = await this.userSession.getSession(login);
-      const cookieResult = await this.userSession.getSession(cookie);
+      const loginResult = await this.usersSessions.getSession(login);
+      const cookieResult = await this.usersSessions.getSession(cookie);
 
       log.info('User is authenticated', loginResult, cookieResult);
 
@@ -267,12 +249,8 @@ export class User {
   }
 }
 
-export const createUserManager = (databaseUri: string, cacheUri: string): User => (
-  new User(databaseUri, cacheUri)
-);
-
 export {
   Authorization,
-  UserCache,
-  UserDatabase,
+  UsersCache,
+  UsersDatabase,
 };

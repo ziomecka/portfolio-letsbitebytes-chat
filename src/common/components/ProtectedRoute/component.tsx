@@ -4,9 +4,9 @@ import {
   Grid,
 } from '@material-ui/core';
 import {
+  Contacts,
   Conversation,
   Socket,
-  Users,
   withAppSize,
 } from '../';
 import {
@@ -34,7 +34,7 @@ const ProtectedRoute: React.FunctionComponent<ProtectedRouteProps> =
         component={Box}
         justify="space-between"
       >
-        { !isCompact && <Users />}
+        { !isCompact && <Contacts />}
         <AppMenu isCompact={isCompact} />
         <Conversation />
         <Socket />

@@ -32,10 +32,11 @@ declare interface SetConversationsProps {
 declare const enum ClientSocketMessages {
   connected = 'connect',
   disconnected = 'disconnect',
-  emit = 'emit',
-  receive = 'receive',
+  addContact = 'addContact',
   delivered = 'delivered',
+  emit = 'emit',
   error = 'error',
+  receive = 'receive',
 }
 
 declare const enum SocketErrors {
@@ -51,6 +52,10 @@ declare type ClientReceiveRequest = {
   from: string;
   messageId: string;
   message: string;
+};
+
+declare type ClientAddContactRequest = {
+  login: string;
 };
 
 declare type SocketActions =

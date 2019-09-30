@@ -56,12 +56,12 @@ export const appenders = {
     filename: 'log/user-cache.log',
     layout,
   },
-  userDatabase: {
+  usersDatabase: {
     type: 'file',
     filename: 'log/user-database.log',
     layout,
   },
-  userSession: {
+  usersSessions: {
     type: 'file',
     filename: 'log/user-session.log',
     layout,

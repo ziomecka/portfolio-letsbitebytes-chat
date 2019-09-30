@@ -8,8 +8,8 @@ const redisAppenders = [ 'app', 'errors', 'redis' ];
 const socketAppenders = [ 'app', 'errors', 'socket' ];
 const userAppenders = [ 'app', 'errors', 'user' ];
 const userCacheAppenders = [ 'app', 'errors', 'userCache' ];
-const userDatabaseAppenders = [ 'app', 'errors', 'userDatabase' ];
-const userSessionAppenders = [ 'app', 'errors', 'userSession' ];
+const userDatabaseAppenders = [ 'app', 'errors', 'usersDatabase' ];
+const userSessionAppenders = [ 'app', 'errors', 'usersSessions' ];
 
 const stdout = 'out'; // for heroku logging
 const level = 'ALL';
@@ -43,11 +43,11 @@ let categories = {
     appenders: userCacheAppenders.concat(stdout),
     level,
   },
-  userDatabase: {
+  usersDatabase: {
     appenders: userDatabaseAppenders.concat(stdout),
     level,
   },
-  userSession: {
+  usersSessions: {
     appenders: userSessionAppenders.concat(stdout),
     level,
   },
@@ -83,11 +83,11 @@ if (NODE_ENV !== 'production') {
       appenders: userCacheAppenders,
       level,
     },
-    userDatabase: {
+    usersDatabase: {
       appenders: userDatabaseAppenders,
       level,
     },
-    userSession: {
+    usersSessions: {
       appenders: userSessionAppenders,
       level,
     },

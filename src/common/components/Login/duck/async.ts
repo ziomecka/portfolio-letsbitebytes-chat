@@ -1,10 +1,10 @@
 import {
-  addNotification,
-  deactivateWaitForServer,
-  setUsers,
-} from '../../../duck';
+  openDialog,
+  setContacts,
+  setConversationsAction,
+} from '../../';
+import { deactivateWaitForServer } from '../../../duck';
 import { loginActionSuccess } from './actions';
-import { setConversationsAction } from '../../Socket/';
 import texts from './texts';
 
 export const login = ({ login, password }: LoginActionProps): AppThunkAction<boolean> => (async (
@@ -15,7 +15,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
   try {
     const {
       result,
-      data: { users, role, conversations, logout },
+      data: { contacts, role, conversations, logout },
     }: {
       result: boolean,
       data?: ApiLoginResponse,
@@ -26,14 +26,14 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
     dispatch(deactivateWaitForServer());
 
     if (result) {
-      users && dispatch(setUsers({ users }));
+      contacts && dispatch(setContacts({ contacts, loggedUser: login }));
       conversations && dispatch(setConversationsAction({ conversations }));
       dispatch(loginActionSuccess({ login, password, role }));
 
       if (logout) {
-        dispatch(addNotification({
-          title: [[texts.loggedInTitle]],
-          content: [[texts.loggedInContent]],
+        dispatch(openDialog({
+          title: [[texts.dialogTitle]],
+          content: [[texts.dialogContent]],
         }));
       }
     }

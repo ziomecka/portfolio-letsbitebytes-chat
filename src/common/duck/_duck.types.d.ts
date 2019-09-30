@@ -1,13 +1,10 @@
 declare const enum CommonActionTypes {
   changeActiveConversation = '@APP/Common/change active conversation',
   changeConnectionState = '@APP/Common/change socket connection',
-  setUsers = '@APP/Common/set users',
   setNotifications = '@APP/Common/set notifications',
   addNotification = '@APP/Common/add notification',
   activateWaitForServer = '@APP/Common/activate waiting for server',
   deactivateWaitForServer = '@APP/Common/deactivate waiting for server',
-  addHelper = '@APP/Common/add helper',
-  removeHelper = '@APP/Common/remove helper',
 }
 
 declare const enum ConnectionState {
@@ -23,21 +20,11 @@ declare interface NotificationsState {
 
 declare type NotificationsList = OpenDialogProps[];
 
-declare type HelperType = 'error' | 'message';
-
-declare interface HelperState {
-  helperText: string;
-  helperType?: HelperType;
-}
-
 declare interface CommonState {
   activeConversation: string;
   connectionState: ConnectionState;
-  users: string[];
-  dialog: DialogState;
   notifications: NotificationsState;
   waitForServer: boolean;
-  helper: HelperState;
 }
 
 declare interface ChangeConversationActionProps {
@@ -48,37 +35,23 @@ declare interface ChangeSocketConnectionActionProps {
   connectionState: ConnectionState;
 }
 
-declare interface SetUsersActionProps {
-  users: string[];
-}
-
 declare interface SetNotificationsProps {
   notifications: NotificationsState;
 }
 
 declare interface AddNotificationProps extends OpenDialogProps {}
 
-declare interface AddHelperProps extends HelperState {}
-declare interface RemoveHelperProps extends HelperState {}
-
-declare interface SetUsersAction extends ReduxAction, SetUsersActionProps {}
 declare interface ChangeConversationAction extends ChangeConversationActionProps, ReduxAction {}
 declare interface ChangeSocketConnectionAction extends ChangeSocketConnectionActionProps, ReduxAction {}
 declare interface SetNotificationsAction extends ReduxAction, SetNotificationsProps {}
 declare interface AddNotificationAction extends ReduxAction, AddNotificationProps {}
 declare interface ActivateWaitForServerAction extends ReduxAction {}
 declare interface DeactivateWaitForServerAction extends ReduxAction {}
-declare interface AddHelperAction extends ReduxAction, AddHelperProps {}
-declare interface RemoveHelperAction extends ReduxAction {}
 
 declare type CommonActions = |
   ChangeConversationAction |
   ChangeSocketConnectionAction |
-  SetUsersAction |
-  DialogActions |
   SetNotificationsAction |
   AddNotificationAction |
   ActivateWaitForServerAction |
-  DeactivateWaitForServerAction |
-  AddHelperAction |
-  RemoveHelperAction;
+  DeactivateWaitForServerAction;

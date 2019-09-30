@@ -1,7 +1,7 @@
 const { MongoDB } = require('../../databases/');
-const { UserDatabase } = require('./index');
+const { UsersDatabase } = require('./index');
 
-describe('UserDatabase', () => {
+describe('UsersDatabase', () => {
   const buildUserDatabase = (conversations = [], login = 'fooLogin') => {
     const userDocument = {
       login,
@@ -13,21 +13,21 @@ describe('UserDatabase', () => {
       findOne: sinon.stub().resolves(userDocument),
     });
 
-    const userDatabase = new UserDatabase(mongoDB);
+    const usersDatabase = new UsersDatabase(mongoDB);
 
     return {
-      userDatabase,
+      usersDatabase,
       userDocument,
     };
   };
 
   it('stores first message in conversation', async () => {
     // given
-    const { userDatabase, userDocument } = buildUserDatabase();
+    const { usersDatabase, userDocument } = buildUserDatabase();
 
     // when
     const statement = [ 'dddd', 'someMessage' ];
-    await userDatabase.storeMessage('trainee', 'trainer', statement);
+    await usersDatabase.storeMessage('trainee', 'trainer', statement);
 
     // then
     expect(userDocument.conversations).toHaveLength(1);
@@ -37,11 +37,11 @@ describe('UserDatabase', () => {
 
   it('stores message with escaped html', async () => {
     // given
-    const { userDatabase, userDocument } = buildUserDatabase();
+    const { usersDatabase, userDocument } = buildUserDatabase();
 
     // when
     const statement = [ 'dddd', 'Foo<script>xss</script>Poo' ];
-    await userDatabase.storeMessage('trainee', 'trainer', statement);
+    await usersDatabase.storeMessage('trainee', 'trainer', statement);
 
     // then
     expect(userDocument.conversations).toHaveLength(1);
@@ -51,11 +51,11 @@ describe('UserDatabase', () => {
 
   it('stores message without double escaped html', async () => {
     // given
-    const { userDatabase, userDocument } = buildUserDatabase();
+    const { usersDatabase, userDocument } = buildUserDatabase();
 
     // when
     const statement = [ 'dddd', 'Foo&#x3C;script&#x3E;xss&#x3C;/script&#x3E;Poo' ];
-    await userDatabase.storeMessage('trainee', 'trainer', statement);
+    await usersDatabase.storeMessage('trainee', 'trainer', statement);
 
     // then
     expect(userDocument.conversations).toHaveLength(1);
@@ -65,11 +65,11 @@ describe('UserDatabase', () => {
 
   it('stores first message in conversation', async () => {
     // given
-    const { userDatabase, userDocument } = buildUserDatabase();
+    const { usersDatabase, userDocument } = buildUserDatabase();
 
     // when
     const statement = [ 'dddd', 'someMessage' ];
-    await userDatabase.storeMessage('trainee', 'trainer', statement);
+    await usersDatabase.storeMessage('trainee', 'trainer', statement);
 
     // then
     expect(userDocument.conversations).toHaveLength(1);

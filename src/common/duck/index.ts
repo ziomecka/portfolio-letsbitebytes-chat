@@ -4,5 +4,4 @@ export {
   addNotification,
   changeActiveConversation,
   deactivateWaitForServer,
-  setUsers,
 } from './actions';

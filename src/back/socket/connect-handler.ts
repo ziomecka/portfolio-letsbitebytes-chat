@@ -13,6 +13,7 @@ export const connectHandler = async (socket: Socket): Promise<void> => {
   if (login) {
     socket.join(`/${ login }`);
     log.info('Socket joined room:', login);
+    socket.broadcast.emit(ServerSocketMessages.addContact, { login });
   }
 
   socket.emit(ServerSocketMessages.connected, { login }); // TODO

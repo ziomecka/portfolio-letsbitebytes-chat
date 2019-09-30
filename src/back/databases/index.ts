@@ -3,9 +3,4 @@ export {
   createMongo,
 } from './mongo/';
 
-export {
-  Redis,
-  createRedis,
-  setData,
-  stringData,
-} from './redis/';
+export { Redis } from './redis/';
