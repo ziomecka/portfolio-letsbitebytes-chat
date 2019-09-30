@@ -5,10 +5,9 @@ import {
 import { api } from '../front/api/';
 import { appReducer } from './reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { isProduction } from './constants';
 import thunk from 'redux-thunk';
 
-export const store = isProduction
+export const store = !process || (process.env.NODE_ENV === 'production')
   ? createStore(
     appReducer,
     applyMiddleware(thunk.withExtraArgument({ api }))
