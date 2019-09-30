@@ -1,15 +1,12 @@
 import {
-  MongoDB,
-  createMongo,
-} from '../../databases/mongo/';
-import {
   encode as escapeHtml,
   decode as unescapeHtml,
 } from 'he';
+import { MongoDB } from '../../databases/mongo/';
 import { UserError } from '../user-error';
 import { logger } from '../../logger/';
 
-const log = logger('userDatabase');
+const log = logger('usersDatabase');
 
 interface CreateUserProps {
   login: string;
@@ -18,8 +15,10 @@ interface CreateUserProps {
   hash: string;
 }
 
-export class UserDatabase {
-  constructor (private database: MongoDB) {
+export class UsersDatabase {
+  private readonly database: MongoDB;
+  constructor (database?: MongoDB, uri?: string) {
+    this.database = database || new MongoDB(uri);
   }
 
   public async disconnect (): Promise<boolean> {
@@ -31,7 +30,11 @@ export class UserDatabase {
     }
   }
 
-  public async createUser ({ login, password, salt, hash }: CreateUserProps): Promise<boolean> {
+  public async createUser ({
+    login,
+    password,
+    ...other
+  }: CreateUserProps): Promise<boolean> {
     try {
       const userExists = await this.database.exists(Collections.users, { login });
 
@@ -39,7 +42,7 @@ export class UserDatabase {
         return Promise.reject(new UserError(UserErrors.userExists));
       }
 
-      await this.database.create(Collections.users, { login, password, salt, hash });
+      await this.database.create(Collections.users, { login, password, ...other });
       log.info('User created:', login, password);
       return true;
     } catch (err) {
@@ -205,7 +208,3 @@ export class UserDatabase {
     }
   }
 }
-
-export const createUserDatabase = (uri: string): UserDatabase => {
-  return new UserDatabase(createMongo(uri));
-};
