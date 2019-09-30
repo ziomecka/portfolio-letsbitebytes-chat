@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export const APP_TITLE = 'Let\'s chat';
 export const WINDOW_INITIAL_STATE = '__INITIAL_STATE__';
 
