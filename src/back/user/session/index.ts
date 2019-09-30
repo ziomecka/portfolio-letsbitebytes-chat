@@ -5,9 +5,9 @@ import {
 import { Redis } from '../../databases/';
 import { logger } from '../../logger/';
 
-const log = logger('userSession');
+const log = logger('usersSessions');
 
-export class UserSession {
+export class UsersSessions {
   private storagePrefix: string;
   private storageAge: number;
   private prefixRegExp: RegExp;
@@ -28,26 +28,23 @@ export class UserSession {
     await this.client.disconnect()
   )
 
-  public async storeSession (key: string, value: string): Promise<boolean> {
-    const {
-      storageAge,
-      storagePrefix,
-    } = this;
+  public async storeSession (key: string, value: string): Promise<boolean[]> {
+    const sessionKey = this.storagePrefix + key;
+    const sessionValue = this.storagePrefix + value;
 
-    const sessionKey = storagePrefix + key;
-    const sessionValue = storagePrefix + value;
-
-    try {
-      // todo multi, batch transaction
-      await this.setString(sessionKey, sessionValue, storageAge);
-      await this.setString(sessionValue, sessionKey, storageAge);
-
-      return true;
-    } catch (err) {
-      log.error('Session not stored in cache', key, value);
-      // implement retry strategy and reject the promise
-      return false;
-    }
+    return new Promise((resolve, reject): void => {
+      const multi = this.client.multi();
+      multi.setex(sessionKey, this.storageAge, sessionValue);
+      multi.setex(sessionValue, this.storageAge, sessionKey);
+      multi.exec((err: Error, result: boolean[]): void => {
+        if (err) {
+          log.error('Session not stored in cache', key, value);
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 
   private addPrefix (str: string): string {
@@ -56,34 +53,36 @@ export class UserSession {
       : this.storagePrefix + str;
   }
 
-  public async deleteSession (key: string, value?: string): Promise<boolean> {
-    try {
-      // todo multi, batch transaction
-      const prefixedValue = this.addPrefix(value);
-      const prefixedKey = this.addPrefix(key);
-      const storedValue = prefixedValue || await this.getString(prefixedKey);
+  public async deleteSession (key: string, value?: string): Promise<boolean[]> {
+    const prefixedValue = this.addPrefix(value);
+    const prefixedKey = this.addPrefix(key);
+    const storedValue = prefixedValue || await this.client.get(prefixedKey);
 
-      await this.delString(prefixedKey);
-      await this.delString(storedValue);
-
-      return true;
-    } catch (err) {
-      log.error('Session not stored in cache', key, value);
-      // implement retry strategy and reject the promise
-      return false;
-    }
+    return new Promise((resolve, reject): void => {
+      const multi = this.client.multi();
+      multi.del(prefixedKey);
+      typeof storedValue === 'string' && multi.del(storedValue);
+      multi.exec((err: Error, result: boolean[]): void => {
+        if (err) {
+          log.error('Session not deleted from cache', key, value);
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 
   public async getSession (value: string): Promise<string> {
-    try {
-      // todo multi, batch transaction
-      return await this.getString(this.addPrefix(value));
-    } catch (err) {
-      log.error('no value founded for', value);
-      // implement retry strategy and reject the promise
-      return '';
-    }
+    return new Promise((resolve, reject): void => {
+      this.client.get((this.addPrefix(value)), (err: Error, result: string): void => {
+        if (err) {
+          log.error('no value founded for', value);
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      }) ;
+    });
   }
 }
-
-export const createUserSession = (uri: string): UserSession => new UserSession(createRedis(uri));
