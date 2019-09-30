@@ -1,27 +1,20 @@
 import {
-  Redis,
-  createRedis,
-  stringData,
-} from '../../databases/';
-import {
   SESSION_STORAGE_AGE,
   SESSION_STORAGE_PREFIX,
 } from '../../constants';
+import { Redis } from '../../databases/';
 import { logger } from '../../logger/';
 
 const log = logger('userSession');
 
 export class UserSession {
-  // @ts-ignore
-  public setString(key: string, value: string, exp?: number): Promise<boolean>;
-  // @ts-ignore
-  public getString(key: string): Promise<string>;
-  // @ts-ignore
-  public delString(key: string): Promise<boolean>;
   private storagePrefix: string;
   private storageAge: number;
   private prefixRegExp: RegExp;
-  constructor (private client: Redis) {
+  public readonly client: Redis;
+  constructor (...args: CacheProps) {
+    const [ client, url ] = args;
+    this.client = client || new Redis(url);
     this.init();
   }
 
@@ -29,13 +22,6 @@ export class UserSession {
     this.storagePrefix = `${ SESSION_STORAGE_PREFIX }_`;
     this.storageAge = SESSION_STORAGE_AGE;
     this.prefixRegExp = new RegExp(`^${ SESSION_STORAGE_PREFIX }`, 'gi');
-
-    const { client: { client } } = this;
-    Object.assign(Object.getPrototypeOf(this), {
-      setString: stringData.setString.bind(client),
-      getString: stringData.getString.bind(client),
-      delString: stringData.delKey.bind(client),
-    });
   }
 
   public disconnect = async (): Promise<boolean> => (
