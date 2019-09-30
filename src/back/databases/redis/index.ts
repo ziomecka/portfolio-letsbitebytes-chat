@@ -1,11 +1,18 @@
 import * as RedisLib from 'redis';
 import { logger } from '../../logger/';
 
+const url = require('url');
 const log = logger();
 
 export class Redis extends RedisLib.RedisClient {
   constructor (redisUrl: string) {
-    super({ url: redisUrl });
+    super({
+      password: url.parse(redisUrl).auth.match(/\w+$/)[ 0 ],
+      url: redisUrl,
+      port: Number(url.parse(redisUrl).port),
+      host: url.parse(redisUrl).hostname,
+    });
+
     this.init();
   }
 
@@ -29,5 +36,3 @@ export class Redis extends RedisLib.RedisClient {
     });
   };
 }
-
-export const createRedis = (url: string): Redis => new Redis(url);
