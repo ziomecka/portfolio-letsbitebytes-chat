@@ -35,6 +35,7 @@ export const styles = createStyles((theme: Theme) => {
     },
     contactTypography: {
       backgroundColor: contactBackground,
+      alignSelf: 'flex-start',
     },
     delivered: { // todo pseudo
     },

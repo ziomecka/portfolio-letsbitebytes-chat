@@ -37,7 +37,7 @@ const ConversationBox: React.FunctionComponent<ConversationBoxProps> = ({
         className={`${ classes.conversationBox } ${ classes.scrollBar }`}
       >
         { conversation.map(([ messageId, message, isDelivered ]) => {
-          const isUser = isDelivered !== undefined;
+          const isUser = isDelivered !== null && isDelivered !== undefined;
 
           let itemClass = '';
 
