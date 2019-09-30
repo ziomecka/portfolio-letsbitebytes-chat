@@ -20,6 +20,10 @@ module.exports = {
     modules: [ 'node_modules' ],
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
+  node: {
+    // fs: 'empty' to avoid error Can't resolve fs
+    fs: 'empty',
+  },
   module: {
     rules: [
       {
