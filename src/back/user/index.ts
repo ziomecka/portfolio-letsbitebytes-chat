@@ -11,7 +11,7 @@ import { logger } from '../logger/';
 
 const log = logger('usersSessions');
 
-export class User {
+export class UsersManager {
   public readonly authorization: Authorization;
   public readonly usersCache: UsersCache;
   public readonly usersDatabase: UsersDatabase;
@@ -248,10 +248,6 @@ export class User {
     }
   }
 }
-
-export const createUserManager = (databaseUri: string, cacheUri: string): User => (
-  new User(databaseUri, cacheUri)
-);
 
 export {
   Authorization,
