@@ -112,8 +112,9 @@ const other = ({
       },
       MuiButtonBase: {
         root: {
+          margin: regularSpacing,
+          padding: regularSpacing,
           width: fontSize * buttonSize,
-          ...marginPadding,
         },
       },
       MuiInputLabel: {

@@ -1,4 +1,4 @@
-export const BUTTON_SIZE = 8; // used as buttonSize x 1rem
+export const BUTTON_SIZE = 10; // used as buttonSize x 1rem
 
 export const SMALL_SPACING = .5;
 export const REGULAR_SPACING = 1;
