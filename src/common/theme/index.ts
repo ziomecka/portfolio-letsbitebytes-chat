@@ -1,8 +1,9 @@
 import { Theme } from '@material-ui/core';
 import { breakpoints } from './breakpoints';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { other } from './other';
+import { overrides } from './overrides/';
 import { palette } from './palette';
+import { props } from './props/';
 import { shape } from './shape';
 import { typography } from './typography';
 
@@ -16,7 +17,8 @@ const getTheme = (): Theme => {
 
   return createMuiTheme({
     ...theme,
-    ...other(theme),
+    overrides: overrides(theme),
+    props,
   });
 };
 
