@@ -10,6 +10,8 @@ declare const enum ServerSocketMessages {
   connected = 'connection',
   disconnected = 'disconnect',
   addContact = 'addContact',
+  activateContact = 'activateContact',
+  deactivateContact = 'deactivateContact',
   emit = 'emit',
   receive = 'receive',
   delivered = 'delivered',

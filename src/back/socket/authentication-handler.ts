@@ -23,6 +23,9 @@ export const authenticationHandler = (socket: Socket) => async (
       log.error('User not authenticated:', login, cookie);
       socket.leave(`/${ login }`);
 
+      usersManager.changeUserIsActive(login, false);
+      socket.broadcast.emit(ServerSocketMessages.deactivateContact, { login });
+
       next(new Error(SocketErrors.notAuthenticated));
     } else {
       log.info('User authenticated:', login, cookie);
