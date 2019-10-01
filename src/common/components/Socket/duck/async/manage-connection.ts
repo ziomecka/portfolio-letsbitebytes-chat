@@ -4,6 +4,7 @@ import {
 } from './_constants';
 import { changeConnectionState } from '../../../../duck/actions';
 import { listenAddContact } from './listen-add-contact';
+import { listenContactIsActive } from './listen-contact-is-active';
 import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
 import { logout } from '../.././../Logout/duck/async';
@@ -28,10 +29,12 @@ export const initiateConnection =
     monitorConnection(dispatch, getState, connectionTimeout, socket);
 
     socket.on(ClientSocketMessages.connected, () => {
+      //  todo - reduce number of dispatches
       dispatch(changeConnectionState(ConnectionState.connected));
       dispatch(listenAddContact(socket));
       dispatch(listenReceive(socket));
       dispatch(listenDelivered(socket));
+      dispatch(listenContactIsActive(socket));
     });
 
     socket.on(ClientSocketMessages.disconnected, () => (
