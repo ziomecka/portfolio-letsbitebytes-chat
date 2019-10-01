@@ -15,7 +15,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
   try {
     const {
       result,
-      data: { contacts, role, conversations, logout },
+      data: { contacts, activeContacts, role, conversations, logout },
     }: {
       result: boolean,
       data?: ApiLoginResponse,
@@ -26,7 +26,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
     dispatch(deactivateWaitForServer());
 
     if (result) {
-      contacts && dispatch(setContacts({ contacts, loggedUser: login }));
+      contacts && dispatch(setContacts({ contacts, activeContacts, loggedUser: login }));
       conversations && dispatch(setConversationsAction({ conversations }));
       dispatch(loginActionSuccess({ login, password, role }));
 

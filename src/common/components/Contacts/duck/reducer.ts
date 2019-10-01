@@ -7,7 +7,7 @@ const contactsReducer: ReduxReducer<ContactsState, ContactsActions>
 
   switch (type) {
     case (ContactsActionTypes.setContacts): {
-      const { loggedUser } = actionPayload as SetContactsAction;
+      const { activeContacts, loggedUser } = actionPayload as SetContactsAction;
       const contacts = [...(actionPayload as SetContactsAction).contacts];
       const newState = new Map([]) as ContactsState;
 
@@ -15,7 +15,7 @@ const contactsReducer: ReduxReducer<ContactsState, ContactsActions>
         contacts.splice(contacts.findIndex(contact => contact === loggedUser), 1);
 
         contacts.reduce((state: ContactsState, login) => {
-          state.set(login, { isActive: false });
+          state.set(login, { isActive: activeContacts.includes(login) });
           return state;
         }, newState);
       }

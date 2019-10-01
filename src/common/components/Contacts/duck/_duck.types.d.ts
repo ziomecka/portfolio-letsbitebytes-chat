@@ -9,8 +9,9 @@ declare type ContactState = {
 
 declare type ContactsState = Map<string, ContactState>;
 
-declare interface SetContactsActionProps {
+declare type SetContactsActionProps = {
   contacts: string[];
+  activeContacts: string[];
   loggedUser?: string;
 };
 declare type AddContactActionProps = ContactState & { login: string };
