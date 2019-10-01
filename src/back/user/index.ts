@@ -247,6 +247,14 @@ export class UsersManager {
       return false;
     }
   }
+
+  public changeUserIsActive = async (login: string, isActive: boolean): Promise<boolean> => {
+    if (isActive) {
+      return await this.usersCache.activateUser(login);
+    } else {
+      return await this.usersCache.deactivateUser(login);
+    }
+  }
 }
 
 export {
