@@ -33,6 +33,7 @@ const Public: React.FunctionComponent<PublicWithRouterProps> = ({ history }) => 
           fontSize,
           marginLeft: 'auto',
           marginRight: 'auto',
+          textAlign: 'center',
         }}
       >
         {texts.heading}
