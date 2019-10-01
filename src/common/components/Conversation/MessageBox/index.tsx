@@ -28,10 +28,7 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
     >
       <Grid
         item
-        style={{
-          marginRight: '16px',
-          flexGrow: 1,
-        }}
+        className={`${ classes.inputBox } ${ classes.scrollBar } `}
       >
         <TextField
           autoFocus
@@ -55,10 +52,7 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
         <AppButton
           buttonProps={{
             onClick,
-            style: {
-              marginBottom: '8px',
-              marginRight: 0,
-            },
+            className: classes.button,
             color: 'secondary',
           }}
         >
