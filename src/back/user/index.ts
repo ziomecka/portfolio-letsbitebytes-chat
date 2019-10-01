@@ -227,10 +227,10 @@ export class UsersManager {
         await this.usersSessions.deleteSession(session, login);
       }
 
-      return !!session;
+      return true;
     } catch (err) {
       log.error('User not logged out', login, session, err);
-      return false;
+      return err;
     }
   }
 
