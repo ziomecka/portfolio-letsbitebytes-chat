@@ -1,7 +1,13 @@
 import * as React from 'react';
 
-export const Socket: React.FunctionComponent<SocketProps> = ({ initiateConnection }) => {
-  initiateConnection();
+export class Socket extends React.Component<SocketProps> {
+  constructor (props: SocketProps) {
+    super(props);
+    props.initiateConnection();
+  }
 
-  return null;
+
+  public render (): JSX.Element {
+    return null;
+  }
 };
