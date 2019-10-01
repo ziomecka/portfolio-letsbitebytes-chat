@@ -4,5 +4,5 @@ deploy
 *code-workspace
 .env
 tsc
-todo.md
+todo*md
 log
