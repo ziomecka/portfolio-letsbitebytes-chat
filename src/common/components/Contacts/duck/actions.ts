@@ -6,7 +6,8 @@ export const setContacts: ReduxActionCreator<SetContactsAction> =
   });
 
 export const addContact: ReduxActionCreator<AddContactAction> =
-  ({ login }: AddContactActionProps) => ({
+  ({ login, isActive }: AddContactActionProps) => ({
     type: ContactsActionTypes.addContact,
     login,
+    isActive,
   });

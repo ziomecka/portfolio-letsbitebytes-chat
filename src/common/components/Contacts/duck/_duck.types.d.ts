@@ -3,16 +3,17 @@ declare const enum ContactsActionTypes {
   addContact = '@APP/Contacts/add contacts',
 }
 
-declare type ContactsState = string[];
+declare type ContactState = {
+  isActive?: boolean;
+}
+
+declare type ContactsState = Map<string, ContactState>;
 
 declare interface SetContactsActionProps {
   contacts: string[];
   loggedUser?: string;
-}
-
-declare interface AddContactActionProps {
-  login: string;
-}
+};
+declare type AddContactActionProps = ContactState & { login: string };
 
 declare interface SetContactsAction extends ReduxAction, SetContactsActionProps {}
 declare interface AddContactAction extends ReduxAction, AddContactActionProps {}

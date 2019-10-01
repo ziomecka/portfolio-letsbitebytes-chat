@@ -1,6 +1,6 @@
 declare interface MapStateToContacts {
   activeConversation: string;
-  contacts: string[];
+  contacts: ContactsState;
 }
 
 declare interface MapDispatchToContacts {

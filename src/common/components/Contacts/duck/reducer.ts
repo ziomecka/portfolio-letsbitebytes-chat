@@ -7,22 +7,28 @@ const contactsReducer: ReduxReducer<ContactsState, ContactsActions>
 
   switch (type) {
     case (ContactsActionTypes.setContacts): {
-      const { contacts, loggedUser } = actionPayload as SetContactsAction;
+      const { loggedUser } = actionPayload as SetContactsAction;
+      const contacts = [...(actionPayload as SetContactsAction).contacts];
+      const newState = new Map([]) as ContactsState;
 
-      const newContacts = new Set(contacts);
-      newContacts.delete(loggedUser);
+      if (contacts.length) {
+        contacts.splice(contacts.findIndex(contact => contact === loggedUser), 1);
 
-      return update([], { $set: Array.from(newContacts) });
+        contacts.reduce((state: ContactsState, login) => {
+          state.set(login, { isActive: false });
+          return state;
+        }, newState);
+      }
+
+      return update(state, { $set: newState });
     }
 
     case (ContactsActionTypes.addContact): {
-      const { login } = (actionPayload as AddContactAction);
+      const { login, ...other } = actionPayload as AddContactActionProps;
 
-      if (login && !state.includes(login)) {
-        return update(state, { $push: [login] });
-      } else {
-        return update(state, { $set: state });
-      }
+      return update(state, {
+        $add: [[ login, other ]],
+      });
     }
 
     default: {
