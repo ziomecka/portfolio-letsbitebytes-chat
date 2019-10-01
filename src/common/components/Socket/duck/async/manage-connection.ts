@@ -12,6 +12,7 @@ import { openDialog } from '../../../';
 import texts from './texts';
 
 let socket: SocketIOClient.Socket;
+let io: unknown;
 
 export const initiateConnection =
 (connectionTimeout = CONNECTION_TIMEOUT): AppThunkAction<InitiateSocketAction, void> => (
@@ -19,7 +20,7 @@ export const initiateConnection =
     dispatch: AppThunkDispatch<InitiateSocketAction>,
     getState: GetState,
   ): Promise<void> => {
-    const io = await import('socket.io-client');
+    io = await import('socket.io-client');
 
     // @ts-ignore
     socket = io(SOCKET_URL, { query: `login=${ getState().user.login }` });
@@ -48,5 +49,14 @@ export const initiateConnection =
     });
   }
 );
+
+export const closeConnection = (): void => {
+  if (socket && typeof socket.close === 'function') {
+    socket.removeAllListeners();
+    socket.close();
+    socket = null;
+    io = null;
+  }
+};
 
 export { socket };

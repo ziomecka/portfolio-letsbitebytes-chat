@@ -1,2 +1,5 @@
 export { emitMessage } from './emit-message';
-export { initiateConnection } from './manage-connection';
+export {
+  closeConnection,
+  initiateConnection,
+} from './manage-connection';
