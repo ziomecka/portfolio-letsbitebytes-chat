@@ -22,13 +22,19 @@ export const renderContactsList = ({
   return Array.from(contacts).map(([ contact, { isActive } ]: [string, ContactState]) => {
     const selected = contact === activeConversation;
 
+    let root = classes.text;
+
+    if (isActive) {
+      root += ` ${ !selected ? classes.active : classes.activeSelected }`;
+    }
+
     return (
       <Component
         key={contact}
         button={true}
         onClick={(): void => onClick(contact)}
         selected={selected}
-        className={classes.text}
+        classes={{ root }}
       >
         <ListItemText primary={contact}/>
       </Component>
