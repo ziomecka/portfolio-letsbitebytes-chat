@@ -26,12 +26,7 @@ export const renderContactsList = ({
       selected={contact === activeConversation}
       className={classes.text}
     >
-      <ListItemText
-        primary={contact}
-        primaryTypographyProps={{
-          classes: { root: classes.text },
-        }}
-      />
+      <ListItemText primary={contact} />
     </Component>
   ))
 );
