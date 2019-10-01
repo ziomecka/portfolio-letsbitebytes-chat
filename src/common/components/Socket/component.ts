@@ -6,6 +6,9 @@ export class Socket extends React.Component<SocketProps> {
     props.initiateConnection();
   }
 
+  public componentWillUnmount (): void {
+    this.props.closeConnection();
+  }
 
   public render (): JSX.Element {
     return null;
