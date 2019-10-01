@@ -12,3 +12,10 @@ export const addContact: ReduxActionCreator<AddContactAction> =
     login,
     isActive,
   });
+
+export const changeContactIsActive: ReduxActionCreator<ChangeContactIsActiveAction> =
+  ({ login, isActive }: ChangeContactIsActiveActionProps) => ({
+    type: ContactsActionTypes.changeContactIsActive,
+    login,
+    isActive,
+  });

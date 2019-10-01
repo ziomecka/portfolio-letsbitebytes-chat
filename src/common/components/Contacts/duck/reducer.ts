@@ -31,6 +31,17 @@ const contactsReducer: ReduxReducer<ContactsState, ContactsActions>
       });
     }
 
+    case (ContactsActionTypes.changeContactIsActive): {
+      const { login, isActive } = actionPayload as AddContactActionProps;
+
+      return update(state, {
+        $add: [[
+          login,
+          update(state.get(login), { $merge: { isActive } }),
+        ]],
+      });
+    }
+
     default: {
       return update(state, { $set: state });
     }

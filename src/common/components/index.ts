@@ -43,6 +43,7 @@ export {
 export {
   Contacts,
   addContact,
+  changeContactIsActive,
   setContacts,
   contactsReducer,
 } from './Contacts';
