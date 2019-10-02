@@ -26,7 +26,7 @@ export const logout = (): AppThunkAction<boolean> => (
         dispatch(logoutActionSuccess());
         dispatch(clearConversationsAction());
         dispatch(changeActiveConversation());
-        dispatch(setContacts({ contacts: [] }));
+        dispatch(setContacts({ contacts: [], activeContacts: [] }));
         dispatch(changeConnectionState(ConnectionState.unknown));
       }
 

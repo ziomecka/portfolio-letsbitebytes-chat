@@ -1,6 +1,6 @@
 import { emitAction } from '../actions';
 import { encode as escapeHtml } from 'he';
-import { socket } from './initiate-connection';
+import { socket } from './manage-connection';
 
 const buildId = (): string => Date.now().toString();
 

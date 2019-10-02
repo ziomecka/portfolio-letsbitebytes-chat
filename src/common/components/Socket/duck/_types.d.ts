@@ -33,6 +33,8 @@ declare const enum ClientSocketMessages {
   connected = 'connect',
   disconnected = 'disconnect',
   addContact = 'addContact',
+  activateContact = 'activateContact',
+  deactivateContact = 'deactivateContact',
   delivered = 'delivered',
   emit = 'emit',
   error = 'error',
@@ -56,6 +58,11 @@ declare type ClientReceiveRequest = {
 
 declare type ClientAddContactRequest = {
   login: string;
+};
+
+declare type ClientChangeIsActiveContactRequest = {
+  login: string;
+  isActive: boolean;
 };
 
 declare type SocketActions =

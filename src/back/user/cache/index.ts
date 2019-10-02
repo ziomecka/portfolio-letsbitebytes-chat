@@ -42,6 +42,14 @@ export class UsersCache {
     return this.delete(value, this.activeUsersCache);
   }
 
+  public activateUser = async (value: string): Promise<boolean> => {
+    return this.cache(value, this.activeUsersCache);
+  }
+
+  public deactivateUser = async (value: string): Promise<boolean> => {
+    return this.delete(value, this.activeUsersCache);
+  }
+
   public getUsers (): Promise<GetUsersFromCache> {
     return new Promise((resolve, reject): void => {
       const multi = this.client.multi();

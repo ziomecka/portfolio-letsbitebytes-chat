@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('regenerator-runtime/runtime');
 const React = require('react');
 const sinon = require('sinon');
 const Adapter = require('enzyme-adapter-react-16');

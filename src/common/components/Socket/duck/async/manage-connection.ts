@@ -4,6 +4,7 @@ import {
 } from './_constants';
 import { changeConnectionState } from '../../../../duck/actions';
 import { listenAddContact } from './listen-add-contact';
+import { listenContactIsActive } from './listen-contact-is-active';
 import { listenDelivered } from './listen-delivered';
 import { listenReceive } from './listen-receive';
 import { logout } from '../.././../Logout/duck/async';
@@ -12,6 +13,7 @@ import { openDialog } from '../../../';
 import texts from './texts';
 
 let socket: SocketIOClient.Socket;
+let io: unknown;
 
 export const initiateConnection =
 (connectionTimeout = CONNECTION_TIMEOUT): AppThunkAction<InitiateSocketAction, void> => (
@@ -19,7 +21,7 @@ export const initiateConnection =
     dispatch: AppThunkDispatch<InitiateSocketAction>,
     getState: GetState,
   ): Promise<void> => {
-    const io = await import('socket.io-client');
+    io = await import('socket.io-client');
 
     // @ts-ignore
     socket = io(SOCKET_URL, { query: `login=${ getState().user.login }` });
@@ -27,10 +29,12 @@ export const initiateConnection =
     monitorConnection(dispatch, getState, connectionTimeout, socket);
 
     socket.on(ClientSocketMessages.connected, () => {
+      //  todo - reduce number of dispatches
       dispatch(changeConnectionState(ConnectionState.connected));
       dispatch(listenAddContact(socket));
       dispatch(listenReceive(socket));
       dispatch(listenDelivered(socket));
+      dispatch(listenContactIsActive(socket));
     });
 
     socket.on(ClientSocketMessages.disconnected, () => (
@@ -41,12 +45,20 @@ export const initiateConnection =
       if(err === SocketErrors.notAuthenticated) {
         dispatch(logout());
         dispatch(openDialog({
-          title: [[texts.dialogTitle]],
-          content: [[texts.dialogContent]],
+          content: [texts.dialogContent],
         }));
       }
     });
   }
 );
+
+export const closeConnection = (): void => {
+  if (socket && typeof socket.close === 'function') {
+    socket.removeAllListeners();
+    socket.close();
+    socket = null;
+    io = null;
+  }
+};
 
 export { socket };

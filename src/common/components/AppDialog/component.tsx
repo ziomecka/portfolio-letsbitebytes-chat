@@ -36,7 +36,9 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
     return content
       .reduce((str: string, [ paragraph, tag ]: DialogLine): string => {
-        str += `${ openingTag }${ paragraph }${ closingTag }`;
+        str +=
+        `${ tag ? `<${ tag }>` : openingTag }${ paragraph }${ tag ? `<\\${ tag }>` : closingTag }`;
+
         return str;
       }, '');
   };
@@ -50,7 +52,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       aria-describedby={ariaDescribedBy}
       classes={{ root: classes.root }}
     >
-      { title && (
+      { !!title.length && (
         <DialogTitle
           id={ariaLabelledBy}
           color="primary"
@@ -58,8 +60,8 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
           <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
         </DialogTitle>
       ) }
-      { content && (
-        <DialogContent>
+      { !!content.length && (
+        <DialogContent classes={{ root: title.length ? '' : classes.noBorders }}>
           <DialogContentText
             id={ariaDescribedBy}
             style={{ whiteSpace: 'pre-wrap' }}

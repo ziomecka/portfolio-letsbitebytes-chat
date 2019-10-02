@@ -1,4 +1,6 @@
 export default {
-  dialogTitle: 'You have been logged in',
-  dialogContent: 'You will be logged out from the other session',
+  dialogContent: [
+    'You were logged in on other device.',
+    'You will be automatically logged out on this device.',
+  ],
 };

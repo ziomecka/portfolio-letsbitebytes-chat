@@ -227,7 +227,9 @@ export class UsersManager {
         await this.usersSessions.deleteSession(session, login);
       }
 
-      return true;
+      // Both, false and true means that the logout method succeeded
+      // However, only true means that the user was already logged in
+      return !!session;
     } catch (err) {
       log.error('User not logged out', login, session, err);
       return err;
@@ -245,6 +247,14 @@ export class UsersManager {
     } catch (err) {
       log.error('User is not authenticated', login, cookie, err);
       return false;
+    }
+  }
+
+  public changeUserIsActive = async (login: string, isActive: boolean): Promise<boolean> => {
+    if (isActive) {
+      return await this.usersCache.activateUser(login);
+    } else {
+      return await this.usersCache.deactivateUser(login);
     }
   }
 }

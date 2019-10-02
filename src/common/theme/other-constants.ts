@@ -6,6 +6,8 @@ export const USERS_WIDTH = 300;
 export const MESSAGE_BOX_MAX_HEIGHT = 80;
 export const SEND_BUTTON_MAX_WIDTH = 80;
 
+export const ACTIVE_COLOR = '#4e937a'; // wintergreen dream
+
 export {
   APP_NAV_HEIGHT,
   REGULAR_SPACING,

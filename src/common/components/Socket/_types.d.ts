@@ -2,6 +2,7 @@ declare interface MapStateToSocket {}
 
 declare interface MapDispatchToSocket {
   initiateConnection(): Promise<void>;
+  closeConnection(): void;
 }
 
 declare interface MapSocketToProps {

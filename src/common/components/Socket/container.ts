@@ -1,12 +1,16 @@
+import {
+  closeConnection,
+  initiateConnection,
+} from './duck/';
 import { Socket } from './component';
 import { connect } from 'react-redux';
-import { initiateConnection } from './duck/';
 
 const mapStateToProps = (): MapStateToSocket => ({});
 
 const mapDispatchToProps =
   (dispatch: AppThunkDispatch<EmitAction>): MapDispatchToSocket => ({
     initiateConnection: (): Promise<void> => dispatch(initiateConnection()),
+    closeConnection: (): void => closeConnection(),
   });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Socket);
