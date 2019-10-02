@@ -36,7 +36,9 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
     return content
       .reduce((str: string, [ paragraph, tag ]: DialogLine): string => {
-        str += `${ openingTag }${ paragraph }${ closingTag }`;
+        str +=
+        `${ tag ? `<${ tag }>` : openingTag }${ paragraph }${ tag ? `<\\${ tag }>` : closingTag }`;
+
         return str;
       }, '');
   };
