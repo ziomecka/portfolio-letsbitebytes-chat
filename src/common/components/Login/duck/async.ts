@@ -31,10 +31,7 @@ export const login = ({ login, password }: LoginActionProps): AppThunkAction<boo
       dispatch(loginActionSuccess({ login, password, role }));
 
       if (logout) {
-        dispatch(openDialog({
-          title: [[texts.dialogTitle]],
-          content: [[texts.dialogContent]],
-        }));
+        dispatch(openDialog({ content: [[texts.dialogContent]] }));
       }
     }
 
