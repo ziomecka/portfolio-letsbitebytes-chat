@@ -6,6 +6,7 @@ import {
 import { ChatBox } from '../../';
 import { USERS_WIDTH } from '../../../theme/other-constants';
 import { renderContactsList } from '../renderContactsList/';
+import texts from './texts';
 
 const List: React.FunctionComponent<Partial<ContactsProps>> =
 ({
@@ -21,7 +22,7 @@ const List: React.FunctionComponent<Partial<ContactsProps>> =
 
   return (
     <ChatBox
-      heading="Contacts"
+      heading={texts.heading}
       boldHeading={true}
       GridProps={{ style: {
         width: USERS_WIDTH,
