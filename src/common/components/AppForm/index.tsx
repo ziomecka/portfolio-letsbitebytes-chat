@@ -38,6 +38,7 @@ const AppForm: React.FunctionComponent<AppFormProps> = ({
       {homeButton &&
         <RouterButton
           to={AppRoutes.publicRoute}
+          // @ts-ignore
           buttonProps={{ variant: 'outlined' }}
         >
           { texts.homeLabel }

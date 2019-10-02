@@ -10,7 +10,7 @@ const AppButton: React.FunctionComponent<AppButtonProps> = ({
   autoFocus = false,
   children,
   classes,
-  buttonProps = {},
+  buttonProps,
 }) => {
 
   Object.assign(buttonProps, {
