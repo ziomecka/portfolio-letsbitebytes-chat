@@ -227,7 +227,9 @@ export class UsersManager {
         await this.usersSessions.deleteSession(session, login);
       }
 
-      return true;
+      // Both, false and true means that the logout method succeeded
+      // However, only true means that the user was already logged in
+      return !!session;
     } catch (err) {
       log.error('User not logged out', login, session, err);
       return err;
