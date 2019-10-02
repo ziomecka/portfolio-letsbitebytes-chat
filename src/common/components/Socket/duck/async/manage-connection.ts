@@ -45,8 +45,7 @@ export const initiateConnection =
       if(err === SocketErrors.notAuthenticated) {
         dispatch(logout());
         dispatch(openDialog({
-          title: [[texts.dialogTitle]],
-          content: [[texts.dialogContent]],
+          content: [texts.dialogContent],
         }));
       }
     });
