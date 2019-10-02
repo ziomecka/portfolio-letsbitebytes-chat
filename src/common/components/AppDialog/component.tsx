@@ -34,13 +34,10 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       closingTag = `</${ tag }>`;
     }
 
-    return content
-      .reduce((str: string, [ paragraph, tag ]: DialogLine): string => {
-        str +=
-        `${ tag ? `<${ tag }>` : openingTag }${ paragraph }${ tag ? `<\\${ tag }>` : closingTag }`;
-
-        return str;
-      }, '');
+    return content.reduce((str: string, line: DialogLine): string => {
+      str += `${ openingTag }${ line }${ closingTag }`;
+      return str;
+    }, '');
   };
 
   const Component = buttonsVariants.get(buttonsVariant);
