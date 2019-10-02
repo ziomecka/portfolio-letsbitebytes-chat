@@ -20,7 +20,7 @@ export class UsersSessions {
 
   private init (): void {
     this.storagePrefix = `${ SESSION_STORAGE_PREFIX }_`;
-    this.storageAge = SESSION_STORAGE_AGE;
+    this.storageAge = Number(SESSION_STORAGE_AGE);
     this.prefixRegExp = new RegExp(`^${ SESSION_STORAGE_PREFIX }`, 'gi');
   }
 

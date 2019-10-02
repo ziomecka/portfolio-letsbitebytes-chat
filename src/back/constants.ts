@@ -8,7 +8,8 @@ export const {
   PORT,
   PRODUCTION_URL,
   REDIS_URL,
-  REDIS_USER_EXP,
+  SESSION_COOKIE_AGE,
+  SESSION_STORAGE_AGE,
   TRAINER_LOGIN,
   TRAINER_PASSWORD,
   TRAINEE_LOGIN,
@@ -23,10 +24,7 @@ export const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 export const DOMAIN = IS_PRODUCTION ? PRODUCTION_URL : 'localhost';
 
 export const SESSION_COOKIE_NAME = 'lbbChat';
-export const SESSION_COOKIE_AGE = 60 * 60 * 1000;
-
 export const SESSION_STORAGE_PREFIX = 'lbbChat';
-export const SESSION_STORAGE_AGE = 60 * 60 * 1000;
 
 export {
   MAX_LOGIN_LENGTH,

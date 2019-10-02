@@ -15,7 +15,7 @@ export const login = async ({ query }: ExpressRequest, res: ExpressResponse): Pr
 
     if (response.result && token) {
       res.cookie(SESSION_COOKIE_NAME, token, {
-        maxAge: SESSION_COOKIE_AGE,
+        maxAge: Number(SESSION_COOKIE_AGE),
         httpOnly: true,
         secure: IS_PRODUCTION,
         domain: DOMAIN,
