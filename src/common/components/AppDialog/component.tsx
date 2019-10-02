@@ -50,7 +50,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       aria-describedby={ariaDescribedBy}
       classes={{ root: classes.root }}
     >
-      { title && (
+      { !!title.length && (
         <DialogTitle
           id={ariaLabelledBy}
           color="primary"
@@ -58,7 +58,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
           <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
         </DialogTitle>
       ) }
-      { content && (
+      { !!content.length && (
         <DialogContent>
           <DialogContentText
             id={ariaDescribedBy}

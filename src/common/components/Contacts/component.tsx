@@ -18,7 +18,7 @@ const Contacts: React.FunctionComponent<ContactsProps> =
 
   return (
     (
-      contacts && contacts.size && (
+      contacts && !!contacts.size && (
         isCompact &&
           <Menu
             activeConversation={activeConversation}
