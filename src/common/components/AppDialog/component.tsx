@@ -36,9 +36,13 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       closingTag = `</${ tag }>`;
     }
 
-    return content.reduce((str: string, line: DialogLine): string => {
-      str += `${ openingTag }${ line }${ closingTag }`;
-      return str;
+    return content.reduce((str: string, [ line, lineTag ]: DialogLine): string => {
+      return str += line
+        ? '' +
+        `${ lineTag ? `<${ lineTag }>` : openingTag }` +
+        `${ line }` +
+        `${ lineTag ? `</${ lineTag }>` : closingTag }`
+        : '';
     }, '');
   };
 
