@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import { OkButton } from './buttons/';
 import { styles } from './styles';
-import update from 'immutability-helper';
 import { withStyles } from '@material-ui/core/styles';
 
 const buttonsVariants = new Map([
@@ -17,7 +16,7 @@ const buttonsVariants = new Map([
 ]);
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
-  DialogProps = {},
+  DialogProps = { classes: {} },
   closeDialog,
   title,
   content,
@@ -61,14 +60,9 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       open={open}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
-      classes={
-        update(DialogProps.classes, {
-          root: {
-            $set: DialogProps.classes
-              ? `${ DialogProps.classes.root } ${ classes.root }`
-              : classes.root,
-          },
-        })
+      classes={DialogProps.classes
+        ? { ...DialogProps.classes, root: `${ DialogProps.classes.root } ${ classes.root }` }
+        : { root: classes.root }
       }
       onKeyDown={onKeyDown}
     >
