@@ -6,7 +6,9 @@ import { ListenRouteChange } from './component';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-const mapStateToProps = (): object => ({});
+const mapStateToProps = ({ helper: { helperText } }: AppState): MapStateToListenRouteChange => ({
+  helperText,
+});
 
 const mapDispatchToProps = (dispatch: ReduxDispatch): MapDispatchToListenRouteChange => ({
   ...mapHelperToDispatch(dispatch),
