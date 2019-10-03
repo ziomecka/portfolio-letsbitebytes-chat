@@ -3,6 +3,7 @@ import { isBrowser } from '../../constants';
 
 const ListenRouteChange: React.FunctionComponent<ListenRouteChangeProps> = ({
   deactivateWaitForServer,
+  helperText,
   history,
   removeHelper,
 }) => {
@@ -10,7 +11,7 @@ const ListenRouteChange: React.FunctionComponent<ListenRouteChangeProps> = ({
     React.useEffect(() => (
       history.listen(() => {
         deactivateWaitForServer();
-        removeHelper();
+        helperText && removeHelper();
       })
     ));
   }

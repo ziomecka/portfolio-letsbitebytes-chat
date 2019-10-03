@@ -2,6 +2,7 @@ declare interface MapStateToConversation {
   conversations: Conversations,
   activeConversation: string;
   connectionState: ConnectionState;
+  helperText: string;
 }
 
 declare interface MapDispatchToConversation extends

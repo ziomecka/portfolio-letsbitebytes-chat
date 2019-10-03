@@ -1,5 +1,6 @@
 declare interface MapStateToCreateUser {
   waitForServer: boolean;
+  helperText: string;
 }
 
 declare interface MapDispatchToCreateUser extends

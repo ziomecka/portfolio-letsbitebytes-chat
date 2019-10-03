@@ -10,11 +10,13 @@ import { withRouter } from 'react-router';
 const mapStateToProps = ({
   user: { isAuthenticated, login, password },
   waitForServer,
+  helper: { helperText },
 }: AppState): MapStateToLogin => ({
   isAuthenticated,
   userLogin: login,
   userPassword: password,
   waitForServer,
+  helperText,
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<LoginActions>): MapDispatchToLogin => ({

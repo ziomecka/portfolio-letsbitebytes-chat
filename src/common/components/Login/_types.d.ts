@@ -3,6 +3,7 @@ declare interface MapStateToLogin {
   userLogin: string;
   userPassword: string;
   waitForServer: boolean;
+  helperText: string;
 }
 
 declare interface MapDispatchToLogin extends MapWaitForServerToDispatch, MapHelperToDispatch {

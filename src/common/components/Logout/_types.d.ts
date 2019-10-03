@@ -1,6 +1,7 @@
 declare interface MapStateToLogout {
   isAuthenticated: boolean;
   waitForServer: boolean;
+  helperText: string;
 }
 
 declare interface MapDispatchToLogout extends
