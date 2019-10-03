@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from '@material-ui/core';
 import { OkButton } from './buttons/';
 import { styles } from './styles';
@@ -52,11 +53,15 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       {...DialogProps}
     >
       { !!title.length && (
-        <DialogTitle
-          id={ariaLabelledBy}
-          color="primary"
-        >
-          <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
+        <DialogTitle>
+          {/* rendered within span because dangerouslySetInnerHTML cannot be set on DialogTitle
+              passing array of DialogLines to DialogTitle is too complicated, todo: simplify
+           */}
+          <Typography
+            id={ariaLabelledBy}
+            dangerouslySetInnerHTML={{ __html: buildString(title) }}
+            component="span"
+          />
         </DialogTitle>
       ) }
       { !!content.length && (
