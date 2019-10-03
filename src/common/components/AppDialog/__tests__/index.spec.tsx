@@ -1,5 +1,6 @@
 import {
   Button,
+  Dialog,
   DialogContentText,
   Typography,
 } from '@material-ui/core';
@@ -30,9 +31,12 @@ describe('AppDialog', () => {
   const props: Partial<AppDialogProps> = {
     open: true,
     closeDialog: spy,
-    classes: {},
+    classes: { root: 'some-root-class' },
     buttonsVariant: ButtonsVariants.ok,
-    DialogProps: { disablePortal: true },
+    DialogProps: {
+      disablePortal: true,
+      classes: { root: 'some-other-root-class' },
+    },
     ...texts,
   };
 
@@ -98,6 +102,36 @@ describe('AppDialog', () => {
 
     // then
     expect(spy.calledOnce).toEqual(true);
+
+    cleanUp();
+  });
+
+  it('renders classNames', () => {
+    // given
+    const { wrapper, cleanUp } = buildWrapper({ Component: AppDialog, props });
+    const regexp = new RegExp(
+      `[\\w\\s-]*${ props.DialogProps.classes.root }[\\w\\s-]*${ props.classes.root }[\\w\\s-]*`
+    );
+
+    // when
+    wrapper.find(Dialog).props().className;
+    const { className } = wrapper.find(Dialog).find('div').first().props();
+
+    // then
+    expect(regexp.test(className)).toEqual(true);
+
+    cleanUp();
+  });
+
+  it('calls dialogClose on keydown enter', () => {
+    // given
+    const { wrapper, cleanUp } = buildWrapper({ Component: AppDialog, props });
+
+    // when
+    wrapper.find(Dialog).simulate('keydown', { key: 'Enter' });
+
+    // then
+    expect(spy.calledOnce).toEqual(false);
 
     cleanUp();
   });
