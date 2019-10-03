@@ -67,6 +67,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       { !!content.length && (
         <DialogContent classes={{ root: title.length ? '' : classes.noBorders }}>
           <DialogContentText
+            component="div"
             id={ariaDescribedBy}
             style={{ whiteSpace: 'pre-wrap' }}
             dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}
