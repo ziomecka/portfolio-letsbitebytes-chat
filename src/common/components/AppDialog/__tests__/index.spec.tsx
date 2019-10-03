@@ -23,10 +23,10 @@ describe('AppDialog', () => {
       [ 'Third line', 'p' ],
       [''],
     ] as DialogContent,
-    expectedContent: '<p>First line</p><h3>Second line</h3><p>Third line</p>',
   };
 
   const spy = sinon.spy();
+  const expectedContent = '<p>First line</p><h3>Second line</h3><p>Third line</p>';
 
   const props: Partial<AppDialogProps> = {
     open: true,
@@ -73,7 +73,7 @@ describe('AppDialog', () => {
     const content = wrapper.find(DialogContentText).props().dangerouslySetInnerHTML.__html;
 
     // then
-    expect(content).toEqual(texts.expectedContent);
+    expect(content).toEqual(expectedContent);
 
     cleanUp();
   });
