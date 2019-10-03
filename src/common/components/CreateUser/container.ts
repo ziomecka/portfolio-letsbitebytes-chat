@@ -6,8 +6,12 @@ import { CreateUser } from './component';
 import { connect } from 'react-redux';
 import { createUser } from './duck/';
 
-const mapStateToProps = ({ waitForServer }: AppState): MapStateToCreateUser => ({
+const mapStateToProps = ({
   waitForServer,
+  helper: { helperText },
+}: AppState): MapStateToCreateUser => ({
+  waitForServer,
+  helperText,
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<void>): MapDispatchToCreateUser => ({

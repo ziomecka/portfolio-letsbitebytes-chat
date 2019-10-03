@@ -97,7 +97,7 @@ class CreateUser extends React.Component<CreateUserWithRouterProps, CreateUserSt
       event.preventDefault();
       this.submit();
     }
-    this.props.removeHelper();
+    this.props.helperText && this.props.removeHelper();
   }
 
   private typeLogin ({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void {
