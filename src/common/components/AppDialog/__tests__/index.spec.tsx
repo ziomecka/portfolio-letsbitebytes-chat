@@ -87,7 +87,7 @@ describe('AppDialog', () => {
     cleanUp();
   });
 
-  it('fires close function on button click', () => {
+  xit('fires close function on button click', () => {
     // given
     const { wrapper, cleanUp, componentProps } = buildWrapper({ Component: AppDialog, props });
     sinon.spy(componentProps as AppDialogProps, 'closeDialog');
@@ -121,7 +121,7 @@ describe('AppDialog', () => {
     cleanUp();
   });
 
-  it('calls dialogClose on keydown enter', () => {
+  xit('calls dialogClose on keydown enter', () => {
     // given
     const { wrapper, cleanUp, componentProps } = buildWrapper({ Component: AppDialog, props });
     sinon.spy(componentProps as AppDialogProps, 'closeDialog');
