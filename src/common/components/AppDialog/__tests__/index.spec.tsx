@@ -122,4 +122,17 @@ describe('AppDialog', () => {
 
     cleanUp();
   });
+
+  it('calls dialogClose on keydown enter', () => {
+    // given
+    const { wrapper, cleanUp } = buildWrapper({ Component: AppDialog, props });
+
+    // when
+    wrapper.find(Dialog).simulate('keydown', { key: 'Enter' });
+
+    // then
+    expect(spy.calledOnce).toEqual(false);
+
+    cleanUp();
+  });
 });

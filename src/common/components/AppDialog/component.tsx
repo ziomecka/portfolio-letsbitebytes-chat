@@ -49,6 +49,12 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
 
   const Component = buttonsVariants.get(buttonsVariant);
 
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key.toLowerCase() === 'enter' && buttonsVariant === ButtonsVariants.ok) {
+      closeDialog();
+    }
+  };
+
   return (
     <Dialog
       {...DialogProps}
@@ -64,6 +70,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
           },
         })
       }
+      onKeyDown={onKeyDown}
     >
       { !!title.length && (
         <DialogTitle>
