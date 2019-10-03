@@ -30,7 +30,7 @@ class Logout extends React.Component<LogoutWithRouterProps> {
 
     try {
       props.activateWaitForServer();
-      props.removeHelper();
+      props.helperText && props.removeHelper();
 
       await props.logout();
     } catch {

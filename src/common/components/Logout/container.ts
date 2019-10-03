@@ -10,9 +10,11 @@ import { withRouter } from 'react-router';
 const mapStateToProps = ({
   user: { isAuthenticated },
   waitForServer,
+  helper: { helperText },
 } : AppState): MapStateToLogout => ({
   isAuthenticated,
   waitForServer,
+  helperText,
 });
 
 const mapDispatchToProps = (dispatch: AppThunkDispatch<LogoutActions>): MapDispatchToLogout => ({
