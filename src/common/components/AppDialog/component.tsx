@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from '@material-ui/core';
 import { OkButton } from './buttons/';
 import { styles } from './styles';
@@ -15,6 +16,7 @@ const buttonsVariants = new Map([
 ]);
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
+  DialogProps = {},
   closeDialog,
   title,
   content,
@@ -34,9 +36,13 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       closingTag = `</${ tag }>`;
     }
 
-    return content.reduce((str: string, line: DialogLine): string => {
-      str += `${ openingTag }${ line }${ closingTag }`;
-      return str;
+    return content.reduce((str: string, [ line, lineTag ]: DialogLine): string => {
+      return str += line
+        ? '' +
+        `${ lineTag ? `<${ lineTag }>` : openingTag }` +
+        `${ line }` +
+        `${ lineTag ? `</${ lineTag }>` : closingTag }`
+        : '';
     }, '');
   };
 
@@ -48,18 +54,24 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
       classes={{ root: classes.root }}
+      {...DialogProps}
     >
       { !!title.length && (
-        <DialogTitle
-          id={ariaLabelledBy}
-          color="primary"
-        >
-          <span dangerouslySetInnerHTML={{ __html: buildString(title) }}></span>
+        <DialogTitle>
+          {/* rendered within span because dangerouslySetInnerHTML cannot be set on DialogTitle
+              passing array of DialogLines to DialogTitle is too complicated, todo: simplify
+           */}
+          <Typography
+            id={ariaLabelledBy}
+            dangerouslySetInnerHTML={{ __html: buildString(title) }}
+            component="span"
+          />
         </DialogTitle>
       ) }
       { !!content.length && (
         <DialogContent classes={{ root: title.length ? '' : classes.noBorders }}>
           <DialogContentText
+            component="div"
             id={ariaDescribedBy}
             style={{ whiteSpace: 'pre-wrap' }}
             dangerouslySetInnerHTML={{ __html: buildString(content, 'p') }}

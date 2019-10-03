@@ -68,7 +68,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.spec.*', '*.test.*'],
+      files: ['*.spec.*', '*.test.*', 'test.setup.*'],
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
       },
