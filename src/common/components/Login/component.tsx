@@ -63,7 +63,7 @@ class Login extends React.Component<LoginWithRouterProps, LoginState> {
       event.preventDefault();
       this.submit();
     }
-    this.props.removeHelper();
+    this.props.helperText && this.props.removeHelper();
   }
 
   private typeLogin (event: React.ChangeEvent<HTMLInputElement>): void {
