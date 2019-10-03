@@ -11,7 +11,9 @@ declare const enum ButtonsVariants {
   ok = 'ok'
 }
 
-interface AppDialogProps extends MapStateToDialog, MapDispatchToDialog {}
+interface AppDialogProps extends MapStateToDialog, MapDispatchToDialog {
+  DialogProps?: Partial<import('@material-ui/core/Dialog').DialogProps>;
+}
 
 declare type HtmlTag = 'p' | 'h2' | 'h3';
 

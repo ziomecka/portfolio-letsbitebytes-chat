@@ -15,6 +15,7 @@ const buttonsVariants = new Map([
 ]);
 
 const AppDialog: React.FunctionComponent<AppDialogProps> = ({
+  DialogProps = {},
   closeDialog,
   title,
   content,
@@ -48,6 +49,7 @@ const AppDialog: React.FunctionComponent<AppDialogProps> = ({
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
       classes={{ root: classes.root }}
+      {...DialogProps}
     >
       { !!title.length && (
         <DialogTitle
