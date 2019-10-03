@@ -8,10 +8,12 @@ const mapStateToProps = ({
   activeConversation,
   connectionState,
   conversations,
+  helper: { helperText },
 }: AppState): MapStateToConversation => ({
   activeConversation,
   conversations,
   connectionState,
+  helperText,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToConversation => ({

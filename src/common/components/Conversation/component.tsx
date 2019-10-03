@@ -67,7 +67,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       if (connectionState === ConnectionState.disconnected) {
         this.props.addHelper({ helperText: this.texts.connectionError });
       } else {
-        this.props.removeHelper();
+        this.props.helperText && this.props.removeHelper();
       }
     }
   }
@@ -94,7 +94,7 @@ class Conversation extends React.Component<ConversationProps, ConversationState>
       texts,
     } = this;
 
-    this.props.removeHelper();
+    this.props.helperText && this.props.removeHelper();
 
     if (connectionState === ConnectionState.connected && message !== '') {
       try {
