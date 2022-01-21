@@ -13,7 +13,7 @@
     "he": "1.2.0",
     "helmet": "3.20.1",
     "immutability-helper": "3.0.1",
-    "log4js": "5.1.0",
+    "log4js": "6.4.0",
     "mime": "2.4.4",
     "mongoose": "5.7.1",
     "node-fetch": "2.6.0",
