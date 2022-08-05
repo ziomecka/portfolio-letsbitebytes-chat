@@ -15,7 +15,7 @@
     "immutability-helper": "3.0.1",
     "log4js": "5.1.0",
     "mime": "2.4.4",
-    "mongoose": "5.7.1",
+    "mongoose": "5.7.5",
     "node-fetch": "2.6.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
